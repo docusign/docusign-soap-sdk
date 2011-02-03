@@ -1,0 +1,46 @@
+.tabs {
+    height: 1024px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+
+.tabs section {
+    float: left;
+    z-index: 1;
+}
+
+.tabs section h3 {
+    margin: 0 1px 0 0;
+    background: #d9d9d9;
+    padding: 3px 10px;
+    font: bold 12px Arial;
+    -moz-border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    border-style: solid solid none solid;
+    border-width: 0px;
+}
+
+.tabs section.current h3 { 
+    background: #fff; 
+    cursor: default;
+    border-width: 1px; 
+}
+
+.tabs section iframe {
+    height: 900px;
+    width: 768px;
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    background: #fff;
+    display: none;
+    padding: 0 10px;
+    font: 12px Arial;
+    border: none;
+}
+
+.tabs section.current iframe {
+    display: block;
+}
