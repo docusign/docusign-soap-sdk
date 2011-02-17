@@ -70,7 +70,7 @@ input.upload {
     text-decoration: none;
 }
 
-.switcher li a {
+.switcher li input {
     font:12px/30px Arial, sans-serif;
     text-shadow: 0 -1px 0 #1b1929;
     color:#d6d5d4;
@@ -89,7 +89,7 @@ input.upload {
     -moz-transition:all .2s ease-out;
 }
 
-li:first-child a {
+li:first-child input {
     border-right:none;
     padding-left:15px;
     -webkit-border-radius: 5px 0 0 5px;
@@ -97,13 +97,13 @@ li:first-child a {
     border-radius:5px 0 0 5px;
 }
 
-li:last-child a {
+li:last-child input {
     -webkit-border-radius: 0 5px 5px 0;
     -moz-border-radius: 0 5px 5px 0;
     border-radius:0 5px 5px 0;
 }
 
-.switcher li.active a{
+.switcher li.active input {
     color:#000;
     text-shadow:0 1px 1px #000;
     background: -webkit-gradient(linear, 0 bottom, 0 top, from(#9ab4c2), to(#e7e3f8));
