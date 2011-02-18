@@ -3,14 +3,12 @@
     <head>
         <link rel="stylesheet" type="text/css" href="senddocuments.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="js/Utils.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                $(".switcher li").bind("click",function(){      
-                    var act = $(this);
-                    $(act).parent().children('li').removeClass("active").end();
-                    $(act).addClass("active");
-                });
+                activate();
             });
         </script>
     </head>
@@ -33,20 +31,27 @@
                     <td>None</td>
                     <td>
                         <ul class="switcher">
-                            <li class="active"><input type="button" value="ON"/>
-                            <li><input type="button" value="OFF"/>
+                            <li id="RecipientInviteon1" class="active"><a href="#" title="On">ON</a></li>
+                            <li id="RecipientInviteoff1"><a href="#" title="OFF">OFF</a></li>
+                            <input id="RecipientInviteToggle1" name="RecipientInviteToggle1" value="RecipientInviteToggle1" type="checkbox" style="display:none" checked/> 
                         </ul>
                     </td>
                 </tr>
                 <tr>
                     <td>George Bush</td>
                     <td>george@bush.com</td>
-                    <td>Access Code</td>
+                    <td><select id="RecipientSecurity1" name="RecipientSecurity1" onchange="javascript:EnableDisableInput(1)">
+                <option value="None">None</option>
+                <option value="AccessCode">Access Code:</option>
+                <option value="PhoneAuthentication">Phone Authentication</option>
+                </select><input id="RecipientSecuritySetting1" type="text" name="RecipientSecuritySetting1" style="display:none;"/></td>
                     <td>
                         <ul class="switcher">
-                            <li class="active"><input type="button" value="ON"/>
-                            <li><input type="button" value="OFF"/>
+                            <li id="RecipientInviteon2" class="active"><a href="#" title="On">ON</a></li>
+                            <li id="RecipientInviteoff2"><a href="#" title="OFF">OFF</a></li> 
+                            <input id="RecipientInviteToggle2" name="RecipientInviteToggle2" value="RecipientInviteToggle2" type="checkbox" style="display:none" checked/> 
                         </ul>
+
                     </td>
                 </tr>
                 <tr>
@@ -55,17 +60,21 @@
                     <td>Phone</td>
                     <td>
                         <ul class="switcher">
-                            <li class="active"><input type="button" value="ON"/>
-                            <li><input type="button" value="OFF"/>
+                            <li id="RecipientInviteon2" class="active"><a href="#" title="On">ON</a></li>
+                            <li id="RecipientInviteoff2"><a href="#" title="OFF">OFF</a></li>
+                            <input id="RecipientInviteToggle2" name="RecipientInviteToggle2" value="RecipientInviteToggle2" type="checkbox" style="display:none" checked/> 
                         </ul>
                     </td>
                 </tr>
             </table>
-            <p>Document #1: <input class="upload" id="file1" type="file"  /></p>
-            <p>Document #2: <input class="upload" id="file2" type="file"  /></p>
+            <div id="files">
+                <p>Document #1: <input class="upload" id="file1" type="file"  /></p>
+                <p>Document #2: <input class="upload" id="file2" type="file"  /></p>
+            </div>
             <table class="optionlist">
                 <tr>
-                    <td><input class="options" type="checkbox" name="sendoption" value="stockdoc" /> Use a stock doc</td>
+                    <td><input id="stockdoc" class="options" type="checkbox" value="stockdoc" name="stockdoc"
+                    onclick="EnableDisableDiv()" /> Use a stock doc</td>
                     <td rowspan="3"><input type="date" /><br />Add Daily Reminders</td>
                 </tr>   
                 <tr>
