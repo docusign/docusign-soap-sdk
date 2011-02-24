@@ -124,9 +124,11 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         $_SESSION["Password"] = $_POST["DevCenterPassword"];
         $_SESSION["IntegratorsKey"] = $_POST["DevCenterIKey"];
         if (login()) {
+            $_SESSION["LoggedIn"] = true;
             header("Location: home.php");
         }
         else {
+            $_SESSION["LoggedIn"] = false;
             header("Location: error.php");
         }
     }

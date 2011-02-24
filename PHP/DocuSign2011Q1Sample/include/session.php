@@ -2,9 +2,6 @@
 session_name("DocuSign2011Q1Sample");
 session_start();
 
-// needed because error.php may be called before this index is set
-$_SESSION["lastRequest"] = "";
-
 function isLoggedIn(){
 	$retval = false;
 	if (isset($_SESSION["LoggedIn"]) && ($_SESSION["LoggedIn"] === true )){
@@ -13,14 +10,14 @@ function isLoggedIn(){
 	return $retval;
 }
 
-function loginCheck($redirectURL){
+function loginCheck(){
 	if (!isset($_SESSION["LoggedIn"]) || ($_SESSION["LoggedIn"] <> true )){
-		header("Location: " . $redirectURL);
+		header("Location: login.php");
 	}
 
 }
 
-function CheckSessionValue($key, $val){
+function checkSessionValue($key, $val){
 	$retval = false;
 	if((isset($_SESSION[$key])) && ($_SESSION[$key]==$val)){
 		$retval = true;

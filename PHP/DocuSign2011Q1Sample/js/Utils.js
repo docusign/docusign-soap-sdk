@@ -5,20 +5,20 @@
     var iteration = lastRow;
     var row = tbl.insertRow(lastRow);
     row.id = 'Recipient' + iteration;
-    row.name = 'Recipient' + iteration;
+    row.name = 'Recipient[' + iteration + ']';
 
     // left cell
     var cellLeft = row.insertCell(0);
     var name = document.createElement('input');
     name.type = 'text';
-    name.name = 'RecipientName' + iteration;
+    name.name = 'RecipientName[' + iteration + ']';
     name.id = 'txtRow' + iteration;
     cellLeft.appendChild(name);
 
     var cellMiddle1 = row.insertCell(1);
     var email = document.createElement('input');
     email.type = 'email';
-    email.name = 'RecipientEmail' + iteration;
+    email.name = 'RecipientEmail[' + iteration + ']';
     email.id = 'txtRow' + iteration;
     cellMiddle1.appendChild(email);
 
@@ -27,7 +27,7 @@
 
     var security = document.createElement('select');
     security.onchange = function () { EnableDisableInput(iteration) };
-    security.id = "RecipientSecurity" + iteration;
+    security.id = "RecipientSecurity[" + iteration + ']';
     var noneopt = document.createElement('option');
     noneopt.text = 'None';
     noneopt.value = 'None';
@@ -47,7 +47,7 @@
     
     var securitySetting = document.createElement('input');
     securitySetting.type = 'text';
-    securitySetting.name = 'RecipientSecuritySetting' + iteration;
+    securitySetting.name = 'RecipientSecuritySetting[' + iteration + ']';
     securitySetting.id = 'RecipientSecuritySetting' + iteration;
     securitySetting.style.display = "none";
     cellMiddle2.appendChild(securitySetting);
@@ -75,6 +75,7 @@
     var inputHidden = document.createElement('input');
     inputHidden.title = 'RecipientInviteToggle' + iteration;
     inputHidden.id = 'RecipientInviteToggle' + iteration;
+    inputHidden.name = 'RecipientInviteToggle[' + iteration + ']';
     inputHidden.checked = true;
     inputHidden.type = 'checkbox';
     inputHidden.style.display = "none";
