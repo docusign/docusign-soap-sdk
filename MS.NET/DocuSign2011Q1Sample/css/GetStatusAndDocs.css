@@ -2,3 +2,9 @@
 {
     font: 1em Arial, sans-serif;
 }
+
+div.detail
+{
+    display:none;
+    margin-left:20px;
+}

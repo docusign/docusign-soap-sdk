@@ -36,6 +36,10 @@ namespace DocuSign2011Q1Sample
             {
                 SendTemplateTab.Attributes.Add("class", "current");
             }
+            else if (referrer.Contains("Embedded"))
+            {
+                EmbedTab.Attributes.Add("class", "current");
+            }
         }
     }
 }

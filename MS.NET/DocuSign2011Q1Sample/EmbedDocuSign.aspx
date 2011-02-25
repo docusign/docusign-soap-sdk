@@ -8,10 +8,10 @@
     <table width="100%" id="buttonTable" name="buttonTable" runat="server">
         <tr>
             <td class="rightalign">
-                <input id="OneSigner" type="submit" name="OneSigner" value="Create an Envelope with 1 Signer" />
+                <input id="OneSigner" type="submit" name="OneSigner" class="docusignbutton blue" value="Create an Envelope with 1 Signer" />
             </td>
             <td class="leftalign">
-                <input id="TwoSigners" type="submit" name="TwoSigners" value="Create an Envelope with 2 Signers" />
+                <input id="TwoSigners" type="submit" name="TwoSigners" class="docusignbutton blue" value="Create an Envelope with 2 Signers" />
             </td>
         </tr>
     </table>

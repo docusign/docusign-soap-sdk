@@ -54,8 +54,10 @@
   <ItemGroup>
     <Content Include="css\GetStatusAndDocs.css" />
     <Content Include="css\jquery.ui.all.css" />
+    <Content Include="css\jquery.ui.button.css" />
     <Content Include="css\jquery.ui.core.css" />
     <Content Include="css\jquery.ui.datepicker.css" />
+    <Content Include="css\jquery.ui.dialog.css" />
     <Content Include="css\jquery.ui.theme.css" />
     <Content Include="css\SendDocument.css" />
     <Content Include="css\SendTemplate.css" />
@@ -161,7 +163,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="EmbedDocuSign.aspx" />
-    <Content Include="EmbedSending.aspx" />
+    <Content Include="EmbeddedHost.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="GetStatusAndDocs.aspx" />
     <Content Include="images\blog.png" />
@@ -181,15 +183,22 @@
     <Content Include="images\ui-icons_222222_256x240.png" />
     <Content Include="images\ui-icons_454545_256x240.png" />
     <Content Include="js\jquery-1.4.4.js" />
+    <Content Include="js\jquery.bgiframe-2.1.2.js" />
     <Content Include="js\jquery.ui.core.js" />
     <Content Include="js\jquery.ui.datepicker.js" />
+    <Content Include="js\jquery.ui.dialog.js" />
+    <Content Include="js\jquery.ui.draggable.js" />
+    <Content Include="js\jquery.ui.mouse.js" />
+    <Content Include="js\jquery.ui.position.js" />
+    <Content Include="js\jquery.ui.resizable.js" />
     <Content Include="js\jquery.ui.widget.js" />
     <Content Include="js\Utils.js" />
     <Content Include="LogIn.aspx" />
     <Content Include="pop.html" />
+    <Content Include="pop2.html" />
     <Content Include="resources\DocuSign_Demo_%2711.xml" />
     <Content Include="SendDocument.aspx" />
-    <Content Include="SendSuccess.aspx" />
+    <Content Include="EmbedResult.aspx" />
     <Content Include="SendTemplate.aspx" />
     <Content Include="TestPage.aspx" />
     <Content Include="Web.config">
@@ -230,12 +239,12 @@
     <Compile Include="EmbedDocuSign.aspx.designer.cs">
       <DependentUpon>EmbedDocuSign.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmbedSending.aspx.cs">
-      <DependentUpon>EmbedSending.aspx</DependentUpon>
+    <Compile Include="EmbeddedHost.aspx.cs">
+      <DependentUpon>EmbeddedHost.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="EmbedSending.aspx.designer.cs">
-      <DependentUpon>EmbedSending.aspx</DependentUpon>
+    <Compile Include="EmbeddedHost.aspx.designer.cs">
+      <DependentUpon>EmbeddedHost.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
@@ -271,12 +280,12 @@
     <Compile Include="SendDocument.aspx.designer.cs">
       <DependentUpon>SendDocument.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SendSuccess.aspx.cs">
-      <DependentUpon>SendSuccess.aspx</DependentUpon>
+    <Compile Include="EmbedResult.aspx.cs">
+      <DependentUpon>EmbedResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SendSuccess.aspx.designer.cs">
-      <DependentUpon>SendSuccess.aspx</DependentUpon>
+    <Compile Include="EmbedResult.aspx.designer.cs">
+      <DependentUpon>EmbedResult.aspx</DependentUpon>
     </Compile>
     <Compile Include="SendTemplate.aspx.cs">
       <DependentUpon>SendTemplate.aspx</DependentUpon>
@@ -331,7 +340,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49204</DevelopmentServerPort>
+          <DevelopmentServerPort>55987</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

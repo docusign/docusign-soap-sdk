@@ -13,6 +13,15 @@ namespace DocuSign2011Q1Sample {
     public partial class SendDocument {
         
         /// <summary>
+        /// statusTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTable statusTable;
+        
+        /// <summary>
         /// SendDocumentForm control.
         /// </summary>
         /// <remarks>

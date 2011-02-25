@@ -10,7 +10,7 @@
 namespace DocuSign2011Q1Sample {
     
     
-    public partial class EmbedSending {
+    public partial class EmbeddedHost {
         
         /// <summary>
         /// sendingFrame control.

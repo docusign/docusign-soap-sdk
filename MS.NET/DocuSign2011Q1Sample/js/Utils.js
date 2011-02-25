@@ -17,24 +17,45 @@
 
     var cellMiddle1 = row.insertCell(1);
     var email = document.createElement('input');
-    email.type = 'email';
+    email.type = 'text';
     email.name = 'RecipientEmail' + iteration;
     email.id = 'txtRow' + iteration;
     cellMiddle1.appendChild(email);
 
     // right cell
     var cellMiddle2 = row.insertCell(2);
-    var security = document.createElement('input');
-    security.type = 'text';
-    security.name = 'RecipientSecurity' + iteration;
-    security.id = 'txtRow' + iteration;
+
+    var security = document.createElement('select');
+    security.onchange = function () { EnableDisableInput(iteration) };
+    security.id = "RecipientSecurity" + iteration;
+    security.name = "RecipientSecurity" + iteration;
+    var noneopt = document.createElement('option');
+    noneopt.text = 'None';
+    noneopt.value = 'None';
+    security.add(noneopt);
+
+    var accessopt = document.createElement('option');
+    accessopt.text = 'Access Code:';
+    accessopt.value = 'AccessCode';
+    security.add(accessopt);
+
+    var phoneopt = document.createElement('option');
+    phoneopt.text = 'Phone Authentication';
+    phoneopt.value = 'PhoneAuthentication';
+    security.add(phoneopt);
 
     cellMiddle2.appendChild(security);
+    
+    var securitySetting = document.createElement('input');
+    securitySetting.type = 'text';
+    securitySetting.name = 'RecipientSecuritySetting' + iteration;
+    securitySetting.id = 'RecipientSecuritySetting' + iteration;
+    securitySetting.style.display = "none";
+    cellMiddle2.appendChild(securitySetting);
 
     // select cell
     var cellRight = row.insertCell(3);
     var invite = document.createElement('ul');
-    invite.name = 'RecipientInvite' + iteration;
     invite.className = 'switcher';
     var li1 = document.createElement('li');
     li1.className = 'active';
@@ -51,5 +72,72 @@
     li2.appendChild(a2);
     invite.appendChild(li1);
     invite.appendChild(li2);
+
+    var inputHidden = document.createElement('input');
+    inputHidden.title = 'RecipientInviteToggle' + iteration;
+    inputHidden.id = 'RecipientInviteToggle' + iteration;
+    inputHidden.checked = true;
+    inputHidden.type = 'checkbox';
+    inputHidden.style.display = "none";
+    invite.appendChild(inputHidden);
     cellRight.appendChild(invite);
+
+    activate();
+}
+
+function dialogOpen() {
+    $("#dialogmodal").dialog({
+        height: 350,
+        width: 600,
+        modal: true
+    });
+}
+
+function dialogClose() {
+    $("#dialogmodal").dialog('close');
+}
+
+function toggle(id) {
+    var state = document.getElementById(id).style.display;
+    if (state == 'block') {
+        document.getElementById(id).style.display = 'none';
+    } else {
+        document.getElementById(id).style.display = 'block';
+    }
+}
+
+function EnableDisableDiv() {
+    if ($("#sendoption").attr("checked")) {
+        $("#files").hide();
+        $("#files").disableSelection();
+    } else {
+        $("#files").show();
+        $("#files").enableSelection();
+    }
+}
+
+function EnableDisableInput(id) {
+    if ($("#RecipientSecurity"+id).attr("selectedIndex") == 1) {
+        $("#RecipientSecuritySetting"+id).show();
+        $("#RecipientSecuritySetting"+id).enableSelection();
+    }
+    else {
+        $("#RecipientSecuritySetting"+id).hide();
+        $("#RecipientSecuritySetting"+id).disableSelection();
+    }
+}
+
+function activate() {
+    $(".switcher li").bind("click", function () {
+        var act = $(this);
+        $(act).parent().children('li').removeClass("active").end();
+        $(act).addClass("active");
+        var text = act.context.textContent;
+        if (text == "OFF") {
+            $(act).parent().children('input').attr('checked', false);
+        }
+        else {
+            $(act).parent().children('input').attr('checked', true);
+        }
+    });
 }

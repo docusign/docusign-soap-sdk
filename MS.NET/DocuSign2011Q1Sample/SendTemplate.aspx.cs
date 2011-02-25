@@ -9,7 +9,8 @@ namespace DocuSign2011Q1Sample
 {
     public partial class SendTemplate : BasePage
     {
-        //protected System.Web.UI.HtmlControls.HtmlSelect _templateSelect;
+        // Need to instantiate it to avoid runtime error
+        protected DocuSignAPI.EnvelopeStatus _status = new DocuSignAPI.EnvelopeStatus();
 
         protected override void OnInit(EventArgs e)
         {
@@ -20,7 +21,14 @@ namespace DocuSign2011Q1Sample
         {
             if (!Page.IsPostBack)
             {
-                LoadTemplates();
+                if (Request["void"] != null)
+                {
+                    VoidEnvelope(Request["id"]);
+                }
+                else
+                {
+                    LoadTemplates();
+                }
             }
             else
             {
@@ -28,6 +36,23 @@ namespace DocuSign2011Q1Sample
                 {
                     CreateEnvelope();
                 }
+            }
+        }
+
+        protected void VoidEnvelope(string id)
+        {
+            DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
+            try
+            {
+                DocuSignAPI.VoidEnvelopeStatus status = client.VoidEnvelope(id, "Envelope voided by sender");
+                if (status.VoidSuccess)
+                {
+                    Response.Redirect("SendTemplate.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                base.GoToErrorPage(ex.Message);
             }
         }
 
@@ -97,11 +122,13 @@ namespace DocuSign2011Q1Sample
             {
                 DocuSignAPI.EnvelopeStatus status = client.CreateEnvelopeFromTemplates(new DocuSignAPI.TemplateReference[] { templateReference },
                 recipients, envelopeInfo, true);
+                _status = status;
+                base.AddEnvelopeID(status.EnvelopeID);
                 if (status.SentSpecified)
                 {
-                    string navURL = String.Format("{0}?envelopeID={1}&accountID={2}&source=Template", "SendSuccess.aspx", status.EnvelopeID,
-                        envelopeInfo.AccountId);
-                    Response.Redirect(navURL, false);
+                    CreateStatusTable();
+                    string s = "<script type=\"text/javascript\">dialogOpen()</script>";
+                    ClientScript.RegisterStartupScript(Page.GetType(), "openscript", s);
                 }
 
             }
@@ -119,11 +146,13 @@ namespace DocuSign2011Q1Sample
             {
                 DocuSignAPI.EnvelopeStatus status = client.CreateEnvelopeFromTemplates(new DocuSignAPI.TemplateReference[] { templateReference },
                 recipients, envelopeInfo, false);
+                _status = status;
+                base.AddEnvelopeID(status.EnvelopeID);
                 if (status.Status == DocuSignAPI.EnvelopeStatusCode.Created)
                 {
-                    string retURL = Request.Url.AbsoluteUri.Replace("SendDocument.aspx", "SendSuccess.aspx");
+                    string retURL = Request.Url.AbsoluteUri.Replace("SendTemplate.aspx", "EmbedResult.aspx");
                     string token = client.RequestSenderToken(status.EnvelopeID, envelopeInfo.AccountId, retURL);
-                    string navURL = String.Format("{0}?envelopeID={1}&accountID={2}&source=Template", "EmbedSending.aspx", status.EnvelopeID,
+                    string navURL = String.Format("{0}?envelopeID={1}&accountID={2}&source=Template", "EmbeddedHost.aspx", status.EnvelopeID,
                         envelopeInfo.AccountId);
                     Response.Redirect(navURL, false);
                 }
@@ -131,6 +160,57 @@ namespace DocuSign2011Q1Sample
             catch (Exception ex)
             {
                 base.GoToErrorPage(ex.Message);
+            }
+        }
+
+        protected void CreateStatusTable()
+        {
+            foreach (DocuSignAPI.RecipientStatus recipient in _status.RecipientStatuses)
+            {
+                System.Web.UI.HtmlControls.HtmlTableRow row = new System.Web.UI.HtmlControls.HtmlTableRow();
+                System.Web.UI.HtmlControls.HtmlTableCell ctrl = new System.Web.UI.HtmlControls.HtmlTableCell();
+
+                //TODO add image control
+                System.Web.UI.HtmlControls.HtmlButton button = new System.Web.UI.HtmlControls.HtmlButton();
+                button.Attributes["onclick"] = "toggle(\"" + recipient.Email + "\");";
+                ctrl.Controls.Add(button);
+                System.Web.UI.HtmlControls.HtmlTableCell name = new System.Web.UI.HtmlControls.HtmlTableCell();
+                name.InnerText = recipient.UserName + " (" + recipient.Type.ToString() + ")";
+
+                // If the recipient was an embedded signer, add the "Start Signing" button
+                if (recipient.ClientUserId != null)
+                {
+                    System.Web.UI.HtmlControls.HtmlButton signButton = new System.Web.UI.HtmlControls.HtmlButton();
+                    signButton.InnerText = "Start Signing";
+                    System.Web.UI.HtmlControls.HtmlTableCell sign = new System.Web.UI.HtmlControls.HtmlTableCell();
+                    sign.Controls.Add(signButton);
+                    row.Cells.Add(sign);
+                }
+
+                row.Cells.Add(ctrl);
+                row.Cells.Add(name);
+                statusTable.Rows.Add(row);
+                System.Web.UI.HtmlControls.HtmlTableRow tableRow = new System.Web.UI.HtmlControls.HtmlTableRow();
+                tableRow.Attributes["id"] = recipient.Email;
+                tableRow.Attributes["style"] = "display:none;";
+                System.Web.UI.HtmlControls.HtmlTableCell spacing = new System.Web.UI.HtmlControls.HtmlTableCell();
+                spacing.Attributes["class"] = "space";
+                tableRow.Cells.Add(spacing);
+                System.Web.UI.HtmlControls.HtmlTableCell tableCell = new System.Web.UI.HtmlControls.HtmlTableCell();
+                System.Web.UI.HtmlControls.HtmlTable tabTable = new System.Web.UI.HtmlControls.HtmlTable();
+
+                foreach (DocuSignAPI.TabStatus tab in recipient.TabStatuses)
+                {
+                    System.Web.UI.HtmlControls.HtmlTableRow tabRow = new System.Web.UI.HtmlControls.HtmlTableRow();
+                    System.Web.UI.HtmlControls.HtmlTableCell tabCell = new System.Web.UI.HtmlControls.HtmlTableCell();
+                    tabCell.InnerText = tab.TabType.ToString() + tab.TabName + ": " + tab.TabValue;
+                    tabRow.Cells.Add(tabCell);
+                    tabTable.Rows.Add(tabRow);
+                }
+                tableCell.Controls.Add(tabTable);
+                tableCell.Attributes["class"] = "indent";
+                tableRow.Cells.Add(tableCell);
+                statusTable.Rows.Add(tableRow);
             }
         }
 

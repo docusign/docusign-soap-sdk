@@ -33,19 +33,6 @@ public class BasePage : System.Web.UI.Page
         return apiClient;
     }
 
-    public void clearSessionVars()
-    {
-        Session["LoggedIn"] = false;
-        Session["Email"] = null;
-        Session["Password"] = null;
-        Session["AccountID"] = null;
-        Session["AccountName"] = null;
-        Session["UserName"] = null;
-        Session["UserID"] = null;
-        Session["TemplateID"] = null;
-        Session["Accounts"] = null;
-    }
-
     public DocuSign2011Q1Sample.AccountCredentials GetAPICredentials()
     {
         DocuSign2011Q1Sample.AccountCredentials credentials = new DocuSign2011Q1Sample.AccountCredentials();
@@ -96,4 +83,25 @@ public class BasePage : System.Web.UI.Page
         }
     }
 
+    public void AddEnvelopeID(string id)
+    {
+        if (Session["EnvelopeIDs"] == null)
+        {
+            Session["EnvelopeIDs"] = id;
+        }
+        else
+        {
+            Session["EnvelopeIDs"] += "," + id;
+        }
+    }
+
+    public string[] GetEnvelopeIDs()
+    {
+        if (Session["EnvelopeIDs"] == null)
+        {
+            return new string[0];
+        }
+        string ids = Session["EnvelopeIDs"].ToString();
+        return ids.Split(',');
+    }
 }

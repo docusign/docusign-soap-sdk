@@ -4,10 +4,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="css/jquery.ui.all.css" />
     <link rel="Stylesheet" href="css/SendTemplate.css" />
-    <script src="js/jquery-1.4.4.js"></script>
-    <script src="js/jquery.ui.core.js"></script>
-    <script src="js/jquery.ui.widget.js"></script>
-    <script src="js/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.dialog.js"></script>
+    <script type="text/javascript" src="js/jquery.bgiframe-2.1.2.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.mouse.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.draggable.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.position.js"></script>
+    <script type="text/javascript" src="js/Utils.js"></script>
     <script type="text/javascript" charset="utf-8">
         $(function () {
             var today = new Date().getDate();
@@ -23,17 +29,44 @@
                 buttonImageOnly: true,
                 minDate: today
             });
+            $("#dialogmodal").dialog({
+                height: 350,
+                modal: true,
+                autoOpen: false
+            });
             $(".switcher li").bind("click", function () {
-                var act = $(this);
-                $(act).parent().children('li').removeClass("active").end();
-                $(act).addClass("active");
+            var act = $(this);
+            $(act).parent().children('li').removeClass("active").end();
+            $(act).addClass("active");
             });
         });
 
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form id="SendTemplateForm" action="SendTemplate.aspx" runat="server" >
+    <div id="dialogmodal" title="Envelope has been sent" style="height: 350px;">
+        <div>
+            <table class="notification">
+                <tr>
+                    <td>
+                        <img alt="" src="" />
+                    </td>
+                    <td>
+                        Success! Your envelope has been sent. The envelope ID is:<br />
+                        <%=_status.EnvelopeID%>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table id="statusTable" name="statusTable" runat="server">
+        </table>
+        <div class="dialogbuttons">
+            <input type="button" value="Close" onclick="javascript:dialogClose()" />
+            <a href="?void=true&id=<%=_status.EnvelopeID %>" style="text-decoration: none;">Void Envelope</a>
+        </div>
+    </div>
+    <form id="SendTemplateForm" action="SendTemplate.aspx" runat="server">
     <div>
         <input id="subject" name="subject" placeholder="<enter the subject>" type="text"
             class="email" /><img alt="" src="" class="helplink" /><br />
@@ -41,28 +74,31 @@
             rows="4" class="email"></textarea>
     </div>
     <div>
-    Select a Template<br />
+        Select a Template<br />
         <select id="TemplateTable" name="TemplateTable" runat="server">
-        </select><input type="button" id="selectTemplateButton" name="selectTemplateButton" value="Go" runat="server" />
+        </select><input type="button" id="selectTemplateButton" name="selectTemplateButton"
+            value="Go" runat="server" />
     </div>
+    <br />
     <div>
         <table width="100%" id="RecipientTable" name="RecipientTable" runat="server">
             <tr class="rowheader">
-                <td class="fivecolumn">
+                <th class="fivecolumn">
                     <b>Role Name</b>
-                </td>
-                <td class="fivecolumn">
+                </th>
+                <th class="fivecolumn">
                     <b>Name</b>
-                </td>
-                <td class="fivecolumn">
+                </th>
+                <th class="fivecolumn">
                     <b>E-mail</b>
-                </td>
-                <td class="fivecolumn">
+                </th>
+                <th class="fivecolumn">
                     <b>Security</b>
-                </td>
-                <td class="fivecolumn">
+                    <img alt="" src="" class="helplink" />
+                </th>
+                <th class="fivecolumn">
                     <b>Send E-mail Invite</b>
-                </td>
+                </th>
             </tr>
         </table>
     </div>
@@ -96,29 +132,17 @@
                 <td class="fourcolumn">
                 </td>
                 <td class="leftbutton">
-                    <input  type="submit" value="Send Now" name="SendNow" align="right" />
+                    <input type="submit" value="Send Now" name="SendNow" align="right" style="width: 100%;"
+                        class="docusignbutton blue" />
                 </td>
                 <td class="rightbutton">
-                    <input type="submit" value="Edit Before Sending" name="EditFirst" align="left" />
+                    <input type="submit" value="Edit Before Sending" name="EditFirst" align="left" style="width: 100%;"
+                        class="docusignbutton blue" />
                 </td>
                 <td class="fourcolumn">
                 </td>
             </tr>
         </table>
-        <div class="notification" style="visibility: hidden">
-            <table>
-                <tr>
-                    <td>
-                        <img alt="" src="" />
-                    </td>
-                    <td>
-                        Your envelope was sent. The unique envelope ID is:<br />
-                      <br />
-                        Go to the detailed status page to check on it!
-                    </td>
-                </tr>
-            </table>
-        </div>
     </div>
     </form>
 </asp:Content>

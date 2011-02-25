@@ -11,10 +11,14 @@ namespace DocuSign2011Q1Sample
 {
     public partial class SendDocument : BasePage
     {
+        // Need to instantiate it to avoid runtime error
+        protected DocuSignAPI.EnvelopeStatus _status = new DocuSignAPI.EnvelopeStatus();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Page.IsPostBack)
             {
+                //if something do this
                 // Construct the envelope basics
                 DocuSignAPI.Envelope envelope = new DocuSignAPI.Envelope();
                 envelope.Subject = Request.Form["subject"];
@@ -37,6 +41,31 @@ namespace DocuSign2011Q1Sample
                     //edit before sending -- embedded sending
                     EmbedSending(envelope);
                 }
+                //else
+            }
+            else
+            {
+                if (Request["void"] != null)
+                {
+                    VoidEnvelope(Request["id"]);
+                }
+            }
+        }
+
+        protected void VoidEnvelope(string id)
+        {
+            DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
+            try
+            {
+                DocuSignAPI.VoidEnvelopeStatus status = client.VoidEnvelope(id, "Envelope voided by sender");
+                if (status.VoidSuccess)
+                {
+                    Response.Redirect("SendDocument.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                base.GoToErrorPage(ex.Message);
             }
         }
 
@@ -48,9 +77,11 @@ namespace DocuSign2011Q1Sample
                 DocuSignAPI.EnvelopeStatus status = client.CreateAndSendEnvelope(envelope);
                 if (status.SentSpecified)
                 {
-                    string navURL = String.Format("{0}?envelopeID={1}&accountID={2}&source=Document", "SendSuccess.aspx", status.EnvelopeID,
-                        envelope.AccountId);
-                    Response.Redirect(navURL, false);
+                    _status = status;
+                    base.AddEnvelopeID(status.EnvelopeID);
+                    CreateStatusTable();
+                    string s = "<script type=\"text/javascript\">dialogOpen()</script>";
+                    ClientScript.RegisterStartupScript(Page.GetType(), "openscript", s);
                 }
 
             }
@@ -66,11 +97,10 @@ namespace DocuSign2011Q1Sample
             try
             {
                 DocuSignAPI.EnvelopeStatus status = client.CreateEnvelope(envelope);
+                base.AddEnvelopeID(status.EnvelopeID);
                 if (status.Status == DocuSignAPI.EnvelopeStatusCode.Created)
                 {
-                    string retURL = Request.Url.AbsoluteUri.Replace("SendDocument.aspx", "SendSuccess.aspx");
-                    string token = client.RequestSenderToken(status.EnvelopeID, envelope.AccountId, retURL);
-                    string navURL = String.Format("{0}?envelopeID={1}&accountID={2}&source=Document", "EmbedSending.aspx", status.EnvelopeID,
+                    string navURL = String.Format("{0}?envelopeID={1}&accountID={2}&source=Document", "EmbeddedHost.aspx", status.EnvelopeID,
                         envelope.AccountId);
                     Response.Redirect(navURL, false);
                 }
@@ -93,12 +123,33 @@ namespace DocuSign2011Q1Sample
                     DocuSignAPI.Recipient r = new DocuSignAPI.Recipient();
                     r.UserName = Request.Form["RecipientName" + i].ToString();
                     r.Email = Request.Form["RecipientEmail" + i].ToString();
-                    if (Request.Form["RecipientSecurity" + i] != null)
+                    string security = Request.Form["RecipientSecurity"+i].ToString();
+                    if (security != null)
                     {
-                        r.AccessCode = Request.Form["RecipientSecurity" + i].ToString();
+                            if (security == "AccessCode")
+                        {
+                            r.AccessCode = Request.Form["RecipientSecuritySetting" + i].ToString();
+                        }
+                        else if (security == "PhoneAuthentication")
+                        {
+                            r.RequireIDLookup = true;
+                            r.RequireIDLookupSpecified = true;
+                            r.PhoneAuthentication = new DocuSignAPI.RecipientPhoneAuthentication();
+                            r.PhoneAuthentication.RecipMayProvideNumber = true;
+                            r.PhoneAuthentication.RecipMayProvideNumberSpecified = true;
+                            r.PhoneAuthentication.RecordVoicePrint = true;
+                            r.PhoneAuthentication.RecordVoicePrintSpecified = true;
+                        }
                     }
                     r.ID = i.ToString();
                     r.Type = DocuSignAPI.RecipientTypeCode.Signer;
+
+                    if (Request.Form["RecipientInviteToggle" + i] == null)
+                    {
+                        // we want an embedded signer
+                        r.CaptiveInfo = new DocuSignAPI.RecipientCaptiveInfo();
+                        r.CaptiveInfo.ClientUserId = i.ToString();
+                    }
                     runningList.Add(r);
                 }
                 else
@@ -202,9 +253,9 @@ namespace DocuSign2011Q1Sample
                 DocuSignAPI.Tab fullAnchor = new DocuSignAPI.Tab();
                 fullAnchor.Type = DocuSignAPI.TabTypeCode.FullName;
                 fullAnchor.AnchorTabItem = new DocuSignAPI.AnchorTab();
-                fullAnchor.AnchorTabItem.AnchorTabString = "Client Name (printed)";
-                fullAnchor.AnchorTabItem.XOffset = -123;
-                fullAnchor.AnchorTabItem.YOffset = 31;
+                fullAnchor.AnchorTabItem.AnchorTabString = "(printed)";
+                fullAnchor.AnchorTabItem.XOffset = -90;
+                fullAnchor.AnchorTabItem.YOffset = -70;
                 fullAnchor.AnchorTabItem.Unit = DocuSignAPI.UnitTypeCode.Pixels;
                 fullAnchor.AnchorTabItem.UnitSpecified = true;
                 fullAnchor.AnchorTabItem.IgnoreIfNotPresent = true;
@@ -396,6 +447,69 @@ namespace DocuSign2011Q1Sample
             }
 
             return envelope;
+        }
+
+        protected void CreateStatusTable()
+        {
+            foreach (DocuSignAPI.RecipientStatus recipient in _status.RecipientStatuses)
+            {
+                System.Web.UI.HtmlControls.HtmlTableRow row = new System.Web.UI.HtmlControls.HtmlTableRow();
+                System.Web.UI.HtmlControls.HtmlTableCell ctrl = new System.Web.UI.HtmlControls.HtmlTableCell();
+
+                //TODO add image control
+                System.Web.UI.HtmlControls.HtmlButton button = new System.Web.UI.HtmlControls.HtmlButton();
+                button.Attributes["onclick"] = "toggle(\"" + recipient.Email + "\");";
+                ctrl.Controls.Add(button);
+                System.Web.UI.HtmlControls.HtmlTableCell name = new System.Web.UI.HtmlControls.HtmlTableCell();
+                name.InnerText = recipient.UserName + " (" + recipient.Type.ToString() + ")";
+
+                row.Cells.Add(ctrl);
+                row.Cells.Add(name);
+
+                // If the recipient was an embedded signer, add the "Start Signing" button
+                if (recipient.ClientUserId != null)
+                {
+                    System.Web.UI.HtmlControls.HtmlButton signButton = new System.Web.UI.HtmlControls.HtmlButton();
+                    signButton.InnerText = "Start Signing";
+                    signButton.Attributes.Add("recipientID", recipient.RecipientId);
+                    signButton.Attributes.Add("envelopeID", _status.EnvelopeID);
+                    signButton.Attributes.Add("clientID", recipient.ClientUserId);
+                    string url = String.Format("EmbeddedHost.aspx?source=SendDocument&eid={0}&uname={1}&email={2}&cid={3}", _status.EnvelopeID, recipient.UserName, recipient.Email, recipient.ClientUserId);
+                    signButton.Attributes.Add("onclick", "window.open('"+ url + "');");
+                    //signButton.ServerClick += new EventHandler(this.OnStartSigning);
+                    System.Web.UI.HtmlControls.HtmlTableCell sign = new System.Web.UI.HtmlControls.HtmlTableCell();
+                    sign.Controls.Add(signButton);
+                    row.Cells.Add(sign);
+                }
+
+                statusTable.Rows.Add(row);
+                System.Web.UI.HtmlControls.HtmlTableRow tableRow = new System.Web.UI.HtmlControls.HtmlTableRow();
+                tableRow.Attributes["id"] = recipient.Email;
+                tableRow.Attributes["style"] = "display:none;";
+                System.Web.UI.HtmlControls.HtmlTableCell spacing = new System.Web.UI.HtmlControls.HtmlTableCell();
+                spacing.Attributes["class"] = "space";
+                tableRow.Cells.Add(spacing);
+                System.Web.UI.HtmlControls.HtmlTableCell tableCell = new System.Web.UI.HtmlControls.HtmlTableCell();
+                System.Web.UI.HtmlControls.HtmlTable tabTable = new System.Web.UI.HtmlControls.HtmlTable();
+
+                foreach (DocuSignAPI.TabStatus tab in recipient.TabStatuses)
+                {
+                    System.Web.UI.HtmlControls.HtmlTableRow tabRow = new System.Web.UI.HtmlControls.HtmlTableRow();
+                    System.Web.UI.HtmlControls.HtmlTableCell tabCell = new System.Web.UI.HtmlControls.HtmlTableCell();
+                    tabCell.InnerText = tab.TabType.ToString() + tab.TabName + ": " + tab.TabValue;
+                    tabRow.Cells.Add(tabCell);
+                    tabTable.Rows.Add(tabRow);
+                }
+                tableCell.Controls.Add(tabTable);
+                tableCell.Attributes["class"] = "indent";
+                tableRow.Cells.Add(tableCell);
+                statusTable.Rows.Add(tableRow);
+            }
+        }
+
+        protected void OnStartSigning(object sender, EventArgs e)
+        {
+            int i = 0;
         }
     }
 }

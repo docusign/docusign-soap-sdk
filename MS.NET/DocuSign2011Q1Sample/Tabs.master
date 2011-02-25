@@ -6,17 +6,8 @@
     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
     <link rel="stylesheet" href="css/default.css" type="text/css" />
     <link rel="Stylesheet" href="css/Tabs.css" type="text/css"/>
-    <script type="text/javascript">
-        $(function () {
-            $('nav.tabs li > a').click(function () {
-                $('nav.tabs section').removeClass('current');
-                $(this).closest('section').addClass('current');
-            });
-        });
-    </script>
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
-    <div id="testbar" runat="server"></div>
     </asp:ContentPlaceHolder>
 </head>
 <body>

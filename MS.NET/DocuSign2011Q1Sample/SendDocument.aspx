@@ -3,27 +3,21 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="css/jquery.ui.all.css" />
-        <link rel="stylesheet" type="text/css" href="css/SendDocument.css" />
-        <!--<link rel="stylesheet" type="text/css" href="css/SendTemplate.css" />)-->
+    <link rel="stylesheet" type="text/css" href="css/SendDocument.css" />
+    <!--<link rel="stylesheet" type="text/css" href="css/SendTemplate.css" />)-->
     <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
-        <script type="text/javascript" src="js/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.dialog.js"></script>
+    <script type="text/javascript" src="js/jquery.bgiframe-2.1.2.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.mouse.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.draggable.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.position.js"></script>
     <script type="text/javascript" src="js/Utils.js"></script>
     <script type="text/javascript">
-        function EnableDisableDiv() {
-            if ($("#sendoption").attr("checked")) {
-                $("#files").hide();
-                $("#files").disableSelection();
-            } else {
-                $("#files").show();
-                $("#files").enableSelection();
-            }
-        }
-
-    </script>
-    <script type="text/javascript">
         $(document).ready(function () {
+            activate();
             var today = new Date().getDate();
             $("#reminders").datepicker({
                 showOn: "button",
@@ -37,20 +31,42 @@
                 buttonImageOnly: true,
                 minDate: today + 3
             });
-            $(".switcher li").bind("click", function () {
-                var act = $(this);
-                $(act).parent().children('li').removeClass("active").end();
-                $(act).addClass("active");
+            $("#dialogmodal").dialog({
+                height: 350,
+                modal: true,
+                autoOpen: false
             });
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="SendDocumentForm" action="SendDocument.aspx" runat="server" >
-    <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
-    <p>
-    </p>
-    <input id="emailBlurb" name="emailBlurb" type="text" placeholder="<enter e-mail blurb>" autocomplete="off" />
+    <div id="dialogmodal" title="Envelope has been sent" style="height: 350px;">
+        <div>
+            <table class="notification">
+                <tr>
+                    <td>
+                        <img alt="" src="" />
+                    </td>
+                    <td>
+                        Success! Your envelope has been sent. The envelope ID is:<br />
+                        <%=_status.EnvelopeID%>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table id="statusTable" name="statusTable" runat="server">
+        </table>
+        <div class="dialogbuttons">
+            <input type="button" value="Close" onclick="javascript:dialogClose()" />
+            <a href="?void=true&id=<%=_status.EnvelopeID %>" style="text-decoration: none;">Void Envelope</a>
+        </div>
+    </div>
+    <form id="SendDocumentForm" action="SendDocument.aspx" runat="server">
+    <input id="subject" name="subject" type="text" placeholder="<enter the subject>"
+        autocomplete="off" class="email" /><img alt="" src="" class="helplink" /><br />
+    <textarea id="emailblurb" cols="20" name="emailblurb" placeholder="<enter the e-mail blurb>"
+        rows="4" class="email"></textarea>
     <p>
     </p>
     <table id="recipientList" name="recipientList" class="recipientList">
@@ -62,7 +78,8 @@
                 E-mail
             </th>
             <th>
-                Security
+                Security and Setting
+                <img alt="" src="" class="helplink" />
             </th>
             <th>
                 Send E-mail Invite
@@ -76,33 +93,41 @@
                 <input id="RecipientEmail" type="email" name="RecipientEmail1" />
             </td>
             <td>
-                <input id="RecipientSecurity" type="text" name="RecipientSecurity1" />
+                <select id="RecipientSecurity1" name="RecipientSecurity1" onchange="javascript:EnableDisableInput(1)">
+                <option value="None">None</option>
+                <option value="AccessCode">Access Code:</option>
+                <option value="PhoneAuthentication">Phone Authentication</option>
+                </select><input id="RecipientSecuritySetting1" type="text" name="RecipientSecuritySetting1" style="display:none;"/>
             </td>
             <td>
-                <ul class="switcher" name="RecipientInvite1" >
-                    <li class="active"><a href="#" title="On">ON</a></li>
-                    <li><a href="#" title="OFF">OFF</a></li>
+                <ul class="switcher" id="RecipientInvite1">
+                    <li id="RecipientInviteon1" class="active"><a href="#" title="On">ON</a></li>
+                    <li id="RecipientInviteoff1"><a href="#" title="OFF">OFF</a></li>
+                    <input id="RecipientInviteToggle1" name="RecipientInviteToggle1" value="RecipientInviteToggle1" type="checkbox" checked style="display:none"/> 
                 </ul>
             </td>
         </tr>
     </table>
-    <input type="button" onclick="addRowToTable()" value="Add Recipient"/>
+    <input type="button" onclick="addRowToTable()" value="Add Recipient" />
     <div id="files">
-    <p>
-        Document #1:
-        <input class="upload" id="file1" type="file" name="file1" runat="server" /></p>
-    <p>
-        Document #2:
-        <input class="upload" id="file2" type="file" name="file2" runat="server"/></p>
-        </div>
+        <p>
+            Document #1:
+            <input class="upload" id="file1" type="file" name="file1" runat="server" /></p>
+        <p>
+            Document #2:
+            <input class="upload" id="file2" type="file" name="file2" runat="server" /></p>
+    </div>
     <table class="optionlist">
         <tr>
             <td>
-                <input id="sendoption" class="options" type="checkbox" value="stockdoc" name="stockdoc"  onclick="EnableDisableDiv()"/>
+                <input id="sendoption" class="options" type="checkbox" value="stockdoc" name="stockdoc"
+                    onclick="EnableDisableDiv()" />
                 Use a stock doc
+                <img alt="" src="" class="helplink" />
             </td>
             <td rowspan="3">
-                <input type="text" id="reminders" class="datepickers" name="reminders"/><br />
+                <input type="text" id="reminders" class="datepickers" name="reminders" onchange="openPicker()"
+                    onclick="openPicker()" /><br />
                 Add Daily Reminders
             </td>
         </tr>
@@ -110,21 +135,24 @@
             <td>
                 <input class="options" type="checkbox" value="addsig" name="addsigs" />
                 Add Signatures
+                <img alt="" src="" class="helplink" />
             </td>
         </tr>
         <tr>
             <td>
-                <input class="options" type="checkbox" value="addformfield" name="formfields"/>
+                <input class="options" type="checkbox" value="addformfield" name="formfields" />
                 Add Form Fields
+                <img alt="" src="" class="helplink" />
             </td>
         </tr>
         <tr>
             <td>
-                <input class="options" type="checkbox" value="addcondfield" name="conditionalfields"/>
+                <input class="options" type="checkbox" value="addcondfield" name="conditionalfields" />
                 Add Conditional Fields
+                <img alt="" src="" class="helplink" />
             </td>
             <td rowspan="3">
-                <input type="text" id="expiration" class="datepickers" name="expiration"/><br />
+                <input type="text" id="expiration" class="datepickers" name="expiration" onclick="openPicker()" /><br />
                 Add Expiration
             </td>
         </tr>
@@ -132,35 +160,44 @@
             <td>
                 <input class="options" type="checkbox" name="collabfields" value="addcollfield" />
                 Add Collaborative Fields
+                <img alt="" src="" class="helplink" />
             </td>
         </tr>
         <tr>
             <td>
                 <input class="options" type="checkbox" name="enablepaper" value="enablepaper" />
                 Enable Signing on Paper
+                <img alt="" src="" class="helplink" />
             </td>
         </tr>
         <tr>
             <td colspan="2">
                 <input class="options" type="checkbox" name="signerattachment" value="reqattachment" />
                 Request a Signer to Add an Attachment
+                <img alt="" src="" class="helplink" />
             </td>
         </tr>
         <tr>
             <td colspan="2">
                 <input class="options" type="checkbox" name="markup" value="enablemarkup" />
                 Enable Signers to Mark Up the Documents
+                <img alt="" src="" class="helplink" />
             </td>
         </tr>
     </table>
     <p />
     <table class="submit">
         <tr>
-            <td>
-                <input type="submit" value="Send Now" name="SendNow"/>
+            <td class="fourcolumn">
             </td>
-            <td>
-                <input type="submit" value="Edit Before Sending" name="EditFirst"/>
+            <td class="fourcolumn">
+                <input type="submit" value="Send Now" name="SendNow" style="width: 100%;" class="docusignbutton blue" />
+            </td>
+            <td class="fourcolumn">
+                <input type="submit" value="Edit Before Sending" name="EditFirst" style="width: 100%;"
+                    class="docusignbutton blue" />
+            </td>
+            <td class="fourcolumn">
             </td>
         </tr>
     </table>
