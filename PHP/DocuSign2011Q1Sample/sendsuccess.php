@@ -16,14 +16,13 @@
  */
 
 /*
- * Presents error.
+ * Send success page.
  */
 
 //========================================================================
 // Includes
 //========================================================================
 include_once 'include/session.php'; // initializes session and provides
-include 'include/utils.php';
 
 //========================================================================
 // Main
@@ -36,13 +35,6 @@ include 'include/utils.php';
         <link rel="stylesheet" href="css/homestyle.css" type="text/css">
     </head>
     <body>
-    	<?php 
-    	    if (isset($_SESSION["errorMessage"])) {
-    	        print_r2( $_SESSION["errorMessage"]);
-    	    }
-    	    else {
-    	        echo "You shouldn't be on this page";
-    	    }
-	    ?>
+    	Success! EnvelopeID: <?php echo $_SESSION["envelopeID"]; ?>
     </body>
 </html>

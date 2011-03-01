@@ -16,14 +16,13 @@
  */
 
 /*
- * Presents error.
+ * Presents embedded signing.
  */
 
 //========================================================================
 // Includes
 //========================================================================
 include_once 'include/session.php'; // initializes session and provides
-include 'include/utils.php';
 
 //========================================================================
 // Main
@@ -37,8 +36,8 @@ include 'include/utils.php';
     </head>
     <body>
     	<?php 
-    	    if (isset($_SESSION["errorMessage"])) {
-    	        print_r2( $_SESSION["errorMessage"]);
+    	    if (isset($_SESSION["embedToken"])) {
+    	        echo '<iframe src="' . $_SESSION['embedToken'] . '" width="100%" height="720px"></iframe>';
     	    }
     	    else {
     	        echo "You shouldn't be on this page";

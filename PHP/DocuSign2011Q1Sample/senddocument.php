@@ -23,48 +23,17 @@
 // Includes
 //========================================================================
 include_once 'include/session.php'; // initializes session and provides
-// DocuSign api service proxy classes and soapclient
-include("api/DSAPIService.php");
+include_once 'api/APIService.php';
+include 'include/utils.php';
 
 //========================================================================
 // Functions
 //========================================================================
-/**
- * Takes credentials, inserts them into HTTP Header, and returns SOAP
- * service object for dsapi
- * 
- * @return DSAPIService
- */
-function getDSAPI() {
-    loginCheck(); // jumps to login page if not logged in
-    
-	$dsapi_wsdl = "api/DSAPIService.wsdl";
-
-	// build credential xml to add to http header
-	$ds_auth = "
-		<DocuSignCredentials>
-			<Username>" . $_SESSION["UserID"] . "</Username>
-	    	<Password>" . $_SESSION["Password"] . "</Password>
-	    	<IntegratorKey>" . $_SESSION["IntegratorsKey"] . "</IntegratorKey>
-    	</DocuSignCredentials>";
-	$ctxStream = stream_context_create(array(
-    	'http' => array(
-        	'method' => "GET",
-        	'header' => "X-DocuSign-Authentication: " . $ds_auth . "\r\n")));
-
-	$dsapi_options =  array(
-        'protocol_version' => "1.0",
-    	'trace'=>true,
-        'stream_context' => $ctxStream);
-	$dsapi = new DSAPIService($dsapi_wsdl, $dsapi_options);
-	
-	return $dsapi;
-}
 
 function buildEnvelope() {
     $envelope = new Envelope();
     if (isset($_POST["subject"])) {
-        $envelope->Subject = $_POST["subect"];
+        $envelope->Subject = $_POST["subject"];
     }
     else {
         $_SESSION["errorMessage"] = "You must have a subject";
@@ -81,9 +50,9 @@ function buildEnvelope() {
     
     $envelope->AccountId = $_SESSION["AccountID"];
     $envelope->Recipients = constructRecipients();
-    $envelope->Documents = getDocuments();
-    $envelope->Tabs = addTabs();
+    $envelope->Tabs = addTabs(count($envelope->Recipients));
     $envelope = processOptions($envelope);
+    $envelope->Documents = getDocuments();
     return $envelope;
 }
 
@@ -100,21 +69,32 @@ function constructRecipients() {
     for ($i = 1; $i <= $count; $i++) {
         $r = new Recipient();
         
-        $name = $_POST["RecipientName"][$i];
-        $r->UserName = $name;
+        $r->UserName = $_POST["RecipientName"][$i];
+        $r->Email = $_POST["RecipientEmail"][$i];
+        $r->RequireIDLookup = false;
         
-        $email = $_POST["RecipientEmail"][$i];
-        $r->Email = $email;
-        
-        if (isset($_POST["RecipientSecurity"][$i])) {
-            $r->AccessCode = $accessCode;
+        switch ($_POST["RecipientSecurity"][$i]) {
+            case "AccessCode":
+            $r->AccessCode = $_POST["RecipientSecuritySetting"][$i];
+            break;
+            
+            case "PhoneAuthentication":
+                ;
+            break;
+            
+            default:
+                ;
+            break;
         }
-        
         $r->ID = $i;
         $r->Type = RecipientTypeCode::Signer;
+        $r->RoutingOrder = $i;
         
         array_push($recipients, $r);
     }
+    
+    // Remove 0th element because it is empty
+    array_shift($recipients);
     
     return $recipients;
 }
@@ -127,26 +107,289 @@ function constructRecipients() {
  * @return multitype:Document 
  */
 function getDocuments() {
-    $document = new Document();
+    $documents[] = null;
+    $id = 1;
     
-    return array($document);
+    if (isset($_POST["stockdoc"])) {
+        $d = new Document();
+        $d->PDFBytes = file_get_contents("resources/Docusign_Demo_11.pdf");
+        $d->Name = "Demo Document";
+        $d->ID = $id++;;
+//        $d->FileExtension = "pdf";
+        array_push($documents, $d);
+    }
+    else {
+        foreach ($_FILES_ as $f) {
+            if (isset($f["name"])) {
+                $d = new Document();
+                $d->PDFBytes = file_get_contents($f["tmp_name"]);
+                $d->Name = $f["name"];
+                $d->ID = $id++;
+                $d->FileExtension = substr($f["type"], strpos($f["type"], '/') + 1);
+                array_push($documents, $d);
+            };
+        }
+    }
+    
+    if (isset($_POST["signerattachment"])) {
+        $d = new Document();
+        $d->PDFBytes = file_get_contents("resources/BlankPDF.pdf");
+        $d->Name = "Signer Attachment";
+        $d->ID = $id++;
+        $d->FileExtension = "pdf";
+        $d->AttachmentDescription = "Please attache your document here";
+        array_push($documents, $d);
+    }
+    
+    // eliminate empty 0th element
+    array_shift($documents);
+    
+    return $documents;
 }
 
-function addTabls($count) {
-    $tab = new Tab();
+function addTabs($count) {
+    $tabs[] = new Tab();
+        
+    $pageTwo = isset($_POST["stockdoc"]) ? "2" : "1";
+    $pageThree = isset($_POST["stockdoc"]) ? "3" : "1";
     
-    return array($tab);
+    if (isset($_POST["addsigs"])) {
+        $company = new Tab();
+        $company->Type = TabTypeCode::Company;
+        $company->DocumentID = "1";
+        $company->PageNumber = $pageTwo;
+        $company->RecipientID = "1";
+        $company->XPosition = "342";
+        $company->YPosition = "303";
+        array_push($tabs, $company);
+        
+        $init1 = new Tab();
+        $init1->Type = TabTypeCode::InitialHere;
+        $init1->DocumentID = "1";
+        $init1->PageNumber = $pageThree;
+        $init1->RecipientID = "1";
+        $init1->XPosition = "454";
+        $init1->YPosition = "281";
+        array_push($tabs, $init1);
+        
+        $sign1 = new Tab();
+        $sign1->Type = TabTypeCode::SignHere;
+        $sign1->DocumentID = "1";
+        $sign1->PageNumber = $pageTwo;
+        $sign1->RecipientID = "1";
+        $sign1->XPosition = "338";
+        $sign1->YPosition = "330";
+        array_push($tabs, $sign1);
+        
+        $fullAnchor = new Tab();
+        $fullAnchor->Type = TabTypeCode::FullName;
+        $anchor = new AnchorTab();
+        $anchor->AnchorTabString = "Client Name (printed)";
+        $anchor->XOffset = -123;
+        $anchor->YOffset = 31;
+        $anchor->Unit = UnitTypeCode::Pixels;
+        $anchor->IgnoreIfNotPresent = true;
+        $fullAnchor->AnchorTabItem = $anchor;
+        $fullAnchor->DocumentID = "1";
+        $fullAnchor->PageNumber = $pageTwo;
+        $fullAnchor->RecipientID = "1";
+        array_push($tabs, $fullAnchor);
+        
+        $date1 = new Tab();
+        $date1->Type = TabTypeCode::DateSigned;
+        $date1->DocumentID = "1";
+        $date1->PageNumber = $pageTwo;
+        $date1->RecipientID = "1";
+        $date1->XPosition = "343";
+        $date1->YPosition = "492";
+        array_push($tabs, $date1);
+        
+        $init2 = new Tab();
+        $init2->Type = TabTypeCode::InitialHere;
+        $init2->DocumentID = "1";
+        $init2->PageNumber = $pageThree;
+        $init2->RecipientID = "1";
+        $init2->XPosition = "179";
+        $init2->YPosition = "583";
+        $init2->ScaleValue = "0.6";
+        array_push($tabs, $init2);
+        
+        if ($count > 1) {
+            $sign2 = new Tab();
+            $sign2->Type = TabTypeCode::SignHere;
+            $sign2->DocumentID = "1";
+            $sign2->PageNumber = $pageTwo;
+            $sign2->RecipientID = "1";
+            $sign2->XPosition = "338";
+            $sign2->YPosition = "330";
+            array_push($tabs, $sign2);
+
+            $date2 = new Tab();
+            $date2->Type = TabTypeCode::DateSigned;
+            $date2->DocumentID = "1";
+            $date2->PageNumber = $pageTwo;
+            $date2->RecipientID = "1";
+            $date2->XPosition = "343";
+            $date2->YPosition = "492";
+            array_push($tabs, $date2);
+        }
+        
+        if (isset($_POST["formfields"])) {
+            $favColor = new Tab();
+            $favColor->Type = TabTypeCode::Custom;
+            $favColor->CustomTabType = CustomTabType::Text;
+            $favColor->DocumentID = "1";
+            $favColor->PageNumber = $pageThree;
+            $favColor->RecipientID = "1";
+            $favColor->XPosition = "301";
+            $favColor->YPosition = "416";
+            array_push($tabs, $favColor);
+        }
+        
+        if (isset($_POST["conditionalfields"])) {
+            $fruitNo = new Tab();
+            $fruitNo->Type = TabTypeCode::Custom;
+            $fruitNo->CustomTabType = CustomTabType::Radio;
+            $fruitNo->CustomTabRadioGroupName= "fruit";
+            $fruitNo->TabLabel = "No";
+            $fruitNo->Name = "No";
+            $fruitNo->DocumentID = "1";
+            $fruitNo->PageNumber = $pageThree;
+            $fruitNo->RecipientID = "1";
+            $fruitNo->XPosition = "296";
+            $fruitNo->YPosition = "508";
+            array_push($tabs, $fruitNo);
+            
+            $fruitYes = new Tab();
+            $fruitYes->Type = TabTypeCode::Custom;
+            $fruitYes->CustomTabType = CustomTabType::Radio;
+            $fruitYes->CustomTabRadioGroupName= "fruit";
+            $fruitYes->TabLabel = "Yes";
+            $fruitYes->Name = "Yes";
+            $fruitYes->Value = "Yes";
+            $fruitYes->DocumentID = "1";
+            $fruitYes->PageNumber = $pageThree;
+            $fruitYes->RecipientID = "1";
+            $fruitYes->XPosition = "202";
+            $fruitYes->YPosition = "509";
+            array_push($tabs, $fruitYes);
+            
+            $data1 = new Tab();
+            $data1->Type = TabTypeCode::Custom;
+            $data1->CustomTabType = CustomTabType::Text;
+            $data1->ConditionalParentLabel = "fruit";
+            $data1->ConditionalParentValue = "Yes";
+            $data1->TabLabel = "Preferred Fruit";
+            $data1->Name = "Fruit";
+            $data1->DocumentID = "1";
+            $data1->PageNumber = $pageThree;
+            $data1->RecipientID = "1";
+            $data1->XPosition = "265";
+            $data1->YPosition = "547";
+            array_push($tabs, $data1);
+        }
+        
+        if (isset($_POST["collabfields"])) {
+            
+        }
+        
+        if (isset($_POST["signerattachment"])) {
+            $attach = new Tab();
+            $attach->Type = TabTypeCode::SignerAttachment;
+            $attach->TabLabel = "Signer Attachment";
+            $attach->Name = "Signer Attachment";
+            $attach->DocumentID = "2";
+            $attach->PageNumber = "1";
+            $attach->RecipientID = "1";
+            $attach->XPosition = "20";
+            $attach->YPosition = "20";
+            array_push($tabs, $attach);
+        }
+    }
+    
+    // eliminate 0th element
+    array_shift($tabs);
+    
+    return $tabs;
 }
 
 function processOptions($envelope) {
+    if (isset($_POST["markup"])) {
+        $envelope->AllowMarkup = true;
+    }
+    if (isset($_POST["enablepaper"])) {
+        $envelope->EnableWetSign = true;
+    }
+    if ($_POST["reminders"] != null) {
+        $remind = new DateTime($_POST["reminders"]);
+        $now = new DateTime($_SERVER['REQUEST_TIME']);
+        $days = $now->diff($remind)->d;
+        
+        if ($envelope->Notification == null) {
+            $envelope->Notification = new Notification();
+        }
+        $envelope->Notification->Reminders = new Reminders();
+        $envelope->Notification->Reminders->ReminderEnabled = true;
+        $envelope->Notification->Reminders->ReminderDelay = $days;
+        $envelope->Notification->Reminders->ReminderFrequency = "2";
+    }
+    if ($_POST["expiration"] !=null) {
+        $expire = new DateTime($_POST["expiration"]);
+        $now = new DateTime($_SERVER['REQUEST_TIME']);
+        $days = $now->diff($expire)->d;
+        
+        if ($envelope->Notification == null) {
+            $envelope->Notification = new Notification();
+        }
+        $envelope->Notification->Expirations = new Expirations();
+        $envelope->Notification->Expirations->ExpreEnabled = true;
+        $envelope->Notification->Expirations->ExpireAfter = $days;
+        $envelope->Notification->Expirations->ExpireWarn = $days - 2;
+    }
+    
     return $envelope;
 }
 
 function sendNow($envelope) {
-    
+    $api = getAPI();
+
+    $csParams = new CreateAndSendEnvelope();
+    $csParams->Envelope = $envelope;
+    try {
+        $status = $api->CreateAndSendEnvelope($csParams)->CreateAndSendEnvelopeResult;
+        if ($status->Status == EnvelopeStatusCode::Sent) {
+            $_SESSION["envelopeID"] = $status->EnvelopeID;
+            header("Location: sendsuccess.php?envelopid=" . $status->EnvelopeID . 
+            	"&accountID=" . $envelope->AccountId . "&source=Document");
+        }
+    } catch (SoapFault $e) {
+        $_SESSION["errorMessage"] = $e;
+        header("Location: error.php");
+    }
 }
 
 function embedSending($envelope) {
+    $api = getAPI();
+    
+    $ceParams = new CreateEnvelope();
+    $ceParams->Envelope = $envelope;
+    try {
+        $status = $api->CreateEnvelope($ceParams)->CreateEnvelopeResult;
+        if ($status->Status == EnvelopeStatusCode::Created) {
+            $rstParam = new RequestSenderToken();
+            $rstParam->AccountID = $envelope->AccountId;
+            $rstParam->EnvelopeID = $status->EnvelopeID;
+            $rstParam->ReturnURL = getCallbackURL("sendsuccess.php");
+            array_push($_SESSION["envelopeIDs"], $status->EnvelopeID);
+            $_SESSION["embedToken"] = $api->RequestSenderToken($rstParam)->RequestSenderTokenResult;
+            header("Location: embedsending.php?envelopid=" . $status->EnvelopeID . 
+            	"&accountID=" . $envelope->AccountId . "&source=Document");
+            
+        }
+    } catch (SoapFault $e) {
+        $_SESSION["errorMessage"] = $e;
+        header("Location: error.php");
+    }
     
 }
 
@@ -213,7 +456,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
         </script>
     </head>
     <body>
-        <form id="SendDocumentForm" method="post" >
+        <form id="SendDocumentForm" enctype="multipart/form_data" method="post" >
             <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
             <p>
             </p>
@@ -238,13 +481,13 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
             </table>
             <input type="button" onclick="addRowToTable()" value="Add Recipient"/>
             <div id="files">
-            <p>
-                Document #1:
-                <input class="upload" id="file1" type="file" name="file1" /></p>
-            <p>
-                Document #2:
-                <input class="upload" id="file2" type="file" name="file2"/></p>
-                </div>
+                <p>
+                    Document #1:
+                    <input class="upload" id="file1" type="file" name="file1" /></p>
+                <p>
+                    Document #2:
+                    <input class="upload" id="file2" type="file" name="file2"/></p>
+            </div>
             <table class="optionlist">
                 <tr>
                     <td>

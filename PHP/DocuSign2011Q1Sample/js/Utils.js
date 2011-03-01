@@ -27,7 +27,8 @@
 
     var security = document.createElement('select');
     security.onchange = function () { EnableDisableInput(iteration) };
-    security.id = "RecipientSecurity[" + iteration + ']';
+    security.id = "RecipientSecurity" + iteration;
+    security.name = 'RecipientSecurity[' + iteration + ']';
     var noneopt = document.createElement('option');
     noneopt.text = 'None';
     noneopt.value = 'None';

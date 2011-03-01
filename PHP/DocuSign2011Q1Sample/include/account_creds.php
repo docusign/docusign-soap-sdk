@@ -9,4 +9,5 @@ $Password = "blahblah";
 // TODO: Endpoints must be changed after certification
 $credapi_endpoint = "https://demo.docusign.net/api/3.0/credential.asmx";
 $dsapi_endpoint = "https://demo.docusign.net/api/3.0/dsapi.asmx";
+$api_endpoint = "https://demo.docusign.net/api/3.0/api.asmx";
 ?>
