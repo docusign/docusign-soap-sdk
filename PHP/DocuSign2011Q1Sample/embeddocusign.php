@@ -9,6 +9,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+        <nav class="tabs">
+        	<a href="senddocument.php">Send Document</a>
+        	<a href="sendatemplate.php">Send a Template</a>
+        	<a href="embeddocusign.php" class="current">Embed Docusign</a>
+        	<a href="getstatusanddocs.php">Get Status and Docs</a>
+    	</nav>
 		<table width="100%">
 			<tr>
 				<td class="rightalign">

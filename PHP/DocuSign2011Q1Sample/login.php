@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
         $_SESSION["IntegratorsKey"] = $_POST["DevCenterIKey"];
         if (login()) {
             $_SESSION["LoggedIn"] = true;
-            header("Location: home.php");
+            header("Location: senddocument.php");
         }
         else {
             $_SESSION["LoggedIn"] = false;

@@ -110,3 +110,17 @@ function getAPI() {
     
     return $api;
 }
+
+function addEnvelopeID($envelopeID) {
+    if (isset($_SESSION["EnvelopeIDs"])) {
+        array_push($_SESSION["EnvelopeIDs"], $envelopeID);
+    }
+    else {
+        $_SESSION["EnvelopeIDs"] = array($envelopeID);
+    }
+}
+
+function getLastEnvelopeID() {
+    $index = count($_SESSION["EnvelopeIDs"]) - 1;
+    return $_SESSION["EnvelopeIDs"][$index];
+}

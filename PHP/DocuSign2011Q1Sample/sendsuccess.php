@@ -23,6 +23,7 @@
 // Includes
 //========================================================================
 include_once 'include/session.php'; // initializes session and provides
+include_once 'include/utils.php';
 
 //========================================================================
 // Main
@@ -35,6 +36,6 @@ include_once 'include/session.php'; // initializes session and provides
         <link rel="stylesheet" href="css/homestyle.css" type="text/css">
     </head>
     <body>
-    	Success! EnvelopeID: <?php echo $_SESSION["envelopeID"]; ?>
+    	Success! EnvelopeID: <?php echo getLastEnvelopeID(); ?>
     </body>
 </html>

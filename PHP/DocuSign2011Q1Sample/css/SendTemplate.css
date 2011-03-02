@@ -71,7 +71,7 @@ input
 .rowheader
 {
     background-color:#D6D6D6;
-    width:100%;
+ /*   width:100%; */
 }
 
 /*Datepicker styles*/

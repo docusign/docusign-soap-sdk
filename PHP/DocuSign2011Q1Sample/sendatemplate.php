@@ -40,7 +40,7 @@ function voidSampleEnvelope($envelopeID) {
             header("Location: sendatemplate.php");
         }
     } catch (SoapFault $e) {
-        $_SESSION["errorMessage"];
+        $_SESSION["errorMessage"] = $e;
         header("Location: error.php");
     }
 }
@@ -50,7 +50,7 @@ function createSampleEnvelope() {
     // Create envelope information
     $envinfo = new EnvelopeInformation();
     $envinfo->Subject = $_POST["subject"];
-    $envinfo->EmailBlurb = $_POST["emailBlurb"];
+    $envinfo->EmailBlurb = $_POST["emailblurb"];
     $envinfo->AccountId = $_SESSION["AccountID"];
     
     if ($_POST["reminders"] != null) {
@@ -89,7 +89,7 @@ function createSampleEnvelope() {
     $tref->RoleAssignments = createFinalRoleAssignments($recipients);
     $trefs = array($tref);
     
-    if (isset($_Post["SendNow"])) {
+    if (isset($_POST["SendNow"])) {
         sendNow($trefs, $envinfo, $recipients);
     }
     else {
@@ -103,7 +103,21 @@ function createSampleEnvelope() {
 function constructRecipients() {
     $recipients[] = new Recipient();
     
-    $count = count($_POST["RecipientName"]);
+    $count = count($_POST["RoleName"]);
+    for ($i = 1; $i <= $count; $i++) {
+        if ($_POST["RoleName"] != null) {
+            $r = new Recipient();
+            $r->UserName = $_POST["Name"][$i];
+            $r->Email = $_POST["RoleEmail"][$i];
+            $r->ID = $i;
+            $r->RoleName = $_POST["RoleName"][$i];
+            $r->Type = RecipientTypeCode::Signer;
+            array_push($recipients, $r);
+        }
+    }
+    
+    // eliminate 0th element
+    array_shift($recipients);
     
     return $recipients;
 }
@@ -118,9 +132,9 @@ function createFinalRoleAssignments($recipients) {
     
     foreach ($recipients as $r) {
         $assign = new TemplateReferenceRoleAssignment();
-        $assign->RecipientID = $r->$ID;
+        $assign->RecipientID = $r->ID;
         $assign->RoleName = $r->RoleName;
-        array_push($roleAssignments, $r);
+        array_push($roleAssignments, $assign);
     }
     
     // eliminate 0th element
@@ -138,34 +152,34 @@ function loadTemplates() {
     try {
         $templates = $dsapi->RequestTemplates($rtParams)->RequestTemplatesResult->EnvelopeTemplateDefinition;
     } catch (SoapFault $e) {
-        $_SESSION["errorMessage"];
+        $_SESSION["errorMessage"] = $e;
         header("Location: error.php");
     }
     
     foreach ($templates as $template) {
-        echo '<option value="' . $template->TemplateID . '>' .
-            $template->Name . '</option>
-            ';
+        echo '<option value="' . $template->TemplateID . '">' .
+            $template->Name . "</option>\n";
+//        echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
     }
 }
 
 function sendNow($templateReferences, $envelopeInfo, $recipients) {
-    $dsapi = getAPI();
+    $api = getAPI();
     
     $csParams = new CreateEnvelopeFromTemplates();
     $csParams->EnvelopeInformation = $envelopeInfo;
     $csParams->Recipients = $recipients;
     $csParams->TemplateReferences = $templateReferences;
+    $csParams->ActivateEnvelope = true;
     try {
-        $status = CreateEnvelopeFromTemplates($csParams)->CreateEnvelopeFromTemplatesResult;
-        array_push($_SESSION["envelopeIDs"], $status->EnvelopeID);
+        $status = $api->CreateEnvelopeFromTemplates($csParams)->CreateEnvelopeFromTemplatesResult;
         if ($status->Status == EnvelopeStatusCode::Sent) {
-            $_SESSION["envelopeID"] = $status->EnvelopeID;
+            addEnvelopeID($status->EnvelopeID);
             header("Location: sendsuccess.php?envelopid=" . $status->EnvelopeID . 
             	"&accountID=" . $envelope->AccountId . "&source=Document");
         }
     } catch (SoapFault $e) {
-        $_SESSION["errorMessage"];
+        $_SESSION["errorMessage"] = array($e, $api->__getLastRequest(), $csParams);
         header("Location: error.php");
     }
 }
@@ -177,14 +191,15 @@ function embedSending($templateReferences, $envelopeInfo, $recipients) {
     $ceParams->EnvelopeInformation = $envelopeInfo;
     $ceParams->Recipients = $recipients;
     $ceParams->TemplateReferences = $templateReferences;
+    $csParams->ActivateEnvelope = false;
     try {
-        $status = CreateEnvelopeFromTemplates($ceParams)->CreateEnvelopeFromTemplatesResult;
+        $status = $api->CreateEnvelopeFromTemplates($ceParams)->CreateEnvelopeFromTemplatesResult;
         if ($status->Status == EnvelopeStatusCode::Created) {
             $rstParam = new RequestSenderToken();
             $rstParam->AccountID = $envelopeInfo->AccountId;
             $rstParam->EnvelopeID = $status->EnvelopeID;
             $rstParam->ReturnURL = getCallbackURL("sendsuccess.php");
-            array_push($_SESSION["envelopeIDs"], $status->EnvelopeID);
+            addEnvelopeID($status->EnvelopeID);
             $_SESSION["embedToken"] = $api->RequestSenderToken($rstParam)->RequestSenderTokenResult;
             header("Location: embedsending.php?envelopid=" . $status->EnvelopeID . 
             	"&accountID=" . $envelope->AccountId . "&source=Document");
@@ -200,10 +215,9 @@ function embedSending($templateReferences, $envelopeInfo, $recipients) {
 // Main
 //========================================================================
 loginCheck();
-$_SESSION["envelopeID"] = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    ;
+    createSampleEnvelope();
 }
 else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     ;
@@ -255,30 +269,13 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     </script>
 	</head>
     <body>
-    <div id="dialogmodal" title="Envelope has been sent" style="height: 350px;">
-        <div>
-            <table class="notification">
-                <tr>
-                    <td>
-                        <img alt="" src="" />
-                    </td>
-                    <td>
-                        Success! Your envelope has been sent. The envelope ID is:<br />
-                        <?php echo $_SESSION["envelopeID"]; ?>
-                        <br />
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <table id="statusTable" name="statusTable">
-        </table>
-        <div class="dialogbuttons">
-            <input type="button" value="Close" onclick="javascript:dialogClose()" />
-            <?php echo '<a href="?void=true&id=' . $_SESSION["envelopeID"] . '" style="text-decoration: none;">Void Envelope</a>'; ?>
-            <a href="?void=true&id=<?php echo $_SESSION["envelopeID"]; ?>" style="text-decoration: none;">Void Envelope</a>
-        </div>
-    </div>
-    <form id="SendTemplateForm" action="SendTemplate.aspx">
+    <nav class="tabs">
+    	<a href="senddocument.php">Send Document</a>
+    	<a href="sendatemplate.php" class="current">Send a Template</a>
+    	<a href="embeddocusign.php">Embed Docusign</a>
+    	<a href="getstatusanddocs.php">Get Status and Docs</a>
+	</nav>
+    <form id="SendTemplateForm" enctype="multipart/form_data" method="post">
     <div>
         <input id="subject" name="subject" placeholder="<enter the subject>" type="text"
             class="email" /><img alt="" src="" class="helplink" /><br />
@@ -288,10 +285,11 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <div>
         Select a Template<br />
         <select id="TemplateTable" name="TemplateTable" >
-            <?php loadTemplates(); ?>
+        	<?php loadTemplates(); ?>
         </select>
-        <input type="button" id="selectTemplateButton" name="selectTemplateButton"
-            value="Go"  />
+<!--         <input type="button" id="selectTemplateButton" name="selectTemplateButton"
+            value="Go"  /> 
+-->
     </div>
     <br />
     <div>
@@ -315,6 +313,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 </th>
             </tr>
         </table>
+         <input type="button" onclick="addRoleRowToTable()" value="Add Role"/>
     </div>
     <div>
         <table width="100%">
@@ -359,5 +358,37 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
         </table>
     </div>
     </form>
+    <table align="center" style="padding-top: 20px;">
+        <tr>
+            <td align="center">
+                <span>Do you find this sample useful? Tell your friends!</span><br />
+                <div class="addthis_toolbox addthis_default_style" style="margin-right: auto; margin-left: auto;
+                    width: 210px;">
+                    <a class="addthis_button_email"></a><a class="addthis_button_tweet" tw:url="http://www.docusign.com/developers-center/"
+                        tw:text="I just tried out the DocuSign API!" tw:via="DocuSignAPI" tw:count="none"
+                        tw:related="DocuSign:DocuSign, Inc"></a><a class="addthis_button_delicious">
+                    </a><a class="addthis_button_stumbleupon"></a><a class="addthis_button_facebook_like"
+                        fb:href="http://www.docusign.com/devcenter/"></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <span>Keep up with new developments:</span><br />
+                <a class="addthis_email" href="http://www.docusign.com/blog">
+                    <img src="images/blog.png" width="16" height="16" border="0" alt="Blog" /></a>
+                <a class="addthis_email" href="http://www.youtube.com/user/ESIGNwithDocuSign">
+                    <img src="images/icon-youtube.png" width="16" height="16" border="0" alt="Youtube" /></a>
+                <a class="addthis_email" href="http://www.docusign.com/blog/feed/">
+                    <img src="images/icon-rss.png" width="16" height="16" border="0" alt="RSS" /></a>
+                <a class="addthis_email" href="http://www.facebook.com/pages/DocuSign/71115427991">
+                    <img src="images/icon-facebook.png" width="16" height="16" border="0" alt="Facebook" /></a>
+                <a class="addthis_email" href="http://www.twitter.com/DocuSign">
+                    <img src="images/icon-twitter.png" width="16" height="16" border="0" alt="Twitter" /></a>
+                <a class="addthis_email" href="http://www.linkedin.com/company/19022?trk=saber_s000001e_1000">
+                    <img src="images/icon-linkedin.png" width="16" height="16" border="0" alt="LinkedIn" /></a>
+            </td>
+        </tr>
+	</table>
 	</body>
 </html>
