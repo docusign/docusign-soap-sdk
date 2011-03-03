@@ -175,7 +175,7 @@ function sendNow($templateReferences, $envelopeInfo, $recipients) {
         $status = $api->CreateEnvelopeFromTemplates($csParams)->CreateEnvelopeFromTemplatesResult;
         if ($status->Status == EnvelopeStatusCode::Sent) {
             addEnvelopeID($status->EnvelopeID);
-            header("Location: sendsuccess.php?envelopid=" . $status->EnvelopeID . 
+            header("Location: getstatusanddocs.php?envelopid=" . $status->EnvelopeID . 
             	"&accountID=" . $envelope->AccountId . "&source=Document");
         }
     } catch (SoapFault $e) {
@@ -198,7 +198,7 @@ function embedSending($templateReferences, $envelopeInfo, $recipients) {
             $rstParam = new RequestSenderToken();
             $rstParam->AccountID = $envelopeInfo->AccountId;
             $rstParam->EnvelopeID = $status->EnvelopeID;
-            $rstParam->ReturnURL = getCallbackURL("sendsuccess.php");
+            $rstParam->ReturnURL = getCallbackURL("getstatusanddocs.php");
             addEnvelopeID($status->EnvelopeID);
             $_SESSION["embedToken"] = $api->RequestSenderToken($rstParam)->RequestSenderTokenResult;
             header("Location: embedsending.php?envelopid=" . $status->EnvelopeID . 

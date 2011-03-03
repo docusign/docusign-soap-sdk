@@ -115,7 +115,7 @@ function getDocuments() {
         $d->PDFBytes = file_get_contents("resources/Docusign_Demo_11.pdf");
         $d->Name = "Demo Document";
         $d->ID = $id++;;
-//        $d->FileExtension = "pdf";
+        $d->FileExtension = "pdf";
         array_push($documents, $d);
     }
     else {
@@ -379,7 +379,7 @@ function embedSending($envelope) {
             $rstParam = new RequestSenderToken();
             $rstParam->AccountID = $envelope->AccountId;
             $rstParam->EnvelopeID = $status->EnvelopeID;
-            $rstParam->ReturnURL = getCallbackURL("sendsuccess.php");
+            $rstParam->ReturnURL = getCallbackURL("getstatusanddocs.php");
             addEnvelopeID($status->EnvelopeID);
             $_SESSION["embedToken"] = $api->RequestSenderToken($rstParam)->RequestSenderTokenResult;
             header("Location: embedsending.php?envelopid=" . $status->EnvelopeID . 
