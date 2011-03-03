@@ -36,12 +36,9 @@ $_oneSigner = true;
 
 /**
  * Creates an embedded signing experience.
- * @param boolean $oneSigner
- * 	true - one signer
- *  false - two signers
  */
 function createAndSend() {
-    global $_onesigner;
+    global $_oneSigner;
     $status = "";
     
     // Construct basic envelope
@@ -50,7 +47,7 @@ function createAndSend() {
     $env->EmailBlurb = "This envelope demonstrates embedded signing";
     $env->AccountId = $_SESSION["AccountID"];
     
-    $env->Recipients = constructRecipients($oneSigner);
+    $env->Recipients = constructRecipients($_oneSigner);
     
     $doc = new Document();
     $doc->PDFBytes = file_get_contents("resources/Docusign_Demo_11.pdf");
@@ -65,7 +62,7 @@ function createAndSend() {
     try {
         $csParams = new CreateAndSendEnvelope();
         $csParams->Envelope = $env;
-        $status = $api->CreateAndSendEnvelope($csParams)->CreateAndSendResult;
+        $status = $api->CreateAndSendEnvelope($csParams)->CreateAndSendEnvelopeResult;
         addEnvelopeID($status->EnvelopeID);
         getToken($status, 0);
     } catch (SoapFault $e) {
@@ -266,7 +263,7 @@ function getToken($status, $index) {
     $assertion->AuthenticationMethod = RequestRecipientTokenAuthenticationAssertionAuthenticationMethod::Password;
     $assertion->SecurityDomain = "DocuSign2011Q1Sample";
     
-    $recipient = $status->Recipients[$index];
+    $recipient = $status->RecipientStatuses->RecipientStatus[$index];
     
     $urls = new RequestRecipientTokenClientURLs();
     $urlbase = getCallbackURL("pop.html") . "?source=Embedded";
@@ -284,7 +281,7 @@ function getToken($status, $index) {
         $urls->OnSigningComplete = $urlbase . "&event=SigningComplete&uname=" . $recipient->UserName;
     }
     else {
-        $urls->OnSigningComplete = getCallbackURL("pop2.html") . "?envelopID=" . $status->EnvelopeID;
+        $urls->OnSigningComplete = getCallbackURL("pop2.html") . "?envelopeID=" . $status->EnvelopeID;
     }
     
     $api = getAPI();
@@ -309,7 +306,7 @@ function getToken($status, $index) {
 function getStatus($envelopeID) {
     $status = null;
     
-    $spi = getAPI();
+    $api = getAPI();
     
     $rsParams = new RequestStatus();
     $rsParams->EnvelopeID = $envelopeID;
@@ -336,6 +333,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET["envelopeID"])) {
         getToken(getStatus($_GET["envelopeID"]), 1);
+    }
+    else {
+        $_SESSION["embedToken"] = "";
     }
 }
 ?>

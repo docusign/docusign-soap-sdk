@@ -191,7 +191,7 @@ function embedSending($templateReferences, $envelopeInfo, $recipients) {
     $ceParams->EnvelopeInformation = $envelopeInfo;
     $ceParams->Recipients = $recipients;
     $ceParams->TemplateReferences = $templateReferences;
-    $csParams->ActivateEnvelope = false;
+    $ceParams->ActivateEnvelope = false;
     try {
         $status = $api->CreateEnvelopeFromTemplates($ceParams)->CreateEnvelopeFromTemplatesResult;
         if ($status->Status == EnvelopeStatusCode::Created) {
