@@ -5,6 +5,7 @@ public class Utils {
 	// System strings 
 	public static final String CONFIG_PROPERTIES_CLASSPATH_LOCATION = "/config.properties";
 	public static final String DOCUSIGN_WEBSERVICE_ENDPOINT = "docusign.webservice.endpoint";
+	public static final String DOCUSIGN_CREDENTIAL_ENDPOINT = "docusign.credential.endpoint";
 
 	// session attributes
 	public static final String SESSION_INTEGRATORS_KEY = "docusign.integrators.key";
@@ -13,6 +14,7 @@ public class Utils {
 	public static final String SESSION_PASSWORD = "docusign.password";
 	public static final String SESSION_EMAIL = "email";
 	public static final String SESSION_LOGGEDIN = "loggedin";
+	public static final String SESSION_ERROR_MSG = "errmsg";
 	
 	// Web pages
 	public static final String PAGE_LOGIN = "login.jsp";

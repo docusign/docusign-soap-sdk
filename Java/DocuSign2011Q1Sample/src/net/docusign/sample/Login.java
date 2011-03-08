@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.docusign.credential.*;
+import net.docusign.credential.LoginResponse.LoginResult;
 import net.docusign.sample.*;
 
 /**
@@ -40,6 +41,8 @@ public class Login extends HttpServlet {
 			session.setAttribute(Utils.SESSION_EMAIL, creds.getProperty(Utils.SESSION_EMAIL));
 			session.setAttribute(Utils.SESSION_PASSWORD, creds.getProperty(Utils.SESSION_PASSWORD));
 			session.setAttribute(Utils.SESSION_INTEGRATORS_KEY, creds.getProperty(Utils.SESSION_INTEGRATORS_KEY));
+			session.setAttribute(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT, creds.getProperty(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT));
+			session.setAttribute(Utils.DOCUSIGN_WEBSERVICE_ENDPOINT, creds.getProperty(Utils.DOCUSIGN_WEBSERVICE_ENDPOINT));
 		} catch (IOException ioexception) {
 			System.err.println(Utils.ERROR_CONFIG);
 		}
@@ -50,14 +53,16 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		// TODO Login
-		if (request.getParameterValues("submit") != null) {
+		
+		// Handle Submit button
+		if (request.getParameterValues(Utils.NAME_SUBMIT) != null) {
 			session.setAttribute(Utils.SESSION_EMAIL, request.getParameterValues(Utils.NAME_EMAIL)[0]);
 			session.setAttribute(Utils.SESSION_PASSWORD, request.getParameterValues(Utils.NAME_PASSWORD)[0]);
 			session.setAttribute(Utils.SESSION_INTEGRATORS_KEY, request.getParameterValues(Utils.NAME_IKEY)[0]);
-			if (login()) {
+			if (login(request, response)) {
 				session.setAttribute(Utils.SESSION_LOGGEDIN, true);
 				response.sendRedirect(Utils.PAGE_SENDDOCUMENT);
 			}
@@ -67,16 +72,42 @@ public class Login extends HttpServlet {
 			}
 		}
 		
-		// TODO Reset
-		if (request.getParameterValues("reset") != null) {
+		// Handle Reset button
+		if (request.getParameterValues(Utils.NAME_RESET) != null) {
 			doGet(request, response);
 		}
 	}
 
 
-	private boolean login() {
-		// TODO Auto-generated method stub
-		return false;
+	private boolean login(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		boolean ret = false;
+		LoginResult result = null;
+		HttpSession session = request.getSession();
+		session.setAttribute(Utils.SESSION_ERROR_MSG, null);
+		
+		CredentialSoap credApi = new CredentialFactory().getCredential(
+				session.getAttribute(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT).toString());
+		
+		try {
+			result = credApi.login(session.getAttribute(Utils.SESSION_EMAIL).toString(), 
+					session.getAttribute(Utils.SESSION_PASSWORD).toString());
+		} catch (Exception e) {
+			// TODO: handle exception
+			ret = false;
+		}
+		
+		if (result != null && result.isSuccess()) {
+			session.setAttribute(Utils.SESSION_ACCOUNT_ID, 
+					result.getAccounts().getAccount().get(0).getAccountID());
+			ret = true;
+		}
+		else {
+			session.setAttribute(Utils.SESSION_ERROR_MSG, result.getErrorCode());
+			ret = false;
+		}
+		
+		return ret;
 	}
 		
 }
