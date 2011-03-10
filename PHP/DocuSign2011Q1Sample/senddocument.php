@@ -137,7 +137,7 @@ function getDocuments() {
         $d->Name = "Signer Attachment";
         $d->ID = $id++;
         $d->FileExtension = "pdf";
-        $d->AttachmentDescription = "Please attache your document here";
+        $d->AttachmentDescription = "Please attach your document here";
         array_push($documents, $d);
     }
     
@@ -342,7 +342,7 @@ function processOptions($envelope) {
             $envelope->Notification = new Notification();
         }
         $envelope->Notification->Expirations = new Expirations();
-        $envelope->Notification->Expirations->ExpreEnabled = true;
+        $envelope->Notification->Expirations->ExpireEnabled = true;
         $envelope->Notification->Expirations->ExpireAfter = $days;
         $envelope->Notification->Expirations->ExpireWarn = $days - 2;
     }

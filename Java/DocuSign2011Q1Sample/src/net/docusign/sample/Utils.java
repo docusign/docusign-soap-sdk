@@ -1,5 +1,7 @@
 package net.docusign.sample;
 
+import java.util.Date;
+
 public class Utils {
 	
 	// System strings 
@@ -28,6 +30,13 @@ public class Utils {
 	public static final String PAGE_SENDTEMPLATE = "sendatemplate.jsp";
 	public static final String PAGE_SUCCESS = "sendsuccess.jsp";
 	
+	// Controller classes
+	public static final String CONTROLLER_LOGIN = "Login";
+	public static final String CONTROLLER_SENDDOCUMENT = "SendDocument";
+	public static final String CONTROLLER_EMBEDDOCUSIGN = "EmbedDocusign";
+	public static final String CONTROLLER_GETSTATUS = "GetStatusAndDocs";
+	public static final String CONTROLLER_SENDTEMPLATE = "SendATemplate";
+	
 	// Form parameter names
 	//	PAGE_LOGIN
 	public static final String NAME_EMAIL = "DevCenterEmail";
@@ -36,6 +45,37 @@ public class Utils {
 	public static final String NAME_SUBMIT = "submit";
 	public static final String NAME_RESET ="reset";
 	
+	//	PAGE SENDDOCUMENT
+	public static final String NAME_SENDNOW = "SendNow";
+	public static final String NAME_SUBJECT = "subject";
+	public static final String NAME_EMAILBLURB = "emailBlurb";
+	public static final String NAME_RECIPIENTNAME = "RecipientName";
+	public static final String NAME_RECIPIENTEMAIL = "RecipientEmail";
+	public static final String NAME_RECIPIENTSECURITY = "RecipientSecurity";
+	public static final String NAME_ACCESSCODE = "AccessCode";
+	public static final String NAME_RECIPIENTSECURITYSETTING = "RecipientSecuritySetting";
+	public static final String NAME_STOCKDOC = "stockdoc";
+	public static final String NAME_SIGNERATTACHMENT = "signerattachment";
+	public static final String NAME_MARKUP = "markup";
+	public static final String NAME_ENABLEPAPER = "enablepaper";
+	public static final String NAME_REMINDERS = "reminders";
+	public static final String NAME_EXPIRATION = "expiration";	
+	public static final String NAME_ADDSIGS = "addsigs";
+	public static final String NAME_FORMFIELDS = "formfields";
+	public static final String NAME_CONDITIONALFIELDS = "conditionalfields";
+	public static final String NAME_COLLABFIELDS = "collabfields";
+	
 	// Error messages
 	public static final String ERROR_CONFIG = "Could not load client.properties from the root of the test classpath.";
+	public static final String ERROR_SUBJECT = "You must have a subject";
+	public static final String ERROR_EMAILBLURB = "You must have an email blurb";
+	
+	// resources
+	public static final String RESOURCE_STOCKDOC = "resources/Docusign_Demo_11.pdf";
+	public static final String RESOURCE_BLANKDOC = "resources/BlankPDF.pdf";
+	
+	// helper functions
+	public static long daysBetween(Date max, Date min) {
+		return (max.getTime() - min.getTime())/86400000;
+	}
 }

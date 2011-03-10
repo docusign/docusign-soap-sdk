@@ -64,7 +64,7 @@ public class Login extends HttpServlet {
 			session.setAttribute(Utils.SESSION_INTEGRATORS_KEY, request.getParameterValues(Utils.NAME_IKEY)[0]);
 			if (login(request, response)) {
 				session.setAttribute(Utils.SESSION_LOGGEDIN, true);
-				response.sendRedirect(Utils.PAGE_SENDDOCUMENT);
+				response.sendRedirect(Utils.CONTROLLER_SENDDOCUMENT);
 			}
 			else {
 				session.setAttribute(Utils.SESSION_LOGGEDIN, false);
