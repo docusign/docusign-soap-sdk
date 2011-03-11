@@ -100,6 +100,8 @@ public class Login extends HttpServlet {
 		if (result != null && result.isSuccess()) {
 			session.setAttribute(Utils.SESSION_ACCOUNT_ID, 
 					result.getAccounts().getAccount().get(0).getAccountID());
+			session.setAttribute(Utils.SESSION_USER_ID, 
+					result.getAccounts().getAccount().get(0).getUserID());
 			ret = true;
 		}
 		else {

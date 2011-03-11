@@ -52,7 +52,7 @@
             <a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a>
             <a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a>
         </nav>
-        <form id="SendDocumentForm" action="SendDocument" enctype="multipart/form_data" method="post" >
+        <form id="SendDocumentForm" action="SendDocument" method="post" >
             <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
             <p>
             </p>

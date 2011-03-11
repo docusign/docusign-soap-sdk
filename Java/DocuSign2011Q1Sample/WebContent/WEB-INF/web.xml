@@ -2,17 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>WebinarProject</display-name>
   <servlet>
-    <description></description>
-    <display-name>SendToDocuSign</display-name>
-    <servlet-name>SendToDocuSign</servlet-name>
-    <servlet-class>net.docusign.sample.SendToDocuSign</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SendToDocuSign</servlet-name>
-    <url-pattern>/SendToDocuSign</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
+    <description>Login to DocuSign and get user info</description>
     <display-name>Login</display-name>
     <servlet-name>Login</servlet-name>
     <servlet-class>net.docusign.sample.Login</servlet-class>
@@ -31,5 +21,15 @@
   <servlet-mapping>
     <servlet-name>SendDocument</servlet-name>
     <url-pattern>/SendDocument</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>Lists envelopes in the session</description>
+    <display-name>GetStatusAndDocs</display-name>
+    <servlet-name>GetStatusAndDocs</servlet-name>
+    <servlet-class>net.docusign.sample.GetStatusAndDocs</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetStatusAndDocs</servlet-name>
+    <url-pattern>/GetStatusAndDocs</url-pattern>
   </servlet-mapping>
 </web-app>

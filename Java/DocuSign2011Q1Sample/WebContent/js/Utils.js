@@ -8,20 +8,20 @@ function addRecipientRowToTable() {
     var iteration = lastRow;
     var row = tbl.insertRow(lastRow);
     row.id = 'Recipient' + iteration;
-    row.name = 'Recipient[' + iteration + ']';
+    row.name = 'Recipient' + iteration;
 
     // left cell
     var cellLeft = row.insertCell(0);
     var name = document.createElement('input');
     name.type = 'text';
-    name.name = 'RecipientName[' + iteration + ']';
+    name.name = 'RecipientName' + iteration;
     name.id = 'txtRow' + iteration;
     cellLeft.appendChild(name);
 
     var cellMiddle1 = row.insertCell(1);
     var email = document.createElement('input');
     email.type = 'email';
-    email.name = 'RecipientEmail[' + iteration + ']';
+    email.name = 'RecipientEmail' + iteration;
     email.id = 'txtRow' + iteration;
     cellMiddle1.appendChild(email);
 
@@ -31,7 +31,7 @@ function addRecipientRowToTable() {
     var security = document.createElement('select');
     security.onchange = function () { EnableDisableInput(iteration) };
     security.id = "RecipientSecurity" + iteration;
-    security.name = 'RecipientSecurity[' + iteration + ']';
+    security.name = 'RecipientSecurity' + iteration;
     var noneopt = document.createElement('option');
     noneopt.text = 'None';
     noneopt.value = 'None';
@@ -51,7 +51,7 @@ function addRecipientRowToTable() {
     
     var securitySetting = document.createElement('input');
     securitySetting.type = 'text';
-    securitySetting.name = 'RecipientSecuritySetting[' + iteration + ']';
+    securitySetting.name = 'RecipientSecuritySetting' + iteration;
     securitySetting.id = 'RecipientSecuritySetting' + iteration;
     securitySetting.style.display = "none";
     cellMiddle2.appendChild(securitySetting);
@@ -79,7 +79,7 @@ function addRecipientRowToTable() {
     var inputHidden = document.createElement('input');
     inputHidden.title = 'RecipientInviteToggle' + iteration;
     inputHidden.id = 'RecipientInviteToggle' + iteration;
-    inputHidden.name = 'RecipientInviteToggle[' + iteration + ']';
+    inputHidden.name = 'RecipientInviteToggle' + iteration;
     inputHidden.checked = true;
     inputHidden.type = 'checkbox';
     inputHidden.style.display = "none";
@@ -99,13 +99,13 @@ function addRoleRowToTable() {
     var iteration = lastRow;
     var row = tbl.insertRow(lastRow);
     row.id = 'Role' + iteration;
-    row.name = 'Role[' + iteration + ']';
+    row.name = 'Role' + iteration;
 
     // rolename cell
     var cellLeft = row.insertCell(0);
     var rname = document.createElement('input');
     rname.type = 'text';
-    rname.name = 'RoleName[' + iteration + ']';
+    rname.name = 'RoleName' + iteration;
     rname.id = 'txtRow' + iteration;
     cellLeft.appendChild(rname);
     
@@ -113,7 +113,7 @@ function addRoleRowToTable() {
     var cellMiddle1 = row.insertCell(1);
     var name = document.createElement('input');
     name.type = 'text';
-    name.name = 'Name[' + iteration + ']';
+    name.name = 'Name' + iteration;
     name.id = 'txtRow' + iteration;
     cellMiddle1.appendChild(name);
 
@@ -121,7 +121,7 @@ function addRoleRowToTable() {
     var cellMiddle2 = row.insertCell(2);
     var email = document.createElement('input');
     email.type = 'email';
-    email.name = 'RoleEmail[' + iteration + ']';
+    email.name = 'RoleEmail' + iteration;
     email.id = 'txtRow' + iteration;
     cellMiddle2.appendChild(email);
 
@@ -130,7 +130,7 @@ function addRoleRowToTable() {
     var security = document.createElement('select');
     security.onchange = function () { EnableDisableInput(iteration) };
     security.id = "RoleSecurity" + iteration;
-    security.name = 'RoleSecurity[' + iteration + ']';
+    security.name = 'RoleSecurity' + iteration;
     
     var noneopt = document.createElement('option');
     noneopt.text = 'None';
@@ -151,7 +151,7 @@ function addRoleRowToTable() {
     
     var securitySetting = document.createElement('input');
     securitySetting.type = 'text';
-    securitySetting.name = 'RollSecuritySetting[' + iteration + ']';
+    securitySetting.name = 'RollSecuritySetting' + iteration;
     securitySetting.id = 'RoleSecuritySetting' + iteration;
     securitySetting.style.display = "none";
     cellMiddle3.appendChild(securitySetting);
@@ -179,7 +179,7 @@ function addRoleRowToTable() {
     var inputHidden = document.createElement('input');
     inputHidden.title = 'RoleInviteToggle' + iteration;
     inputHidden.id = 'RoleInviteToggle' + iteration;
-    inputHidden.name = 'RoleInviteToggle[' + iteration + ']';
+    inputHidden.name = 'RoleInviteToggle' + iteration;
     inputHidden.checked = true;
     inputHidden.type = 'checkbox';
     inputHidden.style.display = "none";

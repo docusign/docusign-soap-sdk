@@ -1,0 +1,489 @@
+package net.docusign.sample;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import net.docusign.api_3_0.*;
+
+/**
+ * Servlet implementation class SendDocument
+ */
+public class SendDocument extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SendDocument() {
+        super();
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute(Utils.SESSION_LOGGEDIN) == null ||
+				session.getAttribute(Utils.SESSION_LOGGEDIN).equals(false)) {
+			response.sendRedirect(Utils.CONTROLLER_LOGIN);
+		}
+		else {
+			response.sendRedirect(Utils.PAGE_SENDDOCUMENT);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+/* 	// TODO DEBUG
+		Enumeration pns = request.getParameterNames();
+		while (pns.hasMoreElements()) {
+			String pn = (String) pns.nextElement();
+			String[] pvs = request.getParameterValues(pn);
+			for (int i = 0; i < pvs.length; i++) {
+				System.out.println(pn + ": " + pvs[i]);
+			}
+		}
+		
+		System.out.println("=====");
+		
+		Enumeration sa = request.getSession().getAttributeNames();
+		while (sa.hasMoreElements()) {
+			String s = (String) sa.nextElement();
+			System.out.println(s + ": " + request.getSession().getAttribute(s).toString());
+		}
+	// TODO END DEBUG */
+		Envelope envelope;
+		try {
+			envelope = buildEnvelope(request, response);
+		} catch (FileUploadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		if (request.getParameterValues(Utils.NAME_SENDNOW) != null) {
+			try {
+				sendNow(envelope, request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_SEND);
+				response.sendRedirect(Utils.PAGE_ERROR);				
+				return;
+			}
+		}
+		else {
+			try {
+				embedSending(envelope, request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_EMBED);
+				response.sendRedirect(Utils.PAGE_ERROR);				
+				return;
+			}
+		}
+	}
+
+	private void sendNow(Envelope envelope, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		APIServiceSoap api = Utils.getAPI(request);
+		EnvelopeStatus status = api.createAndSendEnvelope(envelope);
+		if (status.getStatus() == EnvelopeStatusCode.SENT) {
+			Utils.addEnvelopeID(request, status.getEnvelopeID());
+			response.sendRedirect(Utils.PAGE_GETSTATUS + 
+					"?envelopid=" + status.getEnvelopeID() +
+					"&accountID=" + envelope.getAccountId() +
+					"&source=Document");
+		}
+	}
+
+	private void embedSending(Envelope envelope, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		APIServiceSoap api = Utils.getAPI(request);
+		HttpSession session = request.getSession();
+		EnvelopeStatus status = api.createEnvelope(envelope);
+		if (status.getStatus() == EnvelopeStatusCode.CREATED) {
+			Utils.addEnvelopeID(request, status.getEnvelopeID());
+			String returnURL = Utils.getCallbackURL(request, Utils.PAGE_GETSTATUS);
+			String embedToken = api.requestSenderToken(status.getEnvelopeID(), 
+					session.getAttribute(Utils.SESSION_ACCOUNT_ID).toString(), returnURL);
+			session.setAttribute(Utils.SESSION_EMBEDTOKEN, embedToken);
+			response.sendRedirect(Utils.PAGE_EMBEDSEND + 
+					"?evelopeid=" + status.getEnvelopeID() + 
+					"$accountID=" + envelope.getAccountId() +
+					"&source=Document");
+		}
+		
+	}
+
+	private Envelope buildEnvelope(HttpServletRequest request, HttpServletResponse response) 
+			throws FileUploadException, IOException, ParseException {
+		HttpSession session = request.getSession();
+		Envelope envelope = new Envelope();
+		if (request.getParameter(Utils.NAME_SUBJECT).length() > 0) {
+			envelope.setSubject(request.getParameter(Utils.NAME_SUBJECT));
+		}
+		else {
+			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_SUBJECT);
+			response.sendRedirect(Utils.PAGE_ERROR);				
+			return null;
+		}
+		if (request.getParameter(Utils.NAME_EMAILBLURB).length() > 0) {
+			envelope.setEmailBlurb(request.getParameter(Utils.NAME_EMAILBLURB));
+		}
+		else {
+			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_EMAILBLURB);
+			response.sendRedirect(Utils.PAGE_ERROR);				
+			return null;
+		}
+		ArrayOfRecipient recipients = constructRecipients(request);
+		if (recipients != null) {
+			envelope.setRecipients(recipients);
+		}
+		else {
+			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_RECIPIENTS);
+			response.sendRedirect(Utils.PAGE_ERROR);				
+			return null;
+		}
+		
+		envelope.setAccountId(session.getAttribute(Utils.SESSION_ACCOUNT_ID).toString());		
+		envelope.setTabs(addTabs(request, envelope.getRecipients().getRecipient().size()));
+		envelope = processOptions(request, envelope);
+		envelope.setDocuments(getDocuments(request));
+		
+		return envelope;
+	}
+
+	private ArrayOfDocument getDocuments(HttpServletRequest request) throws FileUploadException, IOException {
+		ArrayOfDocument docs = new ArrayOfDocument();
+		int id = 1;
+		
+		if (request.getParameterValues(Utils.NAME_STOCKDOC) != null) {
+			Document doc = new Document();
+			
+			// get stock document as byte stream without fancy libs
+			String filePath = getServletContext().getRealPath(Utils.RESOURCE_STOCKDOC);
+			File f = new File(filePath);
+			FileInputStream fs = new FileInputStream(f);
+			byte[] PDFBytes = new byte[(int) f.length()];
+			fs.read(PDFBytes);
+			fs.close();
+			doc.setPDFBytes(PDFBytes);
+			doc.setName("Demo Document");
+			doc.setID(new BigInteger(Integer.toString(id++)));
+			doc.setFileExtension("pdf");
+			docs.getDocument().add(doc);
+		}
+		else {
+			// use this cool Jakarta class that finds file form fields
+			ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
+			List items = upload.parseRequest(request);
+			Iterator it = items.iterator();
+			while (it.hasNext()) {
+				FileItem fItem = (FileItem) it.next();
+				// input of type file return false
+				if (! fItem.isFormField()) {
+					Document doc = new Document();
+					doc.setPDFBytes(fItem.get());
+					doc.setName(fItem.getName());
+					doc.setID(new BigInteger(Integer.toString(id++)));
+					String ct = fItem.getContentType();
+					doc.setFileExtension(ct.substring(ct.indexOf("/") +1));
+					docs.getDocument().add(doc);
+				}
+			}
+		}
+		
+		if (request.getParameterValues(Utils.NAME_SIGNERATTACHMENT) != null) {
+			Document doc = new Document();
+			String filePath = getServletContext().getRealPath(Utils.RESOURCE_STOCKDOC);
+			File f = new File(filePath);
+			FileInputStream fs = new FileInputStream(f);
+			byte[] PDFBytes = new byte[(int) f.length()];
+			fs.read(PDFBytes);
+			fs.close();
+			doc.setPDFBytes(PDFBytes);
+			doc.setName("Signer Attachment");
+			doc.setID(new BigInteger(Integer.toString(id++)));
+			doc.setFileExtension("pdf");
+			doc.setAttachmentDescription("Please attach your document here");
+			docs.getDocument().add(doc);
+		}
+		return docs;
+	}
+
+	private Envelope processOptions(HttpServletRequest request, Envelope envelope) throws ParseException {
+		if (request.getParameterValues(Utils.NAME_MARKUP) != null) {
+			envelope.setAllowMarkup(true);
+		}
+		if (request.getParameterValues(Utils.NAME_ENABLEPAPER) != null) {
+			envelope.setEnableWetSign(true);
+		}
+		if (request.getParameter(Utils.NAME_REMINDERS).length() > 0) {
+			if (envelope.getNotification() == null) {
+				envelope.setNotification(new Notification());
+			}
+			envelope.getNotification().setReminders(new Reminders());
+			envelope.getNotification().getReminders().setReminderEnabled(true);
+			long days = Utils.daysBetween(new SimpleDateFormat("mm/ss/yyyy").parse(
+					request.getParameter(Utils.NAME_REMINDERS)), 
+					new Date());
+			envelope.getNotification().getReminders().setReminderDelay(
+					new BigInteger(Long.toString(days)));
+			envelope.getNotification().getReminders().setReminderFrequency(new BigInteger("2"));
+		}
+		if (request.getParameter(Utils.NAME_EXPIRATION).length() > 0) {
+			if (envelope.getNotification() == null) {
+				envelope.setNotification(new Notification());
+			}
+			envelope.getNotification().setExpirations(new Expirations());
+			envelope.getNotification().getExpirations().setExpireEnabled(true);
+			long days = Utils.daysBetween(new SimpleDateFormat("mm/ss/yyyy").parse(
+					request.getParameter(Utils.NAME_EXPIRATION)), 
+					new Date());
+			envelope.getNotification().getExpirations().setExpireAfter(
+					new BigInteger(Long.toString(days)));
+			envelope.getNotification().getExpirations().setExpireWarn(
+					new BigInteger(Long.toString(days - 2)));
+		}
+		return envelope;
+	}
+
+	private ArrayOfTab addTabs(HttpServletRequest request, int size) {
+        ArrayOfTab tabs = new ArrayOfTab();
+        String pageTwo = (request.getParameterValues(Utils.NAME_STOCKDOC) != null) ? "2" : "1";
+        String pageThree = (request.getParameterValues(Utils.NAME_STOCKDOC) != null) ? "3" : "1";
+        if (request.getParameterValues(Utils.NAME_ADDSIGS) != null)
+        {
+            Tab company = new Tab();
+            company.setType(TabTypeCode.COMPANY);
+            company.setDocumentID(new BigInteger("1"));
+            company.setPageNumber(new BigInteger(pageTwo));
+            company.setRecipientID(new BigInteger("1"));
+            company.setXPosition(new BigInteger("342"));
+            company.setYPosition(new BigInteger("303"));
+
+            tabs.getTab().add(company);
+
+            Tab init1 = new Tab();
+            init1.setType(TabTypeCode.INITIAL_HERE);
+            init1.setDocumentID(new BigInteger("1"));
+            init1.setPageNumber(new BigInteger(pageThree));
+            init1.setRecipientID(new BigInteger("1"));
+            init1.setXPosition(new BigInteger("454"));
+            init1.setYPosition(new BigInteger("281"));
+
+            tabs.getTab().add(init1);
+
+            Tab sign1 = new Tab();
+            sign1.setType(TabTypeCode.SIGN_HERE);
+            sign1.setDocumentID(new BigInteger("1"));
+            sign1.setPageNumber(new BigInteger(pageTwo));
+            sign1.setRecipientID(new BigInteger("1"));
+            sign1.setXPosition(new BigInteger("338"));
+            sign1.setYPosition(new BigInteger("330"));
+
+            tabs.getTab().add(sign1);    
+
+            Tab fullAnchor = new Tab();
+            fullAnchor.setType(TabTypeCode.FULL_NAME);
+            fullAnchor.setAnchorTabItem(new AnchorTab());
+            fullAnchor.getAnchorTabItem().setAnchorTabString("(printed)");
+            fullAnchor.getAnchorTabItem().setXOffset((double) -90);
+            fullAnchor.getAnchorTabItem().setYOffset((double) -70);
+            fullAnchor.getAnchorTabItem().setUnit(UnitTypeCode.PIXELS);
+            fullAnchor.getAnchorTabItem().setIgnoreIfNotPresent(true);
+            fullAnchor.setDocumentID(new BigInteger("1"));
+            fullAnchor.setPageNumber(new BigInteger(pageTwo));
+            fullAnchor.setRecipientID(new BigInteger("1"));
+
+            tabs.getTab().add(fullAnchor);
+
+            Tab date1 = new Tab();
+            date1.setType(TabTypeCode.DATE_SIGNED);
+            date1.setDocumentID(new BigInteger("1"));
+            date1.setPageNumber(new BigInteger(pageTwo));
+            date1.setRecipientID(new BigInteger("1"));
+            date1.setXPosition(new BigInteger("343"));
+            date1.setYPosition(new BigInteger("492"));
+
+            tabs.getTab().add(date1);
+
+            Tab init2 = new Tab();
+            init2.setType(TabTypeCode.INITIAL_HERE);
+            init2.setDocumentID(new BigInteger("1"));
+            init2.setPageNumber(new BigInteger(pageThree));
+            init2.setRecipientID(new BigInteger("1"));
+            init2.setXPosition(new BigInteger("179"));
+            init2.setYPosition(new BigInteger("583"));
+            init2.setScaleValue(new BigDecimal("0.6"));
+
+            tabs.getTab().add(init2);
+
+            if (size > 1)
+            {
+                Tab sign2 = new Tab();
+                sign2.setType(TabTypeCode.SIGN_HERE);
+                sign2.setDocumentID(new BigInteger("1"));
+                sign2.setPageNumber(new BigInteger(pageThree));
+                sign2.setRecipientID(new BigInteger("2"));
+                sign2.setXPosition(new BigInteger("339"));
+                sign2.setYPosition(new BigInteger("97"));
+
+                tabs.getTab().add(sign2);
+
+                Tab date2 = new Tab();
+                date2.setType(TabTypeCode.DATE_SIGNED);
+                date2.setDocumentID(new BigInteger("1"));
+                date2.setPageNumber(new BigInteger(pageThree));
+                date2.setRecipientID(new BigInteger("2"));
+                date2.setXPosition(new BigInteger("343"));
+                date2.setYPosition(new BigInteger("197"));
+
+                tabs.getTab().add(date2);
+            }
+        }
+
+        if (request.getParameterValues(Utils.NAME_FORMFIELDS) != null)
+        {
+            Tab favColor = new Tab();
+            favColor.setType(TabTypeCode.CUSTOM);
+            favColor.setCustomTabType(CustomTabType.TEXT);
+            favColor.setDocumentID(new BigInteger("1"));
+            favColor.setPageNumber(new BigInteger(pageThree));
+            favColor.setRecipientID(new BigInteger("1"));
+            favColor.setXPosition(new BigInteger("301"));
+            favColor.setYPosition(new BigInteger("416"));
+
+            tabs.getTab().add(favColor);
+        }
+
+        if (request.getParameterValues(Utils.NAME_CONDITIONALFIELDS) != null)
+        {
+            Tab fruitNo = new Tab();
+            fruitNo.setType(TabTypeCode.CUSTOM);
+            fruitNo.setCustomTabType(CustomTabType.RADIO);
+            fruitNo.setCustomTabRadioGroupName("fruit");
+            fruitNo.setTabLabel("No");
+            fruitNo.setName("No");
+            fruitNo.setDocumentID(new BigInteger("1"));
+            fruitNo.setPageNumber(new BigInteger(pageThree));
+            fruitNo.setRecipientID(new BigInteger("1"));
+            fruitNo.setXPosition(new BigInteger("269"));
+            fruitNo.setYPosition(new BigInteger("508"));
+
+            tabs.getTab().add(fruitNo);
+
+            Tab fruitYes = new Tab();
+            fruitYes.setType(TabTypeCode.CUSTOM);
+            fruitYes.setCustomTabType(CustomTabType.RADIO);
+            fruitYes.setCustomTabRadioGroupName("fruit");
+            fruitYes.setTabLabel("Yes");
+            fruitYes.setName("Yes");
+            fruitYes.setValue ("Yes");
+            fruitYes.setDocumentID(new BigInteger("1"));
+            fruitYes.setPageNumber(new BigInteger(pageThree));
+            fruitYes.setRecipientID(new BigInteger("1"));
+            fruitYes.setXPosition(new BigInteger("202"));
+            fruitYes.setYPosition(new BigInteger("509"));
+
+            tabs.getTab().add(fruitYes);
+
+            Tab data1 = new Tab();
+            data1.setType(TabTypeCode.CUSTOM);
+            data1.setCustomTabType(CustomTabType.TEXT);
+            data1.setConditionalParentLabel("fruit");
+            data1.setConditionalParentValue("Yes");
+            data1.setName("Fruit");
+            data1.setTabLabel("Preferred Fruit");
+            data1.setDocumentID(new BigInteger("1"));
+            data1.setPageNumber(new BigInteger(pageThree));
+            data1.setRecipientID(new BigInteger("1"));
+            data1.setXPosition(new BigInteger("202"));
+            data1.setXPosition(new BigInteger("265"));
+            data1.setYPosition(new BigInteger("547"));
+
+            tabs.getTab().add(data1);
+        }
+
+        if (request.getParameterValues(Utils.NAME_COLLABFIELDS) != null)
+        {
+        	// TODO implement collaberative fields
+        }
+
+        if (request.getParameterValues(Utils.NAME_SIGNERATTACHMENT) != null)
+        {
+            Tab attach = new Tab();
+            attach.setType(TabTypeCode.SIGNER_ATTACHMENT);
+            attach.setTabLabel("Signer Attachment");
+            attach.setName("Signer Attachment");
+            attach.setDocumentID(new BigInteger("2"));
+            attach.setPageNumber(new BigInteger("1"));
+            attach.setRecipientID(new BigInteger("1"));
+            attach.setXPosition(new BigInteger("20"));
+            attach.setYPosition(new BigInteger("20"));
+
+            tabs.getTab().add(attach);
+        }
+
+        return tabs;
+    }
+
+	private ArrayOfRecipient constructRecipients(HttpServletRequest request) {
+		ArrayOfRecipient recipients = new ArrayOfRecipient();
+		int index = 1;
+		if (request.getParameter(Utils.NAME_RECIPIENTNAME + index) != null) {
+			while (request.getParameter(Utils.NAME_RECIPIENTNAME + index) != null) {
+				Recipient r = new Recipient();
+				
+				r.setUserName(request.getParameter(Utils.NAME_RECIPIENTNAME + index));
+				r.setEmail(request.getParameter(Utils.NAME_RECIPIENTEMAIL + index));
+				r.setRequireIDLookup(false);
+				if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).
+					equals(Utils.NAME_ACCESSCODE)) {
+					r.setAccessCode(request.getParameter(Utils.NAME_RECIPIENTSECURITYSETTING + index));
+				}
+				
+				// TODO add handling for Phone authentication
+				
+				r.setID(new BigInteger(Integer.toString(index)));
+				r.setType(RecipientTypeCode.SIGNER);
+				r.setRoutingOrder(index);
+				recipients.getRecipient().add(r);
+				index++;
+			}
+		}
+		else {
+			recipients = null;
+		}
+		return recipients;
+	}
+
+}
