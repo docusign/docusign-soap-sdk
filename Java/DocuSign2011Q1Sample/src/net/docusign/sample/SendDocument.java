@@ -46,7 +46,7 @@ public class SendDocument extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute(Utils.SESSION_LOGGEDIN) == null ||
-				session.getAttribute(Utils.SESSION_LOGGEDIN).equals(false)) {
+			session.getAttribute(Utils.SESSION_LOGGEDIN).equals(false)) {
 			response.sendRedirect(Utils.CONTROLLER_LOGIN);
 		}
 		else {
@@ -117,10 +117,7 @@ public class SendDocument extends HttpServlet {
 		EnvelopeStatus status = api.createAndSendEnvelope(envelope);
 		if (status.getStatus() == EnvelopeStatusCode.SENT) {
 			Utils.addEnvelopeID(request, status.getEnvelopeID());
-			response.sendRedirect(Utils.PAGE_GETSTATUS + 
-					"?envelopid=" + status.getEnvelopeID() +
-					"&accountID=" + envelope.getAccountId() +
-					"&source=Document");
+			response.sendRedirect(Utils.CONTROLLER_GETSTATUS);
 		}
 	}
 

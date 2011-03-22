@@ -1,4 +1,9 @@
-<%@ page  session="true" import="net.docusign.sample.Utils, net.docusign.sample.GetStatusAndDocs" 
+<%@ page  session="true" 
+    import="
+        net.docusign.sample.Utils, 
+        net.docusign.api_3_0.*,
+        java.util.List,
+        java.util.Iterator" 
     language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,7 +28,28 @@
         			<th>Subject</th>
         			<th>Status</th>
         		</tr>
-        		<% createStatusTable(session); %>
+        		<%
+        		  Boolean hasEnv = false;
+        		  if (session.getAttribute(Utils.SESSION_STATUSES) != null) {
+                      List<EnvelopeStatus> envelopes = 
+                          (List<EnvelopeStatus>) session.getAttribute(Utils.SESSION_STATUSES);
+                      if (envelopes.size() > 0) {
+                    	  hasEnv = true;
+                          for (Iterator<EnvelopeStatus> iter = envelopes.iterator(); iter.hasNext();) {
+                              EnvelopeStatus env = iter.next();
+                              out.println("<tr>");
+                              out.println("<td>" + env.getEnvelopeID() + "</td>");
+                              out.println("<td>" + env.getSubject() + "</td>");
+                              out.println("<td>" + env.getStatus() + "</td>");
+                              out.println("</tr>");
+                          }
+                      }
+        		  }
+        		  if (hasEnv == false) {
+        			  out.println("<tr><td colspan=3 style='text-align:center'>No envelopes yet</td></tr>");
+        		  }
+
+        		%>
             </table>
 		</div>
         <table align="center" style="padding-top: 20px;">

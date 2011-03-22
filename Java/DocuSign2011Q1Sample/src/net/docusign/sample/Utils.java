@@ -27,6 +27,7 @@ public class Utils {
 	public static final String SESSION_ERROR_MSG = "errmsg";
 	public static final String SESSION_ENVELOPEIDS = "envelopeids";
 	public static final String SESSION_EMBEDTOKEN = "embedtoken";
+	public static final String SESSION_STATUSES = "envelopestatuses";
 	
 	// Web pages
 	public static final String PAGE_LOGIN = "login.jsp";

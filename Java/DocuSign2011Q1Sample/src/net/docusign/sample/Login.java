@@ -3,7 +3,6 @@ package net.docusign.sample;
 import java.io.*;
 import java.util.*;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import net.docusign.credential.*;
 import net.docusign.credential.LoginResponse.LoginResult;
-import net.docusign.sample.*;
 
 /**
  * Servlet implementation class Login
@@ -90,7 +88,10 @@ public class Login extends HttpServlet {
 				session.getAttribute(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT).toString());
 		
 		try {
-			result = credApi.login(session.getAttribute(Utils.SESSION_EMAIL).toString(), 
+			// add integrator key TODO: remove if this is changed
+			result = credApi.login(
+					"[" + session.getAttribute(Utils.SESSION_INTEGRATORS_KEY).toString() + "]" +
+					session.getAttribute(Utils.SESSION_EMAIL).toString(), 
 					session.getAttribute(Utils.SESSION_PASSWORD).toString());
 		} catch (Exception e) {
 			// TODO: handle exception
