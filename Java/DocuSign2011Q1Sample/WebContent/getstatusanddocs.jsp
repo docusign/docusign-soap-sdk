@@ -35,8 +35,7 @@
                           (List<EnvelopeStatus>) session.getAttribute(Utils.SESSION_STATUSES);
                       if (envelopes.size() > 0) {
                     	  hasEnv = true;
-                          for (Iterator<EnvelopeStatus> iter = envelopes.iterator(); iter.hasNext();) {
-                              EnvelopeStatus env = iter.next();
+                    	  for (EnvelopeStatus env : envelopes) {
                               out.println("<tr>");
                               out.println("<td>" + env.getEnvelopeID() + "</td>");
                               out.println("<td>" + env.getSubject() + "</td>");

@@ -28,6 +28,7 @@ public class Utils {
 	public static final String SESSION_ENVELOPEIDS = "envelopeids";
 	public static final String SESSION_EMBEDTOKEN = "embedtoken";
 	public static final String SESSION_STATUSES = "envelopestatuses";
+	public static final String SESSION_TEMPLATES = "Templates";
 	
 	// Web pages
 	public static final String PAGE_LOGIN = "login.jsp";
@@ -75,6 +76,16 @@ public class Utils {
 	public static final String NAME_FORMFIELDS = "formfields";
 	public static final String NAME_CONDITIONALFIELDS = "conditionalfields";
 	public static final String NAME_COLLABFIELDS = "collabfields";
+	
+	// PAGE SENDTEMPLATE
+	public static final String NAME_TEMPLATETABLE = "TemplateTable";
+	public static final String NAME_ROLENAME = "RoleName";
+	public static final String NAME_ROLE = "Role";
+	public static final String NAME_NAME = "Name";
+	public static final String NAME_ROLEEMAIL = "RoleEmail";
+	public static final String NAME_ROLESECURITY = "RoleSecurity";
+	public static final String NAME_NONE = "None";
+	public static final String NAME_ROLESECURITYSETTING = "RoleSecuritySetting";
 	
 	// Error messages
 	public static final String ERROR_CONFIG = "Could not load client.properties from the root of the test classpath.";

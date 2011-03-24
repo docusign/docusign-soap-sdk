@@ -29,7 +29,7 @@ function addRecipientRowToTable() {
     var cellMiddle2 = row.insertCell(2);
 
     var security = document.createElement('select');
-    security.onchange = function () { EnableDisableInput(iteration) };
+    security.onchange = function () { EnableDisableInput(iteration); }
     security.id = "RecipientSecurity" + iteration;
     security.name = 'RecipientSecurity' + iteration;
     var noneopt = document.createElement('option');
@@ -128,7 +128,7 @@ function addRoleRowToTable() {
     // security cell
     var cellMiddle3 = row.insertCell(3);
     var security = document.createElement('select');
-    security.onchange = function () { EnableDisableInput(iteration) };
+    security.onchange = function () { EnableDisableInput(iteration); }
     security.id = "RoleSecurity" + iteration;
     security.name = 'RoleSecurity' + iteration;
     

@@ -1,232 +1,16 @@
-<?php 
-/**
- * @copyright Copyright (C) DocuSign, Inc.  All rights reserved.
- *
- * This source code is intended only as a supplement to DocuSign SDK
- * and/or on-line documentation.
- * This sample is designed to demonstrate DocuSign features and is not intended
- * for production use. Code and policy for a production application must be
- * developed to meet the specific data and security requirements of the
- * application.
- *
- * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
- * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
- * PARTICULAR PURPOSE.
- */
-
-/*
- * uploads selected template, creates an envelope from it, and sends it.
- */
-
-//========================================================================
-// Includes
-//========================================================================
-include_once 'include/session.php'; // initializes session and provides
-include_once 'api/APIService.php';
-include 'include/utils.php';
-
-//========================================================================
-// Functions
-//========================================================================
-function voidSampleEnvelope($envelopeID) {
-    $dsapi = getAPI();
-    $veParams = new VoidEnvelope();
-    $veParams->EnvelopeID = $envelopeID;
-    $veParams->Reason = "Envelope voided by sender";
-    try {
-        $status = $dsapi->VoidEnvelope($veParams)->VoidEnvelopeResult;
-        if ($status->VoidSuccess) {
-            header("Location: sendatemplate.php");
-        }
-    } catch (SoapFault $e) {
-        $_SESSION["errorMessage"] = $e;
-        header("Location: error.php");
-    }
-}
-
-function createSampleEnvelope() {
-    
-    // Create envelope information
-    $envinfo = new EnvelopeInformation();
-    $envinfo->Subject = $_POST["subject"];
-    $envinfo->EmailBlurb = $_POST["emailblurb"];
-    $envinfo->AccountId = $_SESSION["AccountID"];
-    
-    if ($_POST["reminders"] != null) {
-        $remind = new DateTime($_POST["reminders"]);
-        $new = new DateTime($_SERVER['REQUEST_TIME']);
-        $days = $now->diff($remind)->d;
-        if ($envinfo->Notification == null) {
-            $envinfo->Notification = new Notification();
-        }
-        $envinfo->Notification->Reminders = new Reminders();
-        $envinfo->Notification->Reminders->ReminderEnabled = true;
-        $envinfo->Notification->Reminders->ReminderDelay = $days;
-        $envinfo->Notification->Reminders->ReminderFrequency = "2";
-    }
-    
-    if ($_POST["expiration"] != null) {
-        $expire = new DateTime($_POST["reminders"]);
-        $new = new DateTime($_SERVER['REQUEST_TIME']);
-        $days = $now->diff($expire)->d;
-        if ($envinfo->Notification == null) {
-            $envinfo->Notification = new Notification();
-        }
-        $envinfo->Notification->Expirations = new Expirations();
-        $envinfo->Notification->Expirations->ExpireEnabled = true;
-        $envinfo->Notification->Expirations->ExpireDelay = $days;
-        $envinfo->Notification->Expirations->ExpireFrequency = "2";
-    }
-    
-    // Get all recipients
-    $recipients = constructRecipients();
-    
-    // Construct the template reference
-    $tref = new TemplateReference();
-    $tref->TemplateLocation = TemplateLocationCode::Server;
-    $tref->Template = $_POST["TemplateTable"];
-    $tref->RoleAssignments = createFinalRoleAssignments($recipients);
-    $trefs = array($tref);
-    
-    if (isset($_POST["SendNow"])) {
-        sendNow($trefs, $envinfo, $recipients);
-    }
-    else {
-        embedSending($trefs, $envinfo, $recipients);
-    }
-}
-
-/**
- *	TODO: get list of recipients from table
- */
-function constructRecipients() {
-    $recipients[] = new Recipient();
-    
-    $count = count($_POST["RoleName"]);
-    for ($i = 1; $i <= $count; $i++) {
-        if ($_POST["RoleName"] != null) {
-            $r = new Recipient();
-            $r->UserName = $_POST["Name"][$i];
-            $r->Email = $_POST["RoleEmail"][$i];
-            $r->ID = $i;
-            $r->RoleName = $_POST["RoleName"][$i];
-            $r->Type = RecipientTypeCode::Signer;
-            array_push($recipients, $r);
-        }
-    }
-    
-    // eliminate 0th element
-    array_shift($recipients);
-    
-    return $recipients;
-}
-
-/**
- * Create an array of
- * 
- * @return multitype:TemplateReferenceRoleAssignment
- */
-function createFinalRoleAssignments($recipients) {
-    $roleAssignments[] = new TemplateReferenceRoleAssignment();
-    
-    foreach ($recipients as $r) {
-        $assign = new TemplateReferenceRoleAssignment();
-        $assign->RecipientID = $r->ID;
-        $assign->RoleName = $r->RoleName;
-        array_push($roleAssignments, $assign);
-    }
-    
-    // eliminate 0th element
-    array_shift($roleAssignments);
-    
-    return $roleAssignments;
-}
-
-function loadTemplates() {
-    $dsapi = getAPI();
-    
-    $rtParams = new RequestTemplates();
-    $rtParams->AccountID = $_SESSION["AccountID"];
-    $rtParams->IncludeAdvancedTemplates = false;
-    try {
-        $templates = $dsapi->RequestTemplates($rtParams)->RequestTemplatesResult->EnvelopeTemplateDefinition;
-    } catch (SoapFault $e) {
-        $_SESSION["errorMessage"] = $e;
-        header("Location: error.php");
-    }
-    
-    foreach ($templates as $template) {
-        echo '<option value="' . $template->TemplateID . '">' .
-            $template->Name . "</option>\n";
-//        echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
-    }
-}
-
-function sendNow($templateReferences, $envelopeInfo, $recipients) {
-    $api = getAPI();
-    
-    $csParams = new CreateEnvelopeFromTemplates();
-    $csParams->EnvelopeInformation = $envelopeInfo;
-    $csParams->Recipients = $recipients;
-    $csParams->TemplateReferences = $templateReferences;
-    $csParams->ActivateEnvelope = true;
-    try {
-        $status = $api->CreateEnvelopeFromTemplates($csParams)->CreateEnvelopeFromTemplatesResult;
-        if ($status->Status == EnvelopeStatusCode::Sent) {
-            addEnvelopeID($status->EnvelopeID);
-            header("Location: getstatusanddocs.php?envelopid=" . $status->EnvelopeID . 
-            	"&accountID=" . $envelope->AccountId . "&source=Document");
-        }
-    } catch (SoapFault $e) {
-        $_SESSION["errorMessage"] = array($e, $api->__getLastRequest(), $csParams);
-        header("Location: error.php");
-    }
-}
-
-function embedSending($templateReferences, $envelopeInfo, $recipients) {
-    $api = getAPI();
-    
-    $ceParams = new CreateEnvelopeFromTemplates();
-    $ceParams->EnvelopeInformation = $envelopeInfo;
-    $ceParams->Recipients = $recipients;
-    $ceParams->TemplateReferences = $templateReferences;
-    $ceParams->ActivateEnvelope = false;
-    try {
-        $status = $api->CreateEnvelopeFromTemplates($ceParams)->CreateEnvelopeFromTemplatesResult;
-        if ($status->Status == EnvelopeStatusCode::Created) {
-            $rstParam = new RequestSenderToken();
-            $rstParam->AccountID = $envelopeInfo->AccountId;
-            $rstParam->EnvelopeID = $status->EnvelopeID;
-            $rstParam->ReturnURL = getCallbackURL("getstatusanddocs.php");
-            addEnvelopeID($status->EnvelopeID);
-            $_SESSION["embedToken"] = $api->RequestSenderToken($rstParam)->RequestSenderTokenResult;
-            header("Location: embedsending.php?envelopid=" . $status->EnvelopeID . 
-            	"&accountID=" . $envelope->AccountId . "&source=Document");
-        }
-    } catch (SoapFault $e) {
-        $_SESSION["errorMessage"] = $e;
-        header("Location: error.php");
-    }
-    
-}
-
-//========================================================================
-// Main
-//========================================================================
-loginCheck();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    createSampleEnvelope();
-}
-else if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    ;
-}
-?>
-
-<!DOCTYPE html">
+<%@ page session="true"
+    import="
+        net.docusign.sample.Utils,
+        net.docusign.api_3_0.*,
+        java.util.List,
+        java.util.Iterator"
+    language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    
     <link rel="stylesheet" href="css/jquery.ui.all.css" />
     <link rel="Stylesheet" href="css/SendTemplate.css" />
     <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
@@ -269,23 +53,33 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     </script>
 	</head>
     <body>
-    <nav class="tabs">
-    	<a href="senddocument.php">Send Document</a>
-    	<a href="sendatemplate.php" class="current">Send a Template</a>
-    	<a href="embeddocusign.php">Embed Docusign</a>
-    	<a href="getstatusanddocs.php">Get Status and Docs</a>
-	</nav>
-    <form id="SendTemplateForm" enctype="multipart/form_data" method="post">
+        <nav class="tabs">
+            <a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>" class="current">Send Document</a>
+            <a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a>
+            <a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a>
+            <a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a>
+        </nav>
+
+    <form id="SendTemplateForm" action="<%= Utils.CONTROLLER_SENDTEMPLATE %>" method="post">
     <div>
-        <input id="subject" name="subject" placeholder="<enter the subject>" type="text"
+        <input id="subject" name="<%= Utils.NAME_SUBJECT %>" placeholder="<enter the subject>" type="text"
             class="email" /><img alt="" src="" class="helplink" /><br />
-        <textarea id="emailblurb" cols="20" name="emailblurb" placeholder="<enter the e-mail blurb>"
+        <textarea id="emailblurb" cols="20" name="<%= Utils.NAME_EMAILBLURB %>" placeholder="<enter the e-mail blurb>"
             rows="4" class="email"></textarea>
     </div>
     <div>
         Select a Template<br />
-        <select id="TemplateTable" name="TemplateTable" >
-        	<?php loadTemplates(); ?>
+        <select id="TemplateTable" name="<%= Utils.NAME_TEMPLATETABLE %>" >
+        	<%
+        	   if (session.getAttribute(Utils.SESSION_TEMPLATES) != null) {
+        		   List<EnvelopeTemplateDefinition> tdefs = 
+        			   (List<EnvelopeTemplateDefinition>) session.getAttribute(Utils.SESSION_TEMPLATES);
+        		   for (EnvelopeTemplateDefinition tdef : tdefs) {
+        			   out.println("<option value='" + tdef.getTemplateID() + "'>" +
+        					   tdef.getName() + "</option>");
+        		   }
+        	   }
+        	%>
         </select>
 <!--         <input type="button" id="selectTemplateButton" name="selectTemplateButton"
             value="Go"  /> 
