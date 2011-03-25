@@ -128,7 +128,7 @@ public class SendDocument extends HttpServlet {
 		EnvelopeStatus status = api.createEnvelope(envelope);
 		if (status.getStatus() == EnvelopeStatusCode.CREATED) {
 			Utils.addEnvelopeID(request, status.getEnvelopeID());
-			String returnURL = Utils.getCallbackURL(request, Utils.CONTROLLER_GETSTATUS);
+			String returnURL = Utils.getCallbackURL(request, Utils.PAGE_POP);
 			String embedToken = api.requestSenderToken(status.getEnvelopeID(), 
 					session.getAttribute(Utils.SESSION_ACCOUNT_ID).toString(), returnURL);
 			session.setAttribute(Utils.SESSION_EMBEDTOKEN, embedToken);

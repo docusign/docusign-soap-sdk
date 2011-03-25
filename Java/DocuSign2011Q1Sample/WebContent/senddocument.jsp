@@ -46,12 +46,14 @@
         </script>
     </head>
     <body>
-        <nav class="tabs">
-            <a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>" class="current">Send Document</a>
-            <a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a>
-            <a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a>
-            <a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a>
-        </nav>
+        <table class="tabs">
+        <tr>
+            <td class="current">Send Document</td>
+            <td><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></td>
+            <td><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a></td>
+            <td><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></td>
+        </tr>
+        </table>
         <form id="SendDocumentForm" action="SendDocument" method="post" >
             <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
             <p>

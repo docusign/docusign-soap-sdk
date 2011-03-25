@@ -53,13 +53,14 @@
     </script>
 	</head>
     <body>
-        <nav class="tabs">
-            <a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>" class="current">Send Document</a>
-            <a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a>
-            <a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a>
-            <a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a>
-        </nav>
-
+    <table class="tabs">
+    <tr>
+        <td><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></td>
+        <td class="current">Send a Template</td>
+        <td><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a></td>
+        <td><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></td>
+    </tr>
+    </table>
     <form id="SendTemplateForm" action="<%= Utils.CONTROLLER_SENDTEMPLATE %>" method="post">
     <div>
         <input id="subject" name="<%= Utils.NAME_SUBJECT %>" placeholder="<enter the subject>" type="text"

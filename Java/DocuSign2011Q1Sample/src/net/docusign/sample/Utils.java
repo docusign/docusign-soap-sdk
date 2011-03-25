@@ -33,12 +33,11 @@ public class Utils {
 	// Web pages
 	public static final String PAGE_LOGIN = "login.jsp";
 	public static final String PAGE_SENDDOCUMENT = "senddocument.jsp";
-	public static final String PAGE_EMBED = "embeddocusign.jsp";
+	public static final String PAGE_EMBEDDOCUSIGN = "embeddocusign.jsp";
 	public static final String PAGE_EMBEDSEND = "embedsending.jsp";
 	public static final String PAGE_ERROR = "error.jsp";
 	public static final String PAGE_GETSTATUS = "getstatusanddocs.jsp";
-	public static final String PAGE_POP = "pop.html";
-	public static final String PAGE_POP2 = "pop2.html";
+	public static final String PAGE_POP = "pop.jsp";
 	public static final String PAGE_SENDTEMPLATE = "sendatemplate.jsp";
 	public static final String PAGE_SUCCESS = "sendsuccess.jsp";
 	
@@ -86,6 +85,13 @@ public class Utils {
 	public static final String NAME_ROLESECURITY = "RoleSecurity";
 	public static final String NAME_NONE = "None";
 	public static final String NAME_ROLESECURITYSETTING = "RoleSecuritySetting";
+	
+	// PAGE EMBEDDOCUSIGN
+	public static final String NAME_ONESIGNER = "OneSigner";
+	public static final String NAME_TWOSIGNERS = "TwoSigners";
+	
+	// URL Parameters
+	public static final String PARAM_ENVELOPEID = "envelopeID";
 	
 	// Error messages
 	public static final String ERROR_CONFIG = "Could not load client.properties from the root of the test classpath.";

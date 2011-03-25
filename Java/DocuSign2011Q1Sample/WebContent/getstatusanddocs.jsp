@@ -15,12 +15,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <nav class="tabs">
-            <a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>" class="current">Send Document</a>
-            <a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a>
-            <a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a>
-            <a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a>
-    	</nav>
+        <table class="tabs">
+        <tr>
+            <td><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></td>
+            <td><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></td>
+            <td><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a></td>
+            <td class="current">Get Status and Docs</td>
+        </tr>
+        </table>
     	<div id="statusDiv">
             <table id="statusTable">
         		<tr>

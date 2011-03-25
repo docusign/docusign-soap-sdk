@@ -42,4 +42,14 @@
     <servlet-name>SendATemplate</servlet-name>
     <url-pattern>/SendATemplate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmbedDocusign</display-name>
+    <servlet-name>EmbedDocusign</servlet-name>
+    <servlet-class>net.docusign.sample.EmbedDocusign</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmbedDocusign</servlet-name>
+    <url-pattern>/EmbedDocusign</url-pattern>
+  </servlet-mapping>
 </web-app>

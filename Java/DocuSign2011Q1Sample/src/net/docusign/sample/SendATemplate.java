@@ -159,7 +159,7 @@ public class SendATemplate extends HttpServlet {
 		if (status.getStatus() == EnvelopeStatusCode.CREATED) {
 			Utils.addEnvelopeID(request, status.getEnvelopeID());
 			String token = api.requestSenderToken(status.getEnvelopeID(), envInfo.getAccountId(), 
-					Utils.getCallbackURL(request, Utils.CONTROLLER_GETSTATUS));
+					Utils.getCallbackURL(request, Utils.PAGE_POP));
 			request.getSession().setAttribute(Utils.SESSION_EMBEDTOKEN, token);
 			response.sendRedirect(Utils.PAGE_EMBEDSEND + 
 					"?envelopeid=" + status.getEnvelopeID() + 
