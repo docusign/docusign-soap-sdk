@@ -1,0 +1,2 @@
+module SendTemplateHelper
+end

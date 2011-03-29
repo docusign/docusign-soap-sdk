@@ -1,0 +1,115 @@
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+        activate();
+        var today = new Date().getDate();
+        $("#reminders").datepicker({
+            showOn: "button",
+            buttonImage: "<%=root_url%>images/calendar-blue.gif",
+            buttonImageOnly: true,
+            minDate: today
+        });
+        $("#expiration").datepicker({
+            showOn: "button",
+            buttonImage: "<%=root_url%>images/calendar-blue.gif",
+            buttonImageOnly: true,
+            minDate: today
+        });
+    });
+</script>
+<%= form_tag("send_template", :method => :post) do%>
+    <%= text_field_tag('template_id', nil, :value => @template_id, :hidden => true)  %>
+    <div>
+      <%= text_field_tag('subject', nil, :placeholder => '<enter the subject>', :class => 'email')%><img alt="" src="" class="helplink" /><br />
+      <%= text_area_tag('emailBlurb', nil, :placeholder => '<enter the e-mail blurb>', :rows => '4', :cols => '20', :class =>'email')%>
+    </div>
+    <div>
+      <table width="100%" id="RecipientTable" name="RecipientTable">
+        <tr class="rowheader">
+          <td class="fivecolumn">
+            <b>Role Name</b>
+          </td>
+          <td class="fivecolumn">
+            <b>Name</b>
+          </td>
+          <td class="fivecolumn">
+            <b>E-mail</b>
+          </td>
+          <td class="fivecolumn">
+            <b>Security</b>
+          </td>
+          <td class="fivecolumn">
+            <b>Send E-mail Invite</b>
+          </td>
+        </tr>
+        <% @signers.each do |signer| %>
+            <tr>
+              <td class="fivecolumn">
+                <%= text_field_tag('RecipientRole' +
+                                           signer.ident.to_s, nil, :value => signer.rolename, :readonly =>'true')%>
+              </td>
+              <td class="fivecolumn">
+                <%= text_field_tag('RecipientName' +
+                                           signer.ident.to_s, nil, :value => signer.username)%>
+              </td>
+              <td class="fivecolumn">
+                <%= text_field_tag('RecipientEmail' +
+                                           signer.ident.to_s, nil, :value => signer.email)%>
+              </td>
+              <td class="fivecolumn">
+                <%= text_field_tag('RecipientSecurity' +
+                                           signer.ident.to_s, nil, :value => signer.security, :readonly =>'true')%><%if signer.security.eql?("Access Code")%>:<%=text_field_tag('RecipientSecuritySetting' +
+                                                                                                                                                                                        signer.ident.to_s, nil, :value => signer.accesscode, :readonly =>'true')%> <%end%>
+              </td>
+              <td class="fivecolumn">
+                <ul class="switcher" id="RecipientInvite1">
+                  <li id="RecipientInviteon" class="active"><a href="#" title="On">ON</a></li>
+                  <li id="RecipientInviteoff"><a href="#" title="OFF">OFF</a></li>
+                  <%= check_box_tag('RecipientInviteToggle' +
+                                            signer.ident.to_s, 'true', true, :style => 'display:none') %>
+                </ul>
+              </td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+    <div>
+      <table width="100%">
+        <tr class="rowbody">
+          <td class="fourcolumn">
+          </td>
+          <td class="fourcolumn">
+            <%= text_field_tag('reminders', nil, :onchange => 'openPicker()', :class => 'datepickers')%>
+          </td>
+          <td class="fourcolumn">
+            <%= text_field_tag('expiration', nil, :onchange => 'openPicker()', :class => 'datepickers')%>
+          </td>
+          <td class="fourcolumn">
+          </td>
+        </tr>
+        <tr>
+          <td class="fourcolumn">
+          </td>
+          <td class="fourcolumn">
+            Add Daily Reminders
+          </td>
+          <td class="fourcolumn">
+            Add Expiration
+          </td>
+          <td class="fourcolumn">
+          </td>
+        </tr>
+        <tr>
+          <td class="fourcolumn">
+          </td>
+          <td class="leftbutton">
+            <%= submit_tag('Send Now', :name => 'SendNow', :class => "docusignbutton blue", :style => 'width:100%;') %>
+          </td>
+          <td class="rightbutton">
+            <%= submit_tag('Edit Before Sending', :name => 'EditFirst', :class => "docusignbutton blue", :style => 'width:100%;') %>
+          </td>
+          <td class="fourcolumn">
+          </td>
+        </tr>
+      </table>
+    </div>
+<% end %>

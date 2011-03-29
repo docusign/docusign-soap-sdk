@@ -1,0 +1,1774 @@
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 00:15:06 -0700 2011
+
+ActionController::RoutingError (uninitialized constant ApplicationController::Intercession):
+  app/controllers/application_controller.rb:2
+  app/controllers/logins_controller.rb:1
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 00:17:21 -0700 2011
+
+ActionController::RoutingError (uninitialized constant ApplicationController::Intercession):
+  app/controllers/application_controller.rb:2
+  app/controllers/logins_controller.rb:1
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 00:19:15 -0700 2011
+  Processing by LoginsController#new as HTML
+Completed   in 1ms
+
+NameError (uninitialized constant Docusign::Config):
+  app/controllers/logins_controller.rb:6:in `new'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (40.5ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 00:20:23 -0700 2011
+  Processing by LoginsController#new as HTML
+Completed   in 2ms
+
+NameError (uninitialized constant Docusign::Config):
+  app/controllers/logins_controller.rb:6:in `new'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (12.7ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 00:22:24 -0700 2011
+  Processing by LoginsController#new as HTML
+Rendered logins/_form.html.erb (1.4ms)
+Rendered logins/new.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/logins/create" for 127.0.0.1 at Tue Mar 29 00:22:28 -0700 2011
+  Processing by LoginsController#create as HTML
+  Parameters: {"commit"=>"Login", "Integrator Key"=>"[Add Integrator Key here]", "authenticity_token"=>"9MIGUFvq1QKIfAy0dEZWzUmLqeuIxV5YwSPrMfszQbU=", "utf8"=>"✓", "password"=>"[FILTERED]", "email"=>"[add your docusign demo email here]"}
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 1441ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 00:22:30 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.7ms)
+Rendered send_document/create.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 103ms (Views: 23.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 00:22:38 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (3.3ms)
+Rendered send_template/get_template.erb within layouts/application (19.0ms)
+Completed 200 OK in 747ms (Views: 25.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/embed_docusign/new" for 127.0.0.1 at Tue Mar 29 00:22:40 -0700 2011
+  Processing by EmbedDocusignController#new as HTML
+Rendered embed_docusign/_form.html.erb (1.0ms)
+Rendered embed_docusign/create.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 00:22:42 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 16ms (Views: 15.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 00:22:50 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (3.8ms)
+Rendered send_document/create.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 21ms (Views: 20.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 08:36:18 -0700 2011
+  Processing by LoginsController#new as HTML
+Rendered logins/_form.html.erb (1.8ms)
+Rendered logins/new.html.erb within layouts/application (22.2ms)
+Completed 200 OK in 48ms (Views: 47.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/logins/create" for 127.0.0.1 at Tue Mar 29 08:36:20 -0700 2011
+  Processing by LoginsController#create as HTML
+  Parameters: {"commit"=>"Login", "Integrator Key"=>"[Add Integrator Key here]", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "password"=>"[FILTERED]", "email"=>"[add your docusign demo email here]"}
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 2095ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 08:36:22 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (6.3ms)
+Rendered send_document/create.html.erb within layouts/application (76.7ms)
+Completed 200 OK in 267ms (Views: 266.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 08:36:26 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 85ms (Views: 84.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 08:52:23 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 668ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 08:52:25 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.2ms)
+Rendered send_document/create.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 21ms (Views: 20.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 08:56:57 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 655ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 08:56:57 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.2ms)
+Rendered send_document/create.html.erb within layouts/application (14.1ms)
+Completed 200 OK in 20ms (Views: 19.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 08:57:36 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 571ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 08:57:37 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (77.5ms)
+Rendered send_document/create.html.erb within layouts/application (87.4ms)
+Completed 200 OK in 93ms (Views: 92.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 08:57:41 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 483ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 08:57:41 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (3.8ms)
+Rendered send_document/create.html.erb within layouts/application (13.2ms)
+Completed 200 OK in 19ms (Views: 18.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 08:58:27 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 493ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 08:58:27 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (3.6ms)
+Rendered send_document/create.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 19ms (Views: 18.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 08:58:42 -0700 2011
+  Processing by LoginsController#new as HTML
+Rendered logins/_form.html.erb (1.4ms)
+Rendered logins/new.html.erb within layouts/application (17.3ms)
+Completed 200 OK in 34ms (Views: 33.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 08:59:09 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 561ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 08:59:10 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.1ms)
+Rendered send_document/create.html.erb within layouts/application (14.6ms)
+Completed 200 OK in 21ms (Views: 20.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 08:59:14 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (3.5ms)
+Rendered send_template/get_template.erb within layouts/application (14.0ms)
+Completed 200 OK in 686ms (Views: 33.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/embed_docusign/new" for 127.0.0.1 at Tue Mar 29 08:59:15 -0700 2011
+  Processing by EmbedDocusignController#new as HTML
+Rendered embed_docusign/_form.html.erb (0.9ms)
+Rendered embed_docusign/create.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 40ms (Views: 39.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 08:59:16 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 16ms (Views: 15.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 08:59:18 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.2ms)
+Rendered send_document/create.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 20ms (Views: 20.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_document/" for 127.0.0.1 at Tue Mar 29 09:49:11 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (3.8ms)
+Rendered send_document/create.html.erb within layouts/application (14.4ms)
+Completed 200 OK in 20ms (Views: 19.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 09:49:14 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (3.9ms)
+Rendered send_template/get_template.erb within layouts/application (16.5ms)
+Completed 200 OK in 1129ms (Views: 41.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template/" for 127.0.0.1 at Tue Mar 29 09:49:17 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (3.4ms)
+Rendered send_template/get_template.erb within layouts/application (13.5ms)
+Completed 200 OK in 563ms (Views: 18.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/embed_docusign/new" for 127.0.0.1 at Tue Mar 29 09:49:19 -0700 2011
+  Processing by EmbedDocusignController#new as HTML
+Rendered embed_docusign/_form.html.erb (0.9ms)
+Rendered embed_docusign/create.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 17ms (Views: 16.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/embed_docusign" for 127.0.0.1 at Tue Mar 29 09:49:24 -0700 2011
+  Processing by EmbedDocusignController#new as HTML
+Rendered embed_docusign/_form.html.erb (0.9ms)
+Rendered embed_docusign/create.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 18ms (Views: 17.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/embed_docusign/" for 127.0.0.1 at Tue Mar 29 09:49:27 -0700 2011
+  Processing by EmbedDocusignController#new as HTML
+Rendered embed_docusign/_form.html.erb (0.8ms)
+Rendered embed_docusign/create.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 17ms (Views: 16.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 09:49:28 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 33ms (Views: 32.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/" for 127.0.0.1 at Tue Mar 29 09:49:30 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 16ms (Views: 15.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/" for 127.0.0.1 at Tue Mar 29 09:50:54 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 16ms (Views: 15.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 09:51:00 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.5ms)
+Rendered send_document/create.html.erb within layouts/application (14.7ms)
+Completed 200 OK in 21ms (Views: 20.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/send_document/send_envelope" for 127.0.0.1 at Tue Mar 29 09:51:29 -0700 2011
+  Processing by SendDocumentController#send_envelope as HTML
+  Parameters: {"enablepaper"=>"true", "conditionalfields"=>"true", "reminders"=>"04/28/2011", "enablemarkup"=>"true", "signerattachment"=>"true", "expiration"=>"05/12/2011", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"[add your docusign demo email here]", "subject"=>"Test Document", "stockdoc"=>"true", "RecipientSecuritySetting1"=>"2065768067", "addsig"=>"true", "collabfields"=>"true", "formfields"=>"true", "emailBlurb"=>"Testing 123"}
+Completed   in 38ms
+
+ArgumentError (comparison of String with 3 failed):
+  app/models/envelope.rb:135:in `<'
+  app/models/envelope.rb:135:in `create_custom_recipients'
+  app/models/envelope.rb:131:in `tap'
+  app/models/envelope.rb:131:in `create_custom_recipients'
+  app/models/envelope.rb:124:in `each'
+  app/models/envelope.rb:124:in `create_custom_recipients'
+  app/models/envelope.rb:122:in `tap'
+  app/models/envelope.rb:122:in `create_custom_recipients'
+  app/controllers/send_document_controller.rb:20:in `send_envelope'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (41.3ms)
+
+
+Started POST "/send_document/send_envelope" for 127.0.0.1 at Tue Mar 29 09:52:50 -0700 2011
+  Processing by SendDocumentController#send_envelope as HTML
+  Parameters: {"enablepaper"=>"true", "conditionalfields"=>"true", "reminders"=>"04/28/2011", "enablemarkup"=>"true", "signerattachment"=>"true", "expiration"=>"05/12/2011", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"[add your docusign demo email here]", "subject"=>"Test Document", "stockdoc"=>"true", "RecipientSecuritySetting1"=>"2065768067", "addsig"=>"true", "collabfields"=>"true", "formfields"=>"true", "emailBlurb"=>"Testing 123"}
+Redirected to http://0.0.0.0:3000/get_status_and_docs
+Completed 302 Found in 2769ms
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 09:52:53 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 551ms (Views: 19.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 09:52:57 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "StartSigning"=>"Start Signing", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (79.7ms)
+Completed 200 OK in 744ms (Views: 105.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=signing_complete" for 127.0.0.1 at Tue Mar 29 09:53:36 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"signing_complete"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 605ms (Views: 16.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 09:53:44 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+DEPRECATION WARNING: :x_sendfile is no longer needed in send_file. (called from show at /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:23)
+Sent file /Users/juliaferraioli/RubymineProjects/DocuSignSample/tmp/7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182.pdf (0.5ms)
+Completed 200 OK in 6353ms
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 09:54:31 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (3.2ms)
+Rendered send_template/get_template.erb within layouts/application (14.3ms)
+Completed 200 OK in 697ms (Views: 19.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 09:54:40 -0700 2011
+  Processing by SendTemplateController#get_template as HTML
+  Parameters: {"LoadTemplate"=>"Go", "tname"=>{"tid"=>"17850469-xxxx-xxxx-xxxx-54b83948a725"}, "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓"}
+Rendered send_template/_form.html.erb (4.7ms)
+Rendered send_template/create.html.erb within layouts/application (15.8ms)
+Completed 200 OK in 738ms (Views: 33.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 09:54:41 -0700 2011
+  Processing by SendTemplateController#get_template as 
+Rendered send_template/_get_templates.erb (32.2ms)
+Rendered send_template/get_template.erb within layouts/application (34.8ms)
+Completed   in 66ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.collect):
+    7:           </td>
+    8:         </tr>
+    9:         <tr>
+    10:           <td><%= select(:tname, :tid, @templates.collect{|t| [t.templateID +
+    11:                                                                        ': ' +
+    12:                                                                        t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Go', :name => 'LoadTemplate')%>
+    13:           </td>
+  app/views/send_template/_get_templates.erb:10:in `_app_views_send_template__get_templates_erb___1800497667_2178711580_2430270'
+  app/views/send_template/_get_templates.erb:1:in `_app_views_send_template__get_templates_erb___1800497667_2178711580_2430270'
+  app/views/send_template/get_template.erb:1:in `_app_views_send_template_get_template_erb___187105901_2178722960_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.1ms)
+
+
+Started POST "/send_template/send_template" for 127.0.0.1 at Tue Mar 29 09:54:57 -0700 2011
+  Processing by SendTemplateController#send_template as HTML
+  Parameters: {"reminders"=>"04/29/2011", "RecipientRole1"=>"Client", "template_id"=>"17850469-xxxx-xxxx-xxxx-54b83948a725", "expiration"=>"05/19/2011", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"[add your docusign demo email here]", "subject"=>"test template: web dev", "emailBlurb"=>"testing 123"}
+Completed   in 8ms
+
+NoMethodError (undefined method `role=' for #<Docusign::Recipient:0x1041c3dd8>):
+  app/models/envelope.rb:141:in `create_custom_recipients'
+  app/models/envelope.rb:131:in `tap'
+  app/models/envelope.rb:131:in `create_custom_recipients'
+  app/models/envelope.rb:124:in `each'
+  app/models/envelope.rb:124:in `create_custom_recipients'
+  app/models/envelope.rb:122:in `tap'
+  app/models/envelope.rb:122:in `create_custom_recipients'
+  app/controllers/send_template_controller.rb:72:in `send_template'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.9ms)
+
+
+Started GET "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 09:56:27 -0700 2011
+  Processing by SendTemplateController#get_template as 
+Rendered send_template/_get_templates.erb (2.2ms)
+Rendered send_template/get_template.erb within layouts/application (4.9ms)
+Completed   in 35ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.collect):
+    7:           </td>
+    8:         </tr>
+    9:         <tr>
+    10:           <td><%= select(:tname, :tid, @templates.collect{|t| [t.templateID +
+    11:                                                                        ': ' +
+    12:                                                                        t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Go', :name => 'LoadTemplate')%>
+    13:           </td>
+  app/views/send_template/_get_templates.erb:10:in `_app_views_send_template__get_templates_erb___1800497667_2179262540_2430270'
+  app/views/send_template/_get_templates.erb:1:in `_app_views_send_template__get_templates_erb___1800497667_2179262540_2430270'
+  app/views/send_template/get_template.erb:1:in `_app_views_send_template_get_template_erb___187105901_2179274740_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (15.0ms)
+
+
+Started POST "/send_template/send_template" for 127.0.0.1 at Tue Mar 29 09:56:31 -0700 2011
+  Processing by SendTemplateController#send_template as HTML
+  Parameters: {"reminders"=>"04/29/2011", "RecipientRole1"=>"Client", "template_id"=>"17850469-xxxx-xxxx-xxxx-54b83948a725", "expiration"=>"05/19/2011", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"[add your docusign demo email here]", "subject"=>"test template: web dev", "emailBlurb"=>"testing 123"}
+Redirected to http://0.0.0.0:3000/error?message=undefined+local+variable+or+method+%60recipients%27+for+%23%3CSendTemplateController%3A0x103a6d3b8%3E
+Completed   in 25ms
+
+NoMethodError (undefined method `envelopeID' for nil:NilClass):
+  app/controllers/send_template_controller.rb:116:in `send_template'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.4ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 09:58:13 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 597ms
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 09:58:13 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 638ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 09:58:14 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.3ms)
+Rendered send_document/create.html.erb within layouts/application (15.1ms)
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 09:58:16 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (3.2ms)
+Rendered send_template/get_template.erb within layouts/application (14.5ms)
+Completed 200 OK in 664ms (Views: 21.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 09:58:21 -0700 2011
+  Processing by SendTemplateController#get_template as HTML
+  Parameters: {"LoadTemplate"=>"Go", "tname"=>{"tid"=>"17850469-xxxx-xxxx-xxxx-54b83948a725"}, "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓"}
+Rendered send_template/_form.html.erb (4.9ms)
+Rendered send_template/create.html.erb within layouts/application (14.9ms)
+Completed 200 OK in 700ms (Views: 20.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 09:58:22 -0700 2011
+  Processing by SendTemplateController#get_template as 
+Rendered send_template/_get_templates.erb (2.1ms)
+Rendered send_template/get_template.erb within layouts/application (4.3ms)
+Completed   in 26ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.collect):
+    7:           </td>
+    8:         </tr>
+    9:         <tr>
+    10:           <td><%= select(:tname, :tid, @templates.collect{|t| [t.templateID +
+    11:                                                                        ': ' +
+    12:                                                                        t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Go', :name => 'LoadTemplate')%>
+    13:           </td>
+  app/views/send_template/_get_templates.erb:10:in `_app_views_send_template__get_templates_erb___1800497667_2179334240_2430270'
+  app/views/send_template/_get_templates.erb:1:in `_app_views_send_template__get_templates_erb___1800497667_2179334240_2430270'
+  app/views/send_template/get_template.erb:1:in `_app_views_send_template_get_template_erb___187105901_2179349960_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.6ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (12.2ms)
+
+
+Started POST "/send_template/send_template" for 127.0.0.1 at Tue Mar 29 09:58:37 -0700 2011
+  Processing by SendTemplateController#send_template as HTML
+  Parameters: {"reminders"=>"04/29/2011", "RecipientRole1"=>"Client", "template_id"=>"17850469-xxxx-xxxx-xxxx-54b83948a725", "expiration"=>"05/12/2011", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"[add your docusign demo email here]", "subject"=>"test template: web dev", "emailBlurb"=>"testing 123"}
+Redirected to http://0.0.0.0:3000/error?message=undefined+local+variable+or+method+%60recipients%27+for+%23%3CSendTemplateController%3A0x104461f68%3E
+Completed   in 23ms
+
+NoMethodError (undefined method `envelopeID' for nil:NilClass):
+  app/controllers/send_template_controller.rb:116:in `send_template'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.8ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 09:58:58 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 624ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 09:59:00 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (7.7ms)
+Rendered send_document/create.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 33ms (Views: 32.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 09:59:07 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (3.8ms)
+Rendered send_template/get_template.erb within layouts/application (17.1ms)
+Completed 200 OK in 706ms (Views: 22.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 09:59:12 -0700 2011
+  Processing by SendTemplateController#get_template as HTML
+  Parameters: {"LoadTemplate"=>"Go", "tname"=>{"tid"=>"17850469-xxxx-xxxx-xxxx-54b83948a725"}, "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓"}
+Rendered send_template/_form.html.erb (5.9ms)
+Rendered send_template/create.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 606ms (Views: 25.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 09:59:13 -0700 2011
+  Processing by SendTemplateController#get_template as 
+Rendered send_template/_get_templates.erb (4.3ms)
+Rendered send_template/get_template.erb within layouts/application (6.8ms)
+Completed   in 25ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.collect):
+    7:           </td>
+    8:         </tr>
+    9:         <tr>
+    10:           <td><%= select(:tname, :tid, @templates.collect{|t| [t.templateID +
+    11:                                                                        ': ' +
+    12:                                                                        t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Go', :name => 'LoadTemplate')%>
+    13:           </td>
+  app/views/send_template/_get_templates.erb:10:in `_app_views_send_template__get_templates_erb___1800497667_2204947140_2503550'
+  app/views/send_template/_get_templates.erb:1:in `_app_views_send_template__get_templates_erb___1800497667_2204947140_2503550'
+  app/views/send_template/get_template.erb:1:in `_app_views_send_template_get_template_erb___187105901_2204959600_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.2ms)
+
+
+Started POST "/send_template/send_template" for 127.0.0.1 at Tue Mar 29 09:59:29 -0700 2011
+  Processing by SendTemplateController#send_template as HTML
+  Parameters: {"reminders"=>"04/29/2011", "RecipientRole1"=>"Client", "template_id"=>"17850469-xxxx-xxxx-xxxx-54b83948a725", "expiration"=>"05/20/2011", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"[add your docusign demo email here]", "subject"=>"test template: web dev", "emailBlurb"=>"testing 123"}
+Redirected to http://0.0.0.0:3000/error?message=undefined+local+variable+or+method+%60recipients%27+for+%23%3CSendTemplateController%3A0x106bb7a68%3E
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 10:03:02 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 620ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 10:03:03 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.9ms)
+Rendered send_document/create.html.erb within layouts/application (17.5ms)
+Completed 200 OK in 24ms (Views: 23.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 10:03:04 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (5.5ms)
+Rendered send_template/get_template.erb within layouts/application (19.2ms)
+Completed 200 OK in 779ms (Views: 25.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 10:03:20 -0700 2011
+  Processing by SendTemplateController#get_template as HTML
+  Parameters: {"LoadTemplate"=>"Go", "tname"=>{"tid"=>"17850469-xxxx-xxxx-xxxx-54b83948a725"}, "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓"}
+Rendered send_template/_form.html.erb (6.3ms)
+Rendered send_template/create.html.erb within layouts/application (20.2ms)
+Completed 200 OK in 645ms (Views: 27.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 10:03:21 -0700 2011
+  Processing by SendTemplateController#get_template as 
+Rendered send_template/_get_templates.erb (5.1ms)
+Rendered send_template/get_template.erb within layouts/application (7.4ms)
+Completed   in 26ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.collect):
+    7:           </td>
+    8:         </tr>
+    9:         <tr>
+    10:           <td><%= select(:tname, :tid, @templates.collect{|t| [t.templateID +
+    11:                                                                        ': ' +
+    12:                                                                        t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Go', :name => 'LoadTemplate')%>
+    13:           </td>
+  app/views/send_template/_get_templates.erb:10:in `_app_views_send_template__get_templates_erb___1800497667_2203615940_2503550'
+  app/views/send_template/_get_templates.erb:1:in `_app_views_send_template__get_templates_erb___1800497667_2203615940_2503550'
+  app/views/send_template/get_template.erb:1:in `_app_views_send_template_get_template_erb___187105901_2203624780_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.2ms)
+
+
+Started POST "/send_template/send_template" for 127.0.0.1 at Tue Mar 29 10:03:36 -0700 2011
+  Processing by SendTemplateController#send_template as HTML
+  Parameters: {"reminders"=>"04/29/2011", "RecipientRole1"=>"Client", "template_id"=>"17850469-xxxx-xxxx-xxxx-54b83948a725", "expiration"=>"05/12/2011", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"docusigntestlogin@gmail.com", "subject"=>"test template: web dev", "emailBlurb"=>"test"}
+Redirected to http://0.0.0.0:3000/error?message=undefined+local+variable+or+method+%60recipients%27+for+%23%3CSendTemplateController%3A0x1068561d0%3E
+Completed 302 Found in 5577ms
+
+
+Started GET "/error?message=undefined+local+variable+or+method+%60recipients%27+for+%23%3CSendTemplateController%3A0x1068561d0%3E" for 127.0.0.1 at Tue Mar 29 10:03:42 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"undefined local variable or method `recipients' for #<SendTemplateController:0x1068561d0>"}
+Rendered error/show.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 18ms (Views: 17.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=undefined+local+variable+or+method+%60recipients%27+for+%23%3CSendTemplateController%3A0x1068561d0%3E" for 127.0.0.1 at Tue Mar 29 10:04:25 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"undefined local variable or method `recipients' for #<SendTemplateController:0x1068561d0>"}
+Rendered error/show.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 34ms (Views: 33.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 10:04:47 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (4.2ms)
+Rendered send_template/get_template.erb within layouts/application (18.2ms)
+Completed 200 OK in 714ms (Views: 24.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template" for 127.0.0.1 at Tue Mar 29 10:04:48 -0700 2011
+  Processing by SendTemplateController#create as HTML
+Rendered send_template/_get_templates.erb (106.2ms)
+Rendered send_template/get_template.erb within layouts/application (123.4ms)
+Completed 200 OK in 664ms (Views: 130.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 10:04:54 -0700 2011
+  Processing by SendTemplateController#get_template as HTML
+  Parameters: {"LoadTemplate"=>"Go", "tname"=>{"tid"=>"17850469-xxxx-xxxx-xxxx-54b83948a725"}, "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓"}
+Rendered send_template/_form.html.erb (5.8ms)
+Rendered send_template/create.html.erb within layouts/application (19.7ms)
+Completed 200 OK in 639ms (Views: 25.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_template/get_template" for 127.0.0.1 at Tue Mar 29 10:04:54 -0700 2011
+  Processing by SendTemplateController#get_template as 
+Rendered send_template/_get_templates.erb (1.8ms)
+Rendered send_template/get_template.erb within layouts/application (3.9ms)
+Completed   in 34ms
+
+ActionView::Template::Error (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.collect):
+    7:           </td>
+    8:         </tr>
+    9:         <tr>
+    10:           <td><%= select(:tname, :tid, @templates.collect{|t| [t.templateID +
+    11:                                                                        ': ' +
+    12:                                                                        t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Go', :name => 'LoadTemplate')%>
+    13:           </td>
+  app/views/send_template/_get_templates.erb:10:in `_app_views_send_template__get_templates_erb___1800497667_2204225460_2503550'
+  app/views/send_template/_get_templates.erb:1:in `_app_views_send_template__get_templates_erb___1800497667_2204225460_2503550'
+  app/views/send_template/get_template.erb:1:in `_app_views_send_template_get_template_erb___187105901_2204234080_0'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (18.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (16.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (56.4ms)
+
+
+Started POST "/send_template/send_template" for 127.0.0.1 at Tue Mar 29 10:05:11 -0700 2011
+  Processing by SendTemplateController#send_template as HTML
+  Parameters: {"reminders"=>"04/29/2011", "RecipientRole1"=>"Client", "template_id"=>"17850469-xxxx-xxxx-xxxx-54b83948a725", "expiration"=>"05/27/2011", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"[add your docusign demo email here]", "subject"=>"test template: web dev", "emailBlurb"=>"testing 123"}
+Redirected to http://0.0.0.0:3000/get_status_and_docs
+Completed 302 Found in 6559ms
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:05:18 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (70.3ms)
+Completed 200 OK in 761ms (Views: 76.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 10:19:48 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "StartSigning"=>"Start Signing", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 834ms (Views: 38.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 10:20:00 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 686ms (Views: 21.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 10:33:53 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 646ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 10:33:53 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.8ms)
+Rendered send_document/create.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 24ms (Views: 23.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:33:55 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 697ms (Views: 22.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:37:00 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 759ms (Views: 23.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 10:40:42 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 803ms (Views: 18.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 10:41:07 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.5ms)
+Completed 200 OK in 978ms (Views: 23.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 10:41:20 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:41:49 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 945ms (Views: 23.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 10:41:56 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (11.8ms)
+Completed 200 OK in 183813ms (Views: 18.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 10:45:08 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 746ms (Views: 23.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 10:45:14 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 27255ms (Views: 17.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 10:45:48 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 699ms (Views: 23.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:45:51 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (17.6ms)
+Completed 200 OK in 3257ms (Views: 23.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 10:46:04 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 80636ms (Views: 32.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 10:47:35 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (17.8ms)
+Completed 200 OK in 1182ms (Views: 23.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:47:38 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 753ms (Views: 22.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 10:47:41 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 185469ms (Views: 17.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 10:50:56 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (6.1ms)
+Redirected to http://0.0.0.0:3000/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D
+Completed 302 Found in 3423ms
+
+
+Started GET "/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D" for 127.0.0.1 at Tue Mar 29 10:51:00 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"No route matches {:controller=>\"get_status_and_docs\", :action=>\"Download\", :id=>\"7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182\"}"}
+Rendered error/show.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 18ms (Views: 17.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:53:41 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (5.0ms)
+Redirected to http://0.0.0.0:3000/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D
+Completed 302 Found in 571ms
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:53:41 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (3.8ms)
+Redirected to http://0.0.0.0:3000/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D
+Completed 302 Found in 691ms
+
+
+Started GET "/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D" for 127.0.0.1 at Tue Mar 29 10:53:42 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"No route matches {:controller=>\"get_status_and_docs\", :action=>\"Download\", :id=>\"7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182\"}"}
+Rendered error/show.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 18ms (Views: 17.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:53:44 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (3.8ms)
+Redirected to http://0.0.0.0:3000/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D
+Completed 302 Found in 591ms
+
+
+Started GET "/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D" for 127.0.0.1 at Tue Mar 29 10:53:45 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"No route matches {:controller=>\"get_status_and_docs\", :action=>\"Download\", :id=>\"7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182\"}"}
+Rendered error/show.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 18ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:54:19 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (3.7ms)
+Redirected to http://0.0.0.0:3000/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D
+Completed 302 Found in 601ms
+
+
+Started GET "/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D" for 127.0.0.1 at Tue Mar 29 10:54:20 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"No route matches {:controller=>\"get_status_and_docs\", :action=>\"Download\", :id=>\"7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182\"}"}
+Rendered error/show.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 18ms (Views: 17.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:54:36 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (5.4ms)
+Redirected to http://0.0.0.0:3000/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D
+Completed 302 Found in 505ms
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:54:37 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (3.7ms)
+Redirected to http://0.0.0.0:3000/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D
+Completed 302 Found in 7533ms
+
+
+Started GET "/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D" for 127.0.0.1 at Tue Mar 29 10:54:44 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"No route matches {:controller=>\"get_status_and_docs\", :action=>\"Download\", :id=>\"7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182\"}"}
+Rendered error/show.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 18ms (Views: 17.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 10:54:55 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 361ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 10:54:56 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (9.5ms)
+Rendered send_document/create.html.erb within layouts/application (24.5ms)
+Completed 200 OK in 34ms (Views: 33.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:54:58 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (4.3ms)
+Redirected to http://0.0.0.0:3000/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D
+Completed 302 Found in 569ms
+
+
+Started GET "/error?message=No+route+matches+%7B%3Acontroller%3D%3E%22get_status_and_docs%22%2C+%3Aaction%3D%3E%22Download%22%2C+%3Aid%3D%3E%227a6004bb-xxxx-xxxx-xxxx-306cf0a6e182%22%7D" for 127.0.0.1 at Tue Mar 29 10:54:59 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"No route matches {:controller=>\"get_status_and_docs\", :action=>\"Download\", :id=>\"7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182\"}"}
+Rendered error/show.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 17ms (Views: 16.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:55:22 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.2ms)
+Completed 200 OK in 629ms (Views: 22.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 10:55:33 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 11925ms (Views: 18.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 10:55:54 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (160.4ms)
+Completed 200 OK in 668ms (Views: 166.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 10:57:15 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.6ms)
+Completed 200 OK in 629ms (Views: 22.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 11:00:36 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (4.0ms)
+Redirected to http://0.0.0.0:3000/error?message=undefined+method+%60model_name%27+for+Docusign%3A%3AEnvelopeStatus%3AClass
+Completed 302 Found in 798ms
+
+
+Started GET "/error?message=undefined+method+%60model_name%27+for+Docusign%3A%3AEnvelopeStatus%3AClass" for 127.0.0.1 at Tue Mar 29 11:00:36 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"undefined method `model_name' for Docusign::EnvelopeStatus:Class"}
+Rendered error/show.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 18ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=undefined+method+%60model_name%27+for+Docusign%3A%3AEnvelopeStatus%3AClass" for 127.0.0.1 at Tue Mar 29 11:00:49 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"undefined method `model_name' for Docusign::EnvelopeStatus:Class"}
+Rendered error/show.html.erb within layouts/application (169.8ms)
+Completed 200 OK in 176ms (Views: 175.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 11:00:53 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 754ms (Views: 22.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:01:03 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (11.8ms)
+Completed 200 OK in 90511ms (Views: 17.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 11:02:40 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.1ms)
+Completed 200 OK in 1206ms (Views: 26.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:02:49 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 11:03:03 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 431ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 11:03:04 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (5.4ms)
+Rendered send_document/create.html.erb within layouts/application (20.2ms)
+Completed 200 OK in 27ms (Views: 26.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 11:03:05 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (25.6ms)
+Completed 200 OK in 623ms (Views: 31.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:03:09 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 234960ms (Views: 17.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 11:07:13 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 730ms (Views: 26.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:07:17 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (12.7ms)
+Completed 200 OK in 128495ms (Views: 18.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 11:09:33 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (30.0ms)
+Completed 200 OK in 726ms (Views: 35.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:09:38 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+Completed   in 49167ms
+
+NoMethodError (undefined method `length' for 68:Fixnum):
+  app/controllers/get_status_and_docs_controller.rb:71:in `get_key'
+  app/controllers/get_status_and_docs_controller.rb:6:in `show'
+  app/controllers/get_status_and_docs_controller.rb:4:in `each'
+  app/controllers/get_status_and_docs_controller.rb:4:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.1ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:10:44 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+Completed   in 110209ms
+
+NoMethodError (undefined method `length' for 68:Fixnum):
+  app/controllers/get_status_and_docs_controller.rb:71:in `get_key'
+  app/controllers/get_status_and_docs_controller.rb:6:in `show'
+  app/controllers/get_status_and_docs_controller.rb:4:in `each'
+  app/controllers/get_status_and_docs_controller.rb:4:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (102.8ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (117.5ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:12:40 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+DEPRECATION WARNING: :x_sendfile is no longer needed in send_file. (called from show at /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:18)
+Sent file /Users/juliaferraioli/RubymineProjects/DocuSignSample/tmp/7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182.pdf (0.5ms)
+Redirected to 
+Completed   in 34580ms
+
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  app/controllers/get_status_and_docs_controller.rb:110:in `start_signing'
+  app/controllers/get_status_and_docs_controller.rb:33:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (249.1ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (261.2ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:13:43 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:14:04 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+DEPRECATION WARNING: :x_sendfile is no longer needed in send_file. (called from show at /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:18)
+Sent file /Users/juliaferraioli/RubymineProjects/DocuSignSample/tmp/7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182.pdf (0.5ms)
+Redirected to 
+Completed   in 25614ms
+
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  app/controllers/get_status_and_docs_controller.rb:110:in `start_signing'
+  app/controllers/get_status_and_docs_controller.rb:33:in `show'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (240.7ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (252.9ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:16:21 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+DEPRECATION WARNING: :x_sendfile is no longer needed in send_file. (called from show at /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:18)
+Sent file /Users/juliaferraioli/RubymineProjects/DocuSignSample/tmp/7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182.pdf (0.6ms)
+Completed 200 OK in 6383ms
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:20:04 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "StartSigning"=>"Start Signing", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 18522ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 11:20:30 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.7ms)
+Completed 200 OK in 934ms (Views: 25.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 11:21:28 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (159.7ms)
+Completed 200 OK in 976ms (Views: 165.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 11:24:07 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (34.2ms)
+Completed 200 OK in 8415ms (Views: 42.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 11:24:20 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email=[add your docusign demo email here]&UserName=Tester DocuSign&CID=1=Start Signing"}
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 12:55:48 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 831ms (Views: 25.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 12:55:52 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email=[add your docusign demo email here]&UserName=Tester DocuSign&CID=1=Start Signing"}
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 12:57:54 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email=[add your docusign demo email here]&UserName=Tester DocuSign&CID=1=Start Signing"}
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 12:59:09 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+DEPRECATION WARNING: :x_sendfile is no longer needed in send_file. (called from show at /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:18)
+Sent file /Users/juliaferraioli/RubymineProjects/DocuSignSample/tmp/7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182.pdf (0.5ms)
+Completed 200 OK in 14236ms
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 12:59:28 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email=[add your docusign demo email here]&UserName=Tester DocuSign&CID=1=Start Signing"}
+Rendered get_status_and_docs/show.html.erb within layouts/application (109.0ms)
+Completed 200 OK in 28272ms (Views: 114.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:00:00 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.7ms)
+Completed 200 OK in 768ms (Views: 25.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:00:00 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 871ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:00:04 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelopef687fb20-xxxx-xxxx-xxxx-c67c7945c836"=>"Start Signing"}
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:00:41 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.6ms)
+Completed 200 OK in 803ms (Views: 26.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:00:45 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "DocEnvelopef687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email[add your docusign demo email here]&UserNameTester DocuSign&CID1"=>"Start Signing", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:02:03 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.8ms)
+Completed 200 OK in 726ms (Views: 26.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:02:07 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email=[add your docusign demo email here]&UserName=Tester DocuSign&CID=1=Start Signing"}
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:03:21 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 730ms (Views: 26.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:03:24 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "DocEnvelope+f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email+[add your docusign demo email here]&UserName+Tester DocuSign&CID+1"=>"Start Signing", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 136447ms (Views: 19.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 13:05:59 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.2ms)
+Completed 200 OK in 716ms (Views: 24.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:06:02 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "DocEnvelope+f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email+[add your docusign demo email here]&UserName+Tester DocuSign&CID+1"=>"Start Signing", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 13:13:39 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.5ms)
+Completed 200 OK in 737ms (Views: 24.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:13:45 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "DocEnvelope+f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email+[add your docusign demo email here]&UserName+Tester DocuSign&CID+1"=>"Start Signing", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 26165ms (Views: 17.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 13:14:21 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (28.4ms)
+Completed 200 OK in 789ms (Views: 34.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 13:14:29 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 793ms (Views: 26.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:14:32 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"f687fb20-xxxx-xxxx-xxxx-c67c7945c836", "DocEnvelope+f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email+[add your docusign demo email here]&UserName+Tester DocuSign&CID+1"=>"Start Signing", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (15.4ms)
+Completed 200 OK in 10205ms (Views: 22.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 13:14:50 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (21.7ms)
+Completed 200 OK in 782ms (Views: 27.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/embed_docusign/new" for 127.0.0.1 at Tue Mar 29 13:14:51 -0700 2011
+  Processing by EmbedDocusignController#new as HTML
+Rendered embed_docusign/_form.html.erb (1.3ms)
+Rendered embed_docusign/create.html.erb within layouts/application (15.7ms)
+Completed 200 OK in 43ms (Views: 40.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 13:14:53 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (5.1ms)
+Rendered send_document/create.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 46ms (Views: 45.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/send_document/send_envelope" for 127.0.0.1 at Tue Mar 29 13:15:11 -0700 2011
+  Processing by SendDocumentController#send_envelope as HTML
+  Parameters: {"conditionalfields"=>"true", "reminders"=>"", "expiration"=>"", "RecipientSecurity1"=>"None", "RecipientName1"=>"Tester DocuSign", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "SendNow"=>"Send Now", "RecipientEmail1"=>"[add your docusign demo email here]", "subject"=>"Test captive info", "stockdoc"=>"true", "RecipientSecuritySetting1"=>"2065768067", "addsig"=>"true", "formfields"=>"true", "emailBlurb"=>"test"}
+Redirected to http://0.0.0.0:3000/get_status_and_docs
+Completed 302 Found in 3590ms
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:15:14 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (17.1ms)
+Completed 200 OK in 983ms (Views: 23.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:15:24 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"e1f620b6-d0c6-43f1-8a7d-d298f7d12624", "DocEnvelope+f687fb20-xxxx-xxxx-xxxx-c67c7945c836&Email+[add your docusign demo email here]&UserName+Tester DocuSign&CID+1"=>"Start Signing", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 6467ms (Views: 23.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 13:15:39 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 855ms (Views: 23.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:15:43 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"e1f620b6-d0c6-43f1-8a7d-d298f7d12624", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope+e1f620b6-d0c6-43f1-8a7d-d298f7d12624&Email+[add your docusign demo email here]&UserName+Tester DocuSign&CID+1"=>"Start Signing"}
+Rendered get_status_and_docs/sign.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 3547ms (Views: 18.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 13:16:00 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (16.9ms)
+Completed 200 OK in 922ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs/?status=cancel" for 127.0.0.1 at Tue Mar 29 13:17:07 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+  Parameters: {"status"=>"cancel"}
+Rendered get_status_and_docs/list.html.erb within layouts/application (17.6ms)
+Completed 200 OK in 990ms (Views: 23.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:17:11 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"UserName"=>"Tester DocuSign", "envelopeID"=>"e1f620b6-d0c6-43f1-8a7d-d298f7d12624", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "Email"=>"[add your docusign demo email here]", "ClientUserId"=>"1", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+DEPRECATION WARNING: :x_sendfile is no longer needed in send_file. (called from show at /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:19)
+Sent file /Users/juliaferraioli/RubymineProjects/DocuSignSample/tmp/7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182.pdf (0.5ms)
+Completed 200 OK in 27753ms
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:18:16 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 1013ms (Views: 34.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:18:21 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "DocEnvelope7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+DEPRECATION WARNING: :x_sendfile is no longer needed in send_file. (called from show at /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:19)
+Sent file /Users/juliaferraioli/RubymineProjects/DocuSignSample/tmp/7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182.pdf (0.5ms)
+Completed 200 OK in 48239ms
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:19:12 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (17.3ms)
+Completed 200 OK in 1067ms (Views: 29.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:19:16 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"authenticity_token"=>"{PASSWORD}", "utf8"=>"✓", "DocEnvelope+7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182"=>"Download"}
+DEPRECATION WARNING: :x_sendfile is no longer needed in send_file. (called from show at /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:19)
+Sent file /Users/juliaferraioli/RubymineProjects/DocuSignSample/tmp/7a6004bb-xxxx-xxxx-xxxx-306cf0a6e182.pdf (0.5ms)
+Completed 200 OK in 28027ms
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:28:37 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 877ms (Views: 28.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:28:42 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"authenticity_token"=>"{PASSWORD}", "utf8"=>"✓"}
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 13:32:11 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 721ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 13:32:12 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (5.2ms)
+Rendered send_document/create.html.erb within layouts/application (19.8ms)
+Completed 200 OK in 27ms (Views: 26.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:32:14 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+ERROR: compiling _app_views_get_status_and_docs_list_html_erb__1185788730_2203987600_0 RAISED compile error
+/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'
+...ter.png"), :type => "button" :onclick => "invert('#{e.envelo...
+                              ^
+/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND
+...nvert('#{e.envelope_id}');") );@output_buffer.safe_concat('
+                              ^
+Function body:           def _app_views_get_status_and_docs_list_html_erb__1185788730_2203987600_0(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "get_status_and_docs/list";_old_output_buffer = @output_buffer;;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.safe_concat('<script type="text/javascript">
+    function invert(ident) {
+        var state = document.getElementById(ident).style.display;
+        if (state == \'block\') {
+            document.getElementById(ident).style.display = \'none\';
+        } else {
+            document.getElementById(ident).style.display = \'block\';
+        }
+    }
+</script>
+
+');@output_buffer.append=  form_tag(get_status_and_docs_show_path, :method => :post) do@output_buffer.safe_concat('
+');@output_buffer.safe_concat('    <ul style="list-style:none">
+');      if !@envelopes.nil?
+@output_buffer.append_if_string=            @envelopes.each do |e| 
+@output_buffer.safe_concat('              <li>
+                ');@output_buffer.append= ( content_tag( image_tag("#{root_url}images/icon-twitter.png"), :type => "button" :onclick => "invert('#{e.envelope_id}');") );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('                ');@output_buffer.append= (button_to_function 'ex', "invert('#{e.envelope_id}')" );@output_buffer.append= (e.subject);@output_buffer.safe_concat(' (');@output_buffer.append= ( e.status.to_s);@output_buffer.safe_concat(') - ');@output_buffer.append= ( e.envelope_id);@output_buffer.safe_concat('
+');@output_buffer.safe_concat('                <ul style="list-style:none; display:none;" id="');@output_buffer.append= (e.envelope_id);@output_buffer.safe_concat('">
+');@output_buffer.append_if_string=                    e.recipient_statuses.each do |r| 
+@output_buffer.safe_concat('                      <li>
+                        ');@output_buffer.append= (button_to_function 'ex', "invert('#{e.envelope_id}Recipient#{r.user_name}')" );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('                        Recipient - ');@output_buffer.append= (r.user_name);@output_buffer.safe_concat(' ');if !r.client_user_id.nil? && !r.status.to_s.eql?('Completed');@output_buffer.append= (submit_tag('Start Signing', :name => "DocEnvelope+#{e.envelope_id}&Email+#{r.email}&UserName+#{r.user_name}&CID+#{r.client_user_id}"));end;@output_buffer.safe_concat('
+');@output_buffer.safe_concat('                        <ul style="list-style:none; display:none;" id="');@output_buffer.append= (e.envelope_id);@output_buffer.safe_concat('Recipient');@output_buffer.append= (r.user_name);@output_buffer.safe_concat('">
+');@output_buffer.append_if_string=                            r.tab_statuses.each do |t| 
+@output_buffer.safe_concat('                              <li>');@output_buffer.append= (t.tab_name);@output_buffer.safe_concat(': ');@output_buffer.append= (t.tab_value);@output_buffer.safe_concat('</li>
+');                          end
+@output_buffer.safe_concat('                        </ul>
+                      </li>
+');                  end
+@output_buffer.safe_concat('                  <li>');@output_buffer.append= (button_to_function 'ex', "invert('#{e.envelope_id}Documents')" );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('                    Documents');if e.status.to_s.eql?('Completed');@output_buffer.safe_concat(' ');@output_buffer.append= ( submit_tag('Download', :name => "DocEnvelope+#{e.envelope_id}") );@output_buffer.safe_concat(' ');end;@output_buffer.safe_concat('
+');@output_buffer.safe_concat('                    <ul style="list-style:none;display:none;" id="');@output_buffer.append= (e.envelope_id);@output_buffer.safe_concat('Documents">
+');@output_buffer.append_if_string=                        e.document_statuses.each do |d|
+@output_buffer.safe_concat('                          <li>');@output_buffer.append= (d.name);@output_buffer.safe_concat('</li>
+');                      end
+@output_buffer.safe_concat('                    </ul>
+                  </li>
+                </ul>
+              </li>
+');          end
+@output_buffer.safe_concat('          </ul>
+');      end
+end;@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:47:in `compile'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_view/template.rb:134:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_view/render/rendering.rb:59:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/instrumentation.rb:40:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.4/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/controllers/get_status_and_docs_controller.rb:92:in `list'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/callbacks.rb:18:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/callbacks.rb:435:in `_run__333537573__process_action__743455353__callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/callbacks.rb:409:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/callbacks.rb:409:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/callbacks.rb:93:in `send'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/callbacks.rb:93:in `run_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_controller/metal.rb:178:in `action'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.13/lib/rack/mount/route_set.rb:148:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:93:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:89:in `optimized_each'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.8/gems/rack-mount-0.6.13/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/routing/route_set.rb:492:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.4/lib/active_record/query_cache.rb:32:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.4/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.4/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.4/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-3.0.4/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.8/gems/activesupport-3.0.4/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-3.0.4/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/application.rb:77:in `send'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/handler/webrick.rb:52:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/handler/webrick.rb:13:in `run'
+/Library/Ruby/Gems/1.8/gems/rack-1.2.1/lib/rack/server.rb:213:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/commands/server.rb:65:in `start'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/commands.rb:30
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/commands.rb:27:in `tap'
+/Library/Ruby/Gems/1.8/gems/railties-3.0.4/lib/rails/commands.rb:27
+/Users/juliaferraioli/RubymineProjects/DocuSignSample/script/rails:6:in `require'
+/Users/juliaferraioli/RubymineProjects/DocuSignSample/script/rails:6
+/Users/juliaferraioli/.gem/ruby/1.8/gems/ruby-debug-ide-0.4.17.beta3/lib/ruby-debug-ide.rb:112:in `debug_load'
+/Users/juliaferraioli/.gem/ruby/1.8/gems/ruby-debug-ide-0.4.17.beta3/lib/ruby-debug-ide.rb:112:in `debug_program'
+/Users/juliaferraioli/.gem/ruby/1.8/gems/ruby-debug-ide-0.4.17.beta3/bin/rdebug-ide:87
+-e:1:in `load'
+-e:1
+Rendered get_status_and_docs/list.html.erb within layouts/application (30.1ms)
+Redirected to http://0.0.0.0:3000/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E
+Completed 302 Found in 1008ms
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:32:15 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 36ms (Views: 35.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:32:53 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (155.6ms)
+Completed 200 OK in 168ms (Views: 166.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:33:00 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 35ms (Views: 34.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:33:32 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 20ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:33:53 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (120.8ms)
+Completed 200 OK in 128ms (Views: 127.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:35:36 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 20ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:35:46 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (13.9ms)
+Completed 200 OK in 20ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:36:14 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (26.0ms)
+Completed 200 OK in 32ms (Views: 31.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/error?message=compile+error%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%3A%27%2C+expecting+%27%29%27%0A...ter.png%22%29%2C+%3Atype+%3D%3E+%22button%22+%3Aonclick+%3D%3E+%22invert%28%27%23%7Be.envelo...%0A++++++++++++++++++++++++++++++%5E%0A%2FUsers%2Fjuliaferraioli%2FRubymineProjects%2FDocuSignSample%2Fapp%2Fviews%2Fget_status_and_docs%2Flist.html.erb%3A17%3A+syntax+error%2C+unexpected+%27%29%27%2C+expecting+kEND%0A...nvert%28%27%23%7Be.envelope_id%7D%27%29%3B%22%29+%29%3B%40output_buffer.safe_concat%28%27%0A++++++++++++++++++++++++++++++%5E" for 127.0.0.1 at Tue Mar 29 13:36:25 -0700 2011
+  Processing by ErrorController#show as HTML
+  Parameters: {"message"=>"compile error\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ':', expecting ')'\n...ter.png\"), :type => \"button\" :onclick => \"invert('\#{e.envelo...\n                              ^\n/Users/juliaferraioli/RubymineProjects/DocuSignSample/app/views/get_status_and_docs/list.html.erb:17: syntax error, unexpected ')', expecting kEND\n...nvert('\#{e.envelope_id}');\") );@output_buffer.safe_concat('\n                              ^"}
+Rendered error/show.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 20ms (Views: 19.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:36:27 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (21.7ms)
+Completed 200 OK in 924ms (Views: 28.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:36:34 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"x"=>"11", "y"=>"29", "authenticity_token"=>"{PASSWORD}", "utf8"=>"✓"}
+Rendered get_status_and_docs/show.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 10972ms (Views: 36.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:36:48 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (42.8ms)
+Completed 200 OK in 968ms (Views: 49.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/get_status_and_docs/show" for 127.0.0.1 at Tue Mar 29 13:37:00 -0700 2011
+  Processing by GetStatusAndDocsController#show as HTML
+  Parameters: {"authenticity_token"=>"{PASSWORD}", "utf8"=>"✓"}
+Rendered get_status_and_docs/show.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 8073ms (Views: 29.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:37:22 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 918ms (Views: 25.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:37:35 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 850ms (Views: 24.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:37:53 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.5ms)
+Completed 200 OK in 1011ms (Views: 125.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:40:09 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 1057ms (Views: 24.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:41:29 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.8ms)
+Completed 200 OK in 861ms (Views: 25.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:42:24 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (20.6ms)
+Completed 200 OK in 858ms (Views: 29.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:43:03 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 809ms (Views: 24.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/get_status_and_docs" for 127.0.0.1 at Tue Mar 29 13:43:43 -0700 2011
+  Processing by GetStatusAndDocsController#list as HTML
+Rendered get_status_and_docs/list.html.erb within layouts/application (19.4ms)
+Completed 200 OK in 865ms (Views: 25.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 13:44:00 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (90.1ms)
+Rendered send_document/create.html.erb within layouts/application (104.5ms)
+Completed 200 OK in 111ms (Views: 110.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at Tue Mar 29 13:54:29 -0700 2011
+  Processing by LoginsController#new as HTML
+Redirected to http://0.0.0.0:3000/send_document
+Completed 302 Found in 602ms
+
+
+Started GET "/send_document" for 127.0.0.1 at Tue Mar 29 13:54:30 -0700 2011
+  Processing by SendDocumentController#create as HTML
+Rendered send_document/_form.html.erb (4.8ms)
+Rendered send_document/create.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 24ms (Views: 24.0ms | ActiveRecord: 0.0ms)

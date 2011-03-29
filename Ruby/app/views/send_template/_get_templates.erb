@@ -1,0 +1,17 @@
+<%= form_tag("send_template/get_template", :method => :post) do%>
+    <div>
+      <table id="TemplateTable">
+        <tr>
+          <td>
+            Select a Template
+          </td>
+        </tr>
+        <tr>
+          <td><%= select(:tname, :tid, @templates.collect{|t| [t.templateID +
+                                                                       ': ' +
+                                                                       t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Go', :name => 'LoadTemplate')%>
+          </td>
+        </tr>
+      </table>
+    </div>
+<% end %>

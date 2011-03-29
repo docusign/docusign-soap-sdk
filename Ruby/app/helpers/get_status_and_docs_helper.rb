@@ -1,0 +1,2 @@
+module GetStatusAndDocsHelper
+end

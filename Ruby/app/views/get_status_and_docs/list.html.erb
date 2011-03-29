@@ -1,0 +1,43 @@
+<script type="text/javascript">
+    function invert(ident) {
+        var state = document.getElementById(ident).style.display;
+        if (state == 'block') {
+            document.getElementById(ident).style.display = 'none';
+        } else {
+            document.getElementById(ident).style.display = 'block';
+        }
+    }
+</script>
+
+<%= form_tag(get_status_and_docs_show_path, :method => :post) do%>
+    <ul style="list-style:none">
+      <%if !@envelopes.nil?%>
+          <% @envelopes.each do |e| %>
+              <li>
+                <%= content_tag(:span, image_tag("#{root_url}images/open.gif"), :onclick => "invert('#{e.envelope_id}');") %><%=e.subject%> (<%= e.status.to_s%>) - <%= e.envelope_id%>
+                <ul style="list-style:none; display:none;" id="<%=e.envelope_id%>">
+                  <% e.recipient_statuses.each do |r| %>
+                      <li>
+                        <%= content_tag(:span, image_tag("#{root_url}images/open.gif"), :onclick => "invert('#{e.envelope_id}Recipient#{r.user_name}');") %>
+                        Recipient - <%=r.user_name%> <%if !r.client_user_id.nil? && !r.status.to_s.eql?('Completed')%><%=submit_tag('Start Signing', :name => "DocEnvelope+#{e.envelope_id}&Email+#{r.email}&UserName+#{r.user_name}&CID+#{r.client_user_id}")%><%end%>
+                        <ul style="list-style:none; display:none;" id="<%=e.envelope_id%>Recipient<%=r.user_name%>">
+                          <% r.tab_statuses.each do |t| %>
+                              <li><%=t.tab_name%>: <%=t.tab_value%></li>
+                          <%end%>
+                        </ul>
+                      </li>
+                  <%end%>
+                  <li><%= content_tag(:span, image_tag("#{root_url}images/open.gif"), :onclick => "invert('#{e.envelope_id}Documents');") %>
+                    Documents<%if e.status.to_s.eql?('Completed')%> <%= submit_tag('Download', :name => "DocEnvelope+#{e.envelope_id}") %> <%end%>
+                    <ul style="list-style:none;display:none;" id="<%=e.envelope_id%>Documents">
+                      <% e.document_statuses.each do |d|%>
+                          <li><%=d.name%></li>
+                      <%end%>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+          <%end%>
+          </ul>
+      <%end%>
+<%end%>
