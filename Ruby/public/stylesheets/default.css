@@ -1,0 +1,149 @@
+body
+{
+    font: 1em Arial, sans-serif;
+}
+
+input.docusignbutton
+{
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.blue {
+	color: #fef4e9;
+	border: solid 1px #1A7CD5;
+	background: #ADD3F4;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ADD3F4), to(#1A7CD5));
+	background: -moz-linear-gradient(top,  #ADD3F4,  #1A7CD5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ADD3F4', endColorstr='#1A7CD5');
+}
+
+.addthis_toolbox.addthis_pill_combo a {
+    float: left;
+}
+.addthis_button_compact .at15t_compact {
+    float: left;
+}
+
+.leftalign
+{
+    text-align: left;
+}
+
+.rightalign
+{
+    text-align:right;
+}
+
+.centeralign
+{
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.notification
+{
+    width:500px;
+    margin: auto auto auto auto;
+    background-color: #C3FCB1;
+}
+
+.dropshadow-topright
+{
+    margin: 100px auto;
+    background-color: #FFFFFF;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000;
+    padding: 10px;
+    height: 313px;
+    width: 527px;
+    box-shadow: 5px -5px 10px #700;
+    -webkit-box-shadow: 5px -5px 10px #888;
+    -moz-box-shadow: 5px -5px 10px #334455;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.dropshadow-bottomleft
+{
+    margin: 100px auto;
+    background-color: #FFFFFF;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000;
+    padding: 10px;
+    height: 313px;
+    width: 527px;
+    box-shadow: -5px 5px 10px #700;
+    -webkit-box-shadow: -5px 5px 10px #888;
+    -moz-box-shadow: -5px 5px 10px #334455;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.triangle-isosceles {
+	position:relative;
+	padding:15px;
+	margin:1em 0 1em;
+	color:#000;
+	background:#fff; /* default background for browsers without gradient support */
+
+	/* css3 */
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	/* NOTE: webkit gradient implementation is not as per spec */
+	/*background:-webkit-gradient(linear, left top, left bottom, from(#F2F2F2), to(#DFDFDF));
+	background:-moz-linear-gradient(top, #F2F2F2, #DFDFDF);
+	background:-o-linear-gradient(top, #F2F2F2, #DFDFDF);*/
+}
+
+.triangle-isosceles.left {
+	margin-left:30px;
+	background:#F1F1F1;
+}
+
+/* creates triangle */
+.triangle-isosceles:after {
+	content:"";
+	display:block; /* reduce the damage in FF3.0 */
+	position:absolute;
+	bottom:-26px; /* value = - border-top-width - border-bottom-width */
+	left:47px; /* controls horizontal position */
+	width:0;
+	height:0;
+	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+	border-color:transparent #F1F1F1;
+}
+
+/* Variant : left
+------------------------------------------ */
+
+.triangle-isosceles.left:after {
+	top:28px; /* controls vertical position */
+	left:-21px; /* value = - border-left-width - border-right-width */
+	bottom:auto;
+	border-width:9px 21px 9px 0;
+	border-color:transparent #F1F1F1;
+
+}

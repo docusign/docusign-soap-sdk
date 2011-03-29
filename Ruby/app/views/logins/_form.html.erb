@@ -1,0 +1,58 @@
+
+<div class="dropshadow-bottomleft">
+  <p class="leftalign">
+    <b>Log In</b></p>
+  <hr />
+  <%= form_tag("logins/create", :method => :post) do%>
+
+      <div id="container" class="centeralign" style="width: 300px;">
+        <table style="width: 300px;" align="center">
+          <tr>
+            <td>
+              DevCenter E-mail
+            </td>
+            <td>
+              <%= text_field_tag('email', nil, :value => @email) %>
+              <!--<input id="DevCenterEmail" type="text" name="DevCenterEmail" value="" />-->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Password
+            </td>
+            <td>
+              <%= text_field_tag('password', nil, :value => @password) %>
+              <!--<input id="DevCenterPassword" type="password" name="DevCenterPassword" value="" /> -->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Your Integrator Key
+            </td>
+            <td>
+              <%= text_field_tag('Integrator Key', nil, :value=> @int_key) %>
+              <!--<input id="DevCenterIKey" type="text" name="DevCenterIKey" value="" />  -->
+            </td>
+          </tr>
+        </table>
+        <div>
+          <table class="triangle-isosceles left" align="center">
+            <tr>
+              <td>
+                <!--<img alt="" src="" style="height: 25px; width: 25px" />-->
+              </td>
+              <td>
+                <b>Need a DevCenter Account?</b><br />
+                Get it <a href="http://www.docusign.com/developers-center/get-free-developer-account">
+                here</a>.
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div id="action" class="centeralign" style="width: 150px;">
+          <%= submit_tag('Login', :type => 'submit', :style => 'width:70px; margin-right: 5px;')%><%= submit_tag('Cancel', :type => 'reset', :style => 'width:70px; margin-left:5px;')%>
+        </div>
+      </div>
+      </div>
+
+  <% end %>

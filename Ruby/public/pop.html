@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    function framepop() {
+        if (top.frames.length != 0){
+            if(qstring('source') == 'embed')
+                top.location = 'embed_docusign/' + window.location.search;
+            /*else if(qstring('source') == 'template')
+                top.location = 'send_template/' + window.location.search;
+            else if(qstring('source') == 'document')
+                top.location = 'send_document/' + window.location.search;  */
+            else
+                top.location = 'get_status_and_docs/' + window.location.search;
+        }
+    }
+</script>
+<script>
+    function qstring( name )
+    {
+        name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var results = regex.exec( window.location.href );
+        if( results == null )
+            return "";
+        else
+            return results[1];
+    }
+</script>
+<body onload="framepop();">
+</body>

@@ -1,0 +1,157 @@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        activate();
+        var today = new Date().getDate();
+        $("#reminders").datepicker({
+            showOn: "button",
+            buttonImage: "<%=root_url%>images/calendar-blue.gif",
+            buttonImageOnly: true,
+            minDate: today
+        });
+        $("#expiration").datepicker({
+            showOn: "button",
+            buttonImage: "<%=root_url%>images/calendar-blue.gif",
+            buttonImageOnly: true,
+            minDate: today + 3
+        });
+        $("#dialogmodal").dialog({
+            height: 350,
+            modal: true,
+            autoOpen: false
+        });
+    });
+</script>
+<%= form_tag("send_document/send_envelope", :method => :post, :multipart => true) do%>
+    <%= text_field_tag('subject', nil, :placeholder => '<enter the subject>', :class => 'email')%><!--<img alt="" src="" class="helplink" />--><br />
+    <%= text_area_tag('emailBlurb', nil, :placeholder => '<enter the e-mail blurb>', :rows => '4', :cols => '20', :class => 'email')%>
+    <p>
+    </p>
+    <table id="recipientList" class="recipientList">
+      <tr class="recipientListHeader">
+        <th>
+          Recipient
+        </th>
+        <th>
+          E-mail
+        </th>
+        <th>
+          Security and Setting
+          <!--<img alt="" src="" class="helplink" />-->
+        </th>
+        <th>
+          Send E-mail Invite
+        </th>
+      </tr>
+      <tr id="Recipient1" name="Recipient1">
+        <td>
+          <%= text_field_tag('RecipientName1') %>
+        </td>
+        <td>
+          <%= text_field_tag('RecipientEmail1') %>
+        </td>
+        <td>
+          <%= select_tag('RecipientSecurity1', options_for_select([['None', 'None'],['Access Code:', 'AccessCode'], ['Phone Authentication', 'PhoneAuthentication']]), :onchange => 'javascript:EnableDisableInput(1)')%>
+          <%= text_field_tag('RecipientSecuritySetting1', nil, :style => 'display:none;') %>
+        </td>
+        <td>
+          <ul class="switcher" id="RecipientInvite1">
+            <li id="RecipientInviteon1" class="active"><a href="#" title="On">ON</a></li>
+            <li id="RecipientInviteoff1"><a href="#" title="OFF">OFF</a></li>
+            <%= check_box_tag('RecipientInviteToggle1', 'true', true, :style => 'display:none') %>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <input type="button" onclick="addRowToTable()" value="Add Recipient" />
+    <div id="files">
+      <p>
+        Document #1:
+        <%= file_field_tag('file1', :class => 'upload') %></p>
+      <p>
+        Document #2:
+        <%= file_field_tag('file2', :class => 'upload') %></p>
+    </div>
+    <table class="optionlist">
+      <tr>
+        <td>
+          <%= check_box_tag('stockdoc', 'true', false, :onchange => 'EnableDisableDiv()', :class => 'options') %>
+          Use a stock doc
+          <!--<img alt="" src="" class="helplink" />-->
+        </td>
+        <td rowspan="3">
+          <%= text_field_tag('reminders', nil, :onchange => 'openPicker()', :class => 'datepickers') %><br />
+          Add Daily Reminders
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= check_box_tag('addsig', 'true', false, :class => 'options') %>
+          Add Signatures
+          <!--<img alt="" src="" class="helplink" />-->
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= check_box_tag('formfields', 'true', false, :class => 'options') %>
+          Add Form Fields
+          <!--<img alt="" src="" class="helplink" />-->
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= check_box_tag('conditionalfields', 'true', false, :class => 'options') %>
+          Add Conditional Fields
+          <!--<img alt="" src="" class="helplink" />-->
+        </td>
+        <td rowspan="3">
+          <%= text_field_tag('expiration', nil, :onchange => 'openPicker()', :class => 'datepickers') %><br />
+          Add Expiration
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= check_box_tag('collabfields', 'true', false, :class => 'options') %>
+          Add Collaborative Fields
+          <!--<img alt="" src="" class="helplink" />-->
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= check_box_tag('enablepaper', 'true', false, :class => 'options') %>
+          Enable Signing on Paper
+          <!--<img alt="" src="" class="helplink" />-->
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <%= check_box_tag('signerattachment', 'true', false, :class => 'options') %>
+          Request a Signer to Add an Attachment
+          <!--<img alt="" src="" class="helplink" />-->
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <%= check_box_tag('enablemarkup', 'true', false, :class => 'options') %>
+          Enable Signers to Mark Up the Documents
+          <!--<img alt="" src="" class="helplink" />-->
+        </td>
+      </tr>
+    </table>
+    <p />
+    <table class="submit">
+      <tr>
+        <td class="fourcolumn">
+        </td>
+        <td class="fourcolumn">
+          <%= submit_tag('Send Now', :name => 'SendNow', :class => "docusignbutton blue", :style => 'width:100%;') %>
+        </td>
+        <td class="fourcolumn">
+          <%= submit_tag('Edit Before Sending', :name => 'EditFirst', :class => "docusignbutton blue", :style => 'width:100%;') %>
+        </td>
+        <td class="fourcolumn">
+        </td>
+      </tr>
+    </table>
+    <br/>
+<% end %>

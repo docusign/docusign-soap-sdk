@@ -1,0 +1,71 @@
+﻿body {
+    font: 16px Arial, sans-serif;
+}
+.tabs ul
+{
+    list-style-type:none;
+    width: 1000px;
+    padding:0px;
+}
+
+.tabs li {
+    float: left;
+    z-index: 1;
+    width:228px;
+    background: #d6d5d4;
+    padding: 3px 10px;
+    border-radius: 5px 5px 0 0;
+    margin: 0 1px 0 0;
+}
+
+.tabs li a {
+    font-weight: bold;
+    cursor: pointer;
+    border-style: solid solid none solid;
+    border-width: 0px;
+    text-decoration:none;
+    color: Black;
+    font-size:large;
+}
+
+.tabs li.current { 
+    background: #fff; 
+    cursor: default;
+    border-width: 1px; 
+    border-style: solid solid none solid;
+}
+
+.tabs li.passive
+{
+    background: #d6d5d4;
+}
+
+.tabs {
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+
+.tabs section {
+    float: left;
+    z-index: 1;
+}
+
+.tabs section h3 {
+    margin: 0 1px 0 0;
+    background: #d6d5d4;
+    padding: 3px 10px;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    border-style: solid solid none solid;
+    border-width: 0px;
+}
+
+.tabs section.current h3 {
+    background: #fff;
+    cursor: default;
+    border-width: 1px;
+}
