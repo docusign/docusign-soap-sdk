@@ -75,6 +75,8 @@ public class Utils {
 	public static final String NAME_FORMFIELDS = "formfields";
 	public static final String NAME_CONDITIONALFIELDS = "conditionalfields";
 	public static final String NAME_COLLABFIELDS = "collabfields";
+	public static final Object NAME_IDCHECK = "IDCheck";
+	public static final Object NAME_PHONEAUTHENTICATION = "PhoneAuthentication";
 	
 	// PAGE SENDTEMPLATE
 	public static final String NAME_TEMPLATETABLE = "TemplateTable";

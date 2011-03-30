@@ -467,6 +467,18 @@ public class SendDocument extends HttpServlet {
 					equals(Utils.NAME_ACCESSCODE)) {
 					r.setAccessCode(request.getParameter(Utils.NAME_RECIPIENTSECURITYSETTING + index));
 				}
+				else if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).
+					equals(Utils.NAME_IDCHECK)) {
+					r.setRequireIDLookup(true);
+				}
+				else if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).
+						equals(Utils.NAME_PHONEAUTHENTICATION)) {
+					r.setRequireIDLookup(true);
+					r.setIDCheckConfigurationName("Phone Auth $");
+					RecipientPhoneAuthentication pa = new RecipientPhoneAuthentication();
+					pa.setRecipMayProvideNumber(true);
+					r.setPhoneAuthentication(pa);
+				}
 				
 				// TODO add handling for Phone authentication
 				

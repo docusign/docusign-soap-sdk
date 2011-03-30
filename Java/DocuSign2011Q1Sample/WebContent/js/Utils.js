@@ -37,6 +37,11 @@ function addRecipientRowToTable() {
     noneopt.value = 'None';
     security.add(noneopt);
 
+    var idopt = document.createElement('option');
+    idopt.text = 'ID Check';
+    idopt.value = 'IDCheck';
+    security.add(idopt);
+
     var accessopt = document.createElement('option');
     accessopt.text = 'Access Code:';
     accessopt.value = 'AccessCode';
@@ -53,6 +58,7 @@ function addRecipientRowToTable() {
     securitySetting.type = 'text';
     securitySetting.name = 'RecipientSecuritySetting' + iteration;
     securitySetting.id = 'RecipientSecuritySetting' + iteration;
+    securitySetting.defaultValue = "12345";
     securitySetting.style.display = "none";
     cellMiddle2.appendChild(securitySetting);
 
@@ -221,7 +227,7 @@ function EnableDisableDiv() {
 }
 
 function EnableDisableInput(id) {
-    if ($("#RecipientSecurity"+id).attr("selectedIndex") == 1) {
+    if ($("#RecipientSecurity"+id).attr("selectedIndex") == 2) {
         $("#RecipientSecuritySetting"+id).show();
         $("#RecipientSecuritySetting"+id).enableSelection();
     }
