@@ -43,5 +43,6 @@ include_once 'include/session.php'; // initializes session and provides
     	        echo "You shouldn't be on this page";
     	    }
 	    ?>
+        <?php include 'include/footer.html';?>
     </body>
 </html>

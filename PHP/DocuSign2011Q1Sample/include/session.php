@@ -12,7 +12,7 @@ function isLoggedIn(){
 
 function loginCheck(){
     if (!isset($_SESSION["LoggedIn"]) || ($_SESSION["LoggedIn"] <> true )){
-        header("Location: login.php");
+        header("Location: index.php");
     }
 
 }

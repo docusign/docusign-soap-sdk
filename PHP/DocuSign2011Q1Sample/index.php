@@ -168,7 +168,7 @@ else if($_SERVER["REQUEST_METHOD"] == "GET") {
                     	</tr>
                     	<tr>
                     		<td>Your Integrator Key</td>
-                    		<td><input id="DevCenterIKey" type="text" name="DevCenterIKey"
+                    		<td><input id="DevCenterIKey" type="password" name="DevCenterIKey"
                     			value="<?php echo $_SESSION["IntegratorsKey"]; ?>" /></td>
                     	</tr>
                     </table>
@@ -191,5 +191,6 @@ else if($_SERVER["REQUEST_METHOD"] == "GET") {
                 </div>
             </form>
         </div>
+        <?php include 'include/footer.html';?>
     </body>
 </html>
