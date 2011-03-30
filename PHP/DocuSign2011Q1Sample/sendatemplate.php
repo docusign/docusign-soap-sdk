@@ -269,12 +269,14 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     </script>
 	</head>
     <body>
-    <nav class="tabs">
-    	<a href="senddocument.php">Send Document</a>
-    	<a href="sendatemplate.php" class="current">Send a Template</a>
-    	<a href="embeddocusign.php">Embed Docusign</a>
-    	<a href="getstatusanddocs.php">Get Status and Docs</a>
-	</nav>
+    <table class="tabs">
+    <tr>
+    	<td><a href="senddocument.php">Send Document</a></td>
+    	<td class="current">Send a Template</td>
+    	<td><a href="embeddocusign.php">Embed Docusign</a></td>
+    	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
+	</tr>
+	</table>
     <form id="SendTemplateForm" enctype="multipart/form_data" method="post">
     <div>
         <input id="subject" name="subject" placeholder="<enter the subject>" type="text"

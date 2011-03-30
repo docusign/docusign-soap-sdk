@@ -74,17 +74,25 @@ function constructRecipients() {
         $r->RequireIDLookup = false;
         
         switch ($_POST["RecipientSecurity"][$i]) {
+            case "IDCheck":
+                $r->RequireIDLookup = true;
+                break;
+                
             case "AccessCode":
-            $r->AccessCode = $_POST["RecipientSecuritySetting"][$i];
-            break;
+                $r->AccessCode = $_POST["RecipientSecuritySetting"][$i];
+                break;
             
             case "PhoneAuthentication":
-                ;
-            break;
+                $r->RequireIDLookup = true;
+                $r->IDCheckConfigurationName = "Phone Auth $";
+                $pa = new RecipientPhoneAuthentication();
+                $pa->RecipMayProvideNumber = true;
+                $r->PhoneAuthentication = $pa;
+                break;
             
             default:
                 ;
-            break;
+                break;
         }
         $r->ID = $i;
         $r->Type = RecipientTypeCode::Signer;
@@ -456,12 +464,14 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
         </script>
     </head>
     <body>
-        <nav class="tabs">
-        	<a href="senddocument.php" class="current">Send Document</a>
-        	<a href="sendatemplate.php">Send a Template</a>
-        	<a href="embeddocusign.php">Embed Docusign</a>
-        	<a href="getstatusanddocs.php">Get Status and Docs</a>
-    	</nav>
+        <table class="tabs">
+        <tr>
+        	<td class="current">Send Document</td>
+        	<td><a href="sendatemplate.php">Send a Template</a></td>
+        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
+        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
+    	</tr>
+    	</table>
         <form id="SendDocumentForm" enctype="multipart/form_data" method="post" >
             <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
             <p>

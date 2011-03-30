@@ -347,12 +347,14 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <nav class="tabs">
-        	<a href="senddocument.php">Send Document</a>
-        	<a href="sendatemplate.php">Send a Template</a>
-        	<a href="embeddocusign.php" class="current">Embed Docusign</a>
-        	<a href="getstatusanddocs.php">Get Status and Docs</a>
-    	</nav>
+        <table class="tabs">
+        <tr>
+        	<td><a href="senddocument.php">Send Document</a></td>
+        	<td><a href="sendatemplate.php">Send a Template</a></td>
+        	<td class="current">Embed Docusign</td>
+        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
+    	</tr>
+    	</table>
     	<form method="post" id="EmbedDocuSignForm">
     		<table width="100%">
     			<tr>
