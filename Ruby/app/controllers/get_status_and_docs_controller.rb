@@ -8,7 +8,7 @@ class GetStatusAndDocsController < ApplicationController
         if logged_in?
           #Request the PDF
           begin
-            @file = ds_connection.request_pdf(:envelopeID => eid).request_pdf_result
+            @file = ds_connection.requestPdf(:envelopeID => eid).requestPdfResult
             @path = Rails.root.to_s + "/tmp/" + eid +".pdf"
             File.open(@path, 'w+') do |f|
               #There is a bug in Soap4R that double 64 encodes the bytes
@@ -62,16 +62,16 @@ class GetStatusAndDocsController < ApplicationController
     #Get the URL that will be the src of the iframe
     if logged_in?
       begin
-        @token = ds_connection.request_recipient_token(:envelopeID => envelopeid,
+        @token = ds_connection.requestRecipientToken(:envelopeID => envelopeid,
                                                        :clientUserID => clientid,
                                                        :username => username,
                                                        :email => email,
                                                        :authenticationAssertion => assertion,
                                                        :clientURLs => urls
-        ).request_recipient_token_result
+        ).requestRecipientTokenResult
         render "sign"
       rescue Exception =>e
-        redirect_to :controller => 'error', :action => 'show', :message => e.message and return
+        redirect_to :controller => 'error', :action => 'show', :message => e.message
       end
     else
       redirect_to root_path
@@ -88,10 +88,10 @@ class GetStatusAndDocsController < ApplicationController
 
       #Request these envelopes' information
       begin
-        @envelopes = ds_connection.request_statuses_ex(:envelopeStatusFilter => filter).requestStatusesExResult.envelopeStatuses
+        @envelopes = ds_connection.requestStatusesEx(:envelopeStatusFilter => filter).requestStatusesExResult.envelopeStatuses
         render "list"
       rescue Exception =>e
-        redirect_to :controller => 'error', :action => 'show', :message => e.message and return
+        redirect_to :controller => 'error', :action => 'show', :message => e.message
       end
     elsif session[:envelope_ids].nil?
       render "list"

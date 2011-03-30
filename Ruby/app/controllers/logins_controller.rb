@@ -3,6 +3,15 @@ class LoginsController < ApplicationController
   attr_accessor :email, :int_key, :password
 
   def new
+    #Clear stale session variables
+    session[:email] = nil
+    session[:password] = nil
+    session[:int_key] = nil
+    session[:account_id] = nil
+    session[:logged_in] = nil
+    session[:recipientCount] = nil #TODO:Get rid of this one altogether
+    session[:status] = nil
+    session[:envelope_ids] = nil
 
     #Read as much from the configuration file as possible
     @int_key =  Docusign::Config[:integrators_key]
@@ -44,7 +53,7 @@ class LoginsController < ApplicationController
 
       #Ensure we can contact DocuSign
       response = ds_connection.ping(1)
-      if response.ping_result
+      if response.pingResult
         redirect_to send_document_path
       else
         redirect_to :controller => 'error', :action => 'show', :message => "Could not connect to DocuSign." and return

@@ -44,7 +44,7 @@ class SendDocumentController < ApplicationController
     if @send && logged_in?
       #Create and send the envelope
       begin
-        status = ds_connection.create_and_send_envelope(:envelope => envelope).create_and_send_envelope_result
+        status = ds_connection.createAndSendEnvelope(:envelope => envelope).createAndSendEnvelopeResult
       rescue Exception =>e
         redirect_to :controller => 'error', :action => 'show', :message => e.message and return
       end
@@ -61,7 +61,7 @@ class SendDocumentController < ApplicationController
     elsif !@send && logged_in?
       #Create the envelope, but don't send it
       begin
-        status = ds_connection.create_envelope(:envelope => envelope).create_envelope_result
+        status = ds_connection.createEnvelope(:envelope => envelope).createEnvelopeResult
       rescue Exception =>e
         redirect_to :controller => 'error', :action => 'show', :message => e.message and return
       end
@@ -75,8 +75,8 @@ class SendDocumentController < ApplicationController
 
       #Get the URL that will allow the sender to edit the envelope before sending
       begin
-        @token = ds_connection.request_sender_token(:accountID => session[:account_id], :envelopeID => status.envelopeID,
-                                                    :returnURL => root_url+'pop.html?source=document').request_sender_token_result
+        @token = ds_connection.requestSenderToken(:accountID => session[:account_id], :envelopeID => status.envelopeID,
+                                                    :returnURL => root_url+'pop.html?source=document').requestSenderTokenResult
 
         render 'edit'
       rescue Exception =>e
