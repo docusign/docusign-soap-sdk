@@ -31,7 +31,8 @@ public class Utils {
 	public static final String SESSION_TEMPLATES = "Templates";
 	
 	// Web pages
-	public static final String PAGE_LOGIN = "index.jsp";
+	public static final String PAGE_WELCOME = "index.jsp";
+	public static final String PAGE_LOGIN = "login.jsp";
 	public static final String PAGE_SENDDOCUMENT = "senddocument.jsp";
 	public static final String PAGE_EMBEDDOCUSIGN = "embeddocusign.jsp";
 	public static final String PAGE_EMBEDSEND = "embedsending.jsp";
