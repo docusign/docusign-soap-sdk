@@ -90,13 +90,13 @@ class EmbedDocusignController < ApplicationController
     #Get the URL that will be the src of the iframe
     if logged_in?
       begin
-        @token = ds_connection.request_recipient_token(:envelopeID => session[:status].envelopeID,
+        @token = ds_connection.requestRecipientToken(:envelopeID => session[:status].envelopeID,
                                                        :clientUserID => session[:status].recipientStatuses[0].clientUserId,
                                                        :username => session[:status].recipientStatuses[0].userName,
                                                        :email => session[:status].recipientStatuses[0].email,
                                                        :authenticationAssertion => assertion,
                                                        :clientURLs => urls
-        ).request_recipient_token_result
+        ).requestRecipientTokenResult
         render "sign"
       rescue Exception =>e
         redirect_to :controller => 'error', :action => 'show', :message => e.message and return
@@ -132,16 +132,16 @@ class EmbedDocusignController < ApplicationController
     #Get the URL that will be the src of the iframe
     if logged_in?
       begin
-        @token = ds_connection.request_recipient_token(:envelopeID => session[:status].envelopeID,
+        @token = ds_connection.requestRecipientToken(:envelopeID => session[:status].envelopeID,
                                                        :clientUserID => session[:status].recipientStatuses[1].clientUserId,
                                                        :username => session[:status].recipientStatuses[1].userName,
                                                        :email => session[:status].recipientStatuses[1].email,
                                                        :authenticationAssertion => assertion,
                                                        :clientURLs => urls
-        ).request_recipient_token_result
+        ).requestRecipientTokenResult
         render "sign"
       rescue Exception =>e
-        redirect_to :controller => 'error', :action => 'show', :message => e.message and return
+        redirect_to :controller => 'error', :action => 'show', :message => e.message
       end
     end
   end

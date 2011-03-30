@@ -7,7 +7,7 @@ class SendTemplateController < ApplicationController
     elsif logged_in?
       #Request the templates from the account
       begin
-        @templates = ds_connection.request_templates(:accountID => session[:account_id], :includeAdvancedTemplates => false ).request_templates_result
+        @templates = ds_connection.requestTemplates(:accountID => session[:account_id], :includeAdvancedTemplates => false ).requestTemplatesResult
         render "get_template"
       rescue Exception =>e
         redirect_to :controller => 'error', :action => 'show', :message => e.message and return
@@ -23,7 +23,7 @@ class SendTemplateController < ApplicationController
 
       #Request a particular template from the account
       begin
-        template = ds_connection.request_template(:templateID => @template_id, :includeDocumentBytes => false).requestTemplateResult
+        template = ds_connection.requestTemplate(:templateID => @template_id, :includeDocumentBytes => false).requestTemplateResult
       rescue Exception =>e
         redirect_to :controller => 'error', :action => 'show', :message => e.message and return
       end
@@ -103,8 +103,8 @@ class SendTemplateController < ApplicationController
     if @send && logged_in?
       #Create and send the envelope
       begin
-        status = ds_connection.create_envelope_from_templates(:templateReferences => template_references, :recipients => @envelope.recipients,
-                                                              :envelopeInformation => envelope_info, :activateEnvelope => true).create_envelope_from_templates_result
+        status = ds_connection.createEnvelopeFromTemplates(:templateReferences => template_references, :recipients => @envelope.recipients,
+                                                              :envelopeInformation => envelope_info, :activateEnvelope => true).createEnvelopeFromTemplatesResult
       rescue Exception =>e
         redirect_to :controller => 'error', :action => 'show', :message => e.message and return
       end
@@ -121,8 +121,8 @@ class SendTemplateController < ApplicationController
     elsif !@send && logged_in?
       #Create the envelope, but don't send it
       begin
-        status = ds_connection.create_envelope_from_templates(:templateReferences => template_references, :recipients => recipients,
-                                                              :envelopeInformation => envelope_info, :activateEnvelope => false).create_envelope_from_templates_result
+        status = ds_connection.createEnvelopeFromTemplates(:templateReferences => template_references, :recipients => @envelope.recipients,
+                                                              :envelopeInformation => envelope_info, :activateEnvelope => false).createEnvelopeFromTemplatesResult
       rescue Exception =>e
         redirect_to :controller => 'error', :action => 'show', :message => e.message and return
       end
@@ -136,8 +136,8 @@ class SendTemplateController < ApplicationController
 
       #Get the URL that will allow the sender to edit the envelope before sending
       begin
-        @token = ds_connection.request_sender_token(:accountID => session[:account_id], :envelopeID => status.envelopeID,
-                                                    :returnURL => root_url+'pop.html?source=template').request_sender_token_result
+        @token = ds_connection.requestSenderToken(:accountID => session[:account_id], :envelopeID => status.envelopeID,
+                                                    :returnURL => root_url+'pop.html?source=template').requestSenderTokenResult
 
         render 'edit'
       rescue Exception =>e
