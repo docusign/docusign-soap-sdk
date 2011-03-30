@@ -366,6 +366,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     		</table>
     		<iframe width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
 		</form>
+        <?php include 'include/footer.html';?>
      </body>
 </html>
 
