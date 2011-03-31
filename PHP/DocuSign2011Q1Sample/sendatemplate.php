@@ -281,7 +281,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <div>
         <input id="subject" name="subject" placeholder="<enter the subject>" type="text"
             class="email" />
-		<!-- <img alt="" src="" class="helplink" /> -->
 		<br />
         <textarea id="emailblurb" cols="20" name="emailblurb" placeholder="<enter the e-mail blurb>"
             rows="4" class="email"></textarea>
@@ -291,9 +290,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <select id="TemplateTable" name="TemplateTable" >
         	<?php loadTemplates(); ?>
         </select>
-<!--         <input type="button" id="selectTemplateButton" name="selectTemplateButton"
-            value="Go"  /> 
--->
     </div>
     <br />
     <div>
@@ -310,7 +306,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 </th>
                 <th class="fivecolumn">
                     <b>Security</b>
-                    <img alt="" src="" class="helplink" />
                 </th>
                 <th class="fivecolumn">
                     <b>Send E-mail Invite</b>

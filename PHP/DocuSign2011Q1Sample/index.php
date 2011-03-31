@@ -111,10 +111,18 @@ function login() {
 //========================================================================
 // Main
 //========================================================================
-// Load up the session map
-initCreds($UserID, $Password, $IntegratorsKey);
-$_SESSION["LoggedIn"] = false;
-$_SESSION["errorMessage"] = null;
+// if we are already logged in, head to senddocument.php
+if (isset($_SESSION["LoggedIn"]) && $_SESSION["LoggedIn"] == true) {
+    header("Location: senddocument.php");
+}
+else {
+    // Load up the session map
+    initCreds($UserID, $Password, $IntegratorsKey);
+    // initialize some session variables
+    $_SESSION["LoggedIn"] = false;
+    $_SESSION["errorMessage"] = null;
+    $_SESSION["EnvelopeIDs"] = null;
+}
 
 // POST and GET handlers
 if ($_SERVER["REQUEST_METHOD"]=="POST") {
@@ -185,7 +193,7 @@ else if($_SERVER["REQUEST_METHOD"] == "GET") {
                         </table>
                     </div>
                     <div id="action" class="centeralign" style="width: 154px;">
-                    	<input id="Submit1" name="submit" type="submit" value="Submit" style="width: 70px; margin-right: 5px;" /> 
+                    	<input id="Submit1" name="submit" type="submit" value="Login" style="width: 70px; margin-right: 5px;" /> 
                     	<input id="Reset1" name="reset" type="submit" value="Reset" style="width: 70px; margin-left: 5px;" />
                     </div>
                 </div>
