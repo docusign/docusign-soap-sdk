@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -32,7 +33,7 @@ import net.docusign.api_3_0.*;
  */
 public class SendDocument extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -59,24 +60,35 @@ public class SendDocument extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-/* 	// TODO DEBUG
-		Enumeration pns = request.getParameterNames();
-		while (pns.hasMoreElements()) {
-			String pn = (String) pns.nextElement();
-			String[] pvs = request.getParameterValues(pn);
-			for (int i = 0; i < pvs.length; i++) {
-				System.out.println(pn + ": " + pvs[i]);
+		// using org.apache.commons.fileupload to deal with multipart form. Not
+		// needed with tomcat 7+ or glassfish 3+
+		// a parser is required to get at the parameters of a multipart request
+		boolean isMultiPart = ServletFileUpload.isMultipartContent(request);
+		
+		if (isMultiPart) {
+			FileItemFactory factory = new DiskFileItemFactory();
+			ServletFileUpload upload = new ServletFileUpload(factory);
+			
+			try {
+				List items = upload.parseRequest(request);
+				Iterator iter = items.iterator();
+				while (iter.hasNext()) {
+					FileItem item = (FileItem) iter.next();
+					if (item.isFormField()) {
+						request.setAttribute(item.getFieldName(), item.getString());
+					}
+					else {
+						// stick the whole FileItem in the attribute if it's a file
+						request.setAttribute(item.getFieldName(), item);
+					}
+				}
+			} catch (FileUploadException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+
 		}
-		
-		System.out.println("=====");
-		
-		Enumeration sa = request.getSession().getAttributeNames();
-		while (sa.hasMoreElements()) {
-			String s = (String) sa.nextElement();
-			System.out.println(s + ": " + request.getSession().getAttribute(s).toString());
-		}
-	// TODO END DEBUG */
+
 		Envelope envelope;
 		try {
 			envelope = buildEnvelope(request, response);
@@ -89,7 +101,7 @@ public class SendDocument extends HttpServlet {
 			e.printStackTrace();
 			return;
 		}
-		if (request.getParameterValues(Utils.NAME_SENDNOW) != null) {
+		if (request.getAttribute(Utils.NAME_SENDNOW) != null) {
 			try {
 				sendNow(envelope, request, response);
 			} catch (Exception e) {
@@ -144,16 +156,16 @@ public class SendDocument extends HttpServlet {
 			throws FileUploadException, IOException, ParseException {
 		HttpSession session = request.getSession();
 		Envelope envelope = new Envelope();
-		if (request.getParameter(Utils.NAME_SUBJECT).length() > 0) {
-			envelope.setSubject(request.getParameter(Utils.NAME_SUBJECT));
+		if (request.getAttribute(Utils.NAME_SUBJECT).toString().length() > 0) {
+			envelope.setSubject(request.getAttribute(Utils.NAME_SUBJECT).toString());
 		}
 		else {
 			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_SUBJECT);
 			response.sendRedirect(Utils.PAGE_ERROR);				
 			return null;
 		}
-		if (request.getParameter(Utils.NAME_EMAILBLURB).length() > 0) {
-			envelope.setEmailBlurb(request.getParameter(Utils.NAME_EMAILBLURB));
+		if (request.getAttribute(Utils.NAME_EMAILBLURB).toString().length() > 0) {
+			envelope.setEmailBlurb(request.getAttribute(Utils.NAME_EMAILBLURB).toString());
 		}
 		else {
 			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_EMAILBLURB);
@@ -182,7 +194,7 @@ public class SendDocument extends HttpServlet {
 		ArrayOfDocument docs = new ArrayOfDocument();
 		int id = 1;
 		
-		if (request.getParameterValues(Utils.NAME_STOCKDOC) != null) {
+		if (request.getAttribute(Utils.NAME_STOCKDOC) != null) {
 			Document doc = new Document();
 			
 			// get stock document as byte stream without fancy libs
@@ -199,26 +211,29 @@ public class SendDocument extends HttpServlet {
 			docs.getDocument().add(doc);
 		}
 		else {
-			// use this cool Jakarta class that finds file form fields
-			ServletFileUpload upload = new ServletFileUpload(new DiskFileItemFactory());
-			List items = upload.parseRequest(request);
-			Iterator it = items.iterator();
-			while (it.hasNext()) {
-				FileItem fItem = (FileItem) it.next();
-				// input of type file return false
-				if (! fItem.isFormField()) {
-					Document doc = new Document();
-					doc.setPDFBytes(fItem.get());
-					doc.setName(fItem.getName());
-					doc.setID(new BigInteger(Integer.toString(id++)));
-					String ct = fItem.getContentType();
-					doc.setFileExtension(ct.substring(ct.indexOf("/") +1));
-					docs.getDocument().add(doc);
-				}
+			FileItem fItem = (FileItem) request.getAttribute(Utils.NAME_FILE1);
+			if (fItem.getName().length() > 0) {
+				Document doc = new Document();
+				doc.setPDFBytes(fItem.get());
+				doc.setName(fItem.getName());
+				doc.setID(new BigInteger(Integer.toString(id++)));
+				String ct = fItem.getContentType();
+				doc.setFileExtension(ct.substring(ct.indexOf("/") +1));
+				docs.getDocument().add(doc);
+			}
+			fItem = (FileItem) request.getAttribute(Utils.NAME_FILE2);
+			if (fItem.getName().length() > 0) {
+				Document doc = new Document();
+				doc.setPDFBytes(fItem.get());
+				doc.setName(fItem.getName());
+				doc.setID(new BigInteger(Integer.toString(id++)));
+				String ct = fItem.getContentType();
+				doc.setFileExtension(ct.substring(ct.indexOf("/") +1));
+				docs.getDocument().add(doc);
 			}
 		}
 		
-		if (request.getParameterValues(Utils.NAME_SIGNERATTACHMENT) != null) {
+		if (request.getAttribute(Utils.NAME_SIGNERATTACHMENT) != null) {
 			Document doc = new Document();
 			String filePath = getServletContext().getRealPath(Utils.RESOURCE_STOCKDOC);
 			File f = new File(filePath);
@@ -237,34 +252,32 @@ public class SendDocument extends HttpServlet {
 	}
 
 	private Envelope processOptions(HttpServletRequest request, Envelope envelope) throws ParseException {
-		if (request.getParameterValues(Utils.NAME_MARKUP) != null) {
+		if (request.getAttribute(Utils.NAME_MARKUP) != null) {
 			envelope.setAllowMarkup(true);
 		}
-		if (request.getParameterValues(Utils.NAME_ENABLEPAPER) != null) {
+		if (request.getAttribute(Utils.NAME_ENABLEPAPER) != null) {
 			envelope.setEnableWetSign(true);
 		}
-		if (request.getParameter(Utils.NAME_REMINDERS).length() > 0) {
+		if (request.getAttribute(Utils.NAME_REMINDERS).toString().length() > 0) {
 			if (envelope.getNotification() == null) {
 				envelope.setNotification(new Notification());
 			}
 			envelope.getNotification().setReminders(new Reminders());
 			envelope.getNotification().getReminders().setReminderEnabled(true);
-			long days = Utils.daysBetween(new SimpleDateFormat("mm/ss/yyyy").parse(
-					request.getParameter(Utils.NAME_REMINDERS)), 
-					new Date());
+			String reminder = request.getAttribute(Utils.NAME_REMINDERS).toString();
+			long days = Utils.daysBetween(new SimpleDateFormat("M/d/y").parse(reminder), new Date());
 			envelope.getNotification().getReminders().setReminderDelay(
 					new BigInteger(Long.toString(days)));
 			envelope.getNotification().getReminders().setReminderFrequency(new BigInteger("2"));
 		}
-		if (request.getParameter(Utils.NAME_EXPIRATION).length() > 0) {
+		if (request.getAttribute(Utils.NAME_EXPIRATION).toString().length() > 0) {
 			if (envelope.getNotification() == null) {
 				envelope.setNotification(new Notification());
 			}
 			envelope.getNotification().setExpirations(new Expirations());
 			envelope.getNotification().getExpirations().setExpireEnabled(true);
-			long days = Utils.daysBetween(new SimpleDateFormat("mm/ss/yyyy").parse(
-					request.getParameter(Utils.NAME_EXPIRATION)), 
-					new Date());
+			String expiration = request.getAttribute(Utils.NAME_EXPIRATION).toString();
+			long days = Utils.daysBetween(new SimpleDateFormat("M/d/y").parse(expiration), new Date());
 			envelope.getNotification().getExpirations().setExpireAfter(
 					new BigInteger(Long.toString(days)));
 			envelope.getNotification().getExpirations().setExpireWarn(
@@ -275,9 +288,9 @@ public class SendDocument extends HttpServlet {
 
 	private ArrayOfTab addTabs(HttpServletRequest request, int size) {
         ArrayOfTab tabs = new ArrayOfTab();
-        String pageTwo = (request.getParameterValues(Utils.NAME_STOCKDOC) != null) ? "2" : "1";
-        String pageThree = (request.getParameterValues(Utils.NAME_STOCKDOC) != null) ? "3" : "1";
-        if (request.getParameterValues(Utils.NAME_ADDSIGS) != null)
+        String pageTwo = (request.getAttribute(Utils.NAME_STOCKDOC) != null) ? "2" : "1";
+        String pageThree = (request.getAttribute(Utils.NAME_STOCKDOC) != null) ? "3" : "1";
+        if (request.getAttribute(Utils.NAME_ADDSIGS) != null)
         {
             Tab company = new Tab();
             company.setType(TabTypeCode.COMPANY);
@@ -368,7 +381,7 @@ public class SendDocument extends HttpServlet {
             }
         }
 
-        if (request.getParameterValues(Utils.NAME_FORMFIELDS) != null)
+        if (request.getAttribute(Utils.NAME_FORMFIELDS) != null)
         {
             Tab favColor = new Tab();
             favColor.setType(TabTypeCode.CUSTOM);
@@ -382,7 +395,7 @@ public class SendDocument extends HttpServlet {
             tabs.getTab().add(favColor);
         }
 
-        if (request.getParameterValues(Utils.NAME_CONDITIONALFIELDS) != null)
+        if (request.getAttribute(Utils.NAME_CONDITIONALFIELDS) != null)
         {
             Tab fruitNo = new Tab();
             fruitNo.setType(TabTypeCode.CUSTOM);
@@ -430,12 +443,12 @@ public class SendDocument extends HttpServlet {
             tabs.getTab().add(data1);
         }
 
-        if (request.getParameterValues(Utils.NAME_COLLABFIELDS) != null)
+        if (request.getAttribute(Utils.NAME_COLLABFIELDS) != null)
         {
         	// TODO implement collaberative fields
         }
 
-        if (request.getParameterValues(Utils.NAME_SIGNERATTACHMENT) != null)
+        if (request.getAttribute(Utils.NAME_SIGNERATTACHMENT) != null)
         {
             Tab attach = new Tab();
             attach.setType(TabTypeCode.SIGNER_ATTACHMENT);
@@ -456,22 +469,22 @@ public class SendDocument extends HttpServlet {
 	private ArrayOfRecipient constructRecipients(HttpServletRequest request) {
 		ArrayOfRecipient recipients = new ArrayOfRecipient();
 		int index = 1;
-		if (request.getParameter(Utils.NAME_RECIPIENTNAME + index) != null) {
-			while (request.getParameter(Utils.NAME_RECIPIENTNAME + index) != null) {
+		if (request.getAttribute(Utils.NAME_RECIPIENTNAME + index) != null) {
+			while (request.getAttribute(Utils.NAME_RECIPIENTNAME + index) != null) {
 				Recipient r = new Recipient();
 				
-				r.setUserName(request.getParameter(Utils.NAME_RECIPIENTNAME + index));
-				r.setEmail(request.getParameter(Utils.NAME_RECIPIENTEMAIL + index));
+				r.setUserName(request.getAttribute(Utils.NAME_RECIPIENTNAME + index).toString());
+				r.setEmail(request.getAttribute(Utils.NAME_RECIPIENTEMAIL + index).toString());
 				r.setRequireIDLookup(false);
-				if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).
+				if (request.getAttribute(Utils.NAME_RECIPIENTSECURITY + index).toString().
 					equals(Utils.NAME_ACCESSCODE)) {
-					r.setAccessCode(request.getParameter(Utils.NAME_RECIPIENTSECURITYSETTING + index));
+					r.setAccessCode(request.getAttribute(Utils.NAME_RECIPIENTSECURITYSETTING + index).toString());
 				}
-				else if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).
+				else if (request.getAttribute(Utils.NAME_RECIPIENTSECURITY + index).toString().
 					equals(Utils.NAME_IDCHECK)) {
 					r.setRequireIDLookup(true);
 				}
-				else if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).
+				else if (request.getAttribute(Utils.NAME_RECIPIENTSECURITY + index).toString().
 						equals(Utils.NAME_PHONEAUTHENTICATION)) {
 					r.setRequireIDLookup(true);
 					r.setIDCheckConfigurationName("Phone Auth $");

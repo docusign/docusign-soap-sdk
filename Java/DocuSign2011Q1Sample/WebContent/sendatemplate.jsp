@@ -64,7 +64,7 @@
     <form id="SendTemplateForm" action="<%= Utils.CONTROLLER_SENDTEMPLATE %>" method="post">
     <div>
         <input id="subject" name="<%= Utils.NAME_SUBJECT %>" placeholder="<enter the subject>" type="text"
-            class="email" /><img alt="" src="" class="helplink" /><br />
+            class="email" /><br />
         <textarea id="emailblurb" cols="20" name="<%= Utils.NAME_EMAILBLURB %>" placeholder="<enter the e-mail blurb>"
             rows="4" class="email"></textarea>
     </div>
@@ -101,7 +101,6 @@
                 </th>
                 <th class="fivecolumn">
                     <b>Security</b>
-                    <img alt="" src="" class="helplink" />
                 </th>
                 <th class="fivecolumn">
                     <b>Send E-mail Invite</b>

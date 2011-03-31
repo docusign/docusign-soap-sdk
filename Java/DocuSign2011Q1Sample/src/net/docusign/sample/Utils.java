@@ -78,6 +78,8 @@ public class Utils {
 	public static final String NAME_COLLABFIELDS = "collabfields";
 	public static final Object NAME_IDCHECK = "IDCheck";
 	public static final Object NAME_PHONEAUTHENTICATION = "PhoneAuthentication";
+	public static final String NAME_FILE1 = "file1";
+	public static final String NAME_FILE2 = "file2";
 	
 	// PAGE SENDTEMPLATE
 	public static final String NAME_TEMPLATETABLE = "TemplateTable";

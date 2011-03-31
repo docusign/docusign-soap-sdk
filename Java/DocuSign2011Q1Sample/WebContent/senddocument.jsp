@@ -54,7 +54,7 @@
             <td><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></td>
         </tr>
         </table>
-        <form id="SendDocumentForm" action="SendDocument" method="post" >
+        <form id="SendDocumentForm" action="SendDocument" method="post" enctype="multipart/form_data" >
             <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
             <p>
             </p>
@@ -133,7 +133,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input class="options" type="checkbox" name="ma" value="reqattachment" />
+                        <input class="options" type="checkbox" name="signerattachment" value="reqattachment" />
                         Request a Signer to Add an Attachment
                     </td>
                 </tr>

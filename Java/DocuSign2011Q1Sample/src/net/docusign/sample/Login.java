@@ -31,21 +31,29 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
-    	
-		Properties creds = new Properties();
-		try {
-			creds.load(getClass().getResourceAsStream(
-					Utils.CONFIG_PROPERTIES_CLASSPATH_LOCATION));
-			session.setAttribute(Utils.SESSION_EMAIL, creds.getProperty(Utils.SESSION_EMAIL));
-			session.setAttribute(Utils.SESSION_PASSWORD, creds.getProperty(Utils.SESSION_PASSWORD));
-			session.setAttribute(Utils.SESSION_INTEGRATORS_KEY, creds.getProperty(Utils.SESSION_INTEGRATORS_KEY));
-			session.setAttribute(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT, creds.getProperty(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT));
-			session.setAttribute(Utils.DOCUSIGN_WEBSERVICE_ENDPOINT, creds.getProperty(Utils.DOCUSIGN_WEBSERVICE_ENDPOINT));
-		} catch (IOException ioexception) {
-			System.err.println(Utils.ERROR_CONFIG);
+		if (session.getAttribute(Utils.SESSION_LOGGEDIN) != null &&
+				session.getAttribute(Utils.SESSION_LOGGEDIN).equals(true)) {
+				response.sendRedirect(Utils.CONTROLLER_SENDDOCUMENT);
 		}
-
-    	response.sendRedirect(Utils.PAGE_LOGIN);
+		else {
+			session.setAttribute(Utils.SESSION_ENVELOPEIDS, null);
+			session.setAttribute(Utils.SESSION_ERROR_MSG, null);
+			session.setAttribute(Utils.SESSION_LOGGEDIN, false);
+			Properties creds = new Properties();
+			try {
+				creds.load(getClass().getResourceAsStream(
+						Utils.CONFIG_PROPERTIES_CLASSPATH_LOCATION));
+				session.setAttribute(Utils.SESSION_EMAIL, creds.getProperty(Utils.SESSION_EMAIL));
+				session.setAttribute(Utils.SESSION_PASSWORD, creds.getProperty(Utils.SESSION_PASSWORD));
+				session.setAttribute(Utils.SESSION_INTEGRATORS_KEY, creds.getProperty(Utils.SESSION_INTEGRATORS_KEY));
+				session.setAttribute(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT, creds.getProperty(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT));
+				session.setAttribute(Utils.DOCUSIGN_WEBSERVICE_ENDPOINT, creds.getProperty(Utils.DOCUSIGN_WEBSERVICE_ENDPOINT));
+			} catch (IOException ioexception) {
+				System.err.println(Utils.ERROR_CONFIG);
+			}
+	
+	    	response.sendRedirect(Utils.PAGE_LOGIN);
+		}
 	}
 
 	/**
