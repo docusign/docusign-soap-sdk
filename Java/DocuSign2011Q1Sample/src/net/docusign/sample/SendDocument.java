@@ -391,6 +391,11 @@ public class SendDocument extends HttpServlet {
             favColor.setRecipientID(new BigInteger("1"));
             favColor.setXPosition(new BigInteger("301"));
             favColor.setYPosition(new BigInteger("416"));
+            
+            if (request.getAttribute(Utils.NAME_COLLABFIELDS) != null) {
+            	favColor.setSharedTab(true);
+            	favColor.setRequireInitialOnSharedTabChange(true);
+            }
 
             tabs.getTab().add(favColor);
         }

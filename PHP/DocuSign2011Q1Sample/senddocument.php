@@ -251,6 +251,12 @@ function addTabs($count) {
             $favColor->RecipientID = "1";
             $favColor->XPosition = "301";
             $favColor->YPosition = "416";
+            
+            if (isset($_POST["collabfields"])) {
+                $favColor->SharedTab = true;
+                $favColor->RequireInitialOnSharedTabChange = true;
+            }
+        
             array_push($tabs, $favColor);
         }
         
@@ -297,10 +303,6 @@ function addTabs($count) {
             array_push($tabs, $data1);
         }
         
-        if (isset($_POST["collabfields"])) {
-            
-        }
-        
         if (isset($_POST["signerattachment"])) {
             $attach = new Tab();
             $attach->Type = TabTypeCode::SignerAttachment;
@@ -330,7 +332,7 @@ function processOptions($envelope) {
     }
     if ($_POST["reminders"] != null) {
         $remind = new DateTime($_POST["reminders"]);
-        $now = new DateTime($_SERVER['REQUEST_TIME']);
+        $now = new DateTime("now");
         $days = $now->diff($remind)->d;
         
         if ($envelope->Notification == null) {
@@ -343,7 +345,7 @@ function processOptions($envelope) {
     }
     if ($_POST["expiration"] !=null) {
         $expire = new DateTime($_POST["expiration"]);
-        $now = new DateTime($_SERVER['REQUEST_TIME']);
+        $now = new DateTime("now");
         $days = $now->diff($expire)->d;
         
         if ($envelope->Notification == null) {

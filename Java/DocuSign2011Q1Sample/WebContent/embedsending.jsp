@@ -18,5 +18,6 @@
     	        out.println("You shouldn't be on this page");
     	    }
 	    %>
+        <%@ include file="footer.html" %>
     </body>
 </html>
