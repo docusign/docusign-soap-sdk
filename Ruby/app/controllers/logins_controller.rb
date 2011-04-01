@@ -20,7 +20,7 @@ class LoginsController < ApplicationController
     account_id = Docusign::Config[:account_id]
 
     #If we have all the information necessary, go ahead and store them in the session
-    if !account_id.empty?
+    if !account_id.empty? && !@int_key.empty? && !@email.empty? && !@password.empty?
       session[:email] = @email
       session[:password] = @password
       session[:int_key] = @int_key
@@ -60,7 +60,7 @@ class LoginsController < ApplicationController
       end
 
     else
-      redirect_to :controller => 'error', :action => 'show', :message => result.authentication_message and return
+      redirect_to :controller => 'error', :action => 'show', :message => result.authentication_message
     end
   end
 end

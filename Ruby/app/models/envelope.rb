@@ -162,7 +162,7 @@ class Envelope
             end
 
             #Add captive information if the user has turned off email invitations
-            if !invite_email
+            if !invite_email && id.to_i < 3
               dr.captive_info = Docusign::RecipientCaptiveInfo.new.tap do |ci|
                 ci.client_user_id = dr.iD
               end
@@ -322,6 +322,11 @@ class Envelope
           t.customTabType = Docusign::CustomTabType::Text
           t.name = "Favorite Color"
           t.tabLabel = "Favorite Color"
+
+          if @collabs
+            t.sharedTab = true
+            t.requireInitialOnSharedTabChange = true
+          end
         end
         e.tabs << tabtext
       end

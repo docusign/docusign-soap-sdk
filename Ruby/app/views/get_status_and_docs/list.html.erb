@@ -14,15 +14,17 @@
       <%if !@envelopes.nil?%>
           <% @envelopes.each do |e| %>
               <li>
-                <%= content_tag(:span, image_tag("#{root_url}images/open.gif"), :onclick => "invert('#{e.envelope_id}');") %><%=e.subject%> (<%= e.status.to_s%>) - <%= e.envelope_id%>
+                <%= content_tag(:span, image_tag("#{root_url}images/open.gif"), :onclick => "invert('#{e.envelope_id}');") %> <%=e.subject%> (<%= e.status.to_s%>) - <%= e.envelope_id%>
                 <ul style="list-style:none; display:none;" id="<%=e.envelope_id%>">
                   <% e.recipient_statuses.each do |r| %>
                       <li>
                         <%= content_tag(:span, image_tag("#{root_url}images/open.gif"), :onclick => "invert('#{e.envelope_id}Recipient#{r.user_name}');") %>
-                        Recipient - <%=r.user_name%> <%if !r.client_user_id.nil? && !r.status.to_s.eql?('Completed')%><%=submit_tag('Start Signing', :name => "DocEnvelope+#{e.envelope_id}&Email+#{r.email}&UserName+#{r.user_name}&CID+#{r.client_user_id}")%><%end%>
+                        Recipient (<%=r.type%>) - <%=r.user_name%> <%if !r.client_user_id.nil? && !r.status.to_s.eql?('Completed')%><%=submit_tag('Start Signing', :name => "DocEnvelope+#{e.envelope_id}&Email+#{r.email}&UserName+#{r.user_name}&CID+#{r.client_user_id}")%><%end%>
                         <ul style="list-style:none; display:none;" id="<%=e.envelope_id%>Recipient<%=r.user_name%>">
-                          <% r.tab_statuses.each do |t| %>
-                              <li><%=t.tab_name%>: <%=t.tab_value%></li>
+                          <%if !r.tab_statuses.nil?%>
+                              <%r.tab_statuses.each do |t| %>
+                                  <li><%=t.tab_name%>: <%=t.tab_value%></li>
+                              <%end%>
                           <%end%>
                         </ul>
                       </li>
