@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C964ECD-B28C-4F46-8288-9E1FDB3EE22F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DocuSignSample</RootNamespace>
+    <AssemblyName>DocuSignSample</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\GetStatusAndDocs.css" />
+    <Content Include="css\jquery.ui.all.css" />
+    <Content Include="css\jquery.ui.button.css" />
+    <Content Include="css\jquery.ui.core.css" />
+    <Content Include="css\jquery.ui.datepicker.css" />
+    <Content Include="css\jquery.ui.dialog.css" />
+    <Content Include="css\jquery.ui.theme.css" />
+    <Content Include="css\SendDocument.css" />
+    <Content Include="css\SendTemplate.css" />
+    <Content Include="css\Tabs.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="css\default.css" />
+    <Content Include="DefaultPage.Master" />
+    <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
+    <None Include="resources\BlankPDF.pdf" />
+    <None Include="resources\DocuSign Demo %2711.doc" />
+    <None Include="resources\DocuSign Demo %2711.pdf" />
+    <None Include="Service References\CredentialAPI\credential.wsdl" />
+    <None Include="Service References\CredentialAPI\DocuSignSample.CredentialAPI.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\api.disco" />
+    <None Include="Service References\DocuSignAPI\configuration91.svcinfo" />
+    <None Include="Service References\DocuSignAPI\configuration.svcinfo" />
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.AccountMembershipFeaturesList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.AccountSetting.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.AddressBookItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.AuthoritativeCopyExportDocuments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.AuthoritativeCopyExportStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.AvailableFolders.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.CorrectionStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.DocumentPDFs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.DocuSignEnvelopeInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.Envelope.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.EnvelopePDF.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.EnvelopeStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.EnvelopeTemplate.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.EnvelopeTemplateDefinition.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.FilteredEnvelopeStatusChanges.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.FilteredEnvelopeStatuses.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.FolderResults.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.PurgeDocumentStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.RecipientEsignList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.RecipientList.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.SaveTemplateResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.SynchEnvelopeStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.TransferEnvelopeStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.UpdateAddressBookResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\DocuSignSample.DocuSignAPI.VoidEnvelopeStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\DocuSignAPI\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CredentialAPI\credential.disco" />
+    <None Include="Service References\CredentialAPI\configuration91.svcinfo" />
+    <None Include="Service References\CredentialAPI\configuration.svcinfo" />
+    <None Include="Service References\CredentialAPI\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="EmbedDocuSign.aspx" />
+    <Content Include="EmbeddedHost.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="GetStatusAndDocs.aspx" />
+    <Content Include="images\blog.png" />
+    <Content Include="images\calendar-blue.gif" />
+    <Content Include="images\follow-us_reasonably_small.png" />
+    <Content Include="images\icon-facebook.png" />
+    <Content Include="images\icon-linkedin.png" />
+    <Content Include="images\icon-rss.png" />
+    <Content Include="images\icon-twitter.png" />
+    <Content Include="images\icon-youtube.png" />
+    <Content Include="images\open.gif" />
+    <Content Include="images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="images\ui-icons_222222_256x240.png" />
+    <Content Include="images\ui-icons_454545_256x240.png" />
+    <Content Include="js\jquery-1.4.4.js" />
+    <Content Include="js\jquery.bgiframe-2.1.2.js" />
+    <Content Include="js\jquery.ui.core.js" />
+    <Content Include="js\jquery.ui.datepicker.js" />
+    <Content Include="js\jquery.ui.dialog.js" />
+    <Content Include="js\jquery.ui.draggable.js" />
+    <Content Include="js\jquery.ui.mouse.js" />
+    <Content Include="js\jquery.ui.position.js" />
+    <Content Include="js\jquery.ui.resizable.js" />
+    <Content Include="js\jquery.ui.widget.js" />
+    <Content Include="js\Utils.js" />
+    <Content Include="LogIn.aspx" />
+    <Content Include="pop.html" />
+    <Content Include="resources\DocuSign_Demo_%2711.xml" />
+    <Content Include="SendDocument.aspx" />
+    <Content Include="SendTemplate.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <None Include="Service References\DocuSignAPI\api.wsdl" />
+    <Content Include="Tabs.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiHelper.cs" />
+    <Compile Include="BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultPage.Master.cs">
+      <DependentUpon>DefaultPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DefaultPage.Master.designer.cs">
+      <DependentUpon>DefaultPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="EmbedDocuSign.aspx.cs">
+      <DependentUpon>EmbedDocuSign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmbedDocuSign.aspx.designer.cs">
+      <DependentUpon>EmbedDocuSign.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EmbeddedHost.aspx.cs">
+      <DependentUpon>EmbeddedHost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmbeddedHost.aspx.designer.cs">
+      <DependentUpon>EmbeddedHost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetStatusAndDocs.aspx.cs">
+      <DependentUpon>GetStatusAndDocs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetStatusAndDocs.aspx.designer.cs">
+      <DependentUpon>GetStatusAndDocs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn.aspx.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogIn.aspx.designer.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SendDocument.aspx.cs">
+      <DependentUpon>SendDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SendDocument.aspx.designer.cs">
+      <DependentUpon>SendDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendTemplate.aspx.cs">
+      <DependentUpon>SendTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SendTemplate.aspx.designer.cs">
+      <DependentUpon>SendTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CredentialAPI\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\DocuSignAPI\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Tabs.Master.cs">
+      <DependentUpon>Tabs.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tabs.Master.designer.cs">
+      <DependentUpon>Tabs.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CredentialAPI\" />
+    <WCFMetadataStorage Include="Service References\DocuSignAPI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>54766</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
