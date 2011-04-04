@@ -15,12 +15,6 @@
             buttonImageOnly: true,
             minDate: today + 3
         });
-        $("#dialogmodal").dialog({
-            height: 350,
-            modal: true,
-            autoOpen: false
-        });
-    });
 </script>
 <%= form_tag("send_document/send_envelope", :method => :post, :multipart => true) do%>
     <%= text_field_tag('subject', nil, :placeholder => '<enter the subject>', :class => 'email')%><!--<img alt="" src="" class="helplink" />--><br />

@@ -3,10 +3,6 @@
         if (top.frames.length != 0){
             if(qstring('source') == 'embed')
                 top.location = 'embed_docusign/' + window.location.search;
-            /*else if(qstring('source') == 'template')
-                top.location = 'send_template/' + window.location.search;
-            else if(qstring('source') == 'document')
-                top.location = 'send_document/' + window.location.search;  */
             else
                 top.location = 'get_status_and_docs/' + window.location.search;
         }

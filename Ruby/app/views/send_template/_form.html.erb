@@ -19,11 +19,11 @@
 <%= form_tag("send_template", :method => :post) do%>
     <%= text_field_tag('template_id', nil, :value => @template_id, :hidden => true)  %>
     <div>
-      <%= text_field_tag('subject', nil, :placeholder => '<enter the subject>', :class => 'email')%><img alt="" src="" class="helplink" /><br />
+      <%= text_field_tag('subject', nil, :placeholder => '<enter the subject>', :class => 'email')%><!--<img alt="" src="" class="helplink" />--><br />
       <%= text_area_tag('emailBlurb', nil, :placeholder => '<enter the e-mail blurb>', :rows => '4', :cols => '20', :class =>'email')%>
     </div>
     <div>
-      <table width="100%" id="RecipientTable" name="RecipientTable">
+      <table width="100%" id="RecipientTable" name="RecipientTable"  style="border-collapse:collapse;">
         <tr class="rowheader">
           <td class="fivecolumn">
             <b>Role Name</b>
