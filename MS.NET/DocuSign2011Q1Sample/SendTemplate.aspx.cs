@@ -9,9 +9,6 @@ namespace DocuSign2011Q1Sample
 {
     public partial class SendTemplate : BasePage
     {
-        // Need to instantiate it to avoid runtime error
-        protected DocuSignAPI.EnvelopeStatus _status = new DocuSignAPI.EnvelopeStatus();
-
         protected override void OnInit(EventArgs e)
         {
             selectTemplateButton.ServerClick += new EventHandler(OnTemplateSelect);
@@ -21,14 +18,7 @@ namespace DocuSign2011Q1Sample
         {
             if (!Page.IsPostBack)
             {
-                if (Request["void"] != null)
-                {
-                    VoidEnvelope(Request["id"]);
-                }
-                else
-                {
-                    LoadTemplates();
-                }
+                LoadTemplates();
             }
             else
             {
@@ -36,23 +26,6 @@ namespace DocuSign2011Q1Sample
                 {
                     CreateEnvelope();
                 }
-            }
-        }
-
-        protected void VoidEnvelope(string id)
-        {
-            DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
-            try
-            {
-                DocuSignAPI.VoidEnvelopeStatus status = client.VoidEnvelope(id, "Envelope voided by sender");
-                if (status.VoidSuccess)
-                {
-                    Response.Redirect("SendTemplate.aspx", false);
-                }
-            }
-            catch (Exception ex)
-            {
-                base.GoToErrorPage(ex.Message);
             }
         }
 
@@ -64,6 +37,7 @@ namespace DocuSign2011Q1Sample
             envelopeInfo.EmailBlurb = Request.Form["emailBlurb"];
             envelopeInfo.AccountId = Session["APIAccountId"].ToString();
 
+            // Add any reminders
             if (!String.IsNullOrEmpty(Request.Form["reminders"]))
             {
                 DateTime remind = Convert.ToDateTime(Request.Form["reminders"]);
@@ -79,6 +53,7 @@ namespace DocuSign2011Q1Sample
                 envelopeInfo.Notification.Reminders.ReminderFrequency = "2";
             }
 
+            // Add any expirations
             if (!String.IsNullOrEmpty(Request.Form["expiration"]))
             {
                 DateTime expire = Convert.ToDateTime(Request.Form["expiration"]);
@@ -94,7 +69,7 @@ namespace DocuSign2011Q1Sample
                 envelopeInfo.Notification.Expirations.ExpireAfter = difference.ToString();
                 envelopeInfo.Notification.Expirations.ExpireWarn = (difference - 2).ToString();
             }
-            
+
             // Get all the recipients
             DocuSignAPI.Recipient[] recipients = ConstructRecipients();
 
@@ -120,15 +95,14 @@ namespace DocuSign2011Q1Sample
             DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
             try
             {
+                // Create the envelope using the specified template, and send it (note the last parameter)
                 DocuSignAPI.EnvelopeStatus status = client.CreateEnvelopeFromTemplates(new DocuSignAPI.TemplateReference[] { templateReference },
                 recipients, envelopeInfo, true);
-                _status = status;
+
                 base.AddEnvelopeID(status.EnvelopeID);
                 if (status.SentSpecified)
                 {
-                    CreateStatusTable();
-                    string s = "<script type=\"text/javascript\">dialogOpen()</script>";
-                    ClientScript.RegisterStartupScript(Page.GetType(), "openscript", s);
+                    Response.Redirect("GetStatusAndDocs.aspx", false);
                 }
 
             }
@@ -144,16 +118,17 @@ namespace DocuSign2011Q1Sample
             DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
             try
             {
+                // Create the envelope using the specified template, but don't send it (note the last parameter)
                 DocuSignAPI.EnvelopeStatus status = client.CreateEnvelopeFromTemplates(new DocuSignAPI.TemplateReference[] { templateReference },
                 recipients, envelopeInfo, false);
-                _status = status;
                 base.AddEnvelopeID(status.EnvelopeID);
+
+                // If it created successfully, redirect to the embedded host
                 if (status.Status == DocuSignAPI.EnvelopeStatusCode.Created)
                 {
-                    string retURL = Request.Url.AbsoluteUri.Replace("SendTemplate.aspx", "EmbedResult.aspx");
-                    string token = client.RequestSenderToken(status.EnvelopeID, envelopeInfo.AccountId, retURL);
                     string navURL = String.Format("{0}?envelopeID={1}&accountID={2}&source=Template", "EmbeddedHost.aspx", status.EnvelopeID,
                         envelopeInfo.AccountId);
+
                     Response.Redirect(navURL, false);
                 }
             }
@@ -163,61 +138,11 @@ namespace DocuSign2011Q1Sample
             }
         }
 
-        protected void CreateStatusTable()
-        {
-            foreach (DocuSignAPI.RecipientStatus recipient in _status.RecipientStatuses)
-            {
-                System.Web.UI.HtmlControls.HtmlTableRow row = new System.Web.UI.HtmlControls.HtmlTableRow();
-                System.Web.UI.HtmlControls.HtmlTableCell ctrl = new System.Web.UI.HtmlControls.HtmlTableCell();
-
-                //TODO add image control
-                System.Web.UI.HtmlControls.HtmlButton button = new System.Web.UI.HtmlControls.HtmlButton();
-                button.Attributes["onclick"] = "toggle(\"" + recipient.Email + "\");";
-                ctrl.Controls.Add(button);
-                System.Web.UI.HtmlControls.HtmlTableCell name = new System.Web.UI.HtmlControls.HtmlTableCell();
-                name.InnerText = recipient.UserName + " (" + recipient.Type.ToString() + ")";
-
-                // If the recipient was an embedded signer, add the "Start Signing" button
-                if (recipient.ClientUserId != null)
-                {
-                    System.Web.UI.HtmlControls.HtmlButton signButton = new System.Web.UI.HtmlControls.HtmlButton();
-                    signButton.InnerText = "Start Signing";
-                    System.Web.UI.HtmlControls.HtmlTableCell sign = new System.Web.UI.HtmlControls.HtmlTableCell();
-                    sign.Controls.Add(signButton);
-                    row.Cells.Add(sign);
-                }
-
-                row.Cells.Add(ctrl);
-                row.Cells.Add(name);
-                statusTable.Rows.Add(row);
-                System.Web.UI.HtmlControls.HtmlTableRow tableRow = new System.Web.UI.HtmlControls.HtmlTableRow();
-                tableRow.Attributes["id"] = recipient.Email;
-                tableRow.Attributes["style"] = "display:none;";
-                System.Web.UI.HtmlControls.HtmlTableCell spacing = new System.Web.UI.HtmlControls.HtmlTableCell();
-                spacing.Attributes["class"] = "space";
-                tableRow.Cells.Add(spacing);
-                System.Web.UI.HtmlControls.HtmlTableCell tableCell = new System.Web.UI.HtmlControls.HtmlTableCell();
-                System.Web.UI.HtmlControls.HtmlTable tabTable = new System.Web.UI.HtmlControls.HtmlTable();
-
-                foreach (DocuSignAPI.TabStatus tab in recipient.TabStatuses)
-                {
-                    System.Web.UI.HtmlControls.HtmlTableRow tabRow = new System.Web.UI.HtmlControls.HtmlTableRow();
-                    System.Web.UI.HtmlControls.HtmlTableCell tabCell = new System.Web.UI.HtmlControls.HtmlTableCell();
-                    tabCell.InnerText = tab.TabType.ToString() + tab.TabName + ": " + tab.TabValue;
-                    tabRow.Cells.Add(tabCell);
-                    tabTable.Rows.Add(tabRow);
-                }
-                tableCell.Controls.Add(tabTable);
-                tableCell.Attributes["class"] = "indent";
-                tableRow.Cells.Add(tableCell);
-                statusTable.Rows.Add(tableRow);
-            }
-        }
-
         protected DocuSignAPI.Recipient[] ConstructRecipients()
         {
             List<DocuSignAPI.Recipient> runningList = new List<DocuSignAPI.Recipient>();
 
+            // Create all the recipients on the template's envelope
             for (int i = 1; i <= Request.Form.Count; i++)
             {
                 if (Request.Form["RecipientRole" + i] != null)
@@ -226,7 +151,7 @@ namespace DocuSign2011Q1Sample
                     r.UserName = Request.Form["RecipientName" + i].ToString();
                     r.Email = Request.Form["RecipientEmail" + i].ToString();
                     r.ID = i.ToString();
-                    r.RoleName = Request.Form["RecipientRole" + i]; 
+                    r.RoleName = Request.Form["RecipientRole" + i];
                     r.Type = DocuSignAPI.RecipientTypeCode.Signer;
                     runningList.Add(r);
                 }
@@ -243,6 +168,7 @@ namespace DocuSign2011Q1Sample
         {
             List<DocuSignAPI.TemplateReferenceRoleAssignment> runningList = new List<DocuSignAPI.TemplateReferenceRoleAssignment>();
 
+            // Match up all the recipients to the roles on the template
             foreach (DocuSignAPI.Recipient recipient in recipients)
             {
                 DocuSignAPI.TemplateReferenceRoleAssignment assign = new DocuSignAPI.TemplateReferenceRoleAssignment();
@@ -257,8 +183,10 @@ namespace DocuSign2011Q1Sample
         protected void LoadTemplates()
         {
             DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
-            DocuSignAPI.EnvelopeTemplateDefinition[] templates = null ;
-            try 
+            DocuSignAPI.EnvelopeTemplateDefinition[] templates = null;
+
+            // Load all the template the logged in user has on their account
+            try
             {
                 templates = client.RequestTemplates(Session["APIAccountId"].ToString(), false);
             }
@@ -266,7 +194,8 @@ namespace DocuSign2011Q1Sample
             {
                 base.GoToErrorPage(ex.Message);
             }
-            
+
+            // Add them to the drop-down select
             foreach (DocuSignAPI.EnvelopeTemplateDefinition template in templates)
             {
                 TemplateTable.Items.Add(new ListItem("Template " + template.TemplateID + ": " + template.Name, template.TemplateID));
@@ -283,13 +212,14 @@ namespace DocuSign2011Q1Sample
             {
                 template = client.RequestTemplate(TemplateTable.Value, false);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 base.GoToErrorPage(ex.Message);
             }
 
+            // Populate the recipient UI
             AddRecipients(template.Envelope.Recipients);
-            
+
         }
 
         // Add the recipients to the UI
@@ -305,7 +235,7 @@ namespace DocuSign2011Q1Sample
                 System.Web.UI.HtmlControls.HtmlTableCell securityCell = new System.Web.UI.HtmlControls.HtmlTableCell();
                 System.Web.UI.HtmlControls.HtmlTableCell inviteCell = new System.Web.UI.HtmlControls.HtmlTableCell();
 
-                roleCell.InnerHtml = "<input id=\"RecipientRole\" type=\"text\" readonly=\"true\" name=\"RecipientRole"+i.ToString()+"\" value=\""+recipient.RoleName+"\"/>";
+                roleCell.InnerHtml = "<input id=\"RecipientRole\" type=\"text\" readonly=\"true\" name=\"RecipientRole" + i.ToString() + "\" value=\"" + recipient.RoleName + "\"/>";
 
                 nameCell.InnerHtml = "<input id=\"RecipientName\" type=\"text\" name=\"RecipientName" + i.ToString() + "\" value=\"" + recipient.UserName + "\"/>";
 
@@ -322,7 +252,7 @@ namespace DocuSign2011Q1Sample
                 }
                 else if (recipient.RequireIDLookup)
                 {
-                    security = "RSA ID Check";
+                    security = "ID Check";
                 }
                 else
                 {

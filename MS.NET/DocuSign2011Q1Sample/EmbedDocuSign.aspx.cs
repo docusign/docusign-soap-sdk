@@ -10,51 +10,46 @@ namespace DocuSign2011Q1Sample
     public partial class EmbedDocuSign : BasePage
     {
         protected bool _oneSigner = true;
-        protected DocuSignAPI.EnvelopeStatus _status = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                if (Request["envelopeID"] == null)
+                // Check to see if we're coming back after signing as the first signer
+                DocuSignAPI.EnvelopeStatus status = (DocuSignAPI.EnvelopeStatus)Session["EnvelopeStatus"];
+                if (status == null)
                 {
                     hostiframe.Visible = false;
                 }
-                else
+
+                // If we are, start the second signer
+                else if (Request["event"].ToString() == "SignComplete1" && status.RecipientStatuses.Length > 1)
                 {
-                    DocuSignAPI.EnvelopeStatus status = GetStatus(Request["envelopeID"]);
-                    GetToken(status, 1);
+                    SignSecond(status);
+                }
+
+                // If we're finished altogether, or if one of the signers exited without completed, go to the status page
+                else if ((Request["event"].ToString() == "SignComplete1" && status.RecipientStatuses.Length == 1) ||
+                    Request["event"].ToString() == "SignComplete2" || !(Request["event"].ToString() == null))
+                {
+                    Session["EnvelopeStatus"] = null;
+                    Response.Redirect("GetStatusAndDocs.aspx", false);
                 }
             }
             else
             {
+                // Create and send the envelope using the two different options.
                 if (Request.Form["OneSigner"] != null)
                 {
                     _oneSigner = true;
                     CreateAndSend();
                 }
-                else if(Request.Form["TwoSigners"] != null)
+                else if (Request.Form["TwoSigners"] != null)
                 {
                     _oneSigner = false;
                     CreateAndSend();
                 }
             }
-        }
-
-        protected DocuSignAPI.EnvelopeStatus GetStatus(string id)
-        {
-            DocuSignAPI.EnvelopeStatus status = null;
-            DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
-            try
-            {
-                status = client.RequestStatus(id);
-            }
-            catch (Exception ex)
-            {
-                base.GoToErrorPage(ex.Message);
-            }
-
-            return status;
         }
 
         protected void CreateAndSend()
@@ -68,8 +63,10 @@ namespace DocuSign2011Q1Sample
             envelope.EmailBlurb = "This envelope demonstrates embedded signing";
             envelope.AccountId = Session["APIAccountId"].ToString();
 
+            // Create the recipient(s)
             envelope.Recipients = ConstructRecipients();
 
+            // Add the document to the envelope
             DocuSignAPI.Document stockDocument = new DocuSignAPI.Document();
             stockDocument.PDFBytes = Resources.DocuSign_Demo__111_PDF;
             stockDocument.Name = "Demo Document";
@@ -77,17 +74,22 @@ namespace DocuSign2011Q1Sample
             stockDocument.FileExtension = "pdf";
 
             envelope.Documents = new DocuSignAPI.Document[] { stockDocument };
+
+            // Add the tabs to the envelope
             envelope.Tabs = AddTabs(envelope.Recipients.Length);
 
             DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
             try
             {
+                // Send the envelope and temporarily store the status in the session
                 status = client.CreateAndSendEnvelope(envelope);
                 if (status.SentSpecified)
                 {
-                    _status = status;
+                    Session["EnvelopeStatus"] = status;
                     base.AddEnvelopeID(status.EnvelopeID);
-                    GetToken(status, 0);
+
+                    // Start the first signer
+                    SignFirst(status);
                 }
             }
             catch (Exception ex)
@@ -96,34 +98,30 @@ namespace DocuSign2011Q1Sample
             }
         }
 
-        protected void GetToken(DocuSignAPI.EnvelopeStatus status, int index)
+        protected void SignFirst(DocuSignAPI.EnvelopeStatus status)
         {
+            // Create the assertion using the current time, password and demo information
             DocuSignAPI.RequestRecipientTokenAuthenticationAssertion assertion = new DocuSignAPI.RequestRecipientTokenAuthenticationAssertion();
             assertion.AssertionID = new Guid().ToString();
             assertion.AuthenticationInstant = DateTime.Now;
             assertion.AuthenticationMethod = DocuSignAPI.RequestRecipientTokenAuthenticationAssertionAuthenticationMethod.Password;
             assertion.SecurityDomain = "DocuSign2011Q1Sample";
+            
+            DocuSignAPI.RecipientStatus recipient = status.RecipientStatuses[0];
 
-            // Construct the URLs based on username
-            DocuSignAPI.RecipientStatus recipient = status.RecipientStatuses[index];
+            // Construct the URLs to which the iframe will redirect upon every event
             DocuSignAPI.RequestRecipientTokenClientURLs urls = new DocuSignAPI.RequestRecipientTokenClientURLs();
-            // TODO: replace urlBase with your own test url
-            String urlBase = Request.Url.AbsoluteUri.Replace("EmbedDocuSign.aspx", "pop.html")+"?source=Embedded";
-            urls.OnSigningComplete = urlBase + "&event=SignComplete&uname=" + recipient.UserName;
-            
-            if (!_oneSigner)
-            {
-                urls.OnSigningComplete = Request.Url.AbsoluteUri.Replace("EmbedDocuSign.aspx", "pop2.html") + "?envelopeID=" + status.EnvelopeID;
-            }
-            
-            urls.OnViewingComplete = urlBase + "&event=ViewComplete&uname=" + recipient.UserName;
-            urls.OnCancel = urlBase + "&event=Cancel&uname=" + recipient.UserName;
-            urls.OnDecline = urlBase + "&event=Decline&uname=" + recipient.UserName;
-            urls.OnSessionTimeout = urlBase + "&event=Timeout&uname=" + recipient.UserName;
-            urls.OnTTLExpired = urlBase + "&event=TTLExpired&uname=" + recipient.UserName;
-            urls.OnIdCheckFailed = urlBase + "&event=IDCheck&uname=" + recipient.UserName;
-            urls.OnAccessCodeFailed = urlBase + "&event=AccessCode&uname=" + recipient.UserName;
-            urls.OnException = urlBase + "&event=Exception&uname=" + recipient.UserName;
+
+            String urlBase = Request.Url.AbsoluteUri.Replace("EmbedDocuSign.aspx", "pop.html") + "?source=embed";
+            urls.OnSigningComplete = urlBase + "&event=SignComplete1";
+            urls.OnViewingComplete = urlBase + "&event=ViewComplete1";
+            urls.OnCancel = urlBase + "&event=Cancel1";
+            urls.OnDecline = urlBase + "&event=Decline1";
+            urls.OnSessionTimeout = urlBase + "&event=Timeout1";
+            urls.OnTTLExpired = urlBase + "&event=TTLExpired1";
+            urls.OnIdCheckFailed = urlBase + "&event=IDCheck1";
+            urls.OnAccessCodeFailed = urlBase + "&event=AccessCode1";
+            urls.OnException = urlBase + "&event=Exception1";
 
             DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
             String token = null;
@@ -137,12 +135,59 @@ namespace DocuSign2011Q1Sample
             {
                 base.GoToErrorPage(ex.Message);
             }
+
+            // Set the source of the iframe to the token
+            hostiframe.Visible = true;
+            hostiframe.Attributes["src"] = token;
+        }
+
+        protected void SignSecond(DocuSignAPI.EnvelopeStatus status)
+        {
+            // Create the assertion using the current time, password and demo information
+            DocuSignAPI.RequestRecipientTokenAuthenticationAssertion assertion = new DocuSignAPI.RequestRecipientTokenAuthenticationAssertion();
+            assertion.AssertionID = new Guid().ToString();
+            assertion.AuthenticationInstant = DateTime.Now;
+            assertion.AuthenticationMethod = DocuSignAPI.RequestRecipientTokenAuthenticationAssertionAuthenticationMethod.Password;
+            assertion.SecurityDomain = "DocuSign2011Q1Sample";
+
+            DocuSignAPI.RecipientStatus recipient = status.RecipientStatuses[1];
+
+            // Construct the URLs to which the iframe will redirect upon every event
+            DocuSignAPI.RequestRecipientTokenClientURLs urls = new DocuSignAPI.RequestRecipientTokenClientURLs();
+
+            // TODO: replace urlBase with your own test url
+            String urlBase = Request.Url.AbsoluteUri.Replace("EmbedDocuSign.aspx", "pop.html") + "?source=embed";
+            urls.OnSigningComplete = urlBase + "&event=SignComplete2";
+            urls.OnViewingComplete = urlBase + "&event=ViewComplete2";
+            urls.OnCancel = urlBase + "&event=Cancel2";
+            urls.OnDecline = urlBase + "&event=Decline2";
+            urls.OnSessionTimeout = urlBase + "&event=Timeout2";
+            urls.OnTTLExpired = urlBase + "&event=TTLExpired2";
+            urls.OnIdCheckFailed = urlBase + "&event=IDCheck2";
+            urls.OnAccessCodeFailed = urlBase + "&event=AccessCode2";
+            urls.OnException = urlBase + "&event=Exception2";
+
+            DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
+            String token = null;
+            try
+            {
+                // Request the token for a specific recipient
+                token = client.RequestRecipientToken(status.EnvelopeID, recipient.ClientUserId,
+                                                                recipient.UserName, recipient.Email, assertion, urls);
+            }
+            catch (Exception ex)
+            {
+                base.GoToErrorPage(ex.Message);
+            }
+
+            // Set the source of the iframe to the token
             hostiframe.Visible = true;
             hostiframe.Attributes["src"] = token;
         }
 
         protected DocuSignAPI.Recipient[] ConstructRecipients()
         {
+            // Construct the recipients
             List<DocuSignAPI.Recipient> runningList = new List<DocuSignAPI.Recipient>();
             DocuSignAPI.Recipient r1 = new DocuSignAPI.Recipient();
             r1.UserName = Session["APIEmail"].ToString();
@@ -153,6 +198,8 @@ namespace DocuSign2011Q1Sample
             r1.CaptiveInfo.ClientUserId = "1";
             runningList.Add(r1);
 
+            // If we're creating an envelop with two signers,
+            // add the second signer with dummy credentials
             if (!_oneSigner)
             {
                 DocuSignAPI.Recipient r2 = new DocuSignAPI.Recipient();
@@ -172,6 +219,7 @@ namespace DocuSign2011Q1Sample
         {
             List<DocuSignAPI.Tab> runningList = new List<DocuSignAPI.Tab>();
 
+            // Basic Company Tab
             DocuSignAPI.Tab company = new DocuSignAPI.Tab();
             company.Type = DocuSignAPI.TabTypeCode.Company;
             company.DocumentID = "1";
@@ -182,6 +230,7 @@ namespace DocuSign2011Q1Sample
 
             runningList.Add(company);
 
+            // Basic InitialHere tab
             DocuSignAPI.Tab init1 = new DocuSignAPI.Tab();
             init1.Type = DocuSignAPI.TabTypeCode.InitialHere;
             init1.DocumentID = "1";
@@ -192,6 +241,7 @@ namespace DocuSign2011Q1Sample
 
             runningList.Add(init1);
 
+            // Basic SignHere tab
             DocuSignAPI.Tab sign1 = new DocuSignAPI.Tab();
             sign1.Type = DocuSignAPI.TabTypeCode.SignHere;
             sign1.DocumentID = "1";
@@ -202,10 +252,11 @@ namespace DocuSign2011Q1Sample
 
             runningList.Add(sign1);
 
+            // Basic FullName Anchor tab
             DocuSignAPI.Tab fullAnchor = new DocuSignAPI.Tab();
             fullAnchor.Type = DocuSignAPI.TabTypeCode.FullName;
             fullAnchor.AnchorTabItem = new DocuSignAPI.AnchorTab();
-            fullAnchor.AnchorTabItem.AnchorTabString = "Client Name (printed)";
+            fullAnchor.AnchorTabItem.AnchorTabString = "(printed)";
             fullAnchor.AnchorTabItem.XOffset = -123;
             fullAnchor.AnchorTabItem.YOffset = 31;
             fullAnchor.AnchorTabItem.Unit = DocuSignAPI.UnitTypeCode.Pixels;
@@ -218,6 +269,7 @@ namespace DocuSign2011Q1Sample
 
             runningList.Add(fullAnchor);
 
+            // Basic DateSigned tab
             DocuSignAPI.Tab date1 = new DocuSignAPI.Tab();
             date1.Type = DocuSignAPI.TabTypeCode.DateSigned;
             date1.DocumentID = "1";
@@ -228,6 +280,7 @@ namespace DocuSign2011Q1Sample
 
             runningList.Add(date1);
 
+            // Scaled InitialHere tab
             DocuSignAPI.Tab init2 = new DocuSignAPI.Tab();
             init2.Type = DocuSignAPI.TabTypeCode.InitialHere;
             init2.DocumentID = "1";
@@ -242,6 +295,7 @@ namespace DocuSign2011Q1Sample
 
             if (recipientCount > 1)
             {
+                // Basic SignHere tab
                 DocuSignAPI.Tab sign2 = new DocuSignAPI.Tab();
                 sign2.Type = DocuSignAPI.TabTypeCode.SignHere;
                 sign2.DocumentID = "1";
@@ -252,6 +306,7 @@ namespace DocuSign2011Q1Sample
 
                 runningList.Add(sign2);
 
+                // Basic DateSigned tab
                 DocuSignAPI.Tab date2 = new DocuSignAPI.Tab();
                 date2.Type = DocuSignAPI.TabTypeCode.DateSigned;
                 date2.DocumentID = "1";
@@ -263,7 +318,7 @@ namespace DocuSign2011Q1Sample
                 runningList.Add(date2);
             }
 
-
+            //Custom text tab
             DocuSignAPI.Tab favColor = new DocuSignAPI.Tab();
             favColor.Type = DocuSignAPI.TabTypeCode.Custom;
             favColor.CustomTabType = DocuSignAPI.CustomTabType.Text;
@@ -276,6 +331,7 @@ namespace DocuSign2011Q1Sample
 
             runningList.Add(favColor);
 
+            // Custom radio button tab
             DocuSignAPI.Tab fruitNo = new DocuSignAPI.Tab();
             fruitNo.Type = DocuSignAPI.TabTypeCode.Custom;
             fruitNo.CustomTabType = DocuSignAPI.CustomTabType.Radio;
@@ -291,6 +347,7 @@ namespace DocuSign2011Q1Sample
 
             runningList.Add(fruitNo);
 
+            // Custom radio button tab
             DocuSignAPI.Tab fruitYes = new DocuSignAPI.Tab();
             fruitYes.Type = DocuSignAPI.TabTypeCode.Custom;
             fruitYes.CustomTabType = DocuSignAPI.CustomTabType.Radio;
@@ -307,6 +364,7 @@ namespace DocuSign2011Q1Sample
 
             runningList.Add(fruitYes);
 
+            // Custom conditional text tab
             DocuSignAPI.Tab data1 = new DocuSignAPI.Tab();
             data1.Type = DocuSignAPI.TabTypeCode.Custom;
             data1.CustomTabType = DocuSignAPI.CustomTabType.Text;

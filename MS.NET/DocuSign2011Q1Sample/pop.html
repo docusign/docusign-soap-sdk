@@ -1,14 +1,28 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>DocuSign SDK - Frame Pop</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<script type="text/javascript">
-	    function framepop() {
-	        if (top.frames.length != 0)
-	            top.location = 'EmbedResult.aspx' + window.location.search;
-	    }
-	</script>
+    <title>DocuSign SDK - Frame Pop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript">
+        function framepop() {
+            if (qstring('source') == 'embed')
+                top.location = 'EmbedDocuSign.aspx' + window.location.search;
+            else
+                top.location = 'GetStatusAndDocs.aspx';
+        }
+    </script>
+    <script type="text/javascript">
+        function qstring(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.href);
+            if (results == null)
+                return "";
+            else
+                return results[1];
+        }
+    </script>
 </head>
 <body onload="framepop();">
 </body>

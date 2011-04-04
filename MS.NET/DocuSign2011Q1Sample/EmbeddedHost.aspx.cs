@@ -13,57 +13,23 @@ namespace DocuSign2011Q1Sample
         {
             DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
             string token = null;
-            if (Request["source"] == "SendDocument")
+
+            // Get the information we need from the query string
+            string envelopeID = Request["envelopeID"];
+            string accountID = Request["accountID"];
+
+            // Request the token to edit the envelope
+            try
             {
-                string envelopeID = Request["eid"];
-                string username = Request["uname"];
-                string email = Request["email"];
-                string clientUserId = Request["cid"];
-
-                DocuSignAPI.RequestRecipientTokenAuthenticationAssertion assertion = new DocuSignAPI.RequestRecipientTokenAuthenticationAssertion();
-                assertion.AssertionID = new Guid().ToString();
-                assertion.AuthenticationInstant = DateTime.Now;
-                assertion.AuthenticationMethod = DocuSignAPI.RequestRecipientTokenAuthenticationAssertionAuthenticationMethod.Password;
-                assertion.SecurityDomain = "DocuSign2011Q1Sample";
-
-                DocuSignAPI.RequestRecipientTokenClientURLs urls = new DocuSignAPI.RequestRecipientTokenClientURLs();
-
-                String urlBase = Request.Url.AbsoluteUri.Replace("EmbeddedHost.aspx", "pop.html") + "?source="+Request["source"];
-                urls.OnSigningComplete = urlBase + "&event=SignComplete&uname=" + username;
-                urls.OnViewingComplete = urlBase + "&event=ViewComplete&uname=" + username;
-                urls.OnCancel = urlBase + "&event=Cancel&uname=" + username;
-                urls.OnDecline = urlBase + "&event=Decline&uname=" + username;
-                urls.OnSessionTimeout = urlBase + "&event=Timeout&uname=" + username;
-                urls.OnTTLExpired = urlBase + "&event=TTLExpired&uname=" + username;
-                urls.OnIdCheckFailed = urlBase + "&event=IDCheck&uname=" + username;
-                urls.OnAccessCodeFailed = urlBase + "&event=AccessCode&uname=" + username;
-                urls.OnException = urlBase + "&event=Exception&uname=" + username;
-                try
-                {
-                    // Request the token for a specific recipient
-                    token = client.RequestRecipientToken(envelopeID, clientUserId,
-                                                                    username, email, assertion, urls);
-                }
-                catch (Exception ex)
-                {
-                    base.GoToErrorPage(ex.Message);
-                }
+                string retURL = Request.Url.AbsoluteUri.Replace("EmbeddedHost.aspx", "pop.html?source=document");
+                token = client.RequestSenderToken(envelopeID, accountID, retURL);
             }
-            else
+            catch (Exception ex)
             {
-                string envelopeID = Request["envelopeID"];
-                string accountID = Request["accountID"];
-                
-                try
-                {
-                    string retURL = Request.Url.AbsoluteUri.Replace("EmbeddedHost.aspx", "pop.html");
-                    token = client.RequestSenderToken(envelopeID, accountID, retURL);
-                }
-                catch (Exception ex)
-                {
-                    base.GoToErrorPage(ex.Message);
-                }
+                base.GoToErrorPage(ex.Message);
             }
+
+            // Set the source of the iframe to point to DocuSign
             sendingFrame.Attributes["src"] = token;
         }
     }

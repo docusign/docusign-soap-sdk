@@ -7,14 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace DocuSign2011Q1Sample
 {
-	public partial class Login : BasePage
-	{
+    public partial class Login : BasePage
+    {
         protected string email;
         protected string password;
         protected string key;
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
+        protected void Page_Load(object sender, EventArgs e)
+        {
             if (Page.IsPostBack)
             {
                 On_Login();
@@ -24,7 +24,7 @@ namespace DocuSign2011Q1Sample
                 // Prepopulate any of the fields we can from the web.config
                 if (Session["APIUserEmail"] != null)
                 {
-                    email = Session["APIUserEmail"].ToString();   
+                    email = Session["APIUserEmail"].ToString();
                 }
                 if (Session["APIPassword"] != null)
                 {
@@ -35,7 +35,7 @@ namespace DocuSign2011Q1Sample
                     key = Session["APIIKey"].ToString();
                 }
             }
-		}
+        }
 
         public void On_Login()
         {
@@ -63,5 +63,5 @@ namespace DocuSign2011Q1Sample
                 GoToErrorPage("Could not log you in. Please check your credentials.");
             }
         }
-	}
+    }
 }

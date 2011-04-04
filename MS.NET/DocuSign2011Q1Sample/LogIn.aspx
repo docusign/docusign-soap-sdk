@@ -40,9 +40,9 @@
                 <table class="triangle-isosceles left" align="center">
                     <tr>
                         <td>
-                            <img alt="" src="" style="height: 16px; width: 16px" />
+                            <!--<img alt="" src="" style="height: 16px; width: 16px" />-->
                         </td>
-                        <td class="leftalign" style="white-space:nowrap;">
+                        <td class="leftalign" style="white-space: nowrap;">
                             <span><b>Need a DevCenter Account?</b></span><br />
                             Get it <a href="http://www.docusign.com/developers-center/get-free-developer-account">
                                 here</a>.
@@ -51,7 +51,7 @@
                 </table>
             </div>
             <div id="action" class="centeralign" style="width: 150px;">
-                <input id="Submit1" type="submit" value="OK" style="width: 70px; margin-right: 5px;" /><input
+                <input id="Submit1" type="submit" value="Login" style="width: 70px; margin-right: 5px;" /><input
                     id="Reset1" type="Reset" value="Cancel" style="width: 70px; margin-left: 5px;" />
             </div>
         </div>

@@ -12,10 +12,12 @@ namespace DocuSign2011Q1Sample
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // If we have all the settings already, jump into the demo
             if (Settings_In_Config())
             {
                 Response.Redirect("SendDocument.aspx");
             }
+            // Otherwise, force a log in
             else
             {
                 Response.Redirect("LogIn.aspx");

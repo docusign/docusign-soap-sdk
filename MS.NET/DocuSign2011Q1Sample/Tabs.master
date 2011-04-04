@@ -5,14 +5,13 @@
 <head runat="server">
     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
     <link rel="stylesheet" href="css/default.css" type="text/css" />
-    <link rel="Stylesheet" href="css/Tabs.css" type="text/css"/>
+    <link rel="Stylesheet" href="css/Tabs.css" type="text/css" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
-<nav class="tabs">
+    <nav class="tabs">
 <ul id="navBar" runat="server">
 <li id="SendDocTab" runat="server">
 <a href="SendDocument.aspx">Send a Document</a>

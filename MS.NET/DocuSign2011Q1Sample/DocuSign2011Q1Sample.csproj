@@ -174,6 +174,7 @@
     <Content Include="images\icon-rss.png" />
     <Content Include="images\icon-twitter.png" />
     <Content Include="images\icon-youtube.png" />
+    <Content Include="images\open.gif" />
     <Content Include="images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="images\ui-bg_glass_55_fbf9ee_1x400.png" />
     <Content Include="images\ui-bg_glass_65_ffffff_1x400.png" />
@@ -195,12 +196,9 @@
     <Content Include="js\Utils.js" />
     <Content Include="LogIn.aspx" />
     <Content Include="pop.html" />
-    <Content Include="pop2.html" />
     <Content Include="resources\DocuSign_Demo_%2711.xml" />
     <Content Include="SendDocument.aspx" />
-    <Content Include="EmbedResult.aspx" />
     <Content Include="SendTemplate.aspx" />
-    <Content Include="TestPage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -280,13 +278,6 @@
     <Compile Include="SendDocument.aspx.designer.cs">
       <DependentUpon>SendDocument.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EmbedResult.aspx.cs">
-      <DependentUpon>EmbedResult.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EmbedResult.aspx.designer.cs">
-      <DependentUpon>EmbedResult.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SendTemplate.aspx.cs">
       <DependentUpon>SendTemplate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -311,13 +302,6 @@
     <Compile Include="Tabs.Master.designer.cs">
       <DependentUpon>Tabs.Master</DependentUpon>
     </Compile>
-    <Compile Include="TestPage.aspx.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestPage.aspx.designer.cs">
-      <DependentUpon>TestPage.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -340,7 +324,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55987</DevelopmentServerPort>
+          <DevelopmentServerPort>54766</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

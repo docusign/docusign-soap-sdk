@@ -29,47 +29,20 @@
                 buttonImageOnly: true,
                 minDate: today
             });
-            $("#dialogmodal").dialog({
-                height: 350,
-                modal: true,
-                autoOpen: false
-            });
             $(".switcher li").bind("click", function () {
-            var act = $(this);
-            $(act).parent().children('li').removeClass("active").end();
-            $(act).addClass("active");
+                var act = $(this);
+                $(act).parent().children('li').removeClass("active").end();
+                $(act).addClass("active");
             });
         });
 
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="dialogmodal" title="Envelope has been sent" style="height: 350px;">
-        <div>
-            <table class="notification">
-                <tr>
-                    <td>
-                        <img alt="" src="" />
-                    </td>
-                    <td>
-                        Success! Your envelope has been sent. The envelope ID is:<br />
-                        <%=_status.EnvelopeID%>
-                        <br />
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <table id="statusTable" name="statusTable" runat="server">
-        </table>
-        <div class="dialogbuttons">
-            <input type="button" value="Close" onclick="javascript:dialogClose()" />
-            <a href="?void=true&id=<%=_status.EnvelopeID %>" style="text-decoration: none;">Void Envelope</a>
-        </div>
-    </div>
     <form id="SendTemplateForm" action="SendTemplate.aspx" runat="server">
     <div>
         <input id="subject" name="subject" placeholder="<enter the subject>" type="text"
-            class="email" /><img alt="" src="" class="helplink" /><br />
+            class="email" /><!--<img alt="" src="" class="helplink" />--><br />
         <textarea id="emailblurb" cols="20" name="emailblurb" placeholder="<enter the e-mail blurb>"
             rows="4" class="email"></textarea>
     </div>
@@ -94,7 +67,7 @@
                 </th>
                 <th class="fivecolumn">
                     <b>Security</b>
-                    <img alt="" src="" class="helplink" />
+                    <!--<img alt="" src="" class="helplink" />-->
                 </th>
                 <th class="fivecolumn">
                     <b>Send E-mail Invite</b>

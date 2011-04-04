@@ -31,40 +31,13 @@
                 buttonImageOnly: true,
                 minDate: today + 3
             });
-            $("#dialogmodal").dialog({
-                height: 350,
-                modal: true,
-                autoOpen: false
-            });
         });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="dialogmodal" title="Envelope has been sent" style="height: 350px;">
-        <div>
-            <table class="notification">
-                <tr>
-                    <td>
-                        <img alt="" src="" />
-                    </td>
-                    <td>
-                        Success! Your envelope has been sent. The envelope ID is:<br />
-                        <%=_status.EnvelopeID%>
-                        <br />
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <table id="statusTable" name="statusTable" runat="server">
-        </table>
-        <div class="dialogbuttons">
-            <input type="button" value="Close" onclick="javascript:dialogClose()" />
-            <a href="?void=true&id=<%=_status.EnvelopeID %>" style="text-decoration: none;">Void Envelope</a>
-        </div>
-    </div>
     <form id="SendDocumentForm" action="SendDocument.aspx" runat="server">
     <input id="subject" name="subject" type="text" placeholder="<enter the subject>"
-        autocomplete="off" class="email" /><img alt="" src="" class="helplink" /><br />
+        autocomplete="off" class="email" /><!--<img alt="" src="" class="helplink" />--><br />
     <textarea id="emailblurb" cols="20" name="emailblurb" placeholder="<enter the e-mail blurb>"
         rows="4" class="email"></textarea>
     <p>
@@ -79,7 +52,7 @@
             </th>
             <th>
                 Security and Setting
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </th>
             <th>
                 Send E-mail Invite
@@ -94,16 +67,19 @@
             </td>
             <td>
                 <select id="RecipientSecurity1" name="RecipientSecurity1" onchange="javascript:EnableDisableInput(1)">
-                <option value="None">None</option>
-                <option value="AccessCode">Access Code:</option>
-                <option value="PhoneAuthentication">Phone Authentication</option>
-                </select><input id="RecipientSecuritySetting1" type="text" name="RecipientSecuritySetting1" style="display:none;"/>
+                    <option value="None">None</option>
+                    <option value="AccessCode">Access Code:</option>
+                    <option value="PhoneAuthentication">Phone Authentication</option>
+                    <option value="IDCheck">ID Check</option>
+                </select><input id="RecipientSecuritySetting1" type="text" name="RecipientSecuritySetting1"
+                    style="display: none;" />
             </td>
             <td>
                 <ul class="switcher" id="RecipientInvite1">
                     <li id="RecipientInviteon1" class="active"><a href="#" title="On">ON</a></li>
                     <li id="RecipientInviteoff1"><a href="#" title="OFF">OFF</a></li>
-                    <input id="RecipientInviteToggle1" name="RecipientInviteToggle1" value="RecipientInviteToggle1" type="checkbox" checked style="display:none"/> 
+                    <input id="RecipientInviteToggle1" name="RecipientInviteToggle1" value="RecipientInviteToggle1"
+                        type="checkbox" checked style="display: none" />
                 </ul>
             </td>
         </tr>
@@ -123,7 +99,7 @@
                 <input id="sendoption" class="options" type="checkbox" value="stockdoc" name="stockdoc"
                     onclick="EnableDisableDiv()" />
                 Use a stock doc
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </td>
             <td rowspan="3">
                 <input type="text" id="reminders" class="datepickers" name="reminders" onchange="openPicker()"
@@ -135,21 +111,21 @@
             <td>
                 <input class="options" type="checkbox" value="addsig" name="addsigs" />
                 Add Signatures
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </td>
         </tr>
         <tr>
             <td>
                 <input class="options" type="checkbox" value="addformfield" name="formfields" />
                 Add Form Fields
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </td>
         </tr>
         <tr>
             <td>
                 <input class="options" type="checkbox" value="addcondfield" name="conditionalfields" />
                 Add Conditional Fields
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </td>
             <td rowspan="3">
                 <input type="text" id="expiration" class="datepickers" name="expiration" onclick="openPicker()" /><br />
@@ -160,28 +136,28 @@
             <td>
                 <input class="options" type="checkbox" name="collabfields" value="addcollfield" />
                 Add Collaborative Fields
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </td>
         </tr>
         <tr>
             <td>
                 <input class="options" type="checkbox" name="enablepaper" value="enablepaper" />
                 Enable Signing on Paper
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </td>
         </tr>
         <tr>
             <td colspan="2">
                 <input class="options" type="checkbox" name="signerattachment" value="reqattachment" />
                 Request a Signer to Add an Attachment
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </td>
         </tr>
         <tr>
             <td colspan="2">
                 <input class="options" type="checkbox" name="markup" value="enablemarkup" />
                 Enable Signers to Mark Up the Documents
-                <img alt="" src="" class="helplink" />
+                <!--<img alt="" src="" class="helplink" />-->
             </td>
         </tr>
     </table>
