@@ -182,7 +182,9 @@ class Envelope
         document = Docusign::Document.new.tap do |d|
           d.iD = i
           d.name = "DocuSign Demo Document"
-          d.pDFBytes = Base64.encode64(File.read(Rails.root.join('public', 'resources', 'DocuSignDemo11.pdf')))
+          file = File.open(Rails.root.join('public', 'resources', 'DocuSignDemo11.pdf'), "rb")
+          contents = file.read
+          d.pDFBytes = Base64.encode64(contents)
           d.fileExtension = 'pdf'
           i = i + 1
         end
@@ -192,7 +194,9 @@ class Envelope
           document = Docusign::Document.new.tap do |d|
             d.iD = i
             d.name = @document1.original_filename
-            d.pDFBytes = Base64.encode64(File.read(@document1.path))
+            file = File.open(@document1.path, "rb")
+            contents = file.read
+            d.pDFBytes = Base64.encode64(contents)
             d.fileExtension = @document1.content_type.to_s.split('/')[1]
             i = i + 1
           end
@@ -202,7 +206,9 @@ class Envelope
           document = Docusign::Document.new.tap do |d|
             d.iD = i
             d.name = @document2.original_filename
-            d.pDFBytes = Base64.encode64(File.read(@document2.path))
+            file = File.open(@document2.path, "rb")
+            contents = file.read
+            d.pDFBytes = Base64.encode64(contents)
             d.fileExtension = @document2.content_type.to_s.split('/')[1]
             i = i + 1
           end
@@ -322,6 +328,9 @@ class Envelope
           t.customTabType = Docusign::CustomTabType::Text
           t.name = "Favorite Color"
           t.tabLabel = "Favorite Color"
+          t.value = "Green"
+          t.customTabRequired = true
+          t.customTabLocked = false
 
           if @collabs
             t.sharedTab = true
@@ -385,7 +394,9 @@ class Envelope
         document = Docusign::Document.new.tap do |d|
           d.iD = i
           d.name = "Signer Attachment Document"
-          d.pDFBytes = Base64.encode64(File.read(Rails.root.join('public', 'resources', 'BlankPDF.pdf')))
+          file = File.open(Rails.root.join('public', 'resources', 'BlankPDF.pdf'), "rb")
+          contents = file.read
+          d.pDFBytes = Base64.encode64(contents)
           d.fileExtension = 'pdf'
           d.attachmentDescription = "Please attach your document here"
         end
