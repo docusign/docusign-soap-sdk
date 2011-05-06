@@ -16,15 +16,18 @@ namespace DocuSignSample
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Request.Form["__EVENTTARGET"] != logoutCtrlName)
             {
-                LoadTemplates();
-            }
-            else
-            {
-                if (Request.Form["SendNow"] != null || Request.Form["EditFirst"] != null)
+                if (!Page.IsPostBack)
                 {
-                    CreateEnvelope();
+                    LoadTemplates();
+                }
+                else
+                {
+                    if (Request.Form["SendNow"] != null || Request.Form["EditFirst"] != null)
+                    {
+                        CreateEnvelope();
+                    }
                 }
             }
         }

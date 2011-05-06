@@ -22,6 +22,15 @@ namespace DocuSignSample {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// logoutBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor logoutBtn;
+        
+        /// <summary>
         /// navBar control.
         /// </summary>
         /// <remarks>

@@ -13,34 +13,37 @@ namespace DocuSignSample
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Form.Keys.Count >= 1)
+            if (Request.Form["__EVENTTARGET"] != logoutCtrlName)
             {
-                foreach (string key in Request.Form.Keys)
+                if (Request.Form.Keys.Count >= 1)
                 {
-                    // Start the download of an envelope's documents
-                    if (Request.Form[key] == "Download")
+                    foreach (string key in Request.Form.Keys)
                     {
-                        DownloadItem(key);
-                        hostiframe.Visible = false;
-                    }
-                     
-                    // Start signing as a particular recipient
-                    else if (Request.Form[key] == "Start Signing")
-                    {
-                        string[] signing_params = key.Split('&');
-                        string uname = signing_params[2].Split('+')[1];
-                        string cid = signing_params[3].Split('+')[1];
-                        string email = signing_params[1].Split('+')[1];
-                        string eid = signing_params[0].Split('+')[1];
-                        StartSigning(uname, cid, email, eid);
+                        // Start the download of an envelope's documents
+                        if (Request.Form[key] == "Download")
+                        {
+                            DownloadItem(key);
+                            hostiframe.Visible = false;
+                        }
+
+                        // Start signing as a particular recipient
+                        else if (Request.Form[key] == "Start Signing")
+                        {
+                            string[] signing_params = key.Split('&');
+                            string uname = signing_params[2].Split('+')[1];
+                            string cid = signing_params[3].Split('+')[1];
+                            string email = signing_params[1].Split('+')[1];
+                            string eid = signing_params[0].Split('+')[1];
+                            StartSigning(uname, cid, email, eid);
+                        }
                     }
                 }
-            }
-            else
-            {
-                // Get the statuses of envelopes
-                GetStatuses();
-                hostiframe.Visible = false;
+                else
+                {
+                    // Get the statuses of envelopes
+                    GetStatuses();
+                    hostiframe.Visible = false;
+                }
             }
         }
 

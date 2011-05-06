@@ -13,7 +13,7 @@ namespace DocuSignSample
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!Page.IsPostBack && Request.Form["__EVENTTARGET"] != logoutCtrlName)
             {
                 // Check to see if we're coming back after signing as the first signer
                 DocuSignAPI.EnvelopeStatus status = (DocuSignAPI.EnvelopeStatus)Session["EnvelopeStatus"];

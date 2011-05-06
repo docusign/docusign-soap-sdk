@@ -11,6 +11,7 @@ namespace DocuSignSample
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            logoutBtn.ServerClick += new EventHandler(Logout);
             String referrer = Request.Url.ToString();
             if (referrer.EndsWith("SendDocument.aspx"))
             {
@@ -40,6 +41,18 @@ namespace DocuSignSample
             {
                 EmbedTab.Attributes.Add("class", "current");
             }
+        }
+
+        public void Logout(object sender, EventArgs e)
+        {
+
+            Session["APIAccountID"] = null;
+            Session["APIEmail"] = null;
+            Session["APIKey"] = null;
+            Session["APIPassword"] = null;
+            Session["EnvelopeIDs"] = null;
+            Response.Redirect("Login.aspx", true);
+
         }
     }
 }

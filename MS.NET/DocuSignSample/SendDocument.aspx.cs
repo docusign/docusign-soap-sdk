@@ -13,32 +13,33 @@ namespace DocuSignSample
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Page.IsPostBack)
-            {
-                // Construct the envelope basics
-                DocuSignAPI.Envelope envelope = new DocuSignAPI.Envelope();
-                envelope.Subject = Request.Form["subject"];
-                envelope.EmailBlurb = Request.Form["emailBlurb"];
-                envelope.AccountId = Session["APIAccountId"].ToString();
-
-                // Construct the recipients, documents and tabs
-                envelope.Recipients = ConstructRecipients();
-                envelope.Documents = GetDocuments();
-                envelope.Tabs = AddTabs(envelope.Recipients.Length);
-                envelope = ProcessOptions(envelope);
-
-                if (Request.Form["SendNow"] != null)
+                if (Page.IsPostBack && Request.Form["__EVENTTARGET"] != logoutCtrlName)
                 {
-                    //we want to send the form ASAP
-                    SendNow(envelope);
-                }
+                    // Construct the envelope basics
+                    DocuSignAPI.Envelope envelope = new DocuSignAPI.Envelope();
+                    envelope.Subject = Request.Form["subject"];
+                    envelope.EmailBlurb = Request.Form["emailBlurb"];
+                    envelope.AccountId = Session["APIAccountId"].ToString();
 
-                else
-                {
-                    //edit before sending -- embedded sending
-                    EmbedSending(envelope);
+                    // Construct the recipients, documents and tabs
+                    envelope.Recipients = ConstructRecipients();
+                    envelope.Documents = GetDocuments();
+                    envelope.Tabs = AddTabs(envelope.Recipients.Length);
+                    envelope = ProcessOptions(envelope);
+
+                    if (Request.Form["SendNow"] != null)
+                    {
+                        //we want to send the form ASAP
+                        SendNow(envelope);
+                    }
+
+                    else
+                    {
+                        //edit before sending -- embedded sending
+                        EmbedSending(envelope);
+                    }
                 }
-            }
+            
         }
 
         protected void SendNow(DocuSignAPI.Envelope envelope)

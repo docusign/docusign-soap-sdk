@@ -13,6 +13,9 @@ using System.Web.UI.WebControls.WebParts;
 
 public class BasePage : System.Web.UI.Page
 {
+
+    protected string logoutCtrlName = "ctl00$logoutBtn";
+
     public BasePage()
     {
 
