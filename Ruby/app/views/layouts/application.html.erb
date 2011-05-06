@@ -10,6 +10,7 @@
 <body>
 <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
   <%if !params[:controller].eql?('logins')%>
+      <p style="text-align:right">Logged in as <%=session[:email]%> | <%=link_to("Logout", {:controller => "application", :action => "clear_session"})%></p>
       <article class="tabs">
         <%if params[:controller].eql?('send_document')%>
             <section class="current">

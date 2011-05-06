@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include Intercession
   helper :all
   protect_from_forgery
+  attr_accessor :username
 
   #Method to ensure that the user is logged in before every call to DocuSign
   def logged_in?
@@ -10,6 +11,15 @@ class ApplicationController < ActionController::Base
     else
       true
     end
+  end
+
+  #Method to clear all the session variables and redirect to login
+  def clear_session
+    session[:int_key] = nil
+    session[:email] = nil
+    session[:password] = nil
+    session[:account_id] = nil
+    redirect_to root_url
   end
 
   #This defines the proxy connection to DocuSign

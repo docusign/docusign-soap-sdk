@@ -28,7 +28,7 @@ class LoginsController < ApplicationController
 
       #Ensure we can contact DocuSign with the specified credentials
       result = Docusign::Base.credentials("["+session[:int_key] + "]" + session[:email], session[:password], Docusign::Config[:credential_endpoint_url])
-      if result.success?
+        if result.success?
         session[:logged_in] = true
         redirect_to send_document_path
       else
@@ -51,13 +51,7 @@ class LoginsController < ApplicationController
       session[:account_id] = result.accounts[0].accountID .to_s
       session[:logged_in] = true
 
-      #Ensure we can contact DocuSign
-      response = ds_connection.ping(1)
-      if response.pingResult
-        redirect_to send_document_path
-      else
-        redirect_to :controller => 'error', :action => 'show', :message => "Could not connect to DocuSign." and return
-      end
+      redirect_to send_document_path
 
     else
       redirect_to :controller => 'error', :action => 'show', :message => result.authentication_message
