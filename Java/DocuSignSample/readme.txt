@@ -27,8 +27,11 @@ security requirements of the application.
 Installation and Use
 ---------------------------------------------------------------------------
 To build:
-1. change line in build.properties file to point to apache cxf lib directory e.g.:
+1. change line in build.properties file to point to apache cxf lib directory.
+   On Linux, Unix or Mac OS X it would look like this:
             cxf.dir=/opt/apache-cxf/lib
+   On Windows it could be:
+            cxf.dir=c:\dev\apache-cxf\lib
 
 2. Optionally set elements in src/config.properties file by modifying the
    following lines:
@@ -42,7 +45,12 @@ To build:
 
 3. Execute 'ant' while in same directory as build.xml file
 
-4. Use tomcat manager to deploy WAR file that is placed in dist directory
+4. Use tomcat manager to deploy WAR file that is placed in dist directory.  For
+   more information about the Tomcat manager see this page:
+   http://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html
+
+   For versions other than 7.0 please navigate tomcat.apache.org for a similar
+   page.
 
 5. Run the app by going to the following URL (for example):
    http://localhost:8080/DocuSignSample
