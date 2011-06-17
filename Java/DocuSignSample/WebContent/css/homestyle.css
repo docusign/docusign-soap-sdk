@@ -82,7 +82,7 @@ body {
     -webkit-border-radius: 5px; 
     border: 1px solid #000; 
     padding: 10px; 
-    height: 313px;
+    height: 400px;
     width: 527px; 
     box-shadow: 5px -5px 10px #700; 
     -webkit-box-shadow: 5px -5px 10px #888;
@@ -101,7 +101,7 @@ body {
     -webkit-border-radius: 5px; 
     border: 1px solid #000; 
     padding: 10px; 
-    height: 313px;
+    height: 400px;
     width: 527px; 
     box-shadow: -5px 5px 10px #700; 
     -webkit-box-shadow: -5px 5px 10px #888;
