@@ -42,6 +42,9 @@
                     $(act).parent().children('li').removeClass("active").end();
                     $(act).addClass("active");
                 });
+                
+                // adding a recipient row as well.
+                addRecipientRowToTable();
             });
         </script>
     </head>
@@ -99,19 +102,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <input class="options" type="checkbox" value="addsig" name="addsigs" />
+                        <input class="options" type="checkbox" value="addsig" name="addsigs"  checked="true"/>
                         Add Signatures
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input class="options" type="checkbox" value="addformfield" name="formfields"/>
+                        <input class="options" type="checkbox" value="addformfield" name="formfields" checked="true"/>
                         Add Form Fields
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input class="options" type="checkbox" value="addcondfield" name="conditionalfields"/>
+                        <input class="options" type="checkbox" value="addcondfield" name="conditionalfields"  checked="true"/>
                         Add Conditional Fields
                     </td>
                     <td rowspan="3">
@@ -121,7 +124,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input class="options" type="checkbox" name="collabfields" value="addcollfield" />
+                        <input class="options" type="checkbox" name="collabfields" value="addcollfield"  checked="true"/>
                         Add Collaborative Fields
                     </td>
                 </tr>
@@ -139,7 +142,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input class="options" type="checkbox" name="markup" value="enablemarkup" />
+                        <input class="options" type="checkbox" name="markup" value="enablemarkup"  checked="true"/>
                         Enable Signers to Mark Up the Documents
                     </td>
                 </tr>
