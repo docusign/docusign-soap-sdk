@@ -79,7 +79,7 @@ function initCreds() {
  * @return boolean
  */
 function login() {
-    $retval = false;    
+  $retval = false;    
 	$_SESSION["errorMessage"] = null;
 
 	// TODO: add error handling

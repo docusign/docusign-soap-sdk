@@ -424,6 +424,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/SendDocument.css" />
         <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
