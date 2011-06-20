@@ -1,6 +1,5 @@
 <?php 
 /**
-
  * @copyright Copyright (C) DocuSign, Inc.  All rights reserved.
  *
  * This source code is intended only as a supplement to DocuSign SDK
