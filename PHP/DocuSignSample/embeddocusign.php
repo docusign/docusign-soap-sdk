@@ -343,33 +343,36 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <!DOCTYPE html">
 <html>
     <head>
+        <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" type="text/css" href="css/homestyle.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <table class="tabs">
-        <tr>
-        	<td><a href="senddocument.php">Send Document</a></td>
-        	<td><a href="sendatemplate.php">Send a Template</a></td>
-        	<td class="current">Embed Docusign</td>
-        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
-    	</tr>
-    	</table>
-    	<form method="post" id="EmbedDocuSignForm">
-    		<table width="100%">
-    			<tr>
-    				<td class="rightalign">
-    					<input name="OneSigner" id="OneSigner" type="submit" value="Create an Envelope with 1 Signer" />
-    				</td>
-    				<td class="leftalign">
-    					<input name="TwoSigners" id="TwoSigners" type="submit" value="Create an Envelope with 2 Signers" />
-    				</td>
-    			</tr>
+    	<div class="container">
+        <table class="tabs" cellspacing="0" cellpadding="0">
+	        <tr>
+	        	<td><a href="senddocument.php">Send Document</a></td>
+	        	<td><a href="sendatemplate.php">Send a Template</a></td>
+	        	<td class="current">Embed Docusign</td>
+	        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
+	    		</tr>
     		</table>
-    		<iframe width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
-		</form>
+	    	<form method="post" id="EmbedDocuSignForm">
+	    		<table width="100%">
+	    			<tr>
+	    				<td class="rightalign">
+	    					<input name="OneSigner" id="OneSigner" type="submit" value="Create an Envelope with 1 Signer" />
+	    				</td>
+	    				<td class="leftalign">
+	    					<input name="TwoSigners" id="TwoSigners" type="submit" value="Create an Envelope with 2 Signers" />
+	    				</td>
+	    			</tr>
+	    		</table>
+	    		<iframe width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
+				</form>
         <?php include 'include/footer.html';?>
-     </body>
+      </div>
+		</body>
 </html>
 
 

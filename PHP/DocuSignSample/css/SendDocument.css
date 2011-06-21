@@ -29,13 +29,17 @@ table.submit {
     width: 100%
 }
 
+table.submit td {
+	width:50%;
+}
+
 table.submit td:first-child {
-    text-align: right;
+    text-align:right;
 }
 
 table.submit input {
-    font: inherit;
-    font-weight: bold;
+	font: inherit;
+	font-weight: bold;
 }
 
 tr.recipientListHeader {
@@ -43,8 +47,14 @@ tr.recipientListHeader {
 }
 
 input.upload {
-    border: 1px solid;
-    font: inherit;
+  border: 1px solid #ccc;
+  
+	-moz-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	
+	font: inherit;
 }
 
 .visible

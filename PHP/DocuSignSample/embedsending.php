@@ -32,17 +32,28 @@ include_once 'include/session.php'; // initializes session and provides
 <!DOCTYPE html">
 <html>
     <head>
+        <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" href="css/homestyle.css" type="text/css">
     </head>
     <body>
+    	<div class="container">
+        <table class="tabs" cellspacing="0" cellpadding="0">
+	        <tr>
+	        	<td><a href="senddocument.php">Send Document</a></td>
+	        	<td><a href="sendatemplate.php">Send a Template</a></td>
+	        	<td class="current">Embed Docusign</td>
+	        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
+	    		</tr>
+    		</table>
+    	</div>
+    	<!-- iFrame -->
     	<?php 
     	    if (isset($_SESSION["embedToken"])) {
     	        echo '<iframe src="' . $_SESSION['embedToken'] . '" width="100%" height="720px"></iframe>';
-    	    }
-    	    else {
+    	    } else {
     	        echo "You shouldn't be on this page";
     	    }
 	    ?>
-        <?php include 'include/footer.html';?>
+      <?php include 'include/footer.html';?>
     </body>
 </html>

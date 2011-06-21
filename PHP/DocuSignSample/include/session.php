@@ -12,9 +12,10 @@ function isLoggedIn(){
 
 function loginCheck(){
     if (!isset($_SESSION["LoggedIn"]) || ($_SESSION["LoggedIn"] <> true )){
+        echo "Not Logged In";
+        exit;
         header("Location: index.php");
     }
-
 }
 
 function checkSessionValue($key, $val){
