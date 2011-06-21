@@ -27,7 +27,11 @@
     margin-right:auto;
 }
 
-
+div.container {
+	margin:0px auto;
+	margin-top:10px;
+	width:1024px;
+}
 
 .dropshadow-topright
 {
@@ -113,4 +117,46 @@
 	border-width:9px 21px 9px 0;
 	border-color:transparent #F1F1F1;
 	
+}
+
+
+table.tabs {
+	border-bottom:1px solid #ccc;
+	width:100%;
+}
+
+table.tabs td {
+	text-align:center;
+	
+	margin:0px;
+	padding:5px;
+	
+	font-size:16px;
+	font-weight:bold;
+	background:#eee;
+	border:1px solid black;
+	
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+}
+
+table.tabs td:hover {
+	background:white;
+}
+
+table.tabs td:hover a {
+	color:#666;
+}
+
+table.tabs td.current {
+	background:white;
+	border-bottom:0px;
+	color:#666;
+}
+
+table.tabs a {
+	color:#333;
+	text-decoration:none;
 }

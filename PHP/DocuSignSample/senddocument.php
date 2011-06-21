@@ -414,8 +414,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else {
         embedSending($envelope);
     }
-}
-else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+} else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     echo "";
 }
 ?>
@@ -467,117 +466,138 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
         </script>
     </head>
     <body>
-        <table class="tabs">
-        <tr>
-        	<td class="current">Send Document</td>
-        	<td><a href="sendatemplate.php">Send a Template</a></td>
-        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
-        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
-    	</tr>
-    	</table>
+    	<div class="container">
+        <table class="tabs" cellspacing="0" cellpadding="0">
+	        <tr>
+	        	<td class="current">Send Document</td>
+	        	<td><a href="sendatemplate.php">Send a Template</a></td>
+	        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
+	        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
+	    		</tr>
+	    	</table>
         <form id="SendDocumentForm" enctype="multipart/form_data" method="post" >
-            <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
-            <p>
-            </p>
-            <input id="emailBlurb" name="emailBlurb" type="text" placeholder="<enter e-mail blurb>" autocomplete="off" />
-            <p>
-            </p>
-            <table id="recipientList" name="recipientList" class="recipientList">
-                <tr class="recipientListHeader">
-                    <th>
-                        Recipient
-                    </th>
-                    <th>
-                        E-mail
-                    </th>
-                    <th>
-                        Security
-                    </th>
-                    <th>
-                        Send E-mail Invite
-                    </th>
-                </tr>
-            </table>
-            <input type="button" onclick="addRecipientRowToTable()" value="Add Recipient"/>
-            <div id="files">
-                <p>
-                    Document #1:
-                    <input class="upload" id="file1" type="file" name="file1" /></p>
-                <p>
-                    Document #2:
-                    <input class="upload" id="file2" type="file" name="file2"/></p>
-            </div>
-            <table class="optionlist">
-                <tr>
-                    <td>
-                        <input id="sendoption" class="options" type="checkbox" value="stockdoc" name="stockdoc"  onclick="EnableDisableDiv()"/>
-                        Use a stock doc
-                    </td>
-                    <td rowspan="3">
-                        <input type="text" id="reminders" class="datepickers" name="reminders"/><br />
-                        Add Daily Reminders
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" value="addsig" name="addsigs" />
-                        Add Signatures
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" value="addformfield" name="formfields"/>
-                        Add Form Fields
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" value="addcondfield" name="conditionalfields"/>
-                        Add Conditional Fields
-                    </td>
-                    <td rowspan="3">
-                        <input type="text" id="expiration" class="datepickers" name="expiration"/><br />
-                        Add Expiration
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" name="collabfields" value="addcollfield" />
-                        Add Collaborative Fields
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" name="enablepaper" value="enablepaper" />
-                        Enable Signing on Paper
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input class="options" type="checkbox" name="signerattachment" value="reqattachment" />
-                        Request a Signer to Add an Attachment
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input class="options" type="checkbox" name="markup" value="enablemarkup" />
-                        Enable Signers to Mark Up the Documents
-                    </td>
-                </tr>
-            </table>
-            <p />
-            <table class="submit">
-                <tr>
-                    <td>
-                        <input type="submit" value="Send Now" name="SendNow"/>
-                    </td>
-                    <td>
-                        <input type="submit" value="Edit Before Sending" name="EditFirst"/>
-                    </td>
-                </tr>
-            </table>
+        	<input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
+          <p>
+          </p>
+          <input id="emailBlurb" name="emailBlurb" type="text" placeholder="<enter e-mail blurb>" autocomplete="off" />
+          <p>
+          </p>
+          <table id="recipientList" name="recipientList" class="recipientList">
+              <tr class="recipientListHeader">
+                  <th>
+                      Recipient
+                  </th>
+                  <th>
+                      E-mail
+                  </th>
+                  <th>
+                      Security
+                  </th>
+                  <th>
+                      Send E-mail Invite
+                  </th>
+              </tr>
+              <tr>
+              	<td>
+              		<input type="text" name="RecipientName1" id="RecipientName1">
+              	</td>
+              	<td>
+              		<input type="text" name="RecipientEmail1" id="RecipientEmail1">
+              	</td>
+              	<td>
+              		<select onchange="javascript:EnableDisableInput(1)" name="RecipientSecurity1" id="RecipientSecurity1">
+              			<option value="None">None</option>
+										<option value="AccessCode">Access Code:</option>
+										<option value="PhoneAuthentication">Phone Authentication</option>
+									</select>
+									<input type="text" style="display: none;" name="RecipientSecuritySetting1" id="RecipientSecuritySetting1">
+              	</td>
+              	<td>
+              		[Switch]
+              	</td>
+              </tr>
+          </table>
+          <input type="button" onclick="addRecipientRowToTable()" value="Add Recipient"/>
+          <div id="files">
+              <p>
+                  Document #1:
+                  <input class="upload" id="file1" type="file" name="file1" /></p>
+              <p>
+                  Document #2:
+                  <input class="upload" id="file2" type="file" name="file2"/></p>
+          </div>
+          <table class="optionlist">
+              <tr>
+                  <td>
+                      <input id="sendoption" class="options" type="checkbox" value="stockdoc" name="stockdoc"  onclick="EnableDisableDiv()"/>
+                      Use a stock doc
+                  </td>
+                  <td rowspan="3">
+                      <input type="text" id="reminders" class="datepickers" name="reminders"/><br />
+                      Add Daily Reminders
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" value="addsig" name="addsigs" />
+                      Add Signatures
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" value="addformfield" name="formfields"/>
+                      Add Form Fields
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" value="addcondfield" name="conditionalfields"/>
+                      Add Conditional Fields
+                  </td>
+                  <td rowspan="3">
+                      <input type="text" id="expiration" class="datepickers" name="expiration"/><br />
+                      Add Expiration
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" name="collabfields" value="addcollfield" />
+                      Add Collaborative Fields
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" name="enablepaper" value="enablepaper" />
+                      Enable Signing on Paper
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <input class="options" type="checkbox" name="signerattachment" value="reqattachment" />
+                      Request a Signer to Add an Attachment
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <input class="options" type="checkbox" name="markup" value="enablemarkup" />
+                      Enable Signers to Mark Up the Documents
+                  </td>
+              </tr>
+          </table>
+          <p />
+          <table class="submit">
+              <tr>
+                  <td>
+                      <input type="submit" value="Send Now" name="SendNow"/>
+                  </td>
+                  <td>
+                      <input type="submit" value="Edit Before Sending" name="EditFirst"/>
+                  </td>
+              </tr>
+          </table>
         </form>
         <?php include 'include/footer.html';?>
+      </div>
     </body>
 </html>
 

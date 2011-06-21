@@ -79,31 +79,34 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <!DOCTYPE html">
 <html>
     <head>
+        <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" type="text/css" href="css/GetStatusAndDocs.css" />
         <script type="text/javascript" src="js/Utils.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <table class="tabs">
-        <tr>
-        	<td><a href="senddocument.php">Send Document</a></td>
-        	<td><a href="sendatemplate.php">Send a Template</a></td>
-        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
-        	<td class="current">Get Status and Docs</td>
-    	</tr>
-    	</table>
-    	<div id="statusDiv">
-            <table id="statusTable">
-        		<tr>
-        			<th>EnvelopeID</th>
-        			<th>Subject</th>
-        			<th>Status</th>
-        		</tr>
-        		<?php createStatusTable(); ?>
-            </table>
-		</div>
-        <?php include 'include/footer.html';?>
-     </body>
+    	<div class="container">
+        <table class="tabs" cellspacing="0" cellpadding="0">
+	        <tr>
+	        	<td><a href="senddocument.php">Send Document</a></td>
+	        	<td><a href="sendatemplate.php">Send a Template</a></td>
+	        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
+	        	<td class="current">Get Status and Docs</td>
+		    	</tr>
+	    	</table>
+	    	<div id="statusDiv">
+	            <table id="statusTable">
+	        		<tr>
+	        			<th>EnvelopeID</th>
+	        			<th>Subject</th>
+	        			<th>Status</th>
+	        		</tr>
+	        		<?php createStatusTable(); ?>
+	            </table>
+				</div>
+	      <?php include 'include/footer.html';?>
+    	</div>
+    </body>
 </html>
 
 

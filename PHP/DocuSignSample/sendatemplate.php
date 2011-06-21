@@ -148,18 +148,22 @@ function loadTemplates() {
     
     $rtParams = new RequestTemplates();
     $rtParams->AccountID = $_SESSION["AccountID"];
-    $rtParams->IncludeAdvancedTemplates = false;
+    $rtParams->IncludeAdvancedTemplates = "false";
+    
+    $templates = array();
     try {
-        $templates = $dsapi->RequestTemplates($rtParams)->RequestTemplatesResult->EnvelopeTemplateDefinition;
+      $templates = $dsapi->RequestTemplates($rtParams)->RequestTemplatesResult->EnvelopeTemplateDefinition;
     } catch (SoapFault $e) {
         $_SESSION["errorMessage"] = $e;
         header("Location: error.php");
+        
+        //echo "<option value='0'>No Templates Available</option>";
     }
     
     foreach ($templates as $template) {
-        echo '<option value="' . $template->TemplateID . '">' .
-            $template->Name . "</option>\n";
-//        echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
+      echo '<option value="' . $template->TemplateID . '">' .
+          $template->Name . "</option>\n";
+			// echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
     }
 }
 
@@ -217,10 +221,10 @@ function embedSending($templateReferences, $envelopeInfo, $recipients) {
 loginCheck();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    createSampleEnvelope();
-}
-else if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    ;
+  createSampleEnvelope();
+} elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
+	// Nothing
+	
 }
 ?>
 
@@ -228,6 +232,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <html>
     <head>
     <link rel="stylesheet" href="css/jquery.ui.all.css" />
+    <link rel="stylesheet" href="css/default.css" />
     <link rel="Stylesheet" href="css/SendTemplate.css" />
     <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
@@ -268,95 +273,97 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     </script>
 	</head>
-    <body>
-    <table class="tabs">
-    <tr>
-    	<td><a href="senddocument.php">Send Document</a></td>
-    	<td class="current">Send a Template</td>
-    	<td><a href="embeddocusign.php">Embed Docusign</a></td>
-    	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
-	</tr>
-	</table>
-    <form id="SendTemplateForm" enctype="multipart/form_data" method="post">
-    <div>
-        <input id="subject" name="subject" placeholder="<enter the subject>" type="text"
-            class="email" />
-		<br />
-        <textarea id="emailblurb" cols="20" name="emailblurb" placeholder="<enter the e-mail blurb>"
-            rows="4" class="email"></textarea>
-    </div>
-    <div>
-        Select a Template<br />
-        <select id="TemplateTable" name="TemplateTable" >
-        	<?php loadTemplates(); ?>
-        </select>
-    </div>
-    <br />
-    <div>
-        <table width="100%" id="RecipientTable" name="RecipientTable" >
-            <tr class="rowheader">
-                <th class="fivecolumn">
-                    <b>Role Name</b>
-                </th>
-                <th class="fivecolumn">
-                    <b>Name</b>
-                </th>
-                <th class="fivecolumn">
-                    <b>E-mail</b>
-                </th>
-                <th class="fivecolumn">
-                    <b>Security</b>
-                </th>
-                <th class="fivecolumn">
-                    <b>Send E-mail Invite</b>
-                </th>
-            </tr>
-        </table>
-         <input type="button" onclick="addRoleRowToTable()" value="Add Role"/>
-    </div>
-    <div>
-        <table width="100%">
-            <tr class="rowbody">
-                <td class="fourcolumn">
-                </td>
-                <td class="fourcolumn">
-                    <input type="text" id="reminders" name="reminders" class="datepickers" />
-                </td>
-                <td class="fourcolumn">
-                    <input type="text" id="expiration" name="expiration" class="datepickers" />
-                </td>
-                <td class="fourcolumn">
-                </td>
-            </tr>
-            <tr>
-                <td class="fourcolumn">
-                </td>
-                <td class="fourcolumn">
-                    Add Daily Reminders
-                </td>
-                <td class="fourcolumn">
-                    Add Expiration
-                </td>
-                <td class="fourcolumn">
-                </td>
-            </tr>
-            <tr>
-                <td class="fourcolumn">
-                </td>
-                <td class="leftbutton">
-                    <input type="submit" value="Send Now" name="SendNow" align="right" style="width: 100%;"
-                        class="docusignbutton blue" />
-                </td>
-                <td class="rightbutton">
-                    <input type="submit" value="Edit Before Sending" name="EditFirst" align="left" style="width: 100%;"
-                        class="docusignbutton blue" />
-                </td>
-                <td class="fourcolumn">
-                </td>
-            </tr>
-        </table>
-    </div>
-    </form>
-    <?php include 'include/footer.html';?>
+  <body>
+  	<div class="container">
+	    <table class="tabs" cellspacing="0" cellpadding="0">
+		    <tr>
+		    	<td><a href="senddocument.php">Send Document</a></td>
+		    	<td class="current">Send a Template</td>
+		    	<td><a href="embeddocusign.php">Embed Docusign</a></td>
+		    	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
+				</tr>
+			</table>
+	    <form id="SendTemplateForm" enctype="multipart/form_data" method="post">
+		    <div>
+		      <input id="subject" name="subject" placeholder="<enter the subject>" type="text"
+		          class="email" />
+					<br />
+		      <textarea id="emailblurb" cols="20" name="emailblurb" placeholder="<enter the e-mail blurb>"
+		          rows="4" class="email"></textarea>
+		    </div>
+		    <div>
+		        Select a Template<br />
+		        <select id="TemplateTable" name="TemplateTable" >
+		        	<?php loadTemplates(); ?>
+		        </select>
+		    </div>
+		    <br />
+		    <div>
+			    <table width="100%" id="RecipientTable" name="RecipientTable" >
+			        <tr class="rowheader">
+			            <th class="fivecolumn">
+			                <b>Role Name</b>
+			            </th>
+			            <th class="fivecolumn">
+			                <b>Name</b>
+			            </th>
+			            <th class="fivecolumn">
+			                <b>E-mail</b>
+			            </th>
+			            <th class="fivecolumn">
+			                <b>Security</b>
+			            </th>
+			            <th class="fivecolumn">
+			                <b>Send E-mail Invite</b>
+			            </th>
+			        </tr>
+			    </table>
+		      <input type="button" onclick="addRoleRowToTable()" value="Add Role"/>
+		    </div>
+		    <div>
+		      <table width="100%">
+		          <tr class="rowbody">
+		              <td class="fourcolumn">
+		              </td>
+		              <td class="fourcolumn">
+		                  <input type="text" id="reminders" name="reminders" class="datepickers" />
+		              </td>
+		              <td class="fourcolumn">
+		                  <input type="text" id="expiration" name="expiration" class="datepickers" />
+		              </td>
+		              <td class="fourcolumn">
+		              </td>
+		          </tr>
+		          <tr>
+		              <td class="fourcolumn">
+		              </td>
+		              <td class="fourcolumn">
+		                  Add Daily Reminders
+		              </td>
+		              <td class="fourcolumn">
+		                  Add Expiration
+		              </td>
+		              <td class="fourcolumn">
+		              </td>
+		          </tr>
+		          <tr>
+		              <td class="fourcolumn">
+		              </td>
+		              <td class="leftbutton">
+		                  <input type="submit" value="Send Now" name="SendNow" align="right" style="width: 100%;"
+		                      class="docusignbutton blue" />
+		              </td>
+		              <td class="rightbutton">
+		                  <input type="submit" value="Edit Before Sending" name="EditFirst" align="left" style="width: 100%;"
+		                      class="docusignbutton blue" />
+		              </td>
+		              <td class="fourcolumn">
+		              </td>
+		          </tr>
+		      </table>
+		    </div>
+	    </form>
+      <?php include 'include/footer.html'; ?>
+  	</div>
 	</body>
 </html>

@@ -1,5 +1,4 @@
 DocuSign Web Services API 3.5 PHP Sample
-la6
 ===========================================================================
 
 System requirements for PHP samples:
