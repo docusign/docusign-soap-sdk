@@ -28,6 +28,16 @@ include 'include/account_creds.php';
 include 'api/Credential.php';
 
 //========================================================================
+// Library Requirements
+//========================================================================
+
+// MCrypt
+if(!function_exists('mcrypt_module_get_algo_key_size')){
+	//echo "MCrypt not loaded";
+	//exit;
+}
+
+//========================================================================
 // Functions
 //========================================================================
 
@@ -37,16 +47,16 @@ include 'api/Credential.php';
  * @return  Credential
  */
 function getCredentialApi() {
-    global $credapi_endpoint;
+  global $credapi_endpoint;
 	$credapi_wsdl = "api/Credential.wsdl";
 
 	$credapi_options =  array('location'=>$credapi_endpoint, 'trace'=>true,
 		'features' => SOAP_SINGLE_ELEMENT_ARRAYS);
 	try {
-	    $credapi = new Credential($credapi_wsdl, $credapi_options);
+	  $credapi = new Credential($credapi_wsdl, $credapi_options);
 	} catch (SoapFault $fault) {
 		$_SESSION["errorMessage"] = $fault;
-	    $credapi = null;
+	  $credapi = null;
 	}
 	
 	return $credapi;
@@ -108,20 +118,35 @@ function login() {
 	return $retval;
 }
 
+/**
+ * Logs out of the DocuSign web service. Deletes $_SESSION
+ * 
+ * @return boolean
+ */
+function logout() {
+	session_destroy();
+	return true;
+}
+
 //========================================================================
 // Main
 //========================================================================
+// Did we try to log out?
+if(isset($_GET['logout'])){
+	logout();
+	header("Location: index.php");
+}
+
 // if we are already logged in, head to senddocument.php
 if (isset($_SESSION["LoggedIn"]) && $_SESSION["LoggedIn"] == true) {
-    header("Location: senddocument.php");
-}
-else {
-    // Load up the session map
-    initCreds($UserID, $Password, $IntegratorsKey);
-    // initialize some session variables
-    $_SESSION["LoggedIn"] = false;
-    $_SESSION["errorMessage"] = null;
-    $_SESSION["EnvelopeIDs"] = null;
+  header("Location: senddocument.php");
+} else {
+	// Load up the session map
+	initCreds($UserID, $Password, $IntegratorsKey);
+	// initialize some session variables
+	$_SESSION["LoggedIn"] = false;
+	$_SESSION["errorMessage"] = null;
+	$_SESSION["EnvelopeIDs"] = null;
 }
 
 // POST and GET handlers
@@ -192,7 +217,7 @@ else if($_SERVER["REQUEST_METHOD"] == "GET") {
                         	</tr>
                         </table>
                     </div>
-                    <div id="action" class="centeralign" style="width: 154px;">
+                    <div id="action" class="centeralign" style="width: 200px;">
                     	<input id="Submit1" name="submit" type="submit" value="Login" style="width: 70px; margin-right: 5px;" /> 
                     	<input id="Reset1" name="reset" type="submit" value="Reset" style="width: 70px; margin-left: 5px;" />
                     </div>

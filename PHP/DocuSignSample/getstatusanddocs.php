@@ -86,6 +86,10 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     </head>
     <body>
     	<div class="container">
+    		<div class="authbox">
+    			<span><?php echo $_SESSION["UserID"]; ?></span> 
+    			(<a href="index.php?logout">logout</a>)
+    		</div>
         <table class="tabs" cellspacing="0" cellpadding="0">
 	        <tr>
 	        	<td><a href="senddocument.php">Send Document</a></td>
