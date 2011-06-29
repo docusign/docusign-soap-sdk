@@ -102,8 +102,7 @@ class WSSESoap {
         $this->locateSecurityHeader($bMustUnderstand, $setActor); 
     } 
     
-    public function addNickSecurity($u, $p){
-        /* Add the WSU timestamps */ 
+    public function addUserTokenNoMCrypt($u, $p){
         $security = $this->locateSecurityHeader(); 
 				
         $usernameToken = $this->soapDoc->createElementNS('http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd', 'wsse:UsernameToken');
@@ -113,17 +112,6 @@ class WSSESoap {
         $usernameToken->appendChild($password);
         $security->appendChild($usernameToken);
         
-        /*
-        $timestamp = $this->soapDoc->createElementNS(WSSESoap::WSUNS, WSSESoap::WSUPFX.':Timestamp'); 
-        $security->insertBefore($timestamp, $security->firstChild); 
-        $currentTime = time(); 
-        $created = $this->soapDoc->createElementNS(WSSESoap::WSUNS,  WSSESoap::WSUPFX.':Created', gmdate("Y-m-d\TH:i:s", $currentTime).'Z'); 
-        $timestamp->appendChild($created); 
-        if (! is_null($secondsToExpire)) { 
-            $expire = $this->soapDoc->createElementNS(WSSESoap::WSUNS,  WSSESoap::WSUPFX.':Expires', gmdate("Y-m-d\TH:i:s", $currentTime + $secondsToExpire).'Z'); 
-            $timestamp->appendChild($expire); 
-        } 
-        */
     }
 
     public function addTimestamp($secondsToExpire=3600) { 
