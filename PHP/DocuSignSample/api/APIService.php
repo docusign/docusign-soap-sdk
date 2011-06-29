@@ -2202,62 +2202,17 @@ class APIService extends SoapClient {
 		$dom = $objWSA->getDoc();
 		
 		$objWSSE = new WSSESoap($dom);
-		/*
+		
 		if (isset($this->_username) && isset($this->_password)) {
-			$objWSSE->addUserToken($this->_username, $this->_password);
+			if(!function_exists('mcrypt_module_get_algo_key_size')){
+				$objWSSE->addUserTokenNoMCrypt($this->_username,$this->_password);
+			} else {
+				$objWSSE->addUserToken($this->_username, $this->_password);
+			}
 		}
-		*/
-		
-		/*
-        $xp = new DOMXPath($dom);
-        $xp->registerNamespace('SOAP-ENV', 'http://schemas.xmlsoap.org/soap/envelope/');
-
-        // search for SOAP header, create one if not found
-        $header = $xp->query('/SOAP-ENV:Envelope/SOAP-ENV:Header')->item(0);
-        if (!$header) {
-        	// Never get here?
-	        $header = $dom->createElementNS('http://schemas.xmlsoap.org/soap/envelope/', 'SOAP-ENV:Header');
-	        $envelope = $xp->query('/SOAP-ENV:Envelope')->item(0);
-	        $envelope->insertBefore($header, $xp->query('/SOAP-ENV:Envelope/SOAP-ENV:Body')->item(0));
-        }
-
-        // add WSSE header (to wsse:Security)
-        $usernameToken = $dom->createElementNS('http://schemas.xmlsoap.org/ws/2002/07/secext', 'wsse:UsernameToken');
-        $username = $dom->createElementNS('http://schemas.xmlsoap.org/ws/2002/07/secext', 'wsse:Username', $this->_username);
-        $password = $dom->createElementNS('http://schemas.xmlsoap.org/ws/2002/07/secext', 'wsse:Password', $this->_password);
-        $usernameToken->appendChild($username);
-        $usernameToken->appendChild($password);
-        $header->appendChild($usernameToken);
-		
-        $security = $this->locateSecurityHeader(); 
-
-        $timestamp = $this->soapDoc->createElementNS(WSSESoap::WSUNS, WSSESoap::WSUPFX.':Timestamp'); 
-        $security->insertBefore($timestamp, $security->firstChild); 
-        $currentTime = time(); 
-        $created = $this->soapDoc->createElementNS(WSSESoap::WSUNS,  WSSESoap::WSUPFX.':Created', gmdate("Y-m-d\TH:i:s", $currentTime).'Z'); 
-        $timestamp->appendChild($created); 
-        if (! is_null($secondsToExpire)) { 
-            $expire = $this->soapDoc->createElementNS(WSSESoap::WSUNS,  WSSESoap::WSUPFX.':Expires', gmdate("Y-m-d\TH:i:s", $currentTime + $secondsToExpire).'Z'); 
-            $timestamp->appendChild($expire); 
-        } 
-     */
-     
-    $objWSSE->addNickSecurity($this->_username,$this->_password);
-        
-		/*
-		$header='<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" SOAP-ENV:mustUnderstand="1">
-		<wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
-		<wsse:Username>'.$this->_username.'</wsse:Username>
-		<wsse:Password type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">'.$this->_password.'</wsse:Password>
-		</wsse:UsernameToken>
-		</wsse:Security>';
-		$soap_var_header = new SoapVar( $header, XSD_ANYXML, null, null, null );
-		$soap_header = new SoapHeader( 'https://demo.docusign.net/api/3.0/api.asmx', 'wsse', $soap_var_header );
-		$this->__setSoapHeaders(array($soap_header));
-		*/
 		
 		/* Sign all headers to include signing the WS-Addressing headers */
-		//$objWSSE->signAllHeaders = TRUE; // Normally uncommented
+		$objWSSE->signAllHeaders = TRUE; // Normally uncommented
 
 		$objWSSE->addTimestamp(300);
 		// if you need to do binary certificate signing you can uncomment this (and provide the path to the cert)
@@ -2274,11 +2229,6 @@ class APIService extends SoapClient {
 		// $objWSSE->attachTokentoSig($token);
 		
 		$request = $objWSSE->saveXML();
-		/*
-		echo "<pre>";
-		print_r($request);
-		echo "</pre>";
-		*/
 		$this->_lastRequest = $request;
 		
 		return parent::__doRequest($request, $location, $saction, $version);

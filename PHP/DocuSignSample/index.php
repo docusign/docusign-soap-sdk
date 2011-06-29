@@ -33,6 +33,7 @@ include 'api/Credential.php';
 
 // MCrypt
 if(!function_exists('mcrypt_module_get_algo_key_size')){
+	// MCrypt is no longer required
 	//echo "MCrypt not loaded";
 	//exit;
 }
