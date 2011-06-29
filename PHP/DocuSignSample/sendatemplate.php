@@ -238,11 +238,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
-    <script type="text/javascript" src="js/jquery.ui.dialog.js"></script>
-    <script type="text/javascript" src="js/jquery.bgiframe-2.1.2.js"></script>
-    <script type="text/javascript" src="js/jquery.ui.mouse.js"></script>
-    <script type="text/javascript" src="js/jquery.ui.draggable.js"></script>
-    <script type="text/javascript" src="js/jquery.ui.position.js"></script>
     <script type="text/javascript" src="js/Utils.js"></script>
     <script type="text/javascript" charset="utf-8">
         $(function () {
@@ -259,11 +254,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 buttonImageOnly: true,
                 minDate: today
             });
+            /*
             $("#dialogmodal").dialog({
                 height: 350,
                 modal: true,
                 autoOpen: false
             });
+            */
             $(".switcher li").bind("click", function () {
             var act = $(this);
             $(act).parent().children('li').removeClass("active").end();
@@ -275,6 +272,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</head>
   <body>
   	<div class="container">
+  		<div class="authbox">
+  			<span><?php echo $_SESSION["UserID"]; ?></span> 
+  			(<a href="index.php?logout">logout</a>)
+  		</div>
 	    <table class="tabs" cellspacing="0" cellpadding="0">
 		    <tr>
 		    	<td><a href="senddocument.php">Send Document</a></td>

@@ -33,6 +33,21 @@ div.container {
 	width:1024px;
 }
 
+div.authbox {
+	color:#666;
+	font-size:12px;
+	text-align:right;
+	margin-bottom:10px;
+}
+
+div.authbox span {
+	color:black;
+}
+
+div.authbox a {
+	color:blue;
+}
+
 .dropshadow-topright
 {
     margin: 100px auto; 
@@ -120,8 +135,17 @@ div.container {
 }
 
 
+table#recipientList th {
+	width:20%;
+}
+
+table#recipientList th:nth-child(3) {
+	width:40%;
+}
+
+
 table.tabs {
-	border-bottom:1px solid #ccc;
+	margin-bottom:10px;
 	width:100%;
 }
 
@@ -134,7 +158,7 @@ table.tabs td {
 	font-size:16px;
 	font-weight:bold;
 	background:#eee;
-	border:1px solid black;
+	border:1px solid #ccc;
 	
 	-moz-border-radius-topleft: 5px;
 	-moz-border-radius-topright: 5px;
