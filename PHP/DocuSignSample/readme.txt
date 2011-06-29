@@ -3,6 +3,8 @@ DocuSign Web Services API 3.5 PHP Sample
 
 System requirements for PHP samples:
 -   PHP Version 5.3.5+
+-   OpenSSL
+-   PHP SOAP Extension
 
 OverView:
 ---------------------------------------------------------------------------
@@ -24,7 +26,7 @@ security requirements of the application.
 Installation and Use
 ---------------------------------------------------------------------------
 
-Deployment is just copying the entire CodeSnippts directory into your
+Deployment is just copying the entire DocuSignSample directory into your
 htdocs (or equivalent) directory on your server.
 
 Optionally add your credentials to include/account_creds.php by modifying the
