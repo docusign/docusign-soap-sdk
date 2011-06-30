@@ -50,7 +50,7 @@ function createStatusTable() {
             foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
                 echo 
                 "<tr>
-                  <td><a href='getstatusofenvelope.php?envelopeid=" . $status->EnvelopeID . "'>" . $status->EnvelopeID . "</a></td>
+                  <td><a target='_blank' href='getstatusofenvelope.php?envelopeid=" . $status->EnvelopeID . "'>" . $status->EnvelopeID . "</a></td>
                   <td>" . $status->Subject . "</td>
                   <td>" . $status->Status . "</td>
                 </tr>
