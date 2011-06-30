@@ -30,12 +30,6 @@ include 'include/utils.php';
 // Functions
 //========================================================================
 
-function pr($data){
-	echo "<pre>";
-	print_r($data);
-	echo "</pre>";
-}
-
 function buildEnvelope() {
     $envelope = new Envelope();
     if (isset($_POST["subject"])) {
