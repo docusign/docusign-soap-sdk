@@ -50,7 +50,7 @@ function createStatusTable() {
             foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
                 echo 
                 "<tr>
-                  <td>" . $status->EnvelopeID . "</td>
+                  <td><a href='getstatusofenvelope.php?envelopeid=" . $status->EnvelopeID . "'>" . $status->EnvelopeID . "</a></td>
                   <td>" . $status->Subject . "</td>
                   <td>" . $status->Status . "</td>
                 </tr>
@@ -68,10 +68,10 @@ function createStatusTable() {
 loginCheck();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "";
+	
 }
 else if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    echo "";
+	
 }
 
 ?>
