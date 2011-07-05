@@ -360,15 +360,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </head>
     <body>
     	
-    	<script type="text/javascript">
-    		$(document).ready(function(){
-    			$('a.showIframe').click(function(){
-    				$('iframe.embediframe').removeClass('invisible');
-    				$('div.sampleMessage').remove();
-    			});
-    		});	
-    	</script>
-    	
     	<div class="container">
     		<div class="authbox">
     			<span><?php echo $_SESSION["UserID"]; ?></span> 
@@ -395,14 +386,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    		</table>
 	    		<?php
 	    			// Display the Two Signer Message (if Two Signer Mode)
-	    			$class = "";
 	    			if($_showTwoSignerMessage){
-	    				$class = "invisible";
 	    		?>
 	    				<div class="sampleMessage">
 	    					Have the first signer fill out the Envelope (only a signature is required for the first signer)
-	    					<br /><br />
-	    					<a href="#" class="showIframe">Click here to show iframe for first signer</a>
 	    				</div>
 	    		<?
 	    			}
@@ -410,17 +397,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    		<?php
 	    			// Display the Transition Message (if required, in Two Signer Mode)
 	    			if($_showTransitionMessage){
-	    				$class = "invisible";
 	    		?>
 	    				<div class="sampleMessage">
 	    					The first signer has completed the Envelope. Now the second signer will be asked to fill out details in the Envelope.
-	    					<br /><br />
-	    					<a href="#" class="showIframe">Click here to show iframe for second signer</a>
 	    				</div>
 	    		<?
 	    			}
 	    		?>
-	    		<iframe class="embediframe <?php echo $class ?>" width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
+	    		<iframe class="embediframe" width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
 				</form>
         <?php include 'include/footer.html';?>
       </div>
