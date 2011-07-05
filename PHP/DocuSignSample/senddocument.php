@@ -531,13 +531,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	          		<input type="email" name="RecipientEmail[1]" id="txtRow1" value="nicholas.a.reed@gmail.com">
 	          	</td>
 	          	<td>
-	          		<select id="RecipientSecurity1" name="RecipientSecurity[1]">
+	          		<select id="RecipientSecurity1" name="RecipientSecurity[1]" onchange="EnableDisableInput(1);">
 	          			<option value="None">None</option>
 	          			<option value="IDCheck">ID Check</option>
 	          			<option value="AccessCode">Access Code:</option>
 	          			<option value="PhoneAuthentication">Phone Authentication</option>
 	          		</select>
-	          		<input type="text" name="RecipientSecuritySetting[1]" id="RecipientSecuritySetting1" value="12345" style="display: none; ">
+	          		<input type="text" name="RecipientSecuritySetting[1]" id="RecipientSecuritySetting1" value="12345" style="display: none;">
 	          	</td>
 	          	<td>
 	          		<ul class="switcher">
@@ -553,6 +553,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           	</tr>
           </table>
           <input type="button" onclick="addRecipientRowToTable()" value="Add Recipient"/>
+          <br />
+          <br />
           <div id="files" style="display:none;">
               <p>
                   Document #1:
@@ -619,7 +621,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </td>
               </tr>
           </table>
-          <p />
+          <br />
+          <br />
           <table class="submit">
               <tr>
                   <td>
