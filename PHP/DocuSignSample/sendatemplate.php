@@ -301,7 +301,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           
 		    </div>
 		    <div>
-		        Select a Template<br />
+		        Select a Template
+		        <br />
 		        <select id="TemplateTable" name="TemplateTable" >
 		        	<?php loadTemplates(); ?>
 		        </select>
@@ -309,52 +310,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		    <br />
 		    <div>
 			    <table width="100%" id="RecipientTable" name="RecipientTable" >
-			        <tr class="rowheader">
-			            <th class="fivecolumn">
-			                <b>Role Name</b>
-			            </th>
-			            <th class="fivecolumn">
-			                <b>Name</b>
-			            </th>
-			            <th class="fivecolumn">
-			                <b>E-mail</b>
-			            </th>
-			            <th class="fivecolumn">
-			                <b>Security</b>
-			            </th>
-			            <th class="fivecolumn">
-			                <b>Send E-mail Invite</b>
-			            </th>
-			        </tr>
+	          <tr class="recipientListHeader">
+	              <th>
+	                  Role Name
+	              </th>
+	              <th>
+	                  Recipient Name
+	              </th>
+	              <th>
+	                  E-mail
+	              </th>
+	              <th>
+	                  Security
+	              </th>
+	              <th>
+	                  Send E-mail Invite
+	              </th>
+	          </tr>
+	          
+	          <tr id="Role1">
+	          	<td>
+	          		<input type="text" name="RoleName[1]" id="txtRow1">
+	          	</td>
+	          	<td>
+	          		<input type="text" name="Name[1]" id="txtRow1">
+	          	</td>
+	          	<td>
+	          		<input type="email" name="RoleEmail[1]" id="txtRow1">
+	          	</td>
+	          	<td>
+	          		<select id="RoleSecurity1" name="RoleSecurity[1]" onchange="EnableDisableInput(1,'RoleSecurity');">
+	          			<option value="None">None</option><option value="IDCheck">ID Check</option>
+	          			<option value="AccessCode">Access Code:</option>
+	          			<option value="PhoneAuthentication">Phone Authentication</option>
+	          		</select>
+	          		<input type="text" name="RoleSecuritySetting[1]" id="RoleSecuritySetting1" value="12345" style="display:none;">
+	          	</td>
+	          	<td>
+	          		<ul class="switcher">
+	          			<li class="active">
+	          				<a href="#" title="On">ON</a>
+	          			</li>
+	          			<li>
+	          				<a href="#" title="OFF">OFF</a>
+	          			</li>
+	          			<input title="RoleInviteToggle1" id="RoleInviteToggle1" name="RoleInviteToggle[1]" type="checkbox" style="display: none; ">
+	          		</ul>
+	          	</td>
+	          </tr>
 			    </table>
 		      <input type="button" onclick="addRoleRowToTable()" value="Add Role"/>
 		    </div>
 		    <div>
+		    	<br />
 		      <table width="100%">
-		          <tr class="rowbody">
-		              <td class="fourcolumn">
-		              </td>
+		          <tr>
 		              <td class="fourcolumn">
 		                  <input type="text" id="reminders" name="reminders" class="datepickers" />
-		              </td>
-		              <td class="fourcolumn">
-		                  <input type="text" id="expiration" name="expiration" class="datepickers" />
-		              </td>
-		              <td class="fourcolumn">
+		                  <br />
+		                  Add Daily Reminders
 		              </td>
 		          </tr>
 		          <tr>
 		              <td class="fourcolumn">
-		              </td>
-		              <td class="fourcolumn">
-		                  Add Daily Reminders
-		              </td>
-		              <td class="fourcolumn">
+		                  <input type="text" id="expiration" name="expiration" class="datepickers" />
+		                  <br />
 		                  Add Expiration
 		              </td>
-		              <td class="fourcolumn">
-		              </td>
 		          </tr>
+		          <!--
 		          <tr>
 		              <td class="fourcolumn">
 		              </td>
@@ -369,8 +393,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		              <td class="fourcolumn">
 		              </td>
 		          </tr>
+		          -->
 		      </table>
 		    </div>
+		    
+          <table class="submit">
+              <tr>
+                  <td>
+                      <input type="submit" value="Send Now" name="SendNow"/>
+                  </td>
+                  <td>
+                      <input type="submit" value="Edit Before Sending" name="EditFirst"/>
+                  </td>
+              </tr>
+          </table>
+          
 	    </form>
       <?php include 'include/footer.html'; ?>
   	</div>
