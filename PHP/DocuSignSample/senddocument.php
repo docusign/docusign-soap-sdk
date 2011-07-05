@@ -503,11 +503,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    	</table>
         <form id="SendDocumentForm" enctype="multipart/form_data" method="post" >
         	<input id="subject" name="subject" type="text" value="Test Subject" placeholder="<enter the subject>" autocomplete="off"/>
-          <p>
-          </p>
+          <br />
+          <br />
 		      <textarea id="emailblurb" cols="20" name="emailBlurb" placeholder="<enter the e-mail blurb>" rows="4" class="email">Test Body</textarea>
-          <p>
-          </p>
+          <br />
+          <br />
           <table id="recipientList" name="recipientList" class="recipientList">
 	          <tr class="recipientListHeader">
 	              <th>
