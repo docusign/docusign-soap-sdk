@@ -144,6 +144,8 @@ table#recipientList th:nth-child(3) {
 }
 
 
+/*------------------------------- Tabs ---------------------------------- */
+
 table.tabs {
 	margin-bottom:10px;
 	width:100%;
@@ -183,4 +185,30 @@ table.tabs td.current {
 table.tabs a {
 	color:#333;
 	text-decoration:none;
+}
+
+
+/*------------------------------- Embedded iFrame ---------------------------------- */
+
+iframe.embediframe {
+	min-height:500px;
+}
+
+
+/*------------------------------- Transition Message ---------------------------------- */
+
+div.sampleMessage {
+	margin:10px;
+	padding:10px;
+	text-align:center;
+	
+	border:1px solid red;
+	background: #ff0000;
+}
+
+
+/*------------------------------- Misc ---------------------------------- */
+
+.invisible {
+	visibility:hidden;
 }
