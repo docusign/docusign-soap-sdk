@@ -32,6 +32,7 @@ function addRecipientRowToTable() {
     security.onchange = function () { EnableDisableInput(iteration) };
     security.id = "RecipientSecurity" + iteration;
     security.name = 'RecipientSecurity[' + iteration + ']';
+    
     var noneopt = document.createElement('option');
     noneopt.text = 'None';
     noneopt.value = 'None';
@@ -134,7 +135,7 @@ function addRoleRowToTable() {
     // security cell
     var cellMiddle3 = row.insertCell(3);
     var security = document.createElement('select');
-    security.onchange = function () { EnableDisableInput(iteration) };
+    security.onchange = function () { EnableDisableInput(iteration,'RoleSecurity') };
     security.id = "RoleSecurity" + iteration;
     security.name = 'RoleSecurity[' + iteration + ']';
     
@@ -142,6 +143,11 @@ function addRoleRowToTable() {
     noneopt.text = 'None';
     noneopt.value = 'None';
     security.options.add(noneopt);
+    
+    var idopt = document.createElement('option');
+    idopt.text = 'ID Check';
+    idopt.value = 'IDCheck';
+    security.options.add(idopt);
 
     var accessopt = document.createElement('option');
     accessopt.text = 'Access Code:';
@@ -157,11 +163,12 @@ function addRoleRowToTable() {
     
     var securitySetting = document.createElement('input');
     securitySetting.type = 'text';
-    securitySetting.name = 'RollSecuritySetting[' + iteration + ']';
+    securitySetting.name = 'RoleSecuritySetting[' + iteration + ']';
     securitySetting.id = 'RoleSecuritySetting' + iteration;
+    securitySetting.defaultValue = "12345";
     securitySetting.style.display = "none";
     cellMiddle3.appendChild(securitySetting);
-
+    
     // select cell
     var cellRight = row.insertCell(4);
     var invite = document.createElement('ul');
@@ -226,14 +233,17 @@ function EnableDisableDiv() {
     }
 }
 
-function EnableDisableInput(id) {
-    if ($("#RecipientSecurity"+id).attr("selectedIndex") == 2) {
-        $("#RecipientSecuritySetting"+id).show();
-        $("#RecipientSecuritySetting"+id).enableSelection();
+function EnableDisableInput(id,name) {
+		if(!name){
+				name = "RecipientSecurity";
+		}
+    if ($("#"+name+id).attr("selectedIndex") == 2) {
+        $("#"+name+"Setting"+id).show();
+        $("#"+name+"Setting"+id).enableSelection();
     }
     else {
-        $("#RecipientSecuritySetting"+id).hide();
-        $("#RecipientSecuritySetting"+id).disableSelection();
+        $("#"+name+"Setting"+id).hide();
+        $("#"+name+"Setting"+id).disableSelection();
     }
 }
 
