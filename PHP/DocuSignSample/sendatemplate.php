@@ -233,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <head>
     <link rel="stylesheet" href="css/jquery.ui.all.css" />
     <link rel="stylesheet" href="css/default.css" />
-    <link rel="Stylesheet" href="css/SendTemplate.css" />
+    <link rel="Stylesheet" href="css/SendDocument.css" />
     <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
@@ -286,11 +286,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</table>
 	    <form id="SendTemplateForm" enctype="multipart/form_data" method="post">
 		    <div>
-		      <input id="subject" name="subject" placeholder="<enter the subject>" type="text"
+		      <!--<input id="subject" name="subject" placeholder="<enter the subject>" type="text"
 		          class="email" />
 					<br />
 		      <textarea id="emailblurb" cols="20" name="emailblurb" placeholder="<enter the e-mail blurb>"
 		          rows="4" class="email"></textarea>
+		      -->    
+		      <input id="subject" name="subject" type="text" value="Test Subject" placeholder="<enter the subject>" autocomplete="off"/>
+          <br />
+          <br />
+		      <textarea id="emailblurb" cols="20" name="emailBlurb" placeholder="<enter the e-mail blurb>" rows="4" class="email">Test Body</textarea>
+          <br />
+          <br />
+          
 		    </div>
 		    <div>
 		        Select a Template<br />
