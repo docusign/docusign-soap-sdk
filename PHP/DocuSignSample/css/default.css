@@ -143,6 +143,10 @@ table#recipientList th:nth-child(3) {
 	width:40%;
 }
 
+table#RecipientTable th:nth-child(4) {
+	width:342px;
+}
+
 
 /*------------------------------- Tabs ---------------------------------- */
 
@@ -203,7 +207,7 @@ div.sampleMessage {
 	text-align:center;
 	
 	border:1px solid red;
-	background: #ff0000;
+	background: #FF9999;
 }
 
 
