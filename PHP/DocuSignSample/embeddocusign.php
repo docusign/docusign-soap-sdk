@@ -28,7 +28,9 @@ include 'include/utils.php';
 //========================================================================
 // globals
 //========================================================================
-$_oneSigner = true;
+$_oneSigner = true; // Do we want One Signer (=true) or Two (=false)
+$_showTwoSignerMessage = false; // Display (or not display) a message before Signer One has signed (only for Two Signer mode)
+$_showTransitionMessage = false; // Display (or not display) a message after Signer One has signed (only for Two Signer mode)
 
 //========================================================================
 // Functions
@@ -329,12 +331,15 @@ loginCheck();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_oneSigner = isset($_POST["OneSigner"]);
     createAndSend();
-}
-else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+		if(!$_oneSigner){
+			$_showTwoSignerMessage = true;
+		}
+} else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET["envelopeID"])) {
+    		// Display a message that we are moving on to Signer Number 2
+    		$_showTransitionMessage = true;
         getToken(getStatus($_GET["envelopeID"]), 1);
-    }
-    else {
+    } else {
         $_SESSION["embedToken"] = "";
     }
 }
@@ -343,11 +348,27 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <!DOCTYPE html">
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" type="text/css" href="css/homestyle.css" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/jquery.ui.all.css" />
+        <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
+        <script type="text/javascript" src="js/Utils.js"></script>      
     </head>
     <body>
+    	
+    	<script type="text/javascript">
+    		$(document).ready(function(){
+    			$('a.showIframe').click(function(){
+    				$('iframe.embediframe').removeClass('invisible');
+    				$('div.sampleMessage').remove();
+    			});
+    		});	
+    	</script>
+    	
     	<div class="container">
     		<div class="authbox">
     			<span><?php echo $_SESSION["UserID"]; ?></span> 
@@ -372,7 +393,34 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 	    				</td>
 	    			</tr>
 	    		</table>
-	    		<iframe width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
+	    		<?php
+	    			// Display the Two Signer Message (if Two Signer Mode)
+	    			$class = "";
+	    			if($_showTwoSignerMessage){
+	    				$class = "invisible";
+	    		?>
+	    				<div class="sampleMessage">
+	    					Have the first signer fill out the Envelope (only a signature is required for the first signer)
+	    					<br /><br />
+	    					<a href="#" class="showIframe">Click here to show iframe for first signer</a>
+	    				</div>
+	    		<?
+	    			}
+	    		?>
+	    		<?php
+	    			// Display the Transition Message (if required, in Two Signer Mode)
+	    			if($_showTransitionMessage){
+	    				$class = "invisible";
+	    		?>
+	    				<div class="sampleMessage">
+	    					The first signer has completed the Envelope. Now the second signer will be asked to fill out details in the Envelope.
+	    					<br /><br />
+	    					<a href="#" class="showIframe">Click here to show iframe for second signer</a>
+	    				</div>
+	    		<?
+	    			}
+	    		?>
+	    		<iframe class="embediframe <?php echo $class ?>" width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
 				</form>
         <?php include 'include/footer.html';?>
       </div>
