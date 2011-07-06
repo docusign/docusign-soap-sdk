@@ -51,7 +51,10 @@ function createStatusTable() {
 	            foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
 		           ?>
 		           		<li>
-		           			<span><strong><?= $status->Subject ?></strong> [<?= $status->Status ?>] - <a href="getstatusofenvelope.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to see a RequestStatus SOAP return for this Envelope"><?= $status->EnvelopeID ?></a></span>
+		           			<span><u><?= $status->Subject ?></u> 
+		           				[<?= $status->Status ?>] - 
+		           				<?= $status->EnvelopeID; ?> 
+		           				<a href="getstatusofenvelope.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to see a RequestStatus SOAP return for this Envelope">View RequestStatus</a></span>
 		           			<ul>
 		           				<!-- Recipients -->
 				           		<li>
