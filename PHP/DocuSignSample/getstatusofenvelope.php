@@ -57,7 +57,7 @@ $envelope_id = $_GET['envelopeid'];
 // Call function that returns Envelope Status
 $envelopeStatus = getEnvelopeStatus($envelope_id);
 
-// Print out the result ("pr" in include/utils.php)
+// Print out the result ("function pr" in include/utils.php)
 pr($envelopeStatus);
 exit;
 
