@@ -116,7 +116,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <body>
     	
     	<script type="text/javascript">
-    			// Invert rows when clicking
+    			// Invert rows when clicking (not implemented, simple enough to view without deep-clicking)
 			    function invert(ident) {
 			        var state = document.getElementById(ident).style.display;
 			        if (state == 'block') {
