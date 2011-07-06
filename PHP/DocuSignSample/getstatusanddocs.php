@@ -47,15 +47,44 @@ function createStatusTable() {
         }
         
         if (isset($statuses)) {
-            foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
-                echo 
-                "<tr>
-                  <td><a target='_blank' href='getstatusofenvelope.php?envelopeid=" . $status->EnvelopeID . "'>" . $status->EnvelopeID . "</a></td>
-                  <td>" . $status->Subject . "</td>
-                  <td>" . $status->Status . "</td>
-                </tr>
-                ";
-            };
+        	?> <ul class=""> <?
+	            foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
+		           ?>
+		           		<li>
+		           			<span><strong><?= $status->Subject ?></strong> [<?= $status->Status ?>] - <a href="getstatusofenvelope.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to see a RequestStatus SOAP return for this Envelope"><?= $status->EnvelopeID ?></a></span>
+		           			<ul>
+		           				<!-- Recipients -->
+				           		<li>
+				           			<span>Recipients (<?= count($status->RecipientStatuses->RecipientStatus); ?>)</span>
+				           			<ul id="<?= $status->EnvelopeID; ?>">
+				           				
+				           				<? foreach($status->RecipientStatuses->RecipientStatus as $rcpStatus){ ?>
+				           							<li>
+				           								<?= $rcpStatus->UserName; ?>
+				           							</li>
+				           				<? } ?>
+				           				
+				           			</ul>
+				           		</li>
+				           		
+				           		
+		           				<!-- Documents -->
+		           				<li>
+		           					<span>Documents (<?= count($status->DocumentStatuses->DocumentStatus); ?>)</span>
+		           					<ul>
+		           						<? foreach($status->DocumentStatuses->DocumentStatus as $docStatus){ ?>
+				           						<li>
+				           							<?= $docStatus->Name; ?>
+				           						</li>
+				           				<? } ?>
+		           					</ul>
+		           				</li>
+				           		
+				           	</ul>
+		           		</li>
+		           <?
+	            };
+        	?> </ul> <?
         }
     }
     else {
@@ -85,6 +114,19 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+    	
+    	<script type="text/javascript">
+    			// Invert rows when clicking
+			    function invert(ident) {
+			        var state = document.getElementById(ident).style.display;
+			        if (state == 'block') {
+			            document.getElementById(ident).style.display = 'none';
+			        } else {
+			            document.getElementById(ident).style.display = 'block';
+			        }
+			    }
+			</script>
+			
     	<div class="container">
     		<div class="authbox">
     			<span><?php echo $_SESSION["UserID"]; ?></span> 
@@ -99,14 +141,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 		    	</tr>
 	    	</table>
 	    	<div id="statusDiv">
-	            <table id="statusTable">
-	        		<tr>
-	        			<th>EnvelopeID</th>
-	        			<th>Subject</th>
-	        			<th>Status</th>
-	        		</tr>
-	        		<?php createStatusTable(); ?>
-	            </table>
+	      	<?php createStatusTable(); ?>
 				</div>
 	      <?php include 'include/footer.html';?>
     	</div>
