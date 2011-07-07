@@ -377,10 +377,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    		<table width="100%">
 	    			<tr>
 	    				<td class="rightalign">
-	    					<input name="OneSigner" id="OneSigner" type="submit" value="Create an Envelope with 1 Signer" />
+	    					<input class="docusignbutton orange" name="OneSigner" id="OneSigner" type="submit" value="Create an Envelope with 1 Signer" />
 	    				</td>
 	    				<td class="leftalign">
-	    					<input name="TwoSigners" id="TwoSigners" type="submit" value="Create an Envelope with 2 Signers" />
+	    					<input class="docusignbutton brown" name="TwoSigners" id="TwoSigners" type="submit" value="Create an Envelope with 2 Signers" />
 	    				</td>
 	    			</tr>
 	    		</table>
@@ -403,8 +403,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    				</div>
 	    		<?
 	    			}
+	    			
+	    			// Display the iFrame (if is needed)
+	    			if(isset($_SESSION["embedToken"]) && !empty($_SESSION["embedToken"])){
 	    		?>
-	    		<iframe class="embediframe" width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
+	    				<iframe class="embediframe" width="100%" height="70%" src="<?php echo $_SESSION["embedToken"]; ?>" id="hostiframe" name="hostiframe"></iframe>
+	    		<?
+	    			}
+	    		?>
 				</form>
         <?php include 'include/footer.html';?>
       </div>
