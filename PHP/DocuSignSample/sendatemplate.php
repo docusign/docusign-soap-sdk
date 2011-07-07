@@ -400,10 +400,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <table class="submit">
               <tr>
                   <td>
-                      <input type="submit" value="Send Now" name="SendNow"/>
+                      <input class="docusignbutton orange" type="submit" value="Send Now" name="SendNow"/>
                   </td>
                   <td>
-                      <input type="submit" value="Edit Before Sending" name="EditFirst"/>
+                      <input class="docusignbutton brown" type="submit" value="Edit Before Sending" name="EditFirst"/>
                   </td>
               </tr>
           </table>

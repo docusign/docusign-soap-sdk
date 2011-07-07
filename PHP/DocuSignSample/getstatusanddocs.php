@@ -89,9 +89,12 @@ function createStatusTable() {
 	            };
         	?> </ul> <?
         }
-    }
-    else {
-        echo '<tr><td colspan=3 style="text-align:center">No envelopes yet</td></tr>';
+    } else {
+      // No Envelopes created yet
+			echo '<tr><td><div class="sampleMessage">';
+			echo '	No envelopes created, yet. Use the tabs to create an Envelope.';
+			echo '</div></td></tr>';
+        
     }
 }
 //========================================================================
