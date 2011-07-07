@@ -1,4 +1,6 @@
-﻿<%@ page  session="true" 
+<!--This page takes you out of the signing experience in the iframe, and redirects to the java servlet getstatusanddocs.java which sends you to the status page.  
+The status page tells you what envelopes you have sent in your current session-->﻿
+<%@ page  session="true" 
           import="net.docusign.sample.Utils"
           language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 

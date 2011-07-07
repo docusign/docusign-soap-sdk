@@ -1,3 +1,4 @@
+<!--This is a custom error page with the capability of providing specialized error messages on a page based upon the error type.-->
 <%@ page session="true" import="net.docusign.sample.Utils, java.util.*"
          language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
