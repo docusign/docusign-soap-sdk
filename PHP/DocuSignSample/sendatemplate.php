@@ -410,7 +410,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			          </tr>
 			      	<? endforeach; ?>
 				    </table>
+				    <!--
 			      <input type="button" onclick="addRoleRowToTable()" value="Add Role"/>
+			      -->
 			    </div>
 			    <div>
 			    	<br />
