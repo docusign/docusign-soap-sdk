@@ -37,8 +37,8 @@
         <script type="text/javascript" src="js/jquery.ui.draggable.js"></script>
         <script type="text/javascript" src="js/jquery.ui.position.js"></script>
         <script type="text/javascript" src="js/Utils.js"></script>
-        <script src="../../ui/jquery.ui.tabs.js"></script>
-         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        <script src="js/jquery.ui.tabs.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
         <script type="text/javascript">
             function EnableDisableDiv() {
@@ -52,29 +52,38 @@
             }
         </script>
         <script type="text/javascript">
-            $(document).ready(function () {
-                var today = new Date().getDate();
-                $(".reminders").datepicker({
-                    showOn: "button",
-                    buttonImage: "images/calendar-blue.gif",
-                    buttonImageOnly: true,
-                    minDate: today
+             var ua = $.browser;
+            if (ua.msie!=true) {
+                $(document).ready(function () {
+                    var today = new Date().getDate();
+                    $(".reminders").datepicker({
+                        showOn: "button",
+                        buttonImage: "images/calendar-blue.gif",
+                        buttonImageOnly: true,
+                        minDate: today
+                    });
+                    $(".expiration").datepicker({
+                        showOn: "button",
+                        buttonImage: "images/calendar-blue.gif",
+                        buttonImageOnly: true,
+                        minDate: today + 3
+                    });
+                    $(".switcher li").bind("click", function () {
+                        var act = $(this);
+                        $(act).parent().children('li').removeClass("active").end();
+                        $(act).addClass("active");
+                    });
+
+                    // adding a recipient row as well.
+                    addRecipientRowToTable();
                 });
-                $(".expiration").datepicker({
-                    showOn: "button",
-                    buttonImage: "images/calendar-blue.gif",
-                    buttonImageOnly: true,
-                    minDate: today + 3
-                });
-                $(".switcher li").bind("click", function () {
-                    var act = $(this);
-                    $(act).parent().children('li').removeClass("active").end();
-                    $(act).addClass("active");
-                });
-                
-                // adding a recipient row as well.
-                addRecipientRowToTable();
-            });
+            }
+            else{
+                alert( "You are using Internet Explorer.  As of the development of this sample, jquery tabs and jquery datepicker were not able "+
+                        "to be used simultaneously on internet explorer.  This being the case, datepicker has been disabled for the selection of "+
+                        "reminder dates under send a document and send a template.  All other functionality is intact.  Oh, and use another browser "+
+                        "such as firefox in order to regain functionality and stop seeing this annoying message." );
+            }
         </script>
         <script>
             $(document).ready(function() {
