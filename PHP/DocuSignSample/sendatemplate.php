@@ -162,7 +162,7 @@ function loadTemplates() {
     
     foreach ($templates as $template) {
       echo '<option value="' . $template->TemplateID . '">' .
-          $template->Name . "</option>\n";
+          $template->Name . ' - ' . $template->TemplateID . "</option>\n";
 			// echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
     }
 }
