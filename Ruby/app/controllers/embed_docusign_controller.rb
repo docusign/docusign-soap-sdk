@@ -66,6 +66,8 @@ class EmbedDocusignController < ApplicationController
 
   def sign_first
 
+    @message = "Have the first signer fill out the Envelope"
+
     #Create the assertion using the current time, HTTP authentication and the demo information
     assertion = Docusign::RequestRecipientTokenAuthenticationAssertion.new.tap do |a|
       a.assertion_id           = Time.now.to_i.to_s
@@ -107,6 +109,8 @@ class EmbedDocusignController < ApplicationController
   end
 
   def sign_second
+
+    @message = "The first signer has completed the Envelope. Now the second signer will be asked to fill out details in the Envelope."
 
     #Create the assertion using the current time, HTTP authentication and the demo information
     assertion = Docusign::RequestRecipientTokenAuthenticationAssertion.new.tap do |a|
