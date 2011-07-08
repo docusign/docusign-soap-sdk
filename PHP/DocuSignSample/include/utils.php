@@ -32,6 +32,16 @@ function print_r2($val) {
 }
 
 /**
+ * Prints variable dump pretty for debug and browser
+ * @param unknown_type $val
+ */
+function pr($val) {
+    echo '<pre>';
+    print_r($val);
+    echo  '</pre>';
+}
+
+/**
  * Returns xsd format datetime for start of today
  * @return string
  */

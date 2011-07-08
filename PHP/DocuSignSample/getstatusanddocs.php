@@ -47,19 +47,55 @@ function createStatusTable() {
         }
         
         if (isset($statuses)) {
-            foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
-                echo 
-                "<tr>
-                  <td>" . $status->EnvelopeID . "</td>
-                  <td>" . $status->Subject . "</td>
-                  <td>" . $status->Status . "</td>
-                </tr>
-                ";
-            };
+        	?> <ul class=""> <?
+	            foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
+		           ?>
+		           		<li>
+		           			<span><u><?= $status->Subject ?></u> 
+		           				[<?= $status->Status ?>] - 
+		           				<?= $status->EnvelopeID; ?> 
+		           				<a href="getstatusofenvelope.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to see a RequestStatus SOAP return for this Envelope">View RequestStatus</a>
+		           				&nbsp;&nbsp;<a href="getpdf.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to download PDF for this Envelope">Download PDF</a></span>
+		           			<ul>
+		           				<!-- Recipients -->
+				           		<li>
+				           			<span>Recipients (<?= count($status->RecipientStatuses->RecipientStatus); ?>)</span>
+				           			<ul id="<?= $status->EnvelopeID; ?>">
+				           				
+				           				<? foreach($status->RecipientStatuses->RecipientStatus as $rcpStatus){ ?>
+				           							<li>
+				           								<?= $rcpStatus->UserName; ?>
+				           							</li>
+				           				<? } ?>
+				           				
+				           			</ul>
+				           		</li>
+				           		
+				           		
+		           				<!-- Documents -->
+		           				<li>
+		           					<span>Documents (<?= count($status->DocumentStatuses->DocumentStatus); ?>)</span>
+		           					<ul>
+		           						<? foreach($status->DocumentStatuses->DocumentStatus as $docStatus){ ?>
+				           						<li>
+				           							<?= $docStatus->Name; ?>
+				           						</li>
+				           				<? } ?>
+		           					</ul>
+		           				</li>
+				           		
+				           	</ul>
+		           		</li>
+		           <?
+	            };
+        	?> </ul> <?
         }
-    }
-    else {
-        echo '<tr><td colspan=3 style="text-align:center">No envelopes yet</td></tr>';
+    } else {
+      // No Envelopes created yet
+			echo '<tr><td><div class="sampleMessage">';
+			echo '	No envelopes created, yet. Use the tabs to create an Envelope.';
+			echo '</div></td></tr>';
+        
     }
 }
 //========================================================================
@@ -68,10 +104,10 @@ function createStatusTable() {
 loginCheck();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    echo "";
+	
 }
 else if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    echo "";
+	
 }
 
 ?>
@@ -79,31 +115,44 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <!DOCTYPE html">
 <html>
     <head>
+        <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" type="text/css" href="css/GetStatusAndDocs.css" />
         <script type="text/javascript" src="js/Utils.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <table class="tabs">
-        <tr>
-        	<td><a href="senddocument.php">Send Document</a></td>
-        	<td><a href="sendatemplate.php">Send a Template</a></td>
-        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
-        	<td class="current">Get Status and Docs</td>
-    	</tr>
-    	</table>
-    	<div id="statusDiv">
-            <table id="statusTable">
-        		<tr>
-        			<th>EnvelopeID</th>
-        			<th>Subject</th>
-        			<th>Status</th>
-        		</tr>
-        		<?php createStatusTable(); ?>
-            </table>
-		</div>
-        <?php include 'include/footer.html';?>
-     </body>
+    	
+    	<script type="text/javascript">
+    			// Invert rows when clicking (not implemented, simple enough to view without deep-clicking)
+			    function invert(ident) {
+			        var state = document.getElementById(ident).style.display;
+			        if (state == 'block') {
+			            document.getElementById(ident).style.display = 'none';
+			        } else {
+			            document.getElementById(ident).style.display = 'block';
+			        }
+			    }
+			</script>
+			
+    	<div class="container">
+    		<div class="authbox">
+    			<span><?php echo $_SESSION["UserID"]; ?></span> 
+    			(<a href="index.php?logout">logout</a>)
+    		</div>
+        <table class="tabs" cellspacing="0" cellpadding="0">
+	        <tr>
+	        	<td><a href="senddocument.php">Send Document</a></td>
+	        	<td><a href="sendatemplate.php">Send a Template</a></td>
+	        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
+	        	<td class="current">Get Status and Docs</td>
+		    	</tr>
+	    	</table>
+	    	<div id="statusDiv">
+	      	<?php createStatusTable(); ?>
+				</div>
+	      <?php include 'include/footer.html';?>
+    	</div>
+    </body>
 </html>
 
 

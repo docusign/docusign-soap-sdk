@@ -2190,7 +2190,7 @@ class APIService extends SoapClient {
 	{
 		include_once 'WSSESoap.php';
 		include_once 'WSASoap.php';
-
+				
 		$dom = new DOMDocument('1.0');
 		$dom->loadXML($request);
 		$objWSA = new WSASoap($dom);
@@ -2198,16 +2198,21 @@ class APIService extends SoapClient {
 		$objWSA->addTo($location);
 		$objWSA->addMessageID();
 		$objWSA->addReplyTo();
-
+		
 		$dom = $objWSA->getDoc();
-
+		
 		$objWSSE = new WSSESoap($dom);
+		
 		if (isset($this->_username) && isset($this->_password)) {
-		    $objWSSE->addUserToken($this->_username, $this->_password);
-
+			if(!function_exists('mcrypt_module_get_algo_key_size')){
+				$objWSSE->addUserTokenNoMCrypt($this->_username,$this->_password);
+			} else {
+				$objWSSE->addUserToken($this->_username, $this->_password);
+			}
 		}
+		
 		/* Sign all headers to include signing the WS-Addressing headers */
-		$objWSSE->signAllHeaders = TRUE;
+		$objWSSE->signAllHeaders = TRUE; // Normally uncommented
 
 		$objWSSE->addTimestamp(300);
 		// if you need to do binary certificate signing you can uncomment this (and provide the path to the cert)
@@ -2222,10 +2227,10 @@ class APIService extends SoapClient {
 		/* Add certificate (BinarySecurityToken) to the message and attach pointer to Signature */
 		// $token = $objWSSE->addBinaryToken(file_get_contents(CERT_FILE));
 		// $objWSSE->attachTokentoSig($token);
-
+		
 		$request = $objWSSE->saveXML();
 		$this->_lastRequest = $request;
-
+		
 		return parent::__doRequest($request, $location, $saction, $version);
 	}
 

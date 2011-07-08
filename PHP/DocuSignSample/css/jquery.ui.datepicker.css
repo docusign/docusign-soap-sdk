@@ -8,7 +8,7 @@
  * http://docs.jquery.com/UI/Datepicker#theming
  */
 body {
-	font-size: 62.5%;
+	/*font-size: 62.5%;*/
 }
  
 .ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; font-size: 62.5%;}
