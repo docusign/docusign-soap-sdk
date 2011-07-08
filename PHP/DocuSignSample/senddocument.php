@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * @copyright Copyright (C) DocuSign, Inc.  All rights reserved.
  *
@@ -34,16 +34,14 @@ function buildEnvelope() {
     $envelope = new Envelope();
     if (isset($_POST["subject"])) {
         $envelope->Subject = $_POST["subject"];
-    }
-    else {
+    } else {
         $_SESSION["errorMessage"] = "You must have a subject";
         header("Location: error.php");
     }
     
     if ($_POST["emailBlurb"]) {
         $envelope->EmailBlurb = $_POST["emailBlurb"];
-    }
-    else {
+    } else {
         $_SESSION["errorMessage"] = "You must have an email blurb";
         header("Location: error.php");
     }
@@ -362,17 +360,38 @@ function processOptions($envelope) {
 
 function sendNow($envelope) {
     $api = getAPI();
-
+    
+    /*
+		$header='<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" SOAP-ENV:mustUnderstand="1">
+		<wsse:UsernameToken xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+		<wsse:Username>'.$UserID.'</wsse:Username>
+		<wsse:Password type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">'.$Password.'</wsse:Password>
+		</wsse:UsernameToken>
+		</wsse:Security>';
+		
+		// Set the SOAP Header variables
+		$soap_var_header = new SoapVar( $header, XSD_ANYXML, null, null, null );
+		$soap_header = new SoapHeader( 'https://demo.docusign.net/api/3.0/api.asmx', 'wsse', $soap_var_header );
+		$soapClient->__setSoapHeaders(array($soap_header));
+		*/
+		
     $csParams = new CreateAndSendEnvelope();
     $csParams->Envelope = $envelope;
     try {
         $status = $api->CreateAndSendEnvelope($csParams)->CreateAndSendEnvelopeResult;
         if ($status->Status == EnvelopeStatusCode::Sent) {
-            addEnvelopeID($status->EnvelopeID);
-            header("Location: getstatusanddocs.php?envelopid=" . $status->EnvelopeID . 
-            	"&accountID=" . $envelope->AccountId . "&source=Document");
+	        addEnvelopeID($status->EnvelopeID);
+	        header("Location: getstatusanddocs.php?envelopid=" . $status->EnvelopeID . 
+	        	"&accountID=" . $envelope->AccountId . "&source=Document");
         }
     } catch (SoapFault $e) {
+    	echo "<pre>";
+    	print_r($e);
+    	echo "</pre>";
+    	echo "<pre>";
+    	print_r($api->getLastRequest());
+    	echo "</pre>";
+    	exit;
         $_SESSION["errorMessage"] = $e;
         header("Location: error.php");
     }
@@ -406,16 +425,18 @@ function embedSending($envelope) {
 //========================================================================
 // Main
 //========================================================================
+loginCheck();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $envelope = buildEnvelope();
     if (isset($_POST["SendNow"])) {
-        sendNow($envelope);
+    	sendNow($envelope);
+    	exit;
     }
     else {
-        embedSending($envelope);
+    	embedSending($envelope);
     }
-}
-else if ($_SERVER["REQUEST_METHOD"] == "GET") {
+} else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     echo "";
 }
 ?>
@@ -424,6 +445,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/SendDocument.css" />
         <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
@@ -466,117 +488,154 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET") {
         </script>
     </head>
     <body>
-        <table class="tabs">
-        <tr>
-        	<td class="current">Send Document</td>
-        	<td><a href="sendatemplate.php">Send a Template</a></td>
-        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
-        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
-    	</tr>
-    	</table>
+    	<div class="container">
+    		<div class="authbox">
+    			<span><?php echo $_SESSION["UserID"]; ?></span> 
+    			(<a href="index.php?logout">logout</a>)
+    		</div>
+        <table class="tabs" cellspacing="0" cellpadding="0">
+	        <tr>
+	        	<td class="current">Send Document</td>
+	        	<td><a href="sendatemplate.php">Send a Template</a></td>
+	        	<td><a href="embeddocusign.php">Embed Docusign</a></td>
+	        	<td><a href="getstatusanddocs.php">Get Status and Docs</a></td>
+	    		</tr>
+	    	</table>
         <form id="SendDocumentForm" enctype="multipart/form_data" method="post" >
-            <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
-            <p>
-            </p>
-            <input id="emailBlurb" name="emailBlurb" type="text" placeholder="<enter e-mail blurb>" autocomplete="off" />
-            <p>
-            </p>
-            <table id="recipientList" name="recipientList" class="recipientList">
-                <tr class="recipientListHeader">
-                    <th>
-                        Recipient
-                    </th>
-                    <th>
-                        E-mail
-                    </th>
-                    <th>
-                        Security
-                    </th>
-                    <th>
-                        Send E-mail Invite
-                    </th>
-                </tr>
-            </table>
-            <input type="button" onclick="addRecipientRowToTable()" value="Add Recipient"/>
-            <div id="files">
-                <p>
-                    Document #1:
-                    <input class="upload" id="file1" type="file" name="file1" /></p>
-                <p>
-                    Document #2:
-                    <input class="upload" id="file2" type="file" name="file2"/></p>
-            </div>
-            <table class="optionlist">
-                <tr>
-                    <td>
-                        <input id="sendoption" class="options" type="checkbox" value="stockdoc" name="stockdoc"  onclick="EnableDisableDiv()"/>
-                        Use a stock doc
-                    </td>
-                    <td rowspan="3">
-                        <input type="text" id="reminders" class="datepickers" name="reminders"/><br />
-                        Add Daily Reminders
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" value="addsig" name="addsigs" />
-                        Add Signatures
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" value="addformfield" name="formfields"/>
-                        Add Form Fields
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" value="addcondfield" name="conditionalfields"/>
-                        Add Conditional Fields
-                    </td>
-                    <td rowspan="3">
-                        <input type="text" id="expiration" class="datepickers" name="expiration"/><br />
-                        Add Expiration
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" name="collabfields" value="addcollfield" />
-                        Add Collaborative Fields
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="options" type="checkbox" name="enablepaper" value="enablepaper" />
-                        Enable Signing on Paper
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input class="options" type="checkbox" name="signerattachment" value="reqattachment" />
-                        Request a Signer to Add an Attachment
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input class="options" type="checkbox" name="markup" value="enablemarkup" />
-                        Enable Signers to Mark Up the Documents
-                    </td>
-                </tr>
-            </table>
-            <p />
-            <table class="submit">
-                <tr>
-                    <td>
-                        <input type="submit" value="Send Now" name="SendNow"/>
-                    </td>
-                    <td>
-                        <input type="submit" value="Edit Before Sending" name="EditFirst"/>
-                    </td>
-                </tr>
-            </table>
+        	<input id="subject" name="subject" type="text" value="Test Subject" placeholder="<enter the subject>" autocomplete="off"/>
+          <br />
+          <br />
+		      <textarea id="emailblurb" cols="20" name="emailBlurb" placeholder="<enter the e-mail blurb>" rows="4" class="email">Test Body</textarea>
+          <br />
+          <br />
+          <table id="recipientList" name="recipientList" class="recipientList">
+	          <tr class="recipientListHeader">
+	              <th>
+	                  Recipient
+	              </th>
+	              <th>
+	                  E-mail
+	              </th>
+	              <th>
+	                  Security
+	              </th>
+	              <th>
+	                  Send E-mail Invite
+	              </th>
+	          </tr>
+	          <tr id="Recipient1">
+	          	<td>
+	          		<input type="text" name="RecipientName[1]" id="txtRow1" value="Nick Reed" >
+	          	</td>
+	          	<td>
+	          		<input type="email" name="RecipientEmail[1]" id="txtRow1" value="nicholas.a.reed@gmail.com">
+	          	</td>
+	          	<td>
+	          		<select id="RecipientSecurity1" name="RecipientSecurity[1]" onchange="EnableDisableInput(1);">
+	          			<option value="None">None</option>
+	          			<option value="IDCheck">ID Check</option>
+	          			<option value="AccessCode">Access Code:</option>
+	          			<option value="PhoneAuthentication">Phone Authentication</option>
+	          		</select>
+	          		<input type="text" name="RecipientSecuritySetting[1]" id="RecipientSecuritySetting1" value="12345" style="display: none;">
+	          	</td>
+	          	<td>
+	          		<ul class="switcher">
+	          			<li class="active">
+	          				<a href="#" title="On">ON</a>
+	          			</li>
+	          			<li>
+	          				<a href="#" title="OFF">OFF</a>
+	          			</li>
+	          			<input title="RecipientInviteToggle1" id="RecipientInviteToggle1" name="RecipientInviteToggle[1]" type="checkbox" style="display: none; ">
+	          		</ul>
+	          	</td>
+          	</tr>
+          </table>
+          <input type="button" onclick="addRecipientRowToTable()" value="Add Recipient"/>
+          <br />
+          <br />
+          <div id="files" style="display:none;">
+              <p>
+                  Document #1:
+                  <input class="upload" id="file1" type="file" name="file1" /></p>
+              <p>
+                  Document #2:
+                  <input class="upload" id="file2" type="file" name="file2"/></p>
+          </div>
+          <table class="optionlist">
+              <tr>
+                  <td>
+                      <input id="sendoption" class="options" type="checkbox" value="stockdoc" name="stockdoc"  onclick="EnableDisableDiv()" checked/>
+                      Use a stock doc
+                  </td>
+                  <td rowspan="3">
+                      <input type="text" id="reminders" class="datepickers" name="reminders"/><br />
+                      Add Daily Reminders
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" value="addsig" name="addsigs" checked />
+                      Add Signatures
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" value="addformfield" name="formfields"/>
+                      Add Form Fields
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" value="addcondfield" name="conditionalfields"/>
+                      Add Conditional Fields
+                  </td>
+                  <td rowspan="3">
+                      <input type="text" id="expiration" class="datepickers" name="expiration"/><br />
+                      Add Expiration
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" name="collabfields" value="addcollfield" />
+                      Add Collaborative Fields
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input class="options" type="checkbox" name="enablepaper" value="enablepaper" />
+                      Enable Signing on Paper
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <input class="options" type="checkbox" name="signerattachment" value="reqattachment" />
+                      Request a Signer to Add an Attachment
+                  </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                      <input class="options" type="checkbox" name="markup" value="enablemarkup" />
+                      Enable Signers to Mark Up the Documents
+                  </td>
+              </tr>
+          </table>
+          <br />
+          <br />
+          <table class="submit">
+              <tr>
+                  <td>
+                      <input class="docusignbutton orange" type="submit" value="Send Now" name="SendNow"/>
+                  </td>
+                  <td>
+                      <input class="docusignbutton brown" type="submit" value="Edit Before Sending" name="EditFirst"/>
+                  </td>
+              </tr>
+          </table>
         </form>
         <?php include 'include/footer.html';?>
+      </div>
     </body>
 </html>
 

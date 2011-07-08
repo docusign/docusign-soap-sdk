@@ -14,7 +14,6 @@ function loginCheck(){
     if (!isset($_SESSION["LoggedIn"]) || ($_SESSION["LoggedIn"] <> true )){
         header("Location: index.php");
     }
-
 }
 
 function checkSessionValue($key, $val){
