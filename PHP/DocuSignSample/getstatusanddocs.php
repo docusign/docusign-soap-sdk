@@ -54,7 +54,8 @@ function createStatusTable() {
 		           			<span><u><?= $status->Subject ?></u> 
 		           				[<?= $status->Status ?>] - 
 		           				<?= $status->EnvelopeID; ?> 
-		           				<a href="getstatusofenvelope.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to see a RequestStatus SOAP return for this Envelope">View RequestStatus</a></span>
+		           				<a href="getstatusofenvelope.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to see a RequestStatus SOAP return for this Envelope">View RequestStatus</a>
+		           				&nbsp;&nbsp;<a href="getpdf.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to download PDF for this Envelope">Download PDF</a></span>
 		           			<ul>
 		           				<!-- Recipients -->
 				           		<li>
