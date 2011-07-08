@@ -185,6 +185,16 @@ div.signermessage {
     margin: 10px;
     padding: 10px;
     text-align: center;
-    border: 1px solid red;
-    background: #F99;
+    border: 1px solid #e57200;
+    background: #e57200;
+}
+
+a.errorShow{
+    color:#e57200;
+    font-weight:bold;
+}
+
+p.errorMessage{
+    display:none;
+    margin-left:20px;
 }

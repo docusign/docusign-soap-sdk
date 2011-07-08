@@ -4,19 +4,20 @@
         var today = new Date().getDate();
         $("#reminders").datepicker({
             showOn: "button",
-            buttonImage: "<%=root_url%>images/calendar-blue.gif",
+            buttonImage: "<%=root_url%>images/calendar.png",
             buttonImageOnly: true,
             minDate: today
         });
         $("#expiration").datepicker({
             showOn: "button",
-            buttonImage: "<%=root_url%>images/calendar-blue.gif",
+            buttonImage: "<%=root_url%>images/calendar.png",
             buttonImageOnly: true,
             minDate: today
         });
     });
 </script>
 <%= form_tag("send_template", :method => :post) do%>
+    <p>Template Chosen: <strong><%=@name%></strong></p>
     <%= text_field_tag('template_id', nil, :value => @template_id, :hidden => true)  %>
     <div>
       <%= text_field_tag('subject', nil, :placeholder => '<enter the subject>', :class => 'email')%><!--<img alt="" src="" class="helplink" />--><br />
