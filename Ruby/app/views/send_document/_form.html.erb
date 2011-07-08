@@ -5,13 +5,13 @@
         var today = new Date().getDate();
         $("#reminders").datepicker({
             showOn: "button",
-            buttonImage: "<%=root_url%>images/calendar-blue.gif",
+            buttonImage: "<%=root_url%>images/calendar.png",
             buttonImageOnly: true,
             minDate: today
         });
         $("#expiration").datepicker({
             showOn: "button",
-            buttonImage: "<%=root_url%>images/calendar-blue.gif",
+            buttonImage: "<%=root_url%>images/calendar.png",
             buttonImageOnly: true,
             minDate: today + 3
         });
@@ -53,7 +53,7 @@
           <ul class="switcher" id="RecipientInvite1">
             <li id="RecipientInviteon1" class="active"><a href="#" title="On">ON</a></li>
             <li id="RecipientInviteoff1"><a href="#" title="OFF">OFF</a></li>
-            <%= check_box_tag('RecipientInviteToggle1', 'true', true, :style => 'display:none') %>
+            <%= check_box_tag('RecipientInviteToggle1', 'true', true, :style => 'display:none;') %>
           </ul>
         </td>
       </tr>
@@ -81,21 +81,21 @@
       </tr>
       <tr>
         <td>
-          <%= check_box_tag('addsig', 'true', false, :class => 'options') %>
+          <%= check_box_tag('addsig', 'true', false, :checked => true, :class => 'options') %>
           Add Signatures
           <!--<img alt="" src="" class="helplink" />-->
         </td>
       </tr>
       <tr>
         <td>
-          <%= check_box_tag('formfields', 'true', false, :class => 'options') %>
+          <%= check_box_tag('formfields', 'true', false, :checked => true, :class => 'options') %>
           Add Form Fields
           <!--<img alt="" src="" class="helplink" />-->
         </td>
       </tr>
       <tr>
         <td>
-          <%= check_box_tag('conditionalfields', 'true', false, :class => 'options') %>
+          <%= check_box_tag('conditionalfields', 'true', false, :checked => true, :class => 'options') %>
           Add Conditional Fields
           <!--<img alt="" src="" class="helplink" />-->
         </td>

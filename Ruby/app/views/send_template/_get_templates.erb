@@ -9,7 +9,7 @@
         <tr>
           <td><%= select(:tname, :tid, @templates.collect{|t| [t.templateID +
                                                                        ': ' +
-                                                                       t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Go', :name => 'LoadTemplate')%>
+                                                                       t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Select Template', :name => 'LoadTemplate', :class => "docusignbutton orange")%>
           </td>
         </tr>
       </table>

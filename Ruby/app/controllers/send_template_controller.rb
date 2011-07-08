@@ -18,7 +18,7 @@ class SendTemplateController < ApplicationController
   end
 
   def get_template
-    if params[:LoadTemplate].eql?('Go')
+    if params[:LoadTemplate].eql?('Select Template')
       @template_id = params[:tname][:tid]
 
       #Request a particular template from the account
@@ -30,6 +30,7 @@ class SendTemplateController < ApplicationController
 
       #Construct the recipient information to display during envelope customization
       recipients = template.envelope.recipients
+      @name = template.envelopeTemplateDefinition.name
       @signers = Array.new
       if !recipients.nil?
         recipients.each do |r|
