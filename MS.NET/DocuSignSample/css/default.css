@@ -13,13 +13,6 @@ input.docusignbutton
 	font: 14px/100% Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	padding: .5em 2em .55em;
-	text-shadow: 0 1px 1px rgba(0,0,0,.3);
-	-webkit-border-radius: .5em;
-	-moz-border-radius: .5em;
-	border-radius: .5em;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
 }
 
 .blue {
@@ -29,6 +22,45 @@ input.docusignbutton
 	background: -webkit-gradient(linear, left top, left bottom, from(#ADD3F4), to(#1A7CD5));
 	background: -moz-linear-gradient(top,  #ADD3F4,  #1A7CD5);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ADD3F4', endColorstr='#1A7CD5');
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.orange{
+	color: #fef4e9;
+	border: solid 1px #e57200;
+	background: #e57200;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e57200), to(#ec9b49));
+	background: -moz-linear-gradient(top,  #e57200,  #ec9b49);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#e57200', endColorstr='#ec9b49');
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+	-moz-box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+	box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+}
+
+.brown{
+	color: #fef4e9;
+	border: solid 1px #3d2817;
+	background: #3d2817;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3d2817), to(#6d5d51));
+	background: -moz-linear-gradient(top,  #3d2817,  #6d5d51);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d2817', endColorstr='#6d5d51');
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
+	-moz-box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
+	box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
 }
 
 .addthis_toolbox.addthis_pill_combo a {
@@ -146,4 +178,22 @@ input.docusignbutton
 	border-width:9px 21px 9px 0;
 	border-color:transparent #F1F1F1;
 	
+}
+
+div.signerMessage {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #e57200;
+    background: #e57200;
+}
+
+a.errorShow{
+    color:#e57200;
+    font-weight:bold;
+}
+
+p.errorMessage{
+    display:none;
+    margin-left:20px;
 }

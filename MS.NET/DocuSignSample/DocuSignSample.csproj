@@ -167,14 +167,14 @@
     <Content Include="Error.aspx" />
     <Content Include="GetStatusAndDocs.aspx" />
     <Content Include="images\blog.png" />
-    <Content Include="images\calendar-blue.gif" />
+    <Content Include="images\calendar.png" />
     <Content Include="images\follow-us_reasonably_small.png" />
     <Content Include="images\icon-facebook.png" />
     <Content Include="images\icon-linkedin.png" />
     <Content Include="images\icon-rss.png" />
     <Content Include="images\icon-twitter.png" />
     <Content Include="images\icon-youtube.png" />
-    <Content Include="images\open.gif" />
+    <Content Include="images\plus.png" />
     <Content Include="images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="images\ui-bg_glass_55_fbf9ee_1x400.png" />
     <Content Include="images\ui-bg_glass_65_ffffff_1x400.png" />

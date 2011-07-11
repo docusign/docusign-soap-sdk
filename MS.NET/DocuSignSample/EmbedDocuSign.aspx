@@ -8,16 +8,17 @@
     <table width="100%" id="buttonTable" name="buttonTable" runat="server">
         <tr>
             <td class="rightalign">
-                <input id="OneSigner" type="submit" name="OneSigner" class="docusignbutton blue"
+                <input id="OneSigner" type="submit" name="OneSigner" class="docusignbutton orange"
                     value="Create an Envelope with 1 Signer" />
             </td>
             <td class="leftalign">
-                <input id="TwoSigners" type="submit" name="TwoSigners" class="docusignbutton blue"
+                <input id="TwoSigners" type="submit" name="TwoSigners" class="docusignbutton brown"
                     value="Create an Envelope with 2 Signers" />
             </td>
         </tr>
     </table>
     </form>
+    <div class="signerMessage" id="messagediv" name="messagediv" runat="server" visible="false"><%=signerMessage %></div>
     <iframe width="100%" height="70%" src="" id="hostiframe" name="hostiframe" runat="server">
     </iframe>
 </asp:Content>

@@ -120,7 +120,7 @@ a.dp-choose-date
     display: block;
     text-indent: -2000px;
     overflow: hidden;
-    background: url(../images/calendar-blue.gif) no-repeat;
+    background: url(../images/calendar.png) no-repeat;
 }
 a.dp-choose-date.dp-disabled
 {
@@ -195,8 +195,8 @@ li:last-child a
 {
     color: #000;
     text-shadow: 0 1px 1px #000;
-    background: -webkit-gradient(linear, 0 bottom, 0 top, from(#9ab4c2), to(#e7e3f8));
-    background: -moz-linear-gradient(-90deg, #9ab4c2, #e7e3f8 );
+    background: -webkit-gradient(linear, 0 bottom, 0 top, from(#E57200), to(#EC9B49));
+    background: -moz-linear-gradient(-90deg, #E57200, #EC9B49 );
     -webkit-box-shadow: inset 0 1px 1px #17161c;
     -moz-box-shadow: inset 0 1px 1px #17161c;
     box-shadow: inset 0 1px 1px #17161c;

@@ -21,13 +21,13 @@
             var today = new Date().getDate();
             $("#reminders").datepicker({
                 showOn: "button",
-                buttonImage: "images/calendar-blue.gif",
+                buttonImage: "images/calendar.png",
                 buttonImageOnly: true,
                 minDate: today
             });
             $("#expiration").datepicker({
                 showOn: "button",
-                buttonImage: "images/calendar-blue.gif",
+                buttonImage: "images/calendar.png",
                 buttonImageOnly: true,
                 minDate: today + 3
             });
@@ -79,7 +79,7 @@
                     <li id="RecipientInviteon1" class="active"><a href="#" title="On">ON</a></li>
                     <li id="RecipientInviteoff1"><a href="#" title="OFF">OFF</a></li>
                     <input id="RecipientInviteToggle1" name="RecipientInviteToggle1" value="RecipientInviteToggle1"
-                        type="checkbox" checked style="display: none" />
+                        type="checkbox" checked style="display:none;" />
                 </ul>
             </td>
         </tr>
@@ -109,21 +109,21 @@
         </tr>
         <tr>
             <td>
-                <input class="options" type="checkbox" value="addsig" name="addsigs" />
+                <input class="options" type="checkbox" value="addsig" name="addsigs" checked/>
                 Add Signatures
                 <!--<img alt="" src="" class="helplink" />-->
             </td>
         </tr>
         <tr>
             <td>
-                <input class="options" type="checkbox" value="addformfield" name="formfields" />
+                <input class="options" type="checkbox" value="addformfield" name="formfields" checked/>
                 Add Form Fields
                 <!--<img alt="" src="" class="helplink" />-->
             </td>
         </tr>
         <tr>
             <td>
-                <input class="options" type="checkbox" value="addcondfield" name="conditionalfields" />
+                <input class="options" type="checkbox" value="addcondfield" name="conditionalfields" checked/>
                 Add Conditional Fields
                 <!--<img alt="" src="" class="helplink" />-->
             </td>
@@ -167,11 +167,11 @@
             <td class="fourcolumn">
             </td>
             <td class="fourcolumn">
-                <input type="submit" value="Send Now" name="SendNow" style="width: 100%;" class="docusignbutton blue" />
+                <input type="submit" value="Send Now" name="SendNow" style="width: 100%;" class="docusignbutton orange" />
             </td>
             <td class="fourcolumn">
                 <input type="submit" value="Edit Before Sending" name="EditFirst" style="width: 100%;"
-                    class="docusignbutton blue" />
+                    class="docusignbutton brown" />
             </td>
             <td class="fourcolumn">
             </td>
