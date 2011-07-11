@@ -40,7 +40,6 @@ public class Utils {
 	public static final String PAGE_GETSTATUS = "mainpage.jsp#tabs-4"; //getstatusanddocs.jsp
 	public static final String PAGE_POP = "pop.jsp";
 	public static final String PAGE_SENDTEMPLATE = "sendatemplate.jsp";
-	public static final String PAGE_SUCCESS = "sendsuccess.jsp";
         public static final String PAGE_MAIN = "mainpage.jsp";
 	
 	// Controller classes

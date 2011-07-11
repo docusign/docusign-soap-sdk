@@ -1,3 +1,6 @@
+//If you successfully log in, the login servlet ("login.java") will redirect you to this servlet.  This servlet's doGet method will redirect to "mainpage.jsp".
+//The main functionality of this servlet is to send documents, which it does via the doPost method when you enter and submit data from either the first tab on
+//"mainpage.jsp or the separate "senddocument.jsp".
 package net.docusign.sample;
 
 import java.io.BufferedReader;
@@ -266,8 +269,7 @@ public class SendDocument extends HttpServlet {
 			envelope.getNotification().getReminders().setReminderEnabled(true);
 			String reminder = request.getParameter(Utils.NAME_REMINDERS).toString();
 			long days = Utils.daysBetween(new SimpleDateFormat("M/d/y").parse(reminder), new Date());
-			envelope.getNotification().getReminders().setReminderDelay(
-					new BigInteger(Long.toString(days)));
+			envelope.getNotification().getReminders().setReminderDelay(new BigInteger(Long.toString(days)));
 			envelope.getNotification().getReminders().setReminderFrequency(new BigInteger("2"));
 		}
 		if (request.getParameter(Utils.NAME_EXPIRATION).toString().length() > 0) {
