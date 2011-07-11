@@ -15,17 +15,20 @@
     <script type="text/javascript" src="js/jquery.ui.position.js"></script>
     <script type="text/javascript" src="js/Utils.js"></script>
     <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+            activate();
+        });
         $(function () {
             var today = new Date().getDate();
             $("#reminders").datepicker({
                 showOn: "button",
-                buttonImage: "images/calendar-blue.gif",
+                buttonImage: "images/calendar.png",
                 buttonImageOnly: true,
                 minDate: today
             });
             $("#expiration").datepicker({
                 showOn: "button",
-                buttonImage: "images/calendar-blue.gif",
+                buttonImage: "images/calendar.png",
                 buttonImageOnly: true,
                 minDate: today
             });
@@ -106,11 +109,11 @@
                 </td>
                 <td class="leftbutton">
                     <input type="submit" value="Send Now" name="SendNow" align="right" style="width: 100%;"
-                        class="docusignbutton blue" />
+                        class="docusignbutton orange" />
                 </td>
                 <td class="rightbutton">
                     <input type="submit" value="Edit Before Sending" name="EditFirst" align="left" style="width: 100%;"
-                        class="docusignbutton blue" />
+                        class="docusignbutton brown" />
                 </td>
                 <td class="fourcolumn">
                 </td>

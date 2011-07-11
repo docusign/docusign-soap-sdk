@@ -141,7 +141,7 @@ namespace DocuSignSample
             {
                 System.Web.UI.HtmlControls.HtmlGenericControl containerDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
                 System.Web.UI.HtmlControls.HtmlGenericControl info = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
-                info.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail" + "');\"><img src=\"images/open.gif\"></a> " + status.Subject + " (" + status.Status.ToString() + ") - " + status.EnvelopeID;
+                info.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail" + "');\"><img src=\"images/plus.png\"></a> " + status.Subject + " (" + status.Status.ToString() + ") - " + status.EnvelopeID;
                 containerDiv.Controls.Add(info);
                 System.Web.UI.HtmlControls.HtmlGenericControl envelopeDetail = CreateEnvelopeTable(status);
                 envelopeDetail.Attributes["class"] = "detail";
@@ -166,7 +166,7 @@ namespace DocuSignSample
             {
                 System.Web.UI.HtmlControls.HtmlGenericControl info = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
 
-                info.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail_Recipient_" + recipient.UserName + "');\"><img src=\"images/open.gif\"></a> Recipient - " +
+                info.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail_Recipient_" + recipient.UserName + "');\"><img src=\"images/plus.png\"></a> Recipient - " +
                     recipient.UserName + ": " + recipient.Status.ToString();
                 if (recipient.Status != DocuSignAPI.RecipientStatusCode.Completed && recipient.ClientUserId != null)
                 {
@@ -191,7 +191,7 @@ namespace DocuSignSample
             }
 
             System.Web.UI.HtmlControls.HtmlGenericControl documents = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
-            documents.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail_Documents" + "');\"><img src=\"images/open.gif\"></a> Documents";
+            documents.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail_Documents" + "');\"><img src=\"images/plus.png\"></a> Documents";
             if (status.Status == DocuSignAPI.EnvelopeStatusCode.Completed)
             {
                 documents.InnerHtml += " <input type=\"submit\" id=\"" + status.EnvelopeID + "\" value=\"Download\" name=\"" + status.EnvelopeID + "\";>";

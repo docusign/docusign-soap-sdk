@@ -10,6 +10,7 @@ namespace DocuSignSample
     public partial class EmbedDocuSign : BasePage
     {
         protected bool _oneSigner = true;
+        protected string signerMessage;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,7 +18,7 @@ namespace DocuSignSample
             {
                 // Check to see if we're coming back after signing as the first signer
                 DocuSignAPI.EnvelopeStatus status = (DocuSignAPI.EnvelopeStatus)Session["EnvelopeStatus"];
-                if (status == null)
+                if (status == null || Request["event"] == null)
                 {
                     hostiframe.Visible = false;
                 }
@@ -136,6 +137,10 @@ namespace DocuSignSample
                 base.GoToErrorPage(ex.Message);
             }
 
+            // Set the signer message
+            signerMessage = "Have the first signer fill out the Envelope";
+            messagediv.Visible = true;
+
             // Set the source of the iframe to the token
             hostiframe.Visible = true;
             hostiframe.Attributes["src"] = token;
@@ -179,6 +184,10 @@ namespace DocuSignSample
             {
                 base.GoToErrorPage(ex.Message);
             }
+
+            // Set the signer message
+            signerMessage = "The first signer has completed the Envelope. Now the second signer will be asked to fill out details in the Envelope.";
+            messagediv.Visible = true;
 
             // Set the source of the iframe to the token
             hostiframe.Visible = true;

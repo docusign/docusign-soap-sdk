@@ -156,6 +156,13 @@ namespace DocuSignSample
                     r.ID = i.ToString();
                     r.RoleName = Request.Form["RecipientRole" + i];
                     r.Type = DocuSignAPI.RecipientTypeCode.Signer;
+
+                    if (Request.Form["RecipientInviteToggle" + i] == null)
+                    {
+                        // we want an embedded signer
+                        r.CaptiveInfo = new DocuSignAPI.RecipientCaptiveInfo();
+                        r.CaptiveInfo.ClientUserId = i.ToString();
+                    }
                     runningList.Add(r);
                 }
                 else
@@ -264,7 +271,12 @@ namespace DocuSignSample
 
                 securityCell.InnerHtml = "<input id=\"RecipientSecurity\" type=\"text\" readonly=\"true\" name=\"RecipientSecurity" + i.ToString() + "\" value=\"" + security + "\"/>";
 
-                inviteCell.InnerHtml = "<ul class=\"switcher\" name=\"RecipientInvite1\" ><li class=\"active\"><a href=\"#\" title=\"On\">ON</a></li><li><a href=\"#\" title=\"OFF\">OFF</a></li></ul>";
+                inviteCell.InnerHtml = "<ul class=\"switcher\" name=\"RecipientInvite" + i.ToString() + "\" ><li class=\"active\"><a href=\"#\" title=\"On\">ON</a></li><li><a href=\"#\" title=\"OFF\">OFF</a></li><input id=\"RecipientInviteToggle" + i.ToString() + "\" name=\"RecipientInviteToggle" + i.ToString() + "\" value=\"RecipientInviteToggle" + i.ToString() + "\" type=\"checkbox\" checked=\"\" style=\"display: none\"></ul>";
+                //<ul class="switcher" id="RecipientInvite1">
+                //    <li id="RecipientInviteon1" class="active"><a href="#" title="On">ON</a></li>
+                //    <li id="RecipientInviteoff1"><a href="#" title="OFF">OFF</a></li>
+                //    <input id="RecipientInviteToggle1" name="RecipientInviteToggle1" value="RecipientInviteToggle1" type="checkbox" checked="" style="display: none">
+                //</ul>
                 inviteCell.Attributes["ID"] = String.Format("RecipientInvite{0}", recipient.ID);
                 inviteCell.Attributes["name"] = String.Format("RecipientInvite{0}", recipient.ID);
 

@@ -22,9 +22,9 @@ namespace DocuSignSample
             else
             {
                 // Prepopulate any of the fields we can from the web.config
-                if (Session["APIUserEmail"] != null)
+                if (Session["APIEmail"] != null)
                 {
-                    email = Session["APIUserEmail"].ToString();
+                    email = Session["APIEmail"].ToString();
                 }
                 if (Session["APIPassword"] != null)
                 {

@@ -76,6 +76,7 @@
     var inputHidden = document.createElement('input');
     inputHidden.title = 'RecipientInviteToggle' + iteration;
     inputHidden.id = 'RecipientInviteToggle' + iteration;
+    inputHidden.name = 'RecipientInviteToggle' + iteration;
     inputHidden.checked = true;
     inputHidden.type = 'checkbox';
     inputHidden.style.display = "none";
