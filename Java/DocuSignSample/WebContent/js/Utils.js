@@ -1,4 +1,4 @@
-//=====
+﻿//=====
 // Add row to recipient table on senddocument.php
 //=====
 function addRecipientRowToTable() {
@@ -35,22 +35,22 @@ function addRecipientRowToTable() {
     var noneopt = document.createElement('option');
     noneopt.text = 'None';
     noneopt.value = 'None';
-    security.options.add(noneopt);
+    security.add(noneopt);
 
     var idopt = document.createElement('option');
     idopt.text = 'ID Check';
     idopt.value = 'IDCheck';
-    security.options.add(idopt);
+    security.add(idopt);
 
     var accessopt = document.createElement('option');
     accessopt.text = 'Access Code:';
     accessopt.value = 'AccessCode';
-    security.options.add(accessopt);
+    security.add(accessopt);
 
     var phoneopt = document.createElement('option');
     phoneopt.text = 'Phone Authentication';
     phoneopt.value = 'PhoneAuthentication';
-    security.options.add(phoneopt);
+    security.add(phoneopt);
 
     cellMiddle2.appendChild(security);
     
@@ -141,17 +141,17 @@ function addRoleRowToTable() {
     var noneopt = document.createElement('option');
     noneopt.text = 'None';
     noneopt.value = 'None';
-    security.options.add(noneopt);
+    security.add(noneopt);
 
     var accessopt = document.createElement('option');
     accessopt.text = 'Access Code:';
     accessopt.value = 'AccessCode';
-    security.options.add(accessopt);
+    security.add(accessopt);
 
     var phoneopt = document.createElement('option');
     phoneopt.text = 'Phone Authentication';
     phoneopt.value = 'PhoneAuthentication';
-    security.options.add(phoneopt);
+    security.add(phoneopt);
 
     cellMiddle3.appendChild(security);
     
