@@ -148,7 +148,7 @@ function loadTemplates() {
     
     $rtParams = new RequestTemplates();
     $rtParams->AccountID = $_SESSION["AccountID"];
-    $rtParams->IncludeAdvancedTemplates = "false";
+    $rtParams->IncludeAdvancedTemplates = true;
     
     $templates = array();
     try {
