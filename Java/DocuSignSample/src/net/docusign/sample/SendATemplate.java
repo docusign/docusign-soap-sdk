@@ -84,7 +84,8 @@ public class SendATemplate extends HttpServlet {
 		}
 	}
 
-	private void createSampleEnvelope(HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
+	private void createSampleEnvelope(HttpServletRequest request, HttpServletResponse response) 
+			throws ParseException, IOException {
 		HttpSession session = request.getSession();
 		EnvelopeInformation envInfo = new EnvelopeInformation();
 		envInfo.setSubject(request.getParameter(Utils.NAME_SUBJECT));
@@ -94,8 +95,11 @@ public class SendATemplate extends HttpServlet {
 		if (request.getParameter(Utils.NAME_REMINDERS).length() > 0) {
 			envInfo.setNotification(new Notification());
 			envInfo.getNotification().setReminders(new Reminders());
-			long days = Utils.daysBetween(new SimpleDateFormat("mm/ss/yyyy").parse(request.getParameter(Utils.NAME_REMINDERS)), new Date());
-			envInfo.getNotification().getReminders().setReminderDelay(new BigInteger(Long.toString(days)));
+			long days = Utils.daysBetween(new SimpleDateFormat("mm/ss/yyyy").parse(
+					request.getParameter(Utils.NAME_REMINDERS)), 
+					new Date());
+			envInfo.getNotification().getReminders().setReminderDelay(
+					new BigInteger(Long.toString(days)));
 			envInfo.getNotification().getReminders().setReminderFrequency(new BigInteger("2"));
 		}
 		
@@ -103,9 +107,13 @@ public class SendATemplate extends HttpServlet {
 			envInfo.setNotification(new Notification());
 			envInfo.getNotification().setExpirations(new Expirations());
 			envInfo.getNotification().getExpirations().setExpireEnabled(true);
-			long days = Utils.daysBetween(new SimpleDateFormat("mm/ss/yyyy").parse(request.getParameter(Utils.NAME_EXPIRATION)), new Date());
-			envInfo.getNotification().getExpirations().setExpireAfter(new BigInteger(Long.toString(days)));
-			envInfo.getNotification().getExpirations().setExpireWarn(new BigInteger(Long.toString(days - 2)));
+			long days = Utils.daysBetween(new SimpleDateFormat("mm/ss/yyyy").parse(
+					request.getParameter(Utils.NAME_EXPIRATION)), 
+					new Date());
+			envInfo.getNotification().getExpirations().setExpireAfter(
+					new BigInteger(Long.toString(days)));
+			envInfo.getNotification().getExpirations().setExpireWarn(
+					new BigInteger(Long.toString(days - 2)));
 		}
 		
 		// get all recipients
@@ -127,7 +135,8 @@ public class SendATemplate extends HttpServlet {
 		}
 	}
 
-	private ArrayOfTemplateReferenceRoleAssignment createFinalRoleAssignments(ArrayOfRecipient recipients) {
+	private ArrayOfTemplateReferenceRoleAssignment createFinalRoleAssignments(
+			ArrayOfRecipient recipients) {
 		ArrayOfTemplateReferenceRoleAssignment tras = new ArrayOfTemplateReferenceRoleAssignment();
 		for (Recipient r : recipients.getRecipient()) {
 			TemplateReferenceRoleAssignment assign = new TemplateReferenceRoleAssignment();

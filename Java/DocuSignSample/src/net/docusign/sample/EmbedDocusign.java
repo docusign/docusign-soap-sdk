@@ -75,7 +75,7 @@ public class EmbedDocusign extends HttpServlet {
 			else {
 				request.getSession().setAttribute(Utils.SESSION_EMBEDTOKEN, "");
 			}
-			response.sendRedirect(Utils.PAGE_MAIN+"#tabs-3");
+			response.sendRedirect(Utils.PAGE_EMBEDDOCUSIGN);
 		}
 	}
 
@@ -86,7 +86,7 @@ public class EmbedDocusign extends HttpServlet {
 		_oneSigner = (request.getParameter(Utils.NAME_ONESIGNER) != null);
 		try {
 			createAndSend(request);
-			response.sendRedirect(Utils.PAGE_MAIN+"#tabs-3");
+			response.sendRedirect(Utils.PAGE_EMBEDDOCUSIGN);
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
