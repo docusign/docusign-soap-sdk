@@ -1,8 +1,8 @@
 <?php
 // TODO: Use Integrator's Key from Docusign DevCenter Account Preferences API
-$IntegratorsKey = "NIVI-97ac6968-0cc1-44c0-879e-2f7719eca8db";
+$IntegratorsKey = "";
 // TODO: Use your Docusign DevCenter Account email
-$UserID = "nicholas.a.reed@gmail.com";
+$UserID = "";
 // TODO: Use your Docusign DevCenter Account password
 $Password = "";
 

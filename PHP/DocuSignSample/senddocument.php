@@ -525,10 +525,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	          </tr>
 	          <tr id="Recipient1">
 	          	<td>
-	          		<input type="text" name="RecipientName[1]" id="txtRow1" value="Nick Reed" >
+	          		<input type="text" name="RecipientName[1]" id="txtRow1" value="" >
 	          	</td>
 	          	<td>
-	          		<input type="email" name="RecipientEmail[1]" id="txtRow1" value="nicholas.a.reed@gmail.com">
+	          		<input type="email" name="RecipientEmail[1]" id="txtRow1" value="">
 	          	</td>
 	          	<td>
 	          		<select id="RecipientSecurity1" name="RecipientSecurity[1]" onchange="EnableDisableInput(1);">
