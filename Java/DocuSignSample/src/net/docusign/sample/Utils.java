@@ -37,10 +37,10 @@ public class Utils {
 	public static final String PAGE_EMBEDDOCUSIGN = "embeddocusign.jsp";
 	public static final String PAGE_EMBEDSEND = "embedsending.jsp";
 	public static final String PAGE_ERROR = "error.jsp";
-	public static final String PAGE_GETSTATUS = "mainpage.jsp#tabs-4"; //getstatusanddocs.jsp
+	public static final String PAGE_GETSTATUS = "getstatusanddocs.jsp";
 	public static final String PAGE_POP = "pop.jsp";
 	public static final String PAGE_SENDTEMPLATE = "sendatemplate.jsp";
-        public static final String PAGE_MAIN = "mainpage.jsp";
+	public static final String PAGE_SUCCESS = "sendsuccess.jsp";
 	
 	// Controller classes
 	public static final String CONTROLLER_LOGIN = "Login";

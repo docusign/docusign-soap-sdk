@@ -1,6 +1,3 @@
-//If you successfully log in, the login servlet ("login.java") will redirect you to this servlet.  This servlet's doGet method will redirect to "mainpage.jsp".
-//The main functionality of this servlet is to send documents, which it does via the doPost method when you enter and submit data from either the first tab on
-//"mainpage.jsp or the separate "senddocument.jsp".
 package net.docusign.sample;
 
 import java.io.BufferedReader;
@@ -54,7 +51,7 @@ public class SendDocument extends HttpServlet {
 			response.sendRedirect(Utils.CONTROLLER_LOGIN);
 		}
 		else {
-			response.sendRedirect(Utils.PAGE_MAIN);
+			response.sendRedirect(Utils.PAGE_SENDDOCUMENT);
 		}
 	}
 
@@ -104,7 +101,7 @@ public class SendDocument extends HttpServlet {
 			e.printStackTrace();
 			return;
 		}
-		if (request.getParameter(Utils.NAME_SENDNOW) != null) {
+		if (request.getAttribute(Utils.NAME_SENDNOW) != null) {
 			try {
 				sendNow(envelope, request, response);
 			} catch (Exception e) {
@@ -159,16 +156,16 @@ public class SendDocument extends HttpServlet {
 			throws FileUploadException, IOException, ParseException {
 		HttpSession session = request.getSession();
 		Envelope envelope = new Envelope();
-		if (request.getParameter(Utils.NAME_SUBJECT).toString().length() > 0) {
-			envelope.setSubject(request.getParameter(Utils.NAME_SUBJECT).toString());
+		if (request.getAttribute(Utils.NAME_SUBJECT).toString().length() > 0) {
+			envelope.setSubject(request.getAttribute(Utils.NAME_SUBJECT).toString());
 		}
 		else {
 			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_SUBJECT);
 			response.sendRedirect(Utils.PAGE_ERROR);				
 			return null;
 		}
-		if (request.getParameter(Utils.NAME_EMAILBLURB).toString().length() > 0) {
-			envelope.setEmailBlurb(request.getParameter(Utils.NAME_EMAILBLURB).toString());
+		if (request.getAttribute(Utils.NAME_EMAILBLURB).toString().length() > 0) {
+			envelope.setEmailBlurb(request.getAttribute(Utils.NAME_EMAILBLURB).toString());
 		}
 		else {
 			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_EMAILBLURB);
@@ -197,7 +194,7 @@ public class SendDocument extends HttpServlet {
 		ArrayOfDocument docs = new ArrayOfDocument();
 		int id = 1;
 		
-		if (request.getParameter(Utils.NAME_STOCKDOC) != null) {
+		if (request.getAttribute(Utils.NAME_STOCKDOC) != null) {
 			Document doc = new Document();
 			
 			// get stock document as byte stream without fancy libs
@@ -236,7 +233,7 @@ public class SendDocument extends HttpServlet {
 			}
 		}
 		
-		if (request.getParameter(Utils.NAME_SIGNERATTACHMENT) != null) {
+		if (request.getAttribute(Utils.NAME_SIGNERATTACHMENT) != null) {
 			Document doc = new Document();
 			String filePath = getServletContext().getRealPath(Utils.RESOURCE_STOCKDOC);
 			File f = new File(filePath);
@@ -255,30 +252,31 @@ public class SendDocument extends HttpServlet {
 	}
 
 	private Envelope processOptions(HttpServletRequest request, Envelope envelope) throws ParseException {
-		if (request.getParameter(Utils.NAME_MARKUP) != null) {
+		if (request.getAttribute(Utils.NAME_MARKUP) != null) {
 			envelope.setAllowMarkup(true);
 		}
-		if (request.getParameter(Utils.NAME_ENABLEPAPER) != null) {
+		if (request.getAttribute(Utils.NAME_ENABLEPAPER) != null) {
 			envelope.setEnableWetSign(true);
 		}
-		if (request.getParameter(Utils.NAME_REMINDERS).toString().length() > 0) {
+		if (request.getAttribute(Utils.NAME_REMINDERS).toString().length() > 0) {
 			if (envelope.getNotification() == null) {
 				envelope.setNotification(new Notification());
 			}
 			envelope.getNotification().setReminders(new Reminders());
 			envelope.getNotification().getReminders().setReminderEnabled(true);
-			String reminder = request.getParameter(Utils.NAME_REMINDERS).toString();
+			String reminder = request.getAttribute(Utils.NAME_REMINDERS).toString();
 			long days = Utils.daysBetween(new SimpleDateFormat("M/d/y").parse(reminder), new Date());
-			envelope.getNotification().getReminders().setReminderDelay(new BigInteger(Long.toString(days)));
+			envelope.getNotification().getReminders().setReminderDelay(
+					new BigInteger(Long.toString(days)));
 			envelope.getNotification().getReminders().setReminderFrequency(new BigInteger("2"));
 		}
-		if (request.getParameter(Utils.NAME_EXPIRATION).toString().length() > 0) {
+		if (request.getAttribute(Utils.NAME_EXPIRATION).toString().length() > 0) {
 			if (envelope.getNotification() == null) {
 				envelope.setNotification(new Notification());
 			}
 			envelope.getNotification().setExpirations(new Expirations());
 			envelope.getNotification().getExpirations().setExpireEnabled(true);
-			String expiration = request.getParameter(Utils.NAME_EXPIRATION).toString();
+			String expiration = request.getAttribute(Utils.NAME_EXPIRATION).toString();
 			long days = Utils.daysBetween(new SimpleDateFormat("M/d/y").parse(expiration), new Date());
 			envelope.getNotification().getExpirations().setExpireAfter(
 					new BigInteger(Long.toString(days)));
@@ -290,9 +288,9 @@ public class SendDocument extends HttpServlet {
 
 	private ArrayOfTab addTabs(HttpServletRequest request, int size) {
         ArrayOfTab tabs = new ArrayOfTab();
-        String pageTwo = (request.getParameter(Utils.NAME_STOCKDOC) != null) ? "2" : "1";
-        String pageThree = (request.getParameter(Utils.NAME_STOCKDOC) != null) ? "3" : "1";
-        if (request.getParameter(Utils.NAME_ADDSIGS) != null)
+        String pageTwo = (request.getAttribute(Utils.NAME_STOCKDOC) != null) ? "2" : "1";
+        String pageThree = (request.getAttribute(Utils.NAME_STOCKDOC) != null) ? "3" : "1";
+        if (request.getAttribute(Utils.NAME_ADDSIGS) != null)
         {
             Tab company = new Tab();
             company.setType(TabTypeCode.COMPANY);
@@ -383,7 +381,7 @@ public class SendDocument extends HttpServlet {
             }
         }
 
-        if (request.getParameter(Utils.NAME_FORMFIELDS) != null)
+        if (request.getAttribute(Utils.NAME_FORMFIELDS) != null)
         {
             Tab favColor = new Tab();
             favColor.setType(TabTypeCode.CUSTOM);
@@ -394,7 +392,7 @@ public class SendDocument extends HttpServlet {
             favColor.setXPosition(new BigInteger("301"));
             favColor.setYPosition(new BigInteger("416"));
             
-            if (request.getParameter(Utils.NAME_COLLABFIELDS) != null) {
+            if (request.getAttribute(Utils.NAME_COLLABFIELDS) != null) {
             	favColor.setSharedTab(true);
             	favColor.setRequireInitialOnSharedTabChange(true);
             }
@@ -402,7 +400,7 @@ public class SendDocument extends HttpServlet {
             tabs.getTab().add(favColor);
         }
 
-        if (request.getParameter(Utils.NAME_CONDITIONALFIELDS) != null)
+        if (request.getAttribute(Utils.NAME_CONDITIONALFIELDS) != null)
         {
             Tab fruitNo = new Tab();
             fruitNo.setType(TabTypeCode.CUSTOM);
@@ -450,12 +448,12 @@ public class SendDocument extends HttpServlet {
             tabs.getTab().add(data1);
         }
 
-        if (request.getParameter(Utils.NAME_COLLABFIELDS) != null)
+        if (request.getAttribute(Utils.NAME_COLLABFIELDS) != null)
         {
         	// TODO implement collaberative fields
         }
 
-        if (request.getParameter(Utils.NAME_SIGNERATTACHMENT) != null)
+        if (request.getAttribute(Utils.NAME_SIGNERATTACHMENT) != null)
         {
             Tab attach = new Tab();
             attach.setType(TabTypeCode.SIGNER_ATTACHMENT);
@@ -476,22 +474,22 @@ public class SendDocument extends HttpServlet {
 	private ArrayOfRecipient constructRecipients(HttpServletRequest request) {
 		ArrayOfRecipient recipients = new ArrayOfRecipient();
 		int index = 1;
-		if (request.getParameter(Utils.NAME_RECIPIENTNAME + index) != null) {
-			while (request.getParameter(Utils.NAME_RECIPIENTNAME + index) != null) {
+		if (request.getAttribute(Utils.NAME_RECIPIENTNAME + index) != null) {
+			while (request.getAttribute(Utils.NAME_RECIPIENTNAME + index) != null) {
 				Recipient r = new Recipient();
 				
-				r.setUserName(request.getParameter(Utils.NAME_RECIPIENTNAME + index).toString());
-				r.setEmail(request.getParameter(Utils.NAME_RECIPIENTEMAIL + index).toString());
+				r.setUserName(request.getAttribute(Utils.NAME_RECIPIENTNAME + index).toString());
+				r.setEmail(request.getAttribute(Utils.NAME_RECIPIENTEMAIL + index).toString());
 				r.setRequireIDLookup(false);
-				if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).toString().
+				if (request.getAttribute(Utils.NAME_RECIPIENTSECURITY + index).toString().
 					equals(Utils.NAME_ACCESSCODE)) {
-					r.setAccessCode(request.getParameter(Utils.NAME_RECIPIENTSECURITYSETTING + index).toString());
+					r.setAccessCode(request.getAttribute(Utils.NAME_RECIPIENTSECURITYSETTING + index).toString());
 				}
-				else if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).toString().
+				else if (request.getAttribute(Utils.NAME_RECIPIENTSECURITY + index).toString().
 					equals(Utils.NAME_IDCHECK)) {
 					r.setRequireIDLookup(true);
 				}
-				else if (request.getParameter(Utils.NAME_RECIPIENTSECURITY + index).toString().
+				else if (request.getAttribute(Utils.NAME_RECIPIENTSECURITY + index).toString().
 						equals(Utils.NAME_PHONEAUTHENTICATION)) {
 					r.setRequireIDLookup(true);
 					r.setIDCheckConfigurationName("Phone Auth $");
