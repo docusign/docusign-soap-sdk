@@ -57,6 +57,7 @@ function addRowToTable() {
     var cellRight = row.insertCell(3);
     var invite = document.createElement('ul');
     invite.className = 'switcher';
+    invite.id = 'RecipientInvite' + iteration
     var li1 = document.createElement('li');
     li1.className = 'active';
     var a1 = document.createElement('a');
@@ -76,6 +77,7 @@ function addRowToTable() {
     var inputHidden = document.createElement('input');
     inputHidden.title = 'RecipientInviteToggle' + iteration;
     inputHidden.id = 'RecipientInviteToggle' + iteration;
+    inputHidden.name = 'RecipientInviteToggle' + iteration;
     inputHidden.checked = true;
     inputHidden.type = 'checkbox';
     inputHidden.style.display = "none";

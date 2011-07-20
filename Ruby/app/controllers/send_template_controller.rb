@@ -7,7 +7,7 @@ class SendTemplateController < ApplicationController
     elsif logged_in?
       #Request the templates from the account
       begin
-        @templates = ds_connection.requestTemplates(:accountID => session[:account_id], :includeAdvancedTemplates => false ).requestTemplatesResult
+        @templates = ds_connection.requestTemplates(:accountID => session[:account_id], :includeAdvancedTemplates => true ).requestTemplatesResult
         render "get_template"
       rescue Exception =>e
         redirect_to :controller => 'error', :action => 'show', :message => e.message and return
