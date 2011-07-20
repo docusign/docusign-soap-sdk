@@ -198,7 +198,7 @@ namespace DocuSignSample
             // Load all the template the logged in user has on their account
             try
             {
-                templates = client.RequestTemplates(Session["APIAccountId"].ToString(), false);
+                templates = client.RequestTemplates(Session["APIAccountId"].ToString(), true);
             }
             catch (Exception ex)
             {
