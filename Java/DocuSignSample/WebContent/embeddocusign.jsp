@@ -5,6 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
+        <link rel="stylesheet" href="css/default.css" /> 
+        <link rel="stylesheet" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/homestyle.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
@@ -21,10 +23,10 @@
     		<table width="100%">
     			<tr>
     				<td class="rightalign">
-    					<input name="<%= Utils.NAME_ONESIGNER %>" id="OneSigner" type="submit" value="Create an Envelope with 1 Signer" />
+    					<input name="<%= Utils.NAME_ONESIGNER %>" class="docusignbutton orange" id="OneSigner" type="submit" value="Create an Envelope with 1 Signer" />
     				</td>
     				<td class="leftalign">
-    					<input name="<%= Utils.NAME_TWOSIGNERS %>" id="TwoSigners" type="submit" value="Create an Envelope with 2 Signers" />
+    					<input name="<%= Utils.NAME_TWOSIGNERS %>" class="docusignbutton brown" id="TwoSigners" type="submit" value="Create an Envelope with 2 Signers" />
     				</td>
     			</tr>
     		</table>

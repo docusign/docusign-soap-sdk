@@ -9,10 +9,11 @@
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Insert title here</title>
-    
+    <title>Example of how to Send a DocuSign Template via API</title>
+    <link rel="stylesheet" href="css/default.css" /> 
     <link rel="stylesheet" href="css/jquery.ui.all.css" />
-    <link rel="Stylesheet" href="css/SendTemplate.css" />
+    <link rel="stylesheet" type="text/css" href="css/SendDocument.css" />
+        
     <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
@@ -140,11 +141,11 @@
                 </td>
                 <td class="leftbutton">
                     <input type="submit" value="Send Now" name="SendNow" align="right" style="width: 100%;"
-                        class="docusignbutton blue" />
+                        class="docusignbutton orange" />
                 </td>
                 <td class="rightbutton">
                     <input type="submit" value="Edit Before Sending" name="EditFirst" align="left" style="width: 100%;"
-                        class="docusignbutton blue" />
+                        class="docusignbutton brown" />
                 </td>
                 <td class="fourcolumn">
                 </td>
