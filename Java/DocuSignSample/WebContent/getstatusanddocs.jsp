@@ -9,7 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>API Sample on how to get status and documents</title>
+        <link rel="stylesheet" href="css/default.css" /> 
+        <link rel="stylesheet" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/GetStatusAndDocs.css" />
         <script type="text/javascript" src="js/Utils.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
