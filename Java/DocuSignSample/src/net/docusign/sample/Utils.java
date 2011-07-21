@@ -97,6 +97,7 @@ public class Utils {
 	
 	// URL Parameters
 	public static final String PARAM_ENVELOPEID = "envelopeID";
+        public static final String PARAM_LOGOUT = "logout";
 	
 	// Error messages
 	public static final String ERROR_CONFIG = "Could not load client.properties from the root of the test classpath.";

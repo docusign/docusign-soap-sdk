@@ -51,6 +51,7 @@
         </script>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <table class="tabs">
         <tr>
             <td class="current">Send Document</td>

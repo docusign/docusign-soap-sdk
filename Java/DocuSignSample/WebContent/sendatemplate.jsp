@@ -54,6 +54,8 @@
     </script>
 	</head>
     <body>
+    
+    <%@include file="header.jsp" %>
     <table class="tabs">
     <tr>
         <td><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></td>
