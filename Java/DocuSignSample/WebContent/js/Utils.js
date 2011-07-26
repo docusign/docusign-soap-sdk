@@ -251,3 +251,12 @@ function activate() {
         }
     });
 }
+
+function invert(ident) {
+    var state = document.getElementById(ident).style.display;
+    if (state == 'block') {
+        document.getElementById(ident).style.display = 'none';
+    } else {
+        document.getElementById(ident).style.display = 'block';
+    }
+}
