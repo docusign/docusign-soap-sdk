@@ -4,22 +4,32 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+	<title>DocuSign Sample</title>
     <head>
         <link rel="stylesheet" href="css/default.css" /> 
         <link rel="stylesheet" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/homestyle.css" />
+        <link rel="stylesheet" type="text/css" href="css/default.css" />
+        <link rel="stylesheet" type="text/css" href="css/Tabs.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-            <%@include file="header.jsp" %>
-	    <table class="tabs">
-	    <tr>
-	        <td><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></td>
-	        <td><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</td>
-	        <td class="current">Embed Docusign</td>
-	        <td><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></td>
-	    </tr>
-	    </table>
+    <%@include file="header.jsp" %>
+    <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+    	<article class="tabs">
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></h3>
+    		</section>
+    		<section class="current">
+    			<h3><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed DocuSign</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
+    		</section>
+    	</article>
     	<form action="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>" method="post" id="EmbedDocuSignForm">
     		<table width="100%">
     			<tr>
@@ -38,6 +48,7 @@
     		  src="<%= session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString() %>" id="hostiframe" name="hostiframe">
     		</iframe>
 		</form>
+		</div>
         <%@ include file="footer.html" %>
      </body>
 </html>

@@ -12,7 +12,7 @@
 <p class="leftalign"><b>Log In</b></p>
 <hr />
 <form action="Login" id="logInForm" method="post">
-<div id="container" class="centeralign" style="width: 300px;">
+<div id="container" class="centeralign" style="width: 300px; padding-bottom:40px">
 <table style="width: 300px;" align="center">
 	<tr>
 		<td>DevCenter E-mail</td>

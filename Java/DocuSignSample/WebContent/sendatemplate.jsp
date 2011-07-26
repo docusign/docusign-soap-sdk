@@ -10,10 +10,11 @@
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Example of how to Send a DocuSign Template via API</title>
-    <link rel="stylesheet" href="css/default.css" /> 
-    <link rel="stylesheet" href="css/jquery.ui.all.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.ui.all.css" />
     <link rel="stylesheet" type="text/css" href="css/SendDocument.css" />
-        
+    <link rel="Stylesheet" type="text/css" href="css/SendTemplate.css" />
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/Tabs.css" />
     <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
@@ -29,13 +30,13 @@
             var today = new Date().getDate();
             $("#reminders").datepicker({
                 showOn: "button",
-                buttonImage: "images/calendar-blue.gif",
+                buttonImage: "images/calendar.png",
                 buttonImageOnly: true,
                 minDate: today
             });
             $("#expiration").datepicker({
                 showOn: "button",
-                buttonImage: "images/calendar-blue.gif",
+                buttonImage: "images/calendar.png",
                 buttonImageOnly: true,
                 minDate: today
             });
@@ -54,16 +55,23 @@
     </script>
 	</head>
     <body>
-    
     <%@include file="header.jsp" %>
-    <table class="tabs">
-    <tr>
-        <td><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></td>
-        <td class="current">Send a Template</td>
-        <td><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a></td>
-        <td><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></td>
-    </tr>
-    </table>
+
+    <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+    	<article class="tabs">
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
+    		</section>
+    		<section class="current">
+    			<h3><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed DocuSign</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
+    		</section>
+    	</article>
     <form id="SendTemplateForm" action="<%= Utils.CONTROLLER_SENDTEMPLATE %>" method="post">
     <div>
         <input id="subject" name="<%= Utils.NAME_SUBJECT %>" placeholder="<enter the subject>" type="text"
@@ -155,6 +163,7 @@
         </table>
     </div>
     </form>
+    </div>
     <%@ include file="footer.html" %>
 	</body>
 </html>
