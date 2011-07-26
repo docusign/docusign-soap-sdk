@@ -13,19 +13,27 @@
         <link rel="stylesheet" href="css/default.css" /> 
         <link rel="stylesheet" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/GetStatusAndDocs.css" />
+        <link rel="stylesheet" type="text/css" href="css/Tabs.css" />
         <script type="text/javascript" src="js/Utils.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <table class="tabs">
-        <tr>
-            <td><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></td>
-            <td><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></td>
-            <td><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a></td>
-            <td class="current">Get Status and Docs</td>
-        </tr>
-        </table>
+    <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+    	<article class="tabs">
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed DocuSign</a></h3>
+    		</section>
+    		<section class="current">
+    			<h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
+    		</section>
+    	</article>
     	<div id="statusDiv">
             <table id="statusTable">
         		<tr>
@@ -55,6 +63,7 @@
 
         		%>
             </table>
+		</div>
 		</div>
         <%@ include file="footer.html" %>
      </body>

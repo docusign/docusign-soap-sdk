@@ -1,6 +1,67 @@
-﻿body 
+body
 {
     font: 1em Arial, sans-serif;
+}
+
+input.docusignbutton
+{
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	padding: .5em 2em .55em;
+
+}
+
+.blue {
+	color: #fef4e9;
+	border: solid 1px #1A7CD5;
+	background: #ADD3F4;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ADD3F4), to(#1A7CD5));
+	background: -moz-linear-gradient(top,  #ADD3F4,  #1A7CD5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ADD3F4', endColorstr='#1A7CD5');
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.orange{
+	color: #fef4e9;
+	border: solid 1px #e57200;
+	background: #e57200;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e57200), to(#ec9b49));
+	background: -moz-linear-gradient(top,  #e57200,  #ec9b49);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#e57200', endColorstr='#ec9b49');
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+	-moz-box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+	box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+}
+
+.brown{
+	color: #fef4e9;
+	border: solid 1px #3d2817;
+	background: #3d2817;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3d2817), to(#6d5d51));
+	background: -moz-linear-gradient(top,  #3d2817,  #6d5d51);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d2817', endColorstr='#6d5d51');
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
+	-moz-box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
+	box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
 }
 
 .addthis_toolbox.addthis_pill_combo a {
@@ -48,41 +109,48 @@ div.authbox a {
 	color:blue;
 }
 
+.notification
+{
+    width:500px;
+    margin: auto auto auto auto;
+    background-color: #C3FCB1;
+}
+
 .dropshadow-topright
 {
-    margin: 100px auto; 
-    background-color: #FFFFFF; 
+    margin: 100px auto;
+    background-color: #FFFFFF;
     -moz-border-radius: 5px;
-    -webkit-border-radius: 5px; 
-    border: 1px solid #000; 
-    padding: 10px; 
-    height: 313px;
-    width: 527px; 
-    box-shadow: 5px -5px 10px #700; 
-    -webkit-box-shadow: 5px -5px 10px #888;
-    -moz-box-shadow: 5px -5px 10px #334455; 
-    -moz-border-radius: 5px; 
     -webkit-border-radius: 5px;
-    border: 1px solid #000; 
+    border: 1px solid #000;
+    padding: 10px;
+    height: 313px;
+    width: 527px;
+    box-shadow: 5px -5px 10px #700;
+    -webkit-box-shadow: 5px -5px 10px #888;
+    -moz-box-shadow: 5px -5px 10px #334455;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000;
     padding: 10px;
 }
 
 .dropshadow-bottomleft
 {
-    margin: 100px auto; 
-    background-color: #FFFFFF; 
+    margin: 100px auto;
+    background-color: #FFFFFF;
     -moz-border-radius: 5px;
-    -webkit-border-radius: 5px; 
-    border: 1px solid #000; 
-    padding: 10px; 
-    height: 313px;
-    width: 527px; 
-    box-shadow: -5px 5px 10px #700; 
-    -webkit-box-shadow: -5px 5px 10px #888;
-    -moz-box-shadow: -5px 5px 10px #334455; 
-    -moz-border-radius: 5px; 
     -webkit-border-radius: 5px;
-    border: 1px solid #000; 
+    border: 1px solid #000;
+    padding: 10px;
+    height: 313px;
+    width: 527px;
+    box-shadow: -5px 5px 10px #700;
+    -webkit-box-shadow: -5px 5px 10px #888;
+    -moz-box-shadow: -5px 5px 10px #334455;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000;
     padding: 10px;
 }
 
@@ -92,7 +160,7 @@ div.authbox a {
 	margin:1em 0 1em;
 	color:#000;
 	background:#fff; /* default background for browsers without gradient support */
-	
+
 	/* css3 */
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
@@ -118,7 +186,7 @@ div.authbox a {
 	width:0;
 	height:0;
 	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
-	border-style:solid; 
+	border-style:solid;
 	border-color:transparent #F1F1F1;
 }
 
@@ -130,8 +198,7 @@ div.authbox a {
 	left:-21px; /* value = - border-left-width - border-right-width */
 	bottom:auto;
 	border-width:9px 21px 9px 0;
-	border-color:transparent #F1F1F1;
-	
+	border-color:transparent #F1F1F1;	
 }
 
 
@@ -276,4 +343,22 @@ input.docusignbutton.brown {
     box-shadow: 0 1px 2px #3D2817;
     color: #FEF4E9;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+div.signermessage {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #e57200;
+    background: #e57200;
+}
+
+a.errorShow{
+    color:#e57200;
+    font-weight:bold;
+}
+
+p.errorMessage{
+    display:none;
+    margin-left:20px;
 }

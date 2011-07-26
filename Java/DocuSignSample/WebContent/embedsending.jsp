@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>API Sample on Embedded Sending</title>
 	<link rel="stylesheet" href="css/homestyle.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/Tabs.css" />
 </head>
     <body>
     	<% 

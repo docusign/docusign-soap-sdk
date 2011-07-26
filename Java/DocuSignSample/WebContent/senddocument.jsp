@@ -2,12 +2,15 @@
     contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<title>DocuSign Sample</title>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DocuSign API Sending Page</title>
         <link rel="stylesheet" href="css/default.css" /> 
         <link rel="stylesheet" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/SendDocument.css" />
+        <link rel="stylesheet" type="text/css" href="css/default.css" />
+        <link rel="stylesheet" type="text/css" href="css/Tabs.css" />
         <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
         <script type="text/javascript" src="js/jquery.ui.core.js"></script>
         <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
@@ -29,13 +32,13 @@
                 var today = new Date().getDate();
                 $("#reminders").datepicker({
                     showOn: "button",
-                    buttonImage: "images/calendar-blue.gif",
+                    buttonImage: "images/calendar.png",
                     buttonImageOnly: true,
                     minDate: today
                 });
                 $("#expiration").datepicker({
                     showOn: "button",
-                    buttonImage: "images/calendar-blue.gif",
+                    buttonImage: "images/calendar.png",
                     buttonImageOnly: true,
                     minDate: today + 3
                 });
@@ -52,19 +55,26 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-        <table class="tabs">
-        <tr>
-            <td class="current">Send Document</td>
-            <td><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></td>
-            <td><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed Docusign</a></td>
-            <td><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></td>
-        </tr>
-        </table>
+    <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+    	<article class="tabs">
+    		<section class="current">
+    			<h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed DocuSign</a></h3>
+    		</section>
+    		<section>
+    			<h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
+    		</section>
+    	</article>
         <form id="SendDocumentForm" action="SendDocument" method="post" enctype="multipart/form_data" >
             <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
             <p>
             </p>
-            <input id="emailBlurb" name="emailBlurb" type="text" placeholder="<enter e-mail blurb>" autocomplete="off" />
+            <textarea id="emailBlurb" name="emailBlurb" placeholder="<enter e-mail blurb>" rows="4" cols="20"></textarea>
             <p>
             </p>
             <table id="recipientList" name="recipientList" class="recipientList">
@@ -163,5 +173,6 @@
             </table>
         </form>
         <%@ include file="footer.html" %>
+        </div>
     </body>
 </html>
