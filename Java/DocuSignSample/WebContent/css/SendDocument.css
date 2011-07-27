@@ -29,13 +29,17 @@ table.submit {
     width: 100%
 }
 
+table.submit td {
+	width:50%;
+}
+
 table.submit td:first-child {
-    text-align: right;
+    text-align:right;
 }
 
 table.submit input {
-    font: inherit;
-    font-weight: bold;
+	font: inherit;
+	font-weight: bold;
 }
 
 tr.recipientListHeader {
@@ -43,8 +47,14 @@ tr.recipientListHeader {
 }
 
 input.upload {
-    border: 1px solid;
-    font: inherit;
+  border: 1px solid #ccc;
+  
+	-moz-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	
+	font: inherit;
 }
 
 .visible
@@ -58,13 +68,11 @@ input.upload {
 }
 
 /***** On/Off Button *****/
-.switcher {
-    list-style:none;
-/*    padding:1px;
-    position:absolute;
-    right:8px;
-    top:17px; */
-    background:#413F4A;
+/***** On/Off Button *****/
+.switcher
+{
+    list-style: none; /*    padding:1px;     position:absolute;     right:8px;     top:17px; */
+    background: #413F4A;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -72,53 +80,66 @@ input.upload {
     margin-bottom: 3px;
 }
 
-.switcher li {
-    float:left;
+.switcher li
+{
+    float: left;
 }
 
-.switcher a {
+.switcher a
+{
     text-decoration: none;
 }
 
-.switcher li a {
-    font:12px/30px Arial, sans-serif;
+.switcher li a
+{
+    font: 12px/30px Arial, sans-serif;
     text-shadow: 0 -1px 0 #1b1929;
-    color:#d6d5d4;
-/*    background:#5ad0ab; */
-    display:block;
-    padding:0 13px;
-    height:27px;
-    border:1px solid #919192;
+    color: #d6d5d4; /*    background:#5ad0ab; */
+    display: block;
+    padding: 0 13px;
+    height: 27px;
+    border: 1px solid #919192;
     background: -webkit-gradient(linear, 0 bottom, 0 top, from(#ebeced), to(#fdfcfc));
-    background: -moz-linear-gradient(-90deg, #ebeced, #fdfcfc ) ;
-    -webkit-box-shadow:inset 0 1px 0 #6B6974 ;
-    -moz-box-shadow: inset 0 1px 0 #6B6974 ;
-    box-shadow: inset 0 1px 0 #6B6974 ;
-    -webkit-transition:all .2s ease-out;
-    -o-transition:all .2s ease-out;
-    -moz-transition:all .2s ease-out;
+    background: -moz-linear-gradient(-90deg, #ebeced, #fdfcfc );
+    -webkit-box-shadow: inset 0 1px 0 #6B6974;
+    -moz-box-shadow: inset 0 1px 0 #6B6974;
+    box-shadow: inset 0 1px 0 #6B6974;
+    -webkit-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
 }
 
-li:first-child a {
-    border-right:none;
-    padding-left:15px;
+li:first-child a
+{
+    border-right: none;
+    padding-left: 15px;
     -webkit-border-radius: 5px 0 0 5px;
     -moz-border-radius: 5px 0 0 5px;
-    border-radius:5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
 }
 
-li:last-child a {
+li:last-child a
+{
     -webkit-border-radius: 0 5px 5px 0;
     -moz-border-radius: 0 5px 5px 0;
-    border-radius:0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
 }
 
-.switcher li.active a{
-    color:#000;
-    text-shadow:0 1px 1px #000;
-    background: -webkit-gradient(linear, 0 bottom, 0 top, from(#9ab4c2), to(#e7e3f8));
-    background: -moz-linear-gradient(-90deg, #9ab4c2, #e7e3f8 ) ;
-    -webkit-box-shadow:inset 0 1px 1px #17161c ;
-    -moz-box-shadow: inset 0 1px 1px #17161c ;
-    box-shadow: inset 0 1px 1px #17161c ;
+.switcher li.active a
+{
+    color: #000;
+    text-shadow: 0 1px 1px #000;
+    background: -webkit-gradient(linear, 0 bottom, 0 top, from(#E57200), to(#EC9B49));
+    background: -moz-linear-gradient(-90deg, #E57200, #EC9B49 );
+    -webkit-box-shadow: inset 0 1px 1px #17161c;
+    -moz-box-shadow: inset 0 1px 1px #17161c;
+    box-shadow: inset 0 1px 1px #17161c;
+}
+
+div.dialogbuttons
+{
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 550px;
 }

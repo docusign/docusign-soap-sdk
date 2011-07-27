@@ -1,6 +1,67 @@
-﻿body 
+body
 {
     font: 1em Arial, sans-serif;
+}
+
+input.docusignbutton
+{
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	padding: .5em 2em .55em;
+
+}
+
+.blue {
+	color: #fef4e9;
+	border: solid 1px #1A7CD5;
+	background: #ADD3F4;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ADD3F4), to(#1A7CD5));
+	background: -moz-linear-gradient(top,  #ADD3F4,  #1A7CD5);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ADD3F4', endColorstr='#1A7CD5');
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.orange{
+	color: #fef4e9;
+	border: solid 1px #e57200;
+	background: #e57200;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e57200), to(#ec9b49));
+	background: -moz-linear-gradient(top,  #e57200,  #ec9b49);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#e57200', endColorstr='#ec9b49');
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+	-moz-box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+	box-shadow: 0 1px 2px rgba(229, 114, 0, 1);
+}
+
+.brown{
+	color: #fef4e9;
+	border: solid 1px #3d2817;
+	background: #3d2817;
+	background: -webkit-gradient(linear, left top, left bottom, from(#3d2817), to(#6d5d51));
+	background: -moz-linear-gradient(top,  #3d2817,  #6d5d51);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d2817', endColorstr='#6d5d51');
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
+	-moz-box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
+	box-shadow: 0 1px 2px rgba(61, 40, 23, 1);
 }
 
 .addthis_toolbox.addthis_pill_combo a {
@@ -27,43 +88,69 @@
     margin-right:auto;
 }
 
+div.container {
+	margin:0px auto;
+	margin-top:10px;
+	width:1024px;
+}
 
+div.authbox {
+	color:#666;
+	font-size:12px;
+	text-align:right;
+	margin-bottom:10px;
+}
+
+div.authbox span {
+	color:black;
+}
+
+div.authbox a {
+	color:blue;
+}
+
+.notification
+{
+    width:500px;
+    margin: auto auto auto auto;
+    background-color: #C3FCB1;
+}
 
 .dropshadow-topright
 {
-    margin: 100px auto; 
-    background-color: #FFFFFF; 
+    margin: 100px auto;
+    background-color: #FFFFFF;
     -moz-border-radius: 5px;
-    -webkit-border-radius: 5px; 
-    border: 1px solid #000; 
-    padding: 10px; 
-    height: 313px;
-    width: 527px; 
-    box-shadow: 5px -5px 10px #700; 
-    -webkit-box-shadow: 5px -5px 10px #888;
-    -moz-box-shadow: 5px -5px 10px #334455; 
-    -moz-border-radius: 5px; 
     -webkit-border-radius: 5px;
-    border: 1px solid #000; 
+    border: 1px solid #000;
+    padding: 10px;
+    height: 313px;
+    width: 527px;
+    box-shadow: 5px -5px 10px #700;
+    -webkit-box-shadow: 5px -5px 10px #888;
+    -moz-box-shadow: 5px -5px 10px #334455;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000;
     padding: 10px;
 }
 
 .dropshadow-bottomleft
 {
-    margin: 100px auto; 
-    background-color: #FFFFFF; 
+    margin: 100px auto;
+    background-color: #FFFFFF;
     -moz-border-radius: 5px;
-    -webkit-border-radius: 5px; 
-    border: 1px solid #000; 
-    padding: 10px; 
-    height: 313px;
-    width: 527px; 
-    box-shadow: -5px 5px 10px #700; 
-    -webkit-box-shadow: -5px 5px 10px #888;
-    -moz-box-shadow: -5px 5px 10px #334455; 
-    -moz-border-radius: 5px; 
     -webkit-border-radius: 5px;
-    border: 1px solid #000; 
+    border: 1px solid #000;
+    padding: 10px;
+    height: 313px;
+    width: 527px;
+    box-shadow: -5px 5px 10px #700;
+    -webkit-box-shadow: -5px 5px 10px #888;
+    -moz-box-shadow: -5px 5px 10px #334455;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #000;
     padding: 10px;
 }
 
@@ -73,7 +160,7 @@
 	margin:1em 0 1em;
 	color:#000;
 	background:#fff; /* default background for browsers without gradient support */
-	
+
 	/* css3 */
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
@@ -99,7 +186,7 @@
 	width:0;
 	height:0;
 	border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
-	border-style:solid; 
+	border-style:solid;
 	border-color:transparent #F1F1F1;
 }
 
@@ -111,6 +198,167 @@
 	left:-21px; /* value = - border-left-width - border-right-width */
 	bottom:auto;
 	border-width:9px 21px 9px 0;
-	border-color:transparent #F1F1F1;
+	border-color:transparent #F1F1F1;	
+}
+
+
+table#recipientList th {
+	width:20%;
+}
+
+table#recipientList th:nth-child(3) {
+	width:40%;
+}
+
+table#RecipientTable th:nth-child(4) {
+	width:342px;
+}
+
+
+/*------------------------------- Tabs ---------------------------------- */
+
+table.tabs {
+	margin-bottom:10px;
+	width:100%;
+}
+
+table.tabs td {
+	text-align:center;
 	
+	margin:0px;
+	padding:5px;
+	
+	font-size:16px;
+	font-weight:bold;
+	background:#eee;
+	border:1px solid #ccc;
+	
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-radius: 5px 5px 0px 0px;
+	border-radius: 5px 5px 0px 0px;
+}
+
+table.tabs td:hover {
+	background:white;
+}
+
+table.tabs td:hover a {
+	color:#666;
+}
+
+table.tabs td.current {
+	background:white;
+	border-bottom:0px;
+	color:#666;
+}
+
+table.tabs a {
+	color:#333;
+	text-decoration:none;
+}
+
+
+/*------------------------------- Embedded iFrame ---------------------------------- */
+
+iframe.embediframe {
+	min-height:500px;
+}
+
+
+/*------------------------------- Transition Message ---------------------------------- */
+
+div.sampleMessage {
+	margin:10px;
+	padding:10px;
+	text-align:center;
+	
+	border:1px solid red;
+	background: #FF9999;
+}
+
+
+/*------------------------------- Misc ---------------------------------- */
+
+.invisible {
+	visibility:hidden;
+}
+
+
+/*------------------------------- Buttons ---------------------------------- */
+
+input.docusignbutton {
+    cursor: pointer;
+    display: inline-block;
+    font: bold 14px/100% Arial,Helvetica,sans-serif;
+    outline: medium none;
+    padding: 0.5em 2em 0.55em;
+    text-align: center;
+    text-decoration: none;
+}
+
+input.docusignbutton.blue {
+    background: #add3f4; /* Old browsers */
+		background: -moz-linear-gradient(top, #add3f4 0%, #1a7cd5 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#add3f4), color-stop(100%,#1a7cd5)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #add3f4 0%,#1a7cd5 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #add3f4 0%,#1a7cd5 100%); /* Opera11.10+ */
+		background: -ms-linear-gradient(top, #add3f4 0%,#1a7cd5 100%); /* IE10+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#add3f4', endColorstr='#1a7cd5',GradientType=0 ); /* IE6-9 */
+		background: linear-gradient(top, #add3f4 0%,#1a7cd5 100%); /* W3C */
+    border: 1px solid #1A7CD5;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    color: #FEF4E9;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+input.docusignbutton.orange {
+    background: #e57200; /* Old browsers */
+		background: -moz-linear-gradient(top, #e57200 0%, #ec9b49 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e57200), color-stop(100%,#ec9b49)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #e57200 0%,#ec9b49 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #e57200 0%,#ec9b49 100%); /* Opera11.10+ */
+		background: -ms-linear-gradient(top, #e57200 0%,#ec9b49 100%); /* IE10+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e57200', endColorstr='#ec9b49',GradientType=0 ); /* IE6-9 */
+		background: linear-gradient(top, #e57200 0%,#ec9b49 100%); /* W3C */
+    border: 1px solid #E57200;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow: 0 1px 2px #E57200;
+    color: #FEF4E9;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+input.docusignbutton.brown {
+    background: #3d2817; /* Old browsers */
+		background: -moz-linear-gradient(top, #3d2817 0%, #6d5d51 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3d2817), color-stop(100%,#6d5d51)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top, #3d2817 0%,#6d5d51 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top, #3d2817 0%,#6d5d51 100%); /* Opera11.10+ */
+		background: -ms-linear-gradient(top, #3d2817 0%,#6d5d51 100%); /* IE10+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d2817', endColorstr='#6d5d51',GradientType=0 ); /* IE6-9 */
+		background: linear-gradient(top, #3d2817 0%,#6d5d51 100%); /* W3C */
+    border: 1px solid #3D2817;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    box-shadow: 0 1px 2px #3D2817;
+    color: #FEF4E9;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+div.signermessage {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #e57200;
+    background: #e57200;
+}
+
+a.errorShow{
+    color:#e57200;
+    font-weight:bold;
+}
+
+p.errorMessage{
+    display:none;
+    margin-left:20px;
 }

@@ -75,6 +75,7 @@ PLATFORMS
 
 DEPENDENCIES
   docusign
+  httpclient (= 2.1.6.1)
   intercession
   rails (= 3.0.4)
   soap4r
