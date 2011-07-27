@@ -42,8 +42,8 @@ import net.docusign.api_3_0.UnitTypeCode;
  * Servlet implementation class EmbedDocusign
  */
 public class EmbedDocusign extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private Boolean _oneSigner;
+    private static final long serialVersionUID = 1L;
+    private Boolean _oneSigner;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,85 +53,87 @@ public class EmbedDocusign extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if (session.getAttribute(Utils.SESSION_LOGGEDIN) == null ||
-			session.getAttribute(Utils.SESSION_LOGGEDIN).equals(false)) {
-			response.sendRedirect(Utils.CONTROLLER_LOGIN);
-		}
-		else {
-			if (request.getParameter(Utils.PARAM_ENVELOPEID) != null) {
-				EnvelopeStatus status = getStatus(request, request.getParameter(Utils.PARAM_ENVELOPEID));
-				try {
-					getToken(request, status, 1);
-				} catch (DatatypeConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			else {
-				request.getSession().setAttribute(Utils.SESSION_EMBEDTOKEN, "");
-			}
-			response.sendRedirect(Utils.PAGE_EMBEDDOCUSIGN);
-		}
-	}
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+        HttpSession session = request.getSession();
+        if (session.getAttribute(Utils.SESSION_LOGGEDIN) == null ||
+            session.getAttribute(Utils.SESSION_LOGGEDIN).equals(false)) {
+            response.sendRedirect(Utils.CONTROLLER_LOGIN);
+        }
+        else {
+            if(request.getQueryString() != null && request.getQueryString().contains(Utils.PARAM_ENVELOPEID)) {
+                String eid = request.getQueryString().split("\\=")[1];
+                EnvelopeStatus status = getStatus(request, eid);
+                try {
+                    getToken(request, status, 1);
+                } catch (DatatypeConfigurationException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            else {
+                request.getSession().setAttribute(Utils.SESSION_EMBEDTOKEN, "");
+            }
+            response.sendRedirect(Utils.PAGE_EMBEDDOCUSIGN);
+        }
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		_oneSigner = (request.getParameter(Utils.NAME_ONESIGNER) != null);
-		try {
-			createAndSend(request);
-			response.sendRedirect(Utils.PAGE_EMBEDDOCUSIGN);
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        _oneSigner = (request.getParameter(Utils.NAME_ONESIGNER) != null);
+        try {
+            createAndSend(request);
+            response.sendRedirect(Utils.PAGE_EMBEDDOCUSIGN);
+        } catch (DatatypeConfigurationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
-	private void createAndSend(HttpServletRequest request) throws IOException, DatatypeConfigurationException {
-		HttpSession session = request.getSession();
-		
-		Envelope env = new Envelope();
-		env.setSubject("DocuSign API SDK Sample");
-		env.setEmailBlurb("This envelope demonstrates embedded signing");
-		env.setAccountId(session.getAttribute(Utils.SESSION_ACCOUNT_ID).toString());
-		env.setRecipients(constructRecipients(request));
-		
-		Document doc = new Document();
-		String filePath = getServletContext().getRealPath(Utils.RESOURCE_STOCKDOC);
-		File f = new File(filePath);
-		FileInputStream fs = new FileInputStream(f);
-		byte[] pdfBytes = new byte[(int) f.length()];
-		fs.read(pdfBytes);
-		fs.close();
-		doc.setPDFBytes(pdfBytes);
-		doc.setName("Demo Document");
-		doc.setID(new BigInteger("1"));
-		doc.setFileExtension("pdf");
-		ArrayOfDocument docs = new ArrayOfDocument();
-		docs.getDocument().add(doc);
-		env.setDocuments(docs);
-		
-		env.setTabs(addTabs(request, env.getRecipients().getRecipient().size()));
-		
-		APIServiceSoap api = Utils.getAPI(request);
-		EnvelopeStatus status = api.createAndSendEnvelope(env);
-		Utils.addEnvelopeID(request, status.getEnvelopeID());
-		getToken(request, status, 0);
-	}
+    private void createAndSend(HttpServletRequest request) throws IOException, DatatypeConfigurationException {
+        HttpSession session = request.getSession();
+        
+        Envelope env = new Envelope();
+        env.setSubject("DocuSign API SDK Sample");
+        env.setEmailBlurb("This envelope demonstrates embedded signing");
+        env.setAccountId(session.getAttribute(Utils.SESSION_ACCOUNT_ID).toString());
+        env.setRecipients(constructRecipients(request));
+        
+        Document doc = new Document();
+        String filePath = getServletContext().getRealPath(Utils.RESOURCE_STOCKDOC);
+        File f = new File(filePath);
+        FileInputStream fs = new FileInputStream(f);
+        byte[] pdfBytes = new byte[(int) f.length()];
+        fs.read(pdfBytes);
+        fs.close();
+        doc.setPDFBytes(pdfBytes);
+        doc.setName("Demo Document");
+        doc.setID(new BigInteger("1"));
+        doc.setFileExtension("pdf");
+        ArrayOfDocument docs = new ArrayOfDocument();
+        docs.getDocument().add(doc);
+        env.setDocuments(docs);
+        
+        env.setTabs(addTabs(request, env.getRecipients().getRecipient().size()));
+        
+        APIServiceSoap api = Utils.getAPI(request);
+        EnvelopeStatus status = api.createAndSendEnvelope(env);
+        Utils.addEnvelopeID(request, status.getEnvelopeID());
+        getToken(request, status, 0);
+    }
 
-	private EnvelopeStatus getStatus(HttpServletRequest request, String envelopeID) {
-		APIServiceSoap api = Utils.getAPI(request);
-		
-		return api.requestStatus(envelopeID);
-	}
+    private EnvelopeStatus getStatus(HttpServletRequest request, String envelopeID) {
+        APIServiceSoap api = Utils.getAPI(request);
+        
+        return api.requestStatus(envelopeID);
+    }
 
-	private ArrayOfTab addTabs(HttpServletRequest request, int count) {
+    private ArrayOfTab addTabs(HttpServletRequest request, int count) {
         ArrayOfTab tabs = new ArrayOfTab();
          Tab company = new Tab();
         company.setType(TabTypeCode.COMPANY);
@@ -278,80 +280,86 @@ public class EmbedDocusign extends HttpServlet {
         tabs.getTab().add(data1);
 
         return tabs;
-	}
+    }
 
-	private ArrayOfRecipient constructRecipients(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		ArrayOfRecipient recipients = new ArrayOfRecipient();
+    private ArrayOfRecipient constructRecipients(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        ArrayOfRecipient recipients = new ArrayOfRecipient();
 
-		Recipient r1 = new Recipient();
-		r1.setUserName(session.getAttribute(Utils.SESSION_USER_ID).toString());
-		r1.setEmail(session.getAttribute(Utils.SESSION_EMAIL).toString());
-		r1.setID(new BigInteger("1"));
-		r1.setType(RecipientTypeCode.SIGNER);
-		r1.setCaptiveInfo(new RecipientCaptiveInfo());
-		r1.getCaptiveInfo().setClientUserId("1");
-		recipients.getRecipient().add(r1);
-		
-		if (_oneSigner != true) {
-			Recipient r2 = new Recipient();
-			r2.setUserName("DocuSign Recipient2");
-			r2.setEmail("DocuSignRecipient2@mailinator.com");
-			r2.setID(new BigInteger("2"));
-			r2.setType(RecipientTypeCode.SIGNER);
-			r2.setCaptiveInfo(new RecipientCaptiveInfo());
-			r2.getCaptiveInfo().setClientUserId("2");
-			recipients.getRecipient().add(r2);
-		}
-		
-		return recipients;
-	}
+        Recipient r1 = new Recipient();
+        r1.setUserName("DocuSign Recipient1"));
+        r1.setEmail(session.getAttribute(Utils.SESSION_EMAIL).toString());
+        r1.setID(new BigInteger("1"));
+        r1.setType(RecipientTypeCode.SIGNER);
+        r1.setCaptiveInfo(new RecipientCaptiveInfo());
+        r1.getCaptiveInfo().setClientUserId("1");
+        recipients.getRecipient().add(r1);
+        
+        if (_oneSigner != true) {
+            Recipient r2 = new Recipient();
+            r2.setUserName("DocuSign Recipient2");
+            r2.setEmail("DocuSignRecipient2@mailinator.com");
+            r2.setID(new BigInteger("2"));
+            r2.setType(RecipientTypeCode.SIGNER);
+            r2.setCaptiveInfo(new RecipientCaptiveInfo());
+            r2.getCaptiveInfo().setClientUserId("2");
+            recipients.getRecipient().add(r2);
+        }
+        
+        return recipients;
+    }
 
-	private void getToken(HttpServletRequest request, EnvelopeStatus status, int index) 
-			throws DatatypeConfigurationException {
-		String token = null;
-		
-		// get recipient token
-		RequestRecipientTokenAuthenticationAssertion assertion = new RequestRecipientTokenAuthenticationAssertion();
-		assertion.setAssertionID(UUID.randomUUID().toString());
-		
-		// Why does wsdl2java translate this to XMLGregorianCalendar? Hassle
-		GregorianCalendar gcal = new GregorianCalendar();
-		gcal.setTime(new Date());
-		assertion.setAuthenticationInstant(DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal));
-		
-		assertion.setAuthenticationMethod(RequestRecipientTokenAuthenticationAssertionAuthenticationMethod.PASSWORD);
-		assertion.setSecurityDomain("DocuSign2010Q1Sample");
-		
-		RecipientStatus recipient = status.getRecipientStatuses().getRecipientStatus().get(index);
-		
-		RequestRecipientTokenClientURLs urls = new RequestRecipientTokenClientURLs();
-		String urlbase = Utils.getCallbackURL(request, Utils.PAGE_POP) + "?source=Embedded";
-		
-	    urls.setOnAccessCodeFailed(urlbase + "&event=AccessCodeFailed&uname=" + recipient.getUserName());
-	    urls.setOnCancel(urlbase + "&event=Cancel&uname=" + recipient.getUserName());
-	    urls.setOnDecline(urlbase + "&event=Decline&uname=" + recipient.getUserName());
-	    urls.setOnException(urlbase + "&event=Exception&uname=" + recipient.getUserName());
-	    urls.setOnFaxPending(urlbase + "&event=FaxPending&uname=" + recipient.getUserName());
-	    urls.setOnIdCheckFailed(urlbase + "&event=IdCheckFailed&uname=" + recipient.getUserName());
-	    urls.setOnSessionTimeout(urlbase + "&event=SessionTimeout&uname=" + recipient.getUserName());
-	    urls.setOnTTLExpired(urlbase + "&event=TTLExpired&uname=" + recipient.getUserName());
-	    urls.setOnViewingComplete(urlbase + "&event=ViewingComplete&uname=" + recipient.getUserName());
-	    if (_oneSigner) {
-	        urls.setOnSigningComplete(urlbase + "&event=SigningComplete&uname=" + recipient.getUserName());
-	    }
-	    else {
-	        urls.setOnSigningComplete(urlbase + "?envelopeID=" + status.getEnvelopeID());
-	    }
-	    
-	    APIServiceSoap api = Utils.getAPI(request);
-	    token = api.requestRecipientToken(status.getEnvelopeID(), 
-	    		recipient.getClientUserId(), 
-	    		recipient.getUserName(), 
-	    		recipient.getEmail(), 
-	    		assertion, 
-	    		urls);
-	    
-	    request.getSession().setAttribute(Utils.SESSION_EMBEDTOKEN, token);
-	}
+    private void getToken(HttpServletRequest request, EnvelopeStatus status, int index) 
+            throws DatatypeConfigurationException {
+        String token = null;
+        
+        if(index == 0) {
+            request.getSession().setAttribute(Utils.MESSAGE_SIGNING, Utils.MESSAGE_FIRSTSIGNER);
+        } else {
+            request.getSession().setAttribute(Utils.MESSAGE_SIGNING, Utils.MESSAGE_SECONDSIGNER);
+        }
+        
+        // get recipient token
+        RequestRecipientTokenAuthenticationAssertion assertion = new RequestRecipientTokenAuthenticationAssertion();
+        assertion.setAssertionID(UUID.randomUUID().toString());
+        
+        // Why does wsdl2java translate this to XMLGregorianCalendar? Hassle
+        GregorianCalendar gcal = new GregorianCalendar();
+        gcal.setTime(new Date());
+        assertion.setAuthenticationInstant(DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal));
+        
+        assertion.setAuthenticationMethod(RequestRecipientTokenAuthenticationAssertionAuthenticationMethod.PASSWORD);
+        assertion.setSecurityDomain("DocuSign2010Q1Sample");
+        
+        RecipientStatus recipient = status.getRecipientStatuses().getRecipientStatus().get(index);
+        
+        RequestRecipientTokenClientURLs urls = new RequestRecipientTokenClientURLs();
+        String urlbase = Utils.getCallbackURL(request, Utils.PAGE_POP) + "?source=Embedded";
+        
+        urls.setOnAccessCodeFailed(urlbase + "&event=AccessCodeFailed&uname=" + recipient.getUserName());
+        urls.setOnCancel(urlbase + "&event=Cancel&uname=" + recipient.getUserName());
+        urls.setOnDecline(urlbase + "&event=Decline&uname=" + recipient.getUserName());
+        urls.setOnException(urlbase + "&event=Exception&uname=" + recipient.getUserName());
+        urls.setOnFaxPending(urlbase + "&event=FaxPending&uname=" + recipient.getUserName());
+        urls.setOnIdCheckFailed(urlbase + "&event=IdCheckFailed&uname=" + recipient.getUserName());
+        urls.setOnSessionTimeout(urlbase + "&event=SessionTimeout&uname=" + recipient.getUserName());
+        urls.setOnTTLExpired(urlbase + "&event=TTLExpired&uname=" + recipient.getUserName());
+        urls.setOnViewingComplete(urlbase + "&event=ViewingComplete&uname=" + recipient.getUserName());
+        if (_oneSigner || index == 1) {
+            urls.setOnSigningComplete(urlbase + "&event=SigningComplete&uname=" + recipient.getUserName());
+        }
+        else {
+            urls.setOnSigningComplete(Utils.getCallbackURL(request, Utils.PAGE_POP) + "?envelopeID=" + status.getEnvelopeID());
+        }
+        
+        APIServiceSoap api = Utils.getAPI(request);
+        token = api.requestRecipientToken(status.getEnvelopeID(), 
+                recipient.getClientUserId(), 
+                recipient.getUserName(), 
+                recipient.getEmail(), 
+                assertion, 
+                urls);
+        
+        request.getSession().setAttribute(Utils.SESSION_EMBEDTOKEN, token);
+    }
 }

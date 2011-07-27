@@ -154,18 +154,18 @@ public class GetStatusAndDocs extends HttpServlet {
 		assertion.setSecurityDomain("DocuSign2010Q1Sample");
 				
 		RequestRecipientTokenClientURLs urls = new RequestRecipientTokenClientURLs();
-		String urlbase = Utils.getCallbackURL(request, Utils.PAGE_POP) + "?source=Embedded";
+		String urlbase = Utils.getCallbackURL(request, Utils.PAGE_POP);
 		
-	    urls.setOnAccessCodeFailed(urlbase + "&event=AccessCodeFailed&uname=" + username);
-	    urls.setOnCancel(urlbase + "&event=Cancel&uname=" + username);
-	    urls.setOnDecline(urlbase + "&event=Decline&uname=" + username);
-	    urls.setOnException(urlbase + "&event=Exception&uname=" + username);
-	    urls.setOnFaxPending(urlbase + "&event=FaxPending&uname=" + username);
-	    urls.setOnIdCheckFailed(urlbase + "&event=IdCheckFailed&uname=" + username);
-	    urls.setOnSessionTimeout(urlbase + "&event=SessionTimeout&uname=" + username);
-	    urls.setOnTTLExpired(urlbase + "&event=TTLExpired&uname=" + username);
-	    urls.setOnViewingComplete(urlbase + "&event=ViewingComplete&uname=" + username);
-	    urls.setOnSigningComplete(urlbase + "&event=SigningComplete&uname=" + username);
+	    urls.setOnAccessCodeFailed(urlbase + "?event=AccessCodeFailed&uname=" + username);
+	    urls.setOnCancel(urlbase + "?event=Cancel&uname=" + username);
+	    urls.setOnDecline(urlbase + "?event=Decline&uname=" + username);
+	    urls.setOnException(urlbase + "?event=Exception&uname=" + username);
+	    urls.setOnFaxPending(urlbase + "?event=FaxPending&uname=" + username);
+	    urls.setOnIdCheckFailed(urlbase + "?event=IdCheckFailed&uname=" + username);
+	    urls.setOnSessionTimeout(urlbase + "?event=SessionTimeout&uname=" + username);
+	    urls.setOnTTLExpired(urlbase + "?event=TTLExpired&uname=" + username);
+	    urls.setOnViewingComplete(urlbase + "?event=ViewingComplete&uname=" + username);
+	    urls.setOnSigningComplete(urlbase + "?event=SigningComplete&uname=" + username);
 
 	    
 	    APIServiceSoap api = Utils.getAPI(request);

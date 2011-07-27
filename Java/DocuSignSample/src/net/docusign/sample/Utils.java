@@ -11,7 +11,7 @@ import net.docusign.api_3_0.APIServiceSoap;
 import net.docusign.api_3_0.ArrayOfString;
 
 public class Utils {
-	
+
 	// System strings 
 	public static final String CONFIG_PROPERTIES_CLASSPATH_LOCATION = "/config.properties";
 	public static final String DOCUSIGN_WEBSERVICE_ENDPOINT = "docusign.webservice.endpoint";
@@ -94,6 +94,9 @@ public class Utils {
 	// PAGE EMBEDDOCUSIGN
 	public static final String NAME_ONESIGNER = "OneSigner";
 	public static final String NAME_TWOSIGNERS = "TwoSigners";
+	public static final String MESSAGE_FIRSTSIGNER = "Have the first signer fill out the Envelope";
+	public static final String MESSAGE_SECONDSIGNER = "The first signer has completed the Envelope. Now the second signer will be asked to fill out details in the Envelope."; 
+	public static final String MESSAGE_SIGNING = "signingmessage";
 	
 	// PAGE GETDSTATUSANDDOCS
 	public static final String NAME_STARTSIGNING = "SignDocEnvelope+";
