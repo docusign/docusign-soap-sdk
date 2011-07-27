@@ -31,8 +31,12 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
-		if (session.getAttribute(Utils.SESSION_LOGGEDIN) != null &&
-				session.getAttribute(Utils.SESSION_LOGGEDIN).equals(true)) {
+                
+                // redirect only if there is no logout code 
+                // and also the login has been processed.
+                if (request.getParameterMap().containsKey(Utils.PARAM_LOGOUT) == false 
+                        && session.getAttribute(Utils.SESSION_LOGGEDIN) != null &&
+			session.getAttribute(Utils.SESSION_LOGGEDIN).equals(true)) {
 				response.sendRedirect(Utils.CONTROLLER_SENDDOCUMENT);
 		}
 		else {
