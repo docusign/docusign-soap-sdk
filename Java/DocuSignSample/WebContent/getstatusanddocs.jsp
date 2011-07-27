@@ -34,6 +34,9 @@
     			<h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
     		</section>
     	</article>
+    	<form action="<%= Utils.CONTROLLER_GETSTATUS %>" method="post" id="GetStatusForm">
+    	<% 
+    	    if (session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString().equals("")) {%>
     	<div id="statusDiv">
             	<ul style="list-style:none">
         		<%
@@ -48,10 +51,16 @@
                     	      out.println("<span onclick=\"invert('" + env.getEnvelopeID() + "');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>");
                     	      out.println(" " + env.getSubject() + " (" + env.getStatus() + ") - " + env.getEnvelopeID());
                     	      out.println("<ul style=\"list-style-type: none; display:none;\" id=\"" + env.getEnvelopeID() + "\">");
-                    	      for (RecipientStatus rec : env.getRecipientStatuses().getRecipientStatus()) {//returns an array, returns a list
+                    	      for (RecipientStatus rec : env.getRecipientStatuses().getRecipientStatus()) {
                     	          out.println("<li>");
                     	          out.println("<span onclick=\"invert('" + env.getEnvelopeID() + "Recipient" + rec.getUserName() + "');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>");
-                    	          out.println("Recipient (" + rec.getType() + ") - " + rec.getUserName());//TODO start signing button
+                    	          if (rec.getClientUserId() != null && rec.getStatus().toString() != "COMPLETED") {
+                    	              out.println("Recipient (" + rec.getType() + ") - " + rec.getUserName() + " <input name=\"SignDocEnvelope+" + env.getEnvelopeID() + "&Email+" + rec.getEmail() + "&UserName+" + rec.getUserName() + "&CID+" + rec.getClientUserId() + "\" type=\"submit\" value=\"Start Signing\">");
+                    	          }
+                    	          else{
+                    	              out.println("Recipient (" + rec.getType() + ") - " + rec.getUserName());
+                    	          }
+                    	          
                     	          out.println("<ul style=\"list-style-type: none; display: none;\" id=\"" + env.getEnvelopeID() + "Recipient" + rec.getUserName() + "\">");
                     	          for (TabStatus tab : rec.getTabStatuses().getTabStatus()) {
                     	              out.println("<li>" + tab.getTabName() + ": " + tab.getTabValue() + "</li>");
@@ -59,23 +68,38 @@
                     	          out.println("</ul>");
                     	          out.println("</li>");
                     	      }
-                    	      out.println("<li><span onclick=\"invert('"+env.getEnvelopeID() + "Documents');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>                    Documents");
+                    	      if (env.getStatus().toString() == "COMPLETED"){
+                    	          out.println("<li><span onclick=\"invert('"+env.getEnvelopeID() + "Documents');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>                    Documents <input name=\"DownloadDocEnvelope+" + env.getEnvelopeID() + "\" type=\"submit\" value=\"Download\">");
+                    	      }
+                    	      else {
+                    	          out.println("<li><span onclick=\"invert('"+env.getEnvelopeID() + "Documents');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>                    Documents");
+                    	      }
+                    	      
                     	      out.println("<ul style=\"list-style-type: none; display: none; \" id=\"" + env.getEnvelopeID() + "Documents\">");
                     	      for (DocumentStatus doc : env.getDocumentStatuses().getDocumentStatus()) {
-                    	          out.println("<li>" + doc.getName() + "</li>");//TODO download documents button
+                    	          out.println("<li>" + doc.getName() + "</li>");
                     	      }
                     	      out.println("</ul>");
+                    	      out.println("</li>");
                     	      out.println("</ul>");
+                    	      out.println("</li>");
                           }
                       }
-        		  }
-        		  if (hasEnv == false) {
-        			  out.println("<tr><td colspan=3 style='text-align:center'>No envelopes yet</td></tr>");
         		  }
 
         		%>
         		</ul>
 		</div>
+		<%
+    	    }
+	    %>
+		<% 
+    	    if (!session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString().equals("")) {%>
+    	        <iframe src="<%= session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString() %>" width="100%" height="720px"></iframe>
+    	    <%
+    	    }
+	    %>
+		</form>
 		</div>
         <%@ include file="footer.html" %>
      </body>
