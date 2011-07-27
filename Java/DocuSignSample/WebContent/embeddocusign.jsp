@@ -41,12 +41,14 @@
     				</td>
     			</tr>
     		</table>
-    		<%
-    		  
-    		%>
+<% 
+    	    if (!session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString().equals("")) {%>
     		<iframe width="100%" height="70%" 
     		  src="<%= session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString() %>" id="hostiframe" name="hostiframe">
     		</iframe>
+    		<%
+    	    }
+	    %>
 		</form>
 		</div>
         <%@ include file="footer.html" %>
