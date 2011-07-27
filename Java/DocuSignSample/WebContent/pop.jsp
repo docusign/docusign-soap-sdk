@@ -9,10 +9,27 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<script type="text/javascript">
 	    function framepop() {
-	        if (top.frames.length != 0)
-	            top.location = '<%= Utils.CONTROLLER_GETSTATUS %>' + window.location.search;
+	        if (top.frames.length != 0){
+	        	if(qstring('envelopeID') != '')
+	        		top.location = '<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>' + window.location.search;
+	        	else
+	            	top.location = '<%= Utils.CONTROLLER_GETSTATUS %>' + window.location.search;   
+	    	}
 	    }
 	</script>
+	<script>
+    function qstring( name )
+    {
+        name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var results = regex.exec( window.location.href );
+        if( results == null )
+            return "";
+        else
+            return results[1];
+    }
+</script>
 </head>
 <body onload="framepop();">
 </body>
