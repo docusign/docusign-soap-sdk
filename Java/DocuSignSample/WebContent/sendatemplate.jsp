@@ -148,7 +148,7 @@
                         }
                         out.println("</td>");
                         out.println("<td class=\"fivecolumn\">");
-                        out.println("<ul class=\"switcher\"><li class=\"active\"><a href=\"#\" title=\"On\">ON</a></li><li><a href=\"#\" title=\"OFF\">OFF</a></li><input checked=\"checked\" id=\"RecipientInviteToggle" + role.getID() + "\" title=\"RecipientInviteToggle" + role.getID() + "\" name=\"RecipientInviteToggle" + role.getID() + "\" style=\"display:none\" type=\"checkbox\" value=\"true\"></ul>");
+                        out.println("<ul class=\"switcher\"><li class=\"active\"><a href=\"#\" title=\"On\">ON</a></li><li><a href=\"#\" title=\"OFF\">OFF</a></li><input id=\"RecipientInviteToggle" + role.getID() + "\" checked=\"true\" title=\"RecipientInviteToggle" + role.getID() + "\" name=\"RecipientInviteToggle" + role.getID() + "\" style=\"display:none\" type=\"checkbox\" ></ul>");
                         out.println("</td>");
                         out.println("</tr>");
                     }

@@ -7,18 +7,35 @@
 	<title>API Sample on Embedded Sending</title>
 	<link rel="stylesheet" href="css/homestyle.css" type="text/css">
 	<link rel="stylesheet" type="text/css" href="css/Tabs.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
 </head>
     <body>
-    	<% 
-    	    if (session.getAttribute(Utils.SESSION_EMBEDTOKEN) != null) {
-    	        out.println("<iframe src=\"" +
-    	        		session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString() +
-    	        		"\" width=\"100%\" height=\"720px\"></iframe>");
-    	    }
-    	    else {
-    	        out.println("You shouldn't be on this page");
-    	    }
-	    %>
-        <%@ include file="footer.html" %>
+        <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+            <article class="tabs">
+                <section>
+                    <h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
+                </section>
+                <section>
+                    <h3><a href="<%= Utils.CONTROLLER_SENDTEMPLATE %>">Send a Template</a></h3>
+                </section>
+                <section>
+                    <h3><a href="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>">Embed DocuSign</a></h3>
+                </section>
+                <section>
+                    <h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
+                </section>
+            </article>
+            <% 
+                if (session.getAttribute(Utils.SESSION_EMBEDTOKEN) != null) {
+                    out.println("<iframe src=\"" +
+                            session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString() +
+                            "\" width=\"100%\" height=\"720px\"></iframe>");
+                }
+                else {
+                    out.println("You shouldn't be on this page");
+                }
+            %>
+            <%@ include file="footer.html" %>
+        </div>
     </body>
 </html>

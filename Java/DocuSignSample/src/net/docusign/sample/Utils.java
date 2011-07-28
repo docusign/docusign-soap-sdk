@@ -66,6 +66,7 @@ public class Utils {
 	public static final String NAME_RECIPIENTNAME = "RecipientName";
 	public static final String NAME_RECIPIENTEMAIL = "RecipientEmail";
 	public static final String NAME_RECIPIENTSECURITY = "RecipientSecurity";
+	public static final String NAME_EMAILTOGGLE = "RecipientInviteToggle";
 	public static final String NAME_ACCESSCODE = "AccessCode";
 	public static final String NAME_RECIPIENTSECURITYSETTING = "RecipientSecuritySetting";
 	public static final String NAME_STOCKDOC = "stockdoc";
