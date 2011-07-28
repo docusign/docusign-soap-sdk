@@ -27,6 +27,7 @@ import net.docusign.api_3_0.EnvelopeTemplates;
 import net.docusign.api_3_0.Expirations;
 import net.docusign.api_3_0.Notification;
 import net.docusign.api_3_0.Recipient;
+import net.docusign.api_3_0.RecipientCaptiveInfo;
 import net.docusign.api_3_0.RecipientTypeCode;
 import net.docusign.api_3_0.Reminders;
 import net.docusign.api_3_0.RequestSenderToken;
@@ -238,6 +239,12 @@ public class SendATemplate extends HttpServlet {
 				r.setID(new BigInteger(Integer.toString(index)));
 				r.setType(RecipientTypeCode.SIGNER);
 				r.setRoutingOrder(index);
+				
+				if (request.getParameter(Utils.NAME_EMAILTOGGLE + index) == null) {
+				    RecipientCaptiveInfo captive = new RecipientCaptiveInfo();
+				    captive.setClientUserId(Integer.toString(index)); 
+				    r.setCaptiveInfo(captive);  
+				}
 				recipients.getRecipient().add(r);
 				index++;
 			}

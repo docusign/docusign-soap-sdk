@@ -106,7 +106,7 @@ public class SendDocument extends HttpServlet {
 				sendNow(envelope, request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_SEND);
+				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, e.getMessage());
 				response.sendRedirect(Utils.PAGE_ERROR);				
 				return;
 			}
@@ -116,7 +116,7 @@ public class SendDocument extends HttpServlet {
 				embedSending(envelope, request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_EMBED);
+				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, e.getMessage());
 				response.sendRedirect(Utils.PAGE_ERROR);				
 				return;
 			}
@@ -156,31 +156,10 @@ public class SendDocument extends HttpServlet {
 			throws FileUploadException, IOException, ParseException {
 		HttpSession session = request.getSession();
 		Envelope envelope = new Envelope();
-		if (request.getAttribute(Utils.NAME_SUBJECT).toString().length() > 0) {
-			envelope.setSubject(request.getAttribute(Utils.NAME_SUBJECT).toString());
-		}
-		else {
-			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_SUBJECT);
-			response.sendRedirect(Utils.PAGE_ERROR);				
-			return null;
-		}
-		if (request.getAttribute(Utils.NAME_EMAILBLURB).toString().length() > 0) {
-			envelope.setEmailBlurb(request.getAttribute(Utils.NAME_EMAILBLURB).toString());
-		}
-		else {
-			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_EMAILBLURB);
-			response.sendRedirect(Utils.PAGE_ERROR);				
-			return null;
-		}
+	    envelope.setSubject(request.getAttribute(Utils.NAME_SUBJECT).toString());
+		envelope.setEmailBlurb(request.getAttribute(Utils.NAME_EMAILBLURB).toString());
 		ArrayOfRecipient recipients = constructRecipients(request);
-		if (recipients != null) {
-			envelope.setRecipients(recipients);
-		}
-		else {
-			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_RECIPIENTS);
-			response.sendRedirect(Utils.PAGE_ERROR);				
-			return null;
-		}
+		envelope.setRecipients(recipients);
 		
 		envelope.setAccountId(session.getAttribute(Utils.SESSION_ACCOUNT_ID).toString());		
 		envelope.setTabs(addTabs(request, envelope.getRecipients().getRecipient().size()));
@@ -503,6 +482,13 @@ public class SendDocument extends HttpServlet {
 				r.setID(new BigInteger(Integer.toString(index)));
 				r.setType(RecipientTypeCode.SIGNER);
 				r.setRoutingOrder(index);
+				
+				if (request.getAttribute(Utils.NAME_EMAILTOGGLE + index) == null) {
+				    RecipientCaptiveInfo captive = new RecipientCaptiveInfo();
+				    captive.setClientUserId(Integer.toString(index)); 
+				    r.setCaptiveInfo(captive);  
+				}
+				
 				recipients.getRecipient().add(r);
 				index++;
 			}
