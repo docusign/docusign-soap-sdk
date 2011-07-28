@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,9 +18,11 @@ import net.docusign.api_3_0.ArrayOfRecipient;
 import net.docusign.api_3_0.ArrayOfRecipient1;
 import net.docusign.api_3_0.ArrayOfTemplateReference;
 import net.docusign.api_3_0.ArrayOfTemplateReferenceRoleAssignment;
+import net.docusign.api_3_0.Envelope;
 import net.docusign.api_3_0.EnvelopeInformation;
 import net.docusign.api_3_0.EnvelopeStatus;
 import net.docusign.api_3_0.EnvelopeStatusCode;
+import net.docusign.api_3_0.EnvelopeTemplate;
 import net.docusign.api_3_0.EnvelopeTemplates;
 import net.docusign.api_3_0.Expirations;
 import net.docusign.api_3_0.Notification;
@@ -49,7 +52,13 @@ public class SendATemplate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	//request.getSession().setAttribute(Utils.NAME_SELECTEDTEMPLATE, "");
+	    
+	    HttpSession session = request.getSession();
+	    if (request.getSession().getAttribute(Utils.NAME_TEMPLATECHOSEN) == null) {
+	        request.getSession().setAttribute(Utils.NAME_TEMPLATECHOSEN, false);
+	    }
+		
 		if (session.getAttribute(Utils.SESSION_LOGGEDIN) == null ||
 			session.getAttribute(Utils.SESSION_LOGGEDIN).equals(false)) {
 			response.sendRedirect(Utils.CONTROLLER_LOGIN);
@@ -76,16 +85,45 @@ public class SendATemplate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		try {
-			createSampleEnvelope(request, response);
+		    if(request.getParameterValues(Utils.NAME_SELECTTEMPLATE) != null){
+		        requestTemplateAndPopulate(request, response);
+		        request.getSession().setAttribute(Utils.NAME_TEMPLATECHOSEN, true);
+		    } else {
+			    createSampleEnvelope(request, response);
+			}
 		} catch (Exception e) {
 			request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, e.getMessage());
 			response.sendRedirect(Utils.PAGE_ERROR);
 		}
 	}
+	
+	private void requestTemplateAndPopulate(HttpServletRequest request, HttpServletResponse response)
+	        throws ParseException, IOException {
+	    HttpSession session = request.getSession();
+	    //get the template ID
+	    String templateID = request.getParameter(Utils.NAME_TEMPLATETABLE);
+	    request.getSession().setAttribute(Utils.NAME_SELECTEDTEMPLATE, templateID);
+	    
+	    //request the template
+	    APIServiceSoap api = Utils.getAPI(request);
+        try {
+            Envelope template = api.requestTemplate(templateID, false).getEnvelope();
+            List<Recipient> roles = template.getRecipients().getRecipient();
+            request.getSession().setAttribute(Utils.NAME_TEMPLATEROLES, roles);
+            response.sendRedirect(Utils.PAGE_SENDTEMPLATE);
+        } catch (Exception e) {
+            session.setAttribute(Utils.SESSION_ERROR_MSG, e.getMessage());
+            response.sendRedirect(Utils.PAGE_ERROR);
+        }
+	    
+	}
 
 	private void createSampleEnvelope(HttpServletRequest request, HttpServletResponse response) 
 			throws ParseException, IOException {
+		//request.getSession().setAttribute(Utils.NAME_SELECTEDTEMPLATE, "");
+		request.getSession().setAttribute(Utils.NAME_TEMPLATECHOSEN, false);
 		HttpSession session = request.getSession();
 		EnvelopeInformation envInfo = new EnvelopeInformation();
 		envInfo.setSubject(request.getParameter(Utils.NAME_SUBJECT));
@@ -115,18 +153,18 @@ public class SendATemplate extends HttpServlet {
 			envInfo.getNotification().getExpirations().setExpireWarn(
 					new BigInteger(Long.toString(days - 2)));
 		}
-		
+
 		// get all recipients
 		ArrayOfRecipient recipients = constructRecipients(request);
 		
 		// Construct the template reference
 		TemplateReference tref = new TemplateReference();
-		tref.setTemplateLocation(TemplateLocationCode.SERVER);
-		tref.setTemplate(request.getParameter(Utils.NAME_TEMPLATETABLE));
+		tref.setTemplateLocation(TemplateLocationCode.SERVER);	
+		tref.setTemplate(request.getSession().getAttribute(Utils.NAME_SELECTEDTEMPLATE).toString());
 		tref.setRoleAssignments(createFinalRoleAssignments(recipients));
 		ArrayOfTemplateReference trefs = new ArrayOfTemplateReference();
 		trefs.getTemplateReference().add(tref);
-		
+		//response.sendRedirect(Utils.PAGE_SENDTEMPLATE);
 		if (request.getParameterValues(Utils.NAME_SENDNOW) != null) {
 			sendNow(trefs, envInfo, recipients, request, response);
 		}

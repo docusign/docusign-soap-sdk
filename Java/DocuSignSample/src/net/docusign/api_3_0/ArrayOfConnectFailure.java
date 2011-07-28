@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ArrayOfServerTemplate complex type.
+ * <p>Java class for ArrayOfConnectFailure complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ArrayOfServerTemplate">
+ * &lt;complexType name="ArrayOfConnectFailure">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ServerTemplate" type="{http://www.docusign.net/API/3.0}ServerTemplate" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="ConnectFailure" type="{http://www.docusign.net/API/3.0}ConnectFailure" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,41 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfServerTemplate", propOrder = {
-    "serverTemplate"
+@XmlType(name = "ArrayOfConnectFailure", propOrder = {
+    "connectFailure"
 })
-public class ArrayOfServerTemplate {
+public class ArrayOfConnectFailure {
 
-    @XmlElement(name = "ServerTemplate")
-    protected List<ServerTemplate> serverTemplate;
+    @XmlElement(name = "ConnectFailure", nillable = true)
+    protected List<ConnectFailure> connectFailure;
 
     /**
-     * Gets the value of the serverTemplate property.
+     * Gets the value of the connectFailure property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the serverTemplate property.
+     * This is why there is not a <CODE>set</CODE> method for the connectFailure property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getServerTemplate().add(newItem);
+     *    getConnectFailure().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ServerTemplate }
+     * {@link ConnectFailure }
      * 
      * 
      */
-    public List<ServerTemplate> getServerTemplate() {
-        if (serverTemplate == null) {
-            serverTemplate = new ArrayList<ServerTemplate>();
+    public List<ConnectFailure> getConnectFailure() {
+        if (connectFailure == null) {
+            connectFailure = new ArrayList<ConnectFailure>();
         }
-        return this.serverTemplate;
+        return this.connectFailure;
     }
 
 }

@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ArrayOfServerTemplate complex type.
+ * <p>Java class for ArrayOfEnvelopeTemplate complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ArrayOfServerTemplate">
+ * &lt;complexType name="ArrayOfEnvelopeTemplate">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ServerTemplate" type="{http://www.docusign.net/API/3.0}ServerTemplate" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="EnvelopeTemplate" type="{http://www.docusign.net/API/3.0}EnvelopeTemplate" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,41 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfServerTemplate", propOrder = {
-    "serverTemplate"
+@XmlType(name = "ArrayOfEnvelopeTemplate", propOrder = {
+    "envelopeTemplate"
 })
-public class ArrayOfServerTemplate {
+public class ArrayOfEnvelopeTemplate {
 
-    @XmlElement(name = "ServerTemplate")
-    protected List<ServerTemplate> serverTemplate;
+    @XmlElement(name = "EnvelopeTemplate", nillable = true)
+    protected List<EnvelopeTemplate> envelopeTemplate;
 
     /**
-     * Gets the value of the serverTemplate property.
+     * Gets the value of the envelopeTemplate property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the serverTemplate property.
+     * This is why there is not a <CODE>set</CODE> method for the envelopeTemplate property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getServerTemplate().add(newItem);
+     *    getEnvelopeTemplate().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ServerTemplate }
+     * {@link EnvelopeTemplate }
      * 
      * 
      */
-    public List<ServerTemplate> getServerTemplate() {
-        if (serverTemplate == null) {
-            serverTemplate = new ArrayList<ServerTemplate>();
+    public List<EnvelopeTemplate> getEnvelopeTemplate() {
+        if (envelopeTemplate == null) {
+            envelopeTemplate = new ArrayList<EnvelopeTemplate>();
         }
-        return this.serverTemplate;
+        return this.envelopeTemplate;
     }
 
 }

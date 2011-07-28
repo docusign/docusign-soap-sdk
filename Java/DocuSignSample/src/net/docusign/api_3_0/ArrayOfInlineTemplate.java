@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ArrayOfInlineTemplate {
 
-    @XmlElement(name = "InlineTemplate", nillable = true)
+    @XmlElement(name = "InlineTemplate")
     protected List<InlineTemplate> inlineTemplate;
 
     /**
