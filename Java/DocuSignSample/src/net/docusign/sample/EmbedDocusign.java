@@ -287,7 +287,7 @@ public class EmbedDocusign extends HttpServlet {
         ArrayOfRecipient recipients = new ArrayOfRecipient();
 
         Recipient r1 = new Recipient();
-        r1.setUserName("DocuSign Recipient1"));
+        r1.setUserName("DocuSign Recipient1");
         r1.setEmail(session.getAttribute(Utils.SESSION_EMAIL).toString());
         r1.setID(new BigInteger("1"));
         r1.setType(RecipientTypeCode.SIGNER);

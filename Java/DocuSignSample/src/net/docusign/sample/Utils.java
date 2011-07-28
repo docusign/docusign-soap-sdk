@@ -12,6 +12,8 @@ import net.docusign.api_3_0.ArrayOfString;
 
 public class Utils {
 
+    public static final String SESSION_DEBUG = "debug";
+
 	// System strings 
 	public static final String CONFIG_PROPERTIES_CLASSPATH_LOCATION = "/config.properties";
 	public static final String DOCUSIGN_WEBSERVICE_ENDPOINT = "docusign.webservice.endpoint";
@@ -90,6 +92,10 @@ public class Utils {
 	public static final String NAME_ROLESECURITY = "RoleSecurity";
 	public static final String NAME_NONE = "None";
 	public static final String NAME_ROLESECURITYSETTING = "RoleSecuritySetting";
+	public static final String NAME_SELECTTEMPLATE = "SelectTemplate";
+	public static final String NAME_SELECTEDTEMPLATE = "SelectedTemplate";
+	public static final String NAME_TEMPLATEROLES = "TemplateRoles";
+	public static final String NAME_TEMPLATECHOSEN = "TemplateChosen";
 	
 	// PAGE EMBEDDOCUSIGN
 	public static final String NAME_ONESIGNER = "OneSigner";

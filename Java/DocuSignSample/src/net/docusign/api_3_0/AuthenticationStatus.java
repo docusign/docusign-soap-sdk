@@ -24,6 +24,15 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="STANPinResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
  *         &lt;element name="OFACResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
  *         &lt;element name="PhoneAuthResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="LiveIDResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="FacebookResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="GoogleResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="LinkedinResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="SalesforceResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="TwitterResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="OpenIDResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="AnySocialIDResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
+ *         &lt;element name="YahooResult" type="{http://www.docusign.net/API/3.0}EventResult" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,7 +49,16 @@ import javax.xml.bind.annotation.XmlType;
     "ageVerifyResult",
     "stanPinResult",
     "ofacResult",
-    "phoneAuthResult"
+    "phoneAuthResult",
+    "liveIDResult",
+    "facebookResult",
+    "googleResult",
+    "linkedinResult",
+    "salesforceResult",
+    "twitterResult",
+    "openIDResult",
+    "anySocialIDResult",
+    "yahooResult"
 })
 public class AuthenticationStatus {
 
@@ -58,6 +76,24 @@ public class AuthenticationStatus {
     protected EventResult ofacResult;
     @XmlElement(name = "PhoneAuthResult")
     protected EventResult phoneAuthResult;
+    @XmlElement(name = "LiveIDResult")
+    protected EventResult liveIDResult;
+    @XmlElement(name = "FacebookResult")
+    protected EventResult facebookResult;
+    @XmlElement(name = "GoogleResult")
+    protected EventResult googleResult;
+    @XmlElement(name = "LinkedinResult")
+    protected EventResult linkedinResult;
+    @XmlElement(name = "SalesforceResult")
+    protected EventResult salesforceResult;
+    @XmlElement(name = "TwitterResult")
+    protected EventResult twitterResult;
+    @XmlElement(name = "OpenIDResult")
+    protected EventResult openIDResult;
+    @XmlElement(name = "AnySocialIDResult")
+    protected EventResult anySocialIDResult;
+    @XmlElement(name = "YahooResult")
+    protected EventResult yahooResult;
 
     /**
      * Gets the value of the accessCodeResult property.
@@ -225,6 +261,222 @@ public class AuthenticationStatus {
      */
     public void setPhoneAuthResult(EventResult value) {
         this.phoneAuthResult = value;
+    }
+
+    /**
+     * Gets the value of the liveIDResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getLiveIDResult() {
+        return liveIDResult;
+    }
+
+    /**
+     * Sets the value of the liveIDResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setLiveIDResult(EventResult value) {
+        this.liveIDResult = value;
+    }
+
+    /**
+     * Gets the value of the facebookResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getFacebookResult() {
+        return facebookResult;
+    }
+
+    /**
+     * Sets the value of the facebookResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setFacebookResult(EventResult value) {
+        this.facebookResult = value;
+    }
+
+    /**
+     * Gets the value of the googleResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getGoogleResult() {
+        return googleResult;
+    }
+
+    /**
+     * Sets the value of the googleResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setGoogleResult(EventResult value) {
+        this.googleResult = value;
+    }
+
+    /**
+     * Gets the value of the linkedinResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getLinkedinResult() {
+        return linkedinResult;
+    }
+
+    /**
+     * Sets the value of the linkedinResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setLinkedinResult(EventResult value) {
+        this.linkedinResult = value;
+    }
+
+    /**
+     * Gets the value of the salesforceResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getSalesforceResult() {
+        return salesforceResult;
+    }
+
+    /**
+     * Sets the value of the salesforceResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setSalesforceResult(EventResult value) {
+        this.salesforceResult = value;
+    }
+
+    /**
+     * Gets the value of the twitterResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getTwitterResult() {
+        return twitterResult;
+    }
+
+    /**
+     * Sets the value of the twitterResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setTwitterResult(EventResult value) {
+        this.twitterResult = value;
+    }
+
+    /**
+     * Gets the value of the openIDResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getOpenIDResult() {
+        return openIDResult;
+    }
+
+    /**
+     * Sets the value of the openIDResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setOpenIDResult(EventResult value) {
+        this.openIDResult = value;
+    }
+
+    /**
+     * Gets the value of the anySocialIDResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getAnySocialIDResult() {
+        return anySocialIDResult;
+    }
+
+    /**
+     * Sets the value of the anySocialIDResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setAnySocialIDResult(EventResult value) {
+        this.anySocialIDResult = value;
+    }
+
+    /**
+     * Gets the value of the yahooResult property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link EventResult }
+     *     
+     */
+    public EventResult getYahooResult() {
+        return yahooResult;
+    }
+
+    /**
+     * Sets the value of the yahooResult property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link EventResult }
+     *     
+     */
+    public void setYahooResult(EventResult value) {
+        this.yahooResult = value;
     }
 
 }

@@ -8,17 +8,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for FoldersFilter complex type.
+ * <p>Java class for DeleteEnvelopesArg complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="FoldersFilter">
+ * &lt;complexType name="DeleteEnvelopesArg">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="EnvelopeIds" type="{http://www.docusign.net/API/3.0}ArrayOfString2" minOccurs="0"/>
  *         &lt;element name="AccountId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="IncludeHierarchy" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="FolderFrom" type="{http://www.docusign.net/API/3.0}FolderTypeInfo" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,16 +29,43 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "FoldersFilter", propOrder = {
+@XmlType(name = "DeleteEnvelopesArg", propOrder = {
+    "envelopeIds",
     "accountId",
-    "includeHierarchy"
+    "folderFrom"
 })
-public class FoldersFilter {
+public class DeleteEnvelopesArg {
 
+    @XmlElement(name = "EnvelopeIds")
+    protected ArrayOfString2 envelopeIds;
     @XmlElement(name = "AccountId")
     protected String accountId;
-    @XmlElement(name = "IncludeHierarchy")
-    protected Boolean includeHierarchy;
+    @XmlElement(name = "FolderFrom")
+    protected FolderTypeInfo folderFrom;
+
+    /**
+     * Gets the value of the envelopeIds property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ArrayOfString2 }
+     *     
+     */
+    public ArrayOfString2 getEnvelopeIds() {
+        return envelopeIds;
+    }
+
+    /**
+     * Sets the value of the envelopeIds property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ArrayOfString2 }
+     *     
+     */
+    public void setEnvelopeIds(ArrayOfString2 value) {
+        this.envelopeIds = value;
+    }
 
     /**
      * Gets the value of the accountId property.
@@ -64,27 +92,27 @@ public class FoldersFilter {
     }
 
     /**
-     * Gets the value of the includeHierarchy property.
+     * Gets the value of the folderFrom property.
      * 
      * @return
      *     possible object is
-     *     {@link Boolean }
+     *     {@link FolderTypeInfo }
      *     
      */
-    public Boolean isIncludeHierarchy() {
-        return includeHierarchy;
+    public FolderTypeInfo getFolderFrom() {
+        return folderFrom;
     }
 
     /**
-     * Sets the value of the includeHierarchy property.
+     * Sets the value of the folderFrom property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Boolean }
+     *     {@link FolderTypeInfo }
      *     
      */
-    public void setIncludeHierarchy(Boolean value) {
-        this.includeHierarchy = value;
+    public void setFolderFrom(FolderTypeInfo value) {
+        this.folderFrom = value;
     }
 
 }

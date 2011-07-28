@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for ArrayOfServerTemplate complex type.
+ * <p>Java class for ArrayOfString5 complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="ArrayOfServerTemplate">
+ * &lt;complexType name="ArrayOfString5">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ServerTemplate" type="{http://www.docusign.net/API/3.0}ServerTemplate" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="string" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,41 +29,41 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ArrayOfServerTemplate", propOrder = {
-    "serverTemplate"
+@XmlType(name = "ArrayOfString5", propOrder = {
+    "string"
 })
-public class ArrayOfServerTemplate {
+public class ArrayOfString5 {
 
-    @XmlElement(name = "ServerTemplate")
-    protected List<ServerTemplate> serverTemplate;
+    @XmlElement(nillable = true)
+    protected List<String> string;
 
     /**
-     * Gets the value of the serverTemplate property.
+     * Gets the value of the string property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the serverTemplate property.
+     * This is why there is not a <CODE>set</CODE> method for the string property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getServerTemplate().add(newItem);
+     *    getString().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link ServerTemplate }
+     * {@link String }
      * 
      * 
      */
-    public List<ServerTemplate> getServerTemplate() {
-        if (serverTemplate == null) {
-            serverTemplate = new ArrayList<ServerTemplate>();
+    public List<String> getString() {
+        if (string == null) {
+            string = new ArrayList<String>();
         }
-        return this.serverTemplate;
+        return this.string;
     }
 
 }
