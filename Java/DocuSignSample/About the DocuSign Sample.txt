@@ -1,0 +1,82 @@
+DocuSign SDK Sample
+
+The sample is designed to give you both visual and programmatic
+guidance on your DocuSign API integration. Each tab shows a common
+scenario you may need to implement when building your integration.
+
+The Login screen:
+
+    Illustrates:
+
+        - Authenticate a user with the Credential API 
+        - Test connectivity to the DocuSign service
+        
+    Uses:
+        
+        - Login
+        - Ping
+
+The "Send Document" tab:
+
+    Illustrates:
+    
+        - Send an envelope by specifying recipients, documents and tabs 
+        - Enter into the embedded sending experience 
+        - Create embedded (captive) recipients 
+        - Use conditional fields 
+        - Specify reminders and expirations
+        - Use additional security measures
+
+    Uses:
+    
+        - CreateEnvelope
+        - CreateAndSendEnvelope
+        - RequestSenderToken
+
+The "Send a Template" tab:
+
+    Illustrates:
+    
+        - Retrieve the list of templates on an account 
+        - Retrieve a specific template and extract information from it 
+        - Send an envelope using a template and recipients 
+        - Enter into the embedded sending experience 
+        - Create embedded (captive) recipients 
+        - Specify reminders and expirations
+    
+    Uses:
+    
+        - RequestTemplates
+        - RequestTemplate
+        - CreateEnvelopeFromTemplates
+        - RequestSenderToken
+
+The "Embed DocuSign" tab:
+
+    Illustrates:
+    
+        - Send an envelope by specifying recipients, documents and tabs 
+        - Create embedded (captive) recipients 
+        - Enter into the embedded signing experience 
+        - Allow two sequential embedded (captive) rcipients to sign 
+        - Use callbacks to redirect the application after signing
+    
+    Uses:
+        
+        - CreateAndSendEnvelope
+        - RequestRecipientToken
+
+The "Get Status And Docs" tab:
+
+    Illustrates:
+    
+        - Retrieve statuses for a list of envelopes 
+        - Retrieve information about recipients and documents in an envelope 
+        - Allow embedded (captive) recipient to start signing 
+        - Allow download of envelope once completed
+    
+    Uses:
+    
+        - RequestStatusesEx
+        - RequestRecipientToken
+        - RequestPDF

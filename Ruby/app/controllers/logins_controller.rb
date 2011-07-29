@@ -30,7 +30,6 @@ class LoginsController < ApplicationController
       result = Docusign::Base.credentials("["+session[:int_key] + "]" + session[:email], session[:password], Docusign::Config[:credential_endpoint_url])
         if result.success?
         session[:logged_in] = true
-        redirect_to send_document_path
       else
         redirect_to :controller => 'error', :action => 'show', :message => "Could not connect to DocuSign with the credentials specified in the docusign.yml file." and return
       end
