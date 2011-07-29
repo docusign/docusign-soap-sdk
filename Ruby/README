@@ -1,33 +1,48 @@
-Readme.txt for Docusign SDK Ruby sample
-
-Copyright (C) DocuSign, Inc. All rights reserved.
-
-This source code is intended only as a supplement to DocuSign SDK and/or on-line documentation.
-
-This sample is designed to demonstrate DocuSign features and is not intended for production use. Code and policy for a production application must be developed to meet the specific data and security requirements of the application.
-
-THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+DocuSign Web Services API 3.5 Ruby Sample
+========================================================================
 
 System Requirements:
--	Ruby 1.8.7
--   Rails 3.0.4
--   rubygems
--   docusign gem
--   intercession gem
--   soap4r gem
--	sqlite3 gem
+   - Ruby 1.8.7 
+   - Rails 3.0.4 
+   - rubygems 
+   - docusign 
+   - intercession 
+   - soap4r 
+   - sqlite3
 
 Overview:
+------------------------------------------------------------------------
 
 This sample code requires a DocuSign DevCenter account. If you do not
 already have a DevCenter account please go to
 http://www.docusign.com/devcenter/ and sign up for one. This sample will
 not function without a valid DevCenter account.
 
-Setup:
+This sample shows how to implement many of the typical ways to integrate
+the DocuSign Web Service with a product.
 
-1. Ensure that you have the required gems installed by running gem list
-2. Enter your account credentials in config/docusign.yml
+This source code is intended only as a supplement to DocuSign SDK and/or
+on-line documentation. This sample is designed to demonstrate DocuSign
+features and is not intended for production use. Code and policy for a
+production application must be developed to meet the specific data and
+security requirements of the application.
+
+Installation and Use
+------------------------------------------------------------------------
+
+To configure:
+
+1. Ensure that you have the required system requirements installed 2.
+   Optionally enter your account credentials in config/docusign.yml by
+   modifying the following lines:
+
+   user_name: '' 
+   password: '' 
+   integrators_key: '' 
+   account_id: ''
+
 3. Start the rails server (ex: rails server)
 
+4. Run the app by going to the app's URL (for example):
 
+   http://0.0.0.0:3000
