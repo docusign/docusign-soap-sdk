@@ -28,7 +28,7 @@
 </li>
 </ul>
 </nav>
-    <div style="width: 1000px; margin-left: auto; margin-right: auto;">
+    <div style="width: 1000px; margin-left: auto; margin-right: auto; height:800px;">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
     </div>

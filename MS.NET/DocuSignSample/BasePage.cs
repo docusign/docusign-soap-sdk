@@ -107,4 +107,16 @@ public class BasePage : System.Web.UI.Page
         string ids = Session["EnvelopeIDs"].ToString();
         return ids.Split(',');
     }
+
+    public bool LoggedIn()
+    {
+        if (Session["APIAccountID"] != null && Session["APIEmail"] != null && Session["APIPassword"] != null && Session["APIIKey"] != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

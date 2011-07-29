@@ -14,6 +14,10 @@ namespace DocuSignSample
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!LoggedIn())
+            {
+                Response.Redirect("LogIn.aspx");
+            }
             if (!Page.IsPostBack && Request.Form["__EVENTTARGET"] != logoutCtrlName)
             {
                 // Check to see if we're coming back after signing as the first signer
