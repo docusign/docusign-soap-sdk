@@ -3,7 +3,7 @@ DocuSign Web Services API 3.5 Ruby Sample
 
 System Requirements:
    - Ruby 1.8.7 
-   - Rails 3.0.4 
+   - Rails 3.0.4  
    - rubygems 
    - docusign 
    - intercession 
@@ -32,8 +32,9 @@ Installation and Use
 
 To configure:
 
-1. Ensure that you have the required system requirements installed 2.
-   Optionally enter your account credentials in config/docusign.yml by
+1. Ensure that you have the required system requirements installed 
+
+2. Optionally enter your account credentials in config/docusign.yml by
    modifying the following lines:
 
    user_name: '' 
