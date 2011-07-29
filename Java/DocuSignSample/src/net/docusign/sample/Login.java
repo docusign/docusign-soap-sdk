@@ -40,9 +40,13 @@ public class Login extends HttpServlet {
 				response.sendRedirect(Utils.CONTROLLER_SENDDOCUMENT);
 		}
 		else {
+		
+		    // Set initial values of some session attributes
 			session.setAttribute(Utils.SESSION_ENVELOPEIDS, null);
 			session.setAttribute(Utils.SESSION_ERROR_MSG, null);
 			session.setAttribute(Utils.SESSION_LOGGEDIN, false);
+			
+			// Create the credentials by drawing from teh files
 			Properties creds = new Properties();
 			try {
 				creds.load(getClass().getResourceAsStream(
@@ -100,7 +104,7 @@ public class Login extends HttpServlet {
 				session.getAttribute(Utils.DOCUSIGN_CREDENTIAL_ENDPOINT).toString());
 		
 		try {
-			// add integrator key TODO: remove if this is changed
+			// add integrator key
 			result = credApi.login(
 					"[" + session.getAttribute(Utils.SESSION_INTEGRATORS_KEY).toString() + "]" +
 					session.getAttribute(Utils.SESSION_EMAIL).toString(), 
@@ -110,6 +114,7 @@ public class Login extends HttpServlet {
 			ret = false;
 		}
 		
+		// If we authenticated properly, record the information in the session
 		if (result != null && result.isSuccess()) {
 			session.setAttribute(Utils.SESSION_ACCOUNT_ID, 
 					result.getAccounts().getAccount().get(0).getAccountID());
