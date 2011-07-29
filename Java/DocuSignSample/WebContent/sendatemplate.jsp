@@ -19,45 +19,42 @@
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
-    <script type="text/javascript" src="js/jquery.ui.dialog.js"></script>
-    <script type="text/javascript" src="js/jquery.bgiframe-2.1.2.js"></script>
-    <script type="text/javascript" src="js/jquery.ui.mouse.js"></script>
-    <script type="text/javascript" src="js/jquery.ui.draggable.js"></script>
-    <script type="text/javascript" src="js/jquery.ui.position.js"></script>
     <script type="text/javascript" src="js/Utils.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        $(function () {
-            var today = new Date().getDate();
-            $("#reminders").datepicker({
-                showOn: "button",
-                buttonImage: "images/calendar.png",
-                buttonImageOnly: true,
-                minDate: today
+    <script type="text/javascript">
+            $(document).ready(function () {
+                var today = new Date().getDate();
+                $("#reminders").datepicker({
+                    showOn: "button",
+                    buttonImage: "images/calendar.png",
+                    buttonImageOnly: true,
+                    minDate: today
+                });
+                $("#expiration").datepicker({
+                    showOn: "button",
+                    buttonImage: "images/calendar.png",
+                    buttonImageOnly: true,
+                    minDate: today + 3
+                });
+                $(".switcher li").bind("click", function () {
+                    var act = $(this);
+                    $(act).parent().children('li').removeClass("active").end();
+                    $(act).addClass("active");
+                     var text = act.context.textContent;
+                    if (text == "OFF") {
+                        $(act).parent().children('input').attr('checked', false);
+                    }
+                    else {
+                        $(act).parent().children('input').attr('checked', true);
+                    }
+                });
             });
-            $("#expiration").datepicker({
-                showOn: "button",
-                buttonImage: "images/calendar.png",
-                buttonImageOnly: true,
-                minDate: today
-            });
-            $("#dialogmodal").dialog({
-                height: 350,
-                modal: true,
-                autoOpen: false
-            });
-            $(".switcher li").bind("click", function () {
-            var act = $(this);
-            $(act).parent().children('li').removeClass("active").end();
-            $(act).addClass("active");
-            });
-        });
-
-    </script>
+        </script>
 	</head>
     <body>
     <%@include file="header.jsp" %>
 
     <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+        <!--Navigation-->
     	<article class="tabs">
     		<section>
     			<h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
@@ -72,13 +69,23 @@
     			<h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
     		</section>
     	</article>
+
     <form id="SendTemplateForm" action="<%= Utils.CONTROLLER_SENDTEMPLATE %>" method="post">
+        <!--Display the selected template if we have one-->
+        <% 
+        	boolean chosen = (Boolean) session.getAttribute(Utils.NAME_TEMPLATECHOSEN);
+            if (chosen) {%>
+            <p>Template Chosen: <strong><%= session.getAttribute(Utils.NAME_SELECTEDTEMPLATE).toString() %></strong></p>
+            <%
+            }
+        %>
     <div>
         <input id="subject" name="<%= Utils.NAME_SUBJECT %>" placeholder="<enter the subject>" type="text"
             class="email" /><br />
         <textarea id="emailblurb" cols="20" name="<%= Utils.NAME_EMAILBLURB %>" placeholder="<enter the e-mail blurb>"
             rows="4" class="email"></textarea>
     </div>
+    <!--Display all the templates on the logged in account-->
     <div>
         Select a Template<br />
         <select id="TemplateTable" name="<%= Utils.NAME_TEMPLATETABLE %>" >
@@ -93,9 +100,8 @@
         	   }
         	%>
         </select>
-<!--         <input type="button" id="selectTemplateButton" name="selectTemplateButton"
-            value="Go"  /> 
--->
+         <input type="submit" id="selectTemplateButton" name="<%= Utils.NAME_SELECTTEMPLATE %>"
+            value="Go" class="docusignbutton orange"/> 
     </div>
     <br />
     <div>
@@ -117,8 +123,44 @@
                     <b>Send E-mail Invite</b>
                 </th>
             </tr>
+            
+            <!--Load roles and information from the selected template-->
+            <% 
+            if (session.getAttribute(Utils.NAME_TEMPLATEROLES) != null) {
+                List<Recipient> roles = (List<Recipient>) session.getAttribute(Utils.NAME_TEMPLATEROLES);
+                if (roles.size() > 0) {
+                    for (Recipient role : roles) {
+                        
+                        out.println("<tr>");
+                        out.println("<td class=\"fivecolumn\">");
+                        out.println("<input id=\"RoleName" + role.getID() + "\" name=\"RoleName" + role.getID() + "\" readonly=\"readonly\" type=\"text\" value=\"" + role.getRoleName() + "\">");
+                        out.println("</td>");
+                        out.println("<td class=\"fivecolumn\">");
+                        out.println("<input id=\"Name" + role.getID() + "\" name=\"Name" + role.getID() + "\" type=\"text\" value=\"" + role.getUserName() + "\">");
+                        out.println("</td>");
+                        out.println("<td class=\"fivecolumn\">");
+                        out.println("<input id=\"RoleEmail" + role.getID() + "\" name=\"RoleEmail" + role.getID() + "\" type=\"text\" value=\"" + role.getEmail() + "\">");
+                        out.println("</td>");
+                        out.println("<td class=\"fivecolumn\">");
+                        if (!role.getAccessCode().equals("")) {
+                            out.println("<input id=\"RecipientSecurity" + role.getID() + "\" name=\"RecipientSecurity" + role.getID() + "\" readonly=\"readonly\" type=\"text\" value=\"Access Code:" + role.getAccessCode() + "\">");
+                        } else if (role.isRequireIDLookup()) {
+                            out.println("<input id=\"RecipientSecurity" + role.getID() + "\" name=\"RecipientSecurity" + role.getID() + "\" readonly=\"readonly\" type=\"text\" value=\"ID Check\">");
+                        } else if (role.getPhoneAuthentication() != null) {
+                            out.println("<input id=\"RecipientSecurity" + role.getID() + "\" name=\"RecipientSecurity" + role.getID() + "\" readonly=\"readonly\" type=\"text\" value=\"Phone Authentication\">");
+                        } else {
+                            out.println("<input id=\"RecipientSecurity" + role.getID() + "\" name=\"RecipientSecurity" + role.getID() + "\" readonly=\"readonly\" type=\"text\" value=\"None\">");
+                        }
+                        out.println("</td>");
+                        out.println("<td class=\"fivecolumn\">");
+                        out.println("<ul class=\"switcher\"><li class=\"active\"><a href=\"#\" title=\"On\">ON</a></li><li><a href=\"#\" title=\"OFF\">OFF</a></li><input id=\"RecipientInviteToggle" + role.getID() + "\" checked=\"true\" title=\"RecipientInviteToggle" + role.getID() + "\" name=\"RecipientInviteToggle" + role.getID() + "\" style=\"display:none\" type=\"checkbox\" ></ul>");
+                        out.println("</td>");
+                        out.println("</tr>");
+                    }
+                }
+            }
+            %>
         </table>
-         <input type="button" onclick="addRoleRowToTable()" value="Add Role"/>
     </div>
     <div>
         <table width="100%">
@@ -146,6 +188,7 @@
                 <td class="fourcolumn">
                 </td>
             </tr>
+            <!--Give the option to send right away or enter into the embedded sending experience-->
             <tr>
                 <td class="fourcolumn">
                 </td>

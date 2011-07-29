@@ -1,6 +1,7 @@
 
 package net.docusign.api_3_0;
 
+import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -19,7 +20,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="EnvelopeId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="EnvelopeId" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
  *         &lt;element name="Status" type="{http://www.docusign.net/API/3.0}EnvelopeStatusCode"/>
  *         &lt;element name="Owner" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="SenderName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -57,7 +58,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class FolderItem {
 
     @XmlElement(name = "EnvelopeId")
-    protected String envelopeId;
+    @XmlSchemaType(name = "positiveInteger")
+    protected BigInteger envelopeId;
     @XmlElement(name = "Status", required = true)
     protected EnvelopeStatusCode status;
     @XmlElement(name = "Owner")
@@ -89,10 +91,10 @@ public class FolderItem {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public String getEnvelopeId() {
+    public BigInteger getEnvelopeId() {
         return envelopeId;
     }
 
@@ -101,10 +103,10 @@ public class FolderItem {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link BigInteger }
      *     
      */
-    public void setEnvelopeId(String value) {
+    public void setEnvelopeId(BigInteger value) {
         this.envelopeId = value;
     }
 

@@ -46,6 +46,8 @@ public class SendDocument extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		// Make sure we're logged in
 		if (session.getAttribute(Utils.SESSION_LOGGEDIN) == null ||
 			session.getAttribute(Utils.SESSION_LOGGEDIN).equals(false)) {
 			response.sendRedirect(Utils.CONTROLLER_LOGIN);
@@ -78,7 +80,7 @@ public class SendDocument extends HttpServlet {
 						request.setAttribute(item.getFieldName(), item.getString());
 					}
 					else {
-						// stick the whole FileItem in the attribute if it's a file
+						// Stick the whole FileItem in the attribute if it's a file
 						request.setAttribute(item.getFieldName(), item);
 					}
 				}
@@ -106,7 +108,7 @@ public class SendDocument extends HttpServlet {
 				sendNow(envelope, request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_SEND);
+				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, e.getMessage());
 				response.sendRedirect(Utils.PAGE_ERROR);				
 				return;
 			}
@@ -116,7 +118,7 @@ public class SendDocument extends HttpServlet {
 				embedSending(envelope, request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_EMBED);
+				request.getSession().setAttribute(Utils.SESSION_ERROR_MSG, e.getMessage());
 				response.sendRedirect(Utils.PAGE_ERROR);				
 				return;
 			}
@@ -156,31 +158,10 @@ public class SendDocument extends HttpServlet {
 			throws FileUploadException, IOException, ParseException {
 		HttpSession session = request.getSession();
 		Envelope envelope = new Envelope();
-		if (request.getAttribute(Utils.NAME_SUBJECT).toString().length() > 0) {
-			envelope.setSubject(request.getAttribute(Utils.NAME_SUBJECT).toString());
-		}
-		else {
-			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_SUBJECT);
-			response.sendRedirect(Utils.PAGE_ERROR);				
-			return null;
-		}
-		if (request.getAttribute(Utils.NAME_EMAILBLURB).toString().length() > 0) {
-			envelope.setEmailBlurb(request.getAttribute(Utils.NAME_EMAILBLURB).toString());
-		}
-		else {
-			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_EMAILBLURB);
-			response.sendRedirect(Utils.PAGE_ERROR);				
-			return null;
-		}
+	    envelope.setSubject(request.getAttribute(Utils.NAME_SUBJECT).toString());
+		envelope.setEmailBlurb(request.getAttribute(Utils.NAME_EMAILBLURB).toString());
 		ArrayOfRecipient recipients = constructRecipients(request);
-		if (recipients != null) {
-			envelope.setRecipients(recipients);
-		}
-		else {
-			session.setAttribute(Utils.SESSION_ERROR_MSG, Utils.ERROR_RECIPIENTS);
-			response.sendRedirect(Utils.PAGE_ERROR);				
-			return null;
-		}
+		envelope.setRecipients(recipients);
 		
 		envelope.setAccountId(session.getAttribute(Utils.SESSION_ACCOUNT_ID).toString());		
 		envelope.setTabs(addTabs(request, envelope.getRecipients().getRecipient().size()));
@@ -292,6 +273,7 @@ public class SendDocument extends HttpServlet {
         String pageThree = (request.getAttribute(Utils.NAME_STOCKDOC) != null) ? "3" : "1";
         if (request.getAttribute(Utils.NAME_ADDSIGS) != null)
         {
+            // Create a tab to reflect the company of the recipient
             Tab company = new Tab();
             company.setType(TabTypeCode.COMPANY);
             company.setDocumentID(new BigInteger("1"));
@@ -302,6 +284,7 @@ public class SendDocument extends HttpServlet {
 
             tabs.getTab().add(company);
 
+            // Create a tab to ask the recipient to initial
             Tab init1 = new Tab();
             init1.setType(TabTypeCode.INITIAL_HERE);
             init1.setDocumentID(new BigInteger("1"));
@@ -311,7 +294,8 @@ public class SendDocument extends HttpServlet {
             init1.setYPosition(new BigInteger("281"));
 
             tabs.getTab().add(init1);
-
+            
+            // Create a tab to ask the recipient to sign
             Tab sign1 = new Tab();
             sign1.setType(TabTypeCode.SIGN_HERE);
             sign1.setDocumentID(new BigInteger("1"));
@@ -322,6 +306,7 @@ public class SendDocument extends HttpServlet {
 
             tabs.getTab().add(sign1);    
 
+            // Create a tab to reflect the full name of the recipient at each location of "(printed)"
             Tab fullAnchor = new Tab();
             fullAnchor.setType(TabTypeCode.FULL_NAME);
             fullAnchor.setAnchorTabItem(new AnchorTab());
@@ -336,6 +321,7 @@ public class SendDocument extends HttpServlet {
 
             tabs.getTab().add(fullAnchor);
 
+            // Create a tab to reflect the date that the recipient signs the envelope
             Tab date1 = new Tab();
             date1.setType(TabTypeCode.DATE_SIGNED);
             date1.setDocumentID(new BigInteger("1"));
@@ -345,7 +331,8 @@ public class SendDocument extends HttpServlet {
             date1.setYPosition(new BigInteger("492"));
 
             tabs.getTab().add(date1);
-
+            
+            // Create a tab to ask the recipient to initial, but make it small
             Tab init2 = new Tab();
             init2.setType(TabTypeCode.INITIAL_HERE);
             init2.setDocumentID(new BigInteger("1"));
@@ -359,6 +346,7 @@ public class SendDocument extends HttpServlet {
 
             if (size > 1)
             {
+                // Create a tab to ask the recipient to sign
                 Tab sign2 = new Tab();
                 sign2.setType(TabTypeCode.SIGN_HERE);
                 sign2.setDocumentID(new BigInteger("1"));
@@ -369,6 +357,7 @@ public class SendDocument extends HttpServlet {
 
                 tabs.getTab().add(sign2);
 
+                // Create a tab to reflect the date that the recipient signs the envelope
                 Tab date2 = new Tab();
                 date2.setType(TabTypeCode.DATE_SIGNED);
                 date2.setDocumentID(new BigInteger("1"));
@@ -383,6 +372,7 @@ public class SendDocument extends HttpServlet {
 
         if (request.getAttribute(Utils.NAME_FORMFIELDS) != null)
         {
+            // Create a data field to capture the recipient's favorite color
             Tab favColor = new Tab();
             favColor.setType(TabTypeCode.CUSTOM);
             favColor.setCustomTabType(CustomTabType.TEXT);
@@ -402,6 +392,7 @@ public class SendDocument extends HttpServlet {
 
         if (request.getAttribute(Utils.NAME_CONDITIONALFIELDS) != null)
         {
+            // Create two radio buttons in the same group to see if the recipient likes fruit
             Tab fruitNo = new Tab();
             fruitNo.setType(TabTypeCode.CUSTOM);
             fruitNo.setCustomTabType(CustomTabType.RADIO);
@@ -430,7 +421,8 @@ public class SendDocument extends HttpServlet {
             fruitYes.setYPosition(new BigInteger("509"));
 
             tabs.getTab().add(fruitYes);
-
+        
+            // Create a data field that will display depending upon the selection of the radio buttons
             Tab data1 = new Tab();
             data1.setType(TabTypeCode.CUSTOM);
             data1.setCustomTabType(CustomTabType.TEXT);
@@ -455,6 +447,7 @@ public class SendDocument extends HttpServlet {
 
         if (request.getAttribute(Utils.NAME_SIGNERATTACHMENT) != null)
         {
+            // Create a signer attachment tab that will prompt the recipient to contribute a file
             Tab attach = new Tab();
             attach.setType(TabTypeCode.SIGNER_ATTACHMENT);
             attach.setTabLabel("Signer Attachment");
@@ -478,9 +471,12 @@ public class SendDocument extends HttpServlet {
 			while (request.getAttribute(Utils.NAME_RECIPIENTNAME + index) != null) {
 				Recipient r = new Recipient();
 				
+				// Create a recipient with the information from the form
 				r.setUserName(request.getAttribute(Utils.NAME_RECIPIENTNAME + index).toString());
 				r.setEmail(request.getAttribute(Utils.NAME_RECIPIENTEMAIL + index).toString());
 				r.setRequireIDLookup(false);
+				
+				// Set security options if indicated
 				if (request.getAttribute(Utils.NAME_RECIPIENTSECURITY + index).toString().
 					equals(Utils.NAME_ACCESSCODE)) {
 					r.setAccessCode(request.getAttribute(Utils.NAME_RECIPIENTSECURITYSETTING + index).toString());
@@ -498,11 +494,16 @@ public class SendDocument extends HttpServlet {
 					r.setPhoneAuthentication(pa);
 				}
 				
-				// TODO add handling for Phone authentication
-				
 				r.setID(new BigInteger(Integer.toString(index)));
 				r.setType(RecipientTypeCode.SIGNER);
-				r.setRoutingOrder(index);
+				
+				// Create the recipient as captive if we asked it to
+				if (request.getAttribute(Utils.NAME_EMAILTOGGLE + index) == null) {
+				    RecipientCaptiveInfo captive = new RecipientCaptiveInfo();
+				    captive.setClientUserId(Integer.toString(index)); 
+				    r.setCaptiveInfo(captive);  
+				}
+				
 				recipients.getRecipient().add(r);
 				index++;
 			}

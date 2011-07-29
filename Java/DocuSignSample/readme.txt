@@ -34,7 +34,7 @@ To build:
             cxf.dir=c:\dev\apache-cxf\lib
 
 2. Optionally set elements in src/config.properties file by modifying the
-   following lines:
+   following lines eliminating the square brackets:
    
    docusign.integrators.key=[Add Integrator Key here]
    docusign.user.id=[Add userid GUID here]

@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="AllowRecipientRecursion" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="AllowMarkup" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="EventNotification" type="{http://www.docusign.net/API/3.0}EventNotification" minOccurs="0"/>
+ *         &lt;element name="AllowReassign" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -60,7 +61,8 @@ import javax.xml.bind.annotation.XmlType;
     "enableWetSign",
     "allowRecipientRecursion",
     "allowMarkup",
-    "eventNotification"
+    "eventNotification",
+    "allowReassign"
 })
 public class EnvelopeInformation {
 
@@ -98,6 +100,8 @@ public class EnvelopeInformation {
     protected Boolean allowMarkup;
     @XmlElement(name = "EventNotification")
     protected EventNotification eventNotification;
+    @XmlElement(name = "AllowReassign")
+    protected Boolean allowReassign;
 
     /**
      * Gets the value of the transactionID property.
@@ -505,6 +509,30 @@ public class EnvelopeInformation {
      */
     public void setEventNotification(EventNotification value) {
         this.eventNotification = value;
+    }
+
+    /**
+     * Gets the value of the allowReassign property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isAllowReassign() {
+        return allowReassign;
+    }
+
+    /**
+     * Sets the value of the allowReassign property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setAllowReassign(Boolean value) {
+        this.allowReassign = value;
     }
 
 }

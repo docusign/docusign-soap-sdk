@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="AccountId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IncludeHierarchy" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,12 +29,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "FoldersFilter", propOrder = {
-    "accountId"
+    "accountId",
+    "includeHierarchy"
 })
 public class FoldersFilter {
 
     @XmlElement(name = "AccountId")
     protected String accountId;
+    @XmlElement(name = "IncludeHierarchy")
+    protected Boolean includeHierarchy;
 
     /**
      * Gets the value of the accountId property.
@@ -57,6 +61,30 @@ public class FoldersFilter {
      */
     public void setAccountId(String value) {
         this.accountId = value;
+    }
+
+    /**
+     * Gets the value of the includeHierarchy property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isIncludeHierarchy() {
+        return includeHierarchy;
+    }
+
+    /**
+     * Sets the value of the includeHierarchy property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIncludeHierarchy(Boolean value) {
+        this.includeHierarchy = value;
     }
 
 }

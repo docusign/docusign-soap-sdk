@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ArrayOfServerTemplate {
 
-    @XmlElement(name = "ServerTemplate", nillable = true)
+    @XmlElement(name = "ServerTemplate")
     protected List<ServerTemplate> serverTemplate;
 
     /**
