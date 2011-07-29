@@ -59,15 +59,21 @@ public class EmbedDocusign extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
         HttpSession session = request.getSession();
+        
+        // Make sure we're logged in
         if (session.getAttribute(Utils.SESSION_LOGGEDIN) == null ||
             session.getAttribute(Utils.SESSION_LOGGEDIN).equals(false)) {
             response.sendRedirect(Utils.CONTROLLER_LOGIN);
         }
         else {
+        	// It's time to start signing
             if(request.getQueryString() != null && request.getQueryString().contains(Utils.PARAM_ENVELOPEID)) {
+            
+            	// Get the envelope ID from the QueryString
                 String eid = request.getQueryString().split("\\=")[1];
                 EnvelopeStatus status = getStatus(request, eid);
                 try {
+                	// Got the envelope ID, now get the token
                     getToken(request, status, 1);
                 } catch (DatatypeConfigurationException e) {
                     // TODO Auto-generated catch block
@@ -85,9 +91,13 @@ public class EmbedDocusign extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	// Are we embedding one or two signers?
         _oneSigner = (request.getParameter(Utils.NAME_ONESIGNER) != null);
         try {
+        	// Create the embedded sample envelope
             createAndSend(request);
+            
+            // Redirect back here to start the signing process
             response.sendRedirect(Utils.PAGE_EMBEDDOCUSIGN);
         } catch (DatatypeConfigurationException e) {
             // TODO Auto-generated catch block
@@ -98,12 +108,14 @@ public class EmbedDocusign extends HttpServlet {
     private void createAndSend(HttpServletRequest request) throws IOException, DatatypeConfigurationException {
         HttpSession session = request.getSession();
         
+        // Set the envelope information
         Envelope env = new Envelope();
         env.setSubject("DocuSign API SDK Sample");
         env.setEmailBlurb("This envelope demonstrates embedded signing");
         env.setAccountId(session.getAttribute(Utils.SESSION_ACCOUNT_ID).toString());
         env.setRecipients(constructRecipients(request));
         
+        // Add the sample document to the envelope
         Document doc = new Document();
         String filePath = getServletContext().getRealPath(Utils.RESOURCE_STOCKDOC);
         File f = new File(filePath);
@@ -119,23 +131,32 @@ public class EmbedDocusign extends HttpServlet {
         docs.getDocument().add(doc);
         env.setDocuments(docs);
         
+        // Add the tabs to the envelope
         env.setTabs(addTabs(request, env.getRecipients().getRecipient().size()));
         
+        // Get the API service and call CreateAndSendEnvelope
         APIServiceSoap api = Utils.getAPI(request);
         EnvelopeStatus status = api.createAndSendEnvelope(env);
+        
+        // Add the envelope ID to the session
         Utils.addEnvelopeID(request, status.getEnvelopeID());
+        
+        // Get the token for the first signer
         getToken(request, status, 0);
     }
 
     private EnvelopeStatus getStatus(HttpServletRequest request, String envelopeID) {
-        APIServiceSoap api = Utils.getAPI(request);
-        
+    
+    	// Get the API service and call request status to retrieve envelope information
+        APIServiceSoap api = Utils.getAPI(request);        
         return api.requestStatus(envelopeID);
     }
 
     private ArrayOfTab addTabs(HttpServletRequest request, int count) {
         ArrayOfTab tabs = new ArrayOfTab();
-         Tab company = new Tab();
+        
+        // Create a tab to reflect the company of the recipient
+        Tab company = new Tab();
         company.setType(TabTypeCode.COMPANY);
         company.setDocumentID(new BigInteger("1"));
         company.setPageNumber(new BigInteger("2"));
@@ -145,6 +166,7 @@ public class EmbedDocusign extends HttpServlet {
 
         tabs.getTab().add(company);
 
+		// Create a tab to ask the recipient to initial
         Tab init1 = new Tab();
         init1.setType(TabTypeCode.INITIAL_HERE);
         init1.setDocumentID(new BigInteger("1"));
@@ -155,6 +177,7 @@ public class EmbedDocusign extends HttpServlet {
 
         tabs.getTab().add(init1);
 
+		// Create a tab to ask the recipient to sign
         Tab sign1 = new Tab();
         sign1.setType(TabTypeCode.SIGN_HERE);
         sign1.setDocumentID(new BigInteger("1"));
@@ -165,6 +188,7 @@ public class EmbedDocusign extends HttpServlet {
 
         tabs.getTab().add(sign1);    
 
+		// Create a tab to reflect the full name of the recipient at each location of "(printed)"
         Tab fullAnchor = new Tab();
         fullAnchor.setType(TabTypeCode.FULL_NAME);
         fullAnchor.setAnchorTabItem(new AnchorTab());
@@ -179,6 +203,7 @@ public class EmbedDocusign extends HttpServlet {
 
         tabs.getTab().add(fullAnchor);
 
+		// Create a tab to reflect the date that the recipient signs the envelope
         Tab date1 = new Tab();
         date1.setType(TabTypeCode.DATE_SIGNED);
         date1.setDocumentID(new BigInteger("1"));
@@ -189,6 +214,7 @@ public class EmbedDocusign extends HttpServlet {
 
         tabs.getTab().add(date1);
 
+		// Create a tab to ask the recipient to initial, but make it small
         Tab init2 = new Tab();
         init2.setType(TabTypeCode.INITIAL_HERE);
         init2.setDocumentID(new BigInteger("1"));
@@ -202,6 +228,7 @@ public class EmbedDocusign extends HttpServlet {
 
         if (count > 1)
         {
+        	// Create a tab to ask the recipient to sign
             Tab sign2 = new Tab();
             sign2.setType(TabTypeCode.SIGN_HERE);
             sign2.setDocumentID(new BigInteger("1"));
@@ -212,6 +239,7 @@ public class EmbedDocusign extends HttpServlet {
 
             tabs.getTab().add(sign2);
 
+			// Create a tab to reflect the date that the recipient signs the envelope
             Tab date2 = new Tab();
             date2.setType(TabTypeCode.DATE_SIGNED);
             date2.setDocumentID(new BigInteger("1"));
@@ -223,6 +251,7 @@ public class EmbedDocusign extends HttpServlet {
             tabs.getTab().add(date2);
         }
 
+		// Create a data field to capture the recipient's favorite color
         Tab favColor = new Tab();
         favColor.setType(TabTypeCode.CUSTOM);
         favColor.setCustomTabType(CustomTabType.TEXT);
@@ -234,6 +263,7 @@ public class EmbedDocusign extends HttpServlet {
 
         tabs.getTab().add(favColor);
 
+		// Create two radio buttons in the same group to see if the recipient likes fruit
         Tab fruitNo = new Tab();
         fruitNo.setType(TabTypeCode.CUSTOM);
         fruitNo.setCustomTabType(CustomTabType.RADIO);
@@ -263,6 +293,7 @@ public class EmbedDocusign extends HttpServlet {
 
         tabs.getTab().add(fruitYes);
 
+		// Create a data field that will display depending upon the selection of the radio buttons
         Tab data1 = new Tab();
         data1.setType(TabTypeCode.CUSTOM);
         data1.setCustomTabType(CustomTabType.TEXT);
@@ -286,6 +317,7 @@ public class EmbedDocusign extends HttpServlet {
         HttpSession session = request.getSession();
         ArrayOfRecipient recipients = new ArrayOfRecipient();
 
+		// Create the first recipient as a captive signer
         Recipient r1 = new Recipient();
         r1.setUserName("DocuSign Recipient1");
         r1.setEmail(session.getAttribute(Utils.SESSION_EMAIL).toString());
@@ -295,6 +327,7 @@ public class EmbedDocusign extends HttpServlet {
         r1.getCaptiveInfo().setClientUserId("1");
         recipients.getRecipient().add(r1);
         
+        // If we wanted two captive signers, create the second recipient as a captive signer
         if (_oneSigner != true) {
             Recipient r2 = new Recipient();
             r2.setUserName("DocuSign Recipient2");
@@ -313,17 +346,18 @@ public class EmbedDocusign extends HttpServlet {
             throws DatatypeConfigurationException {
         String token = null;
         
+        // Set the messaging
         if(index == 0) {
             request.getSession().setAttribute(Utils.MESSAGE_SIGNING, Utils.MESSAGE_FIRSTSIGNER);
         } else {
             request.getSession().setAttribute(Utils.MESSAGE_SIGNING, Utils.MESSAGE_SECONDSIGNER);
         }
         
-        // get recipient token
+        // Create the assertion
         RequestRecipientTokenAuthenticationAssertion assertion = new RequestRecipientTokenAuthenticationAssertion();
         assertion.setAssertionID(UUID.randomUUID().toString());
         
-        // Why does wsdl2java translate this to XMLGregorianCalendar? Hassle
+        // wsdl2java translates this to XMLGregorianCalendar
         GregorianCalendar gcal = new GregorianCalendar();
         gcal.setTime(new Date());
         assertion.setAuthenticationInstant(DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal));
@@ -331,8 +365,10 @@ public class EmbedDocusign extends HttpServlet {
         assertion.setAuthenticationMethod(RequestRecipientTokenAuthenticationAssertionAuthenticationMethod.PASSWORD);
         assertion.setSecurityDomain("DocuSign2010Q1Sample");
         
+        // Get the recipient to sign
         RecipientStatus recipient = status.getRecipientStatuses().getRecipientStatus().get(index);
         
+        // Create the URLs that DocuSign will redirect the iframe to after different events
         RequestRecipientTokenClientURLs urls = new RequestRecipientTokenClientURLs();
         String urlbase = Utils.getCallbackURL(request, Utils.PAGE_POP) + "?source=Embedded";
         
@@ -352,6 +388,7 @@ public class EmbedDocusign extends HttpServlet {
             urls.setOnSigningComplete(Utils.getCallbackURL(request, Utils.PAGE_POP) + "?envelopeID=" + status.getEnvelopeID());
         }
         
+        // Get the API service and call RequestRecipientToken for this recipient
         APIServiceSoap api = Utils.getAPI(request);
         token = api.requestRecipientToken(status.getEnvelopeID(), 
                 recipient.getClientUserId(), 
@@ -360,6 +397,7 @@ public class EmbedDocusign extends HttpServlet {
                 assertion, 
                 urls);
         
+        // Set the iframe to the token
         request.getSession().setAttribute(Utils.SESSION_EMBEDTOKEN, token);
     }
 }
