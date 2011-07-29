@@ -16,6 +16,7 @@
     <body>
     <%@include file="header.jsp" %>
     <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+        <!--Navigation-->
         <article class="tabs">
             <section>
                 <h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
@@ -30,6 +31,7 @@
                 <h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
             </section>
         </article>
+        <!--Do you want to create an experience with one signer, or two sequential signers?-->
         <form action="<%= Utils.CONTROLLER_EMBEDDOCUSIGN %>" method="post" id="EmbedDocuSignForm">
             <table width="100%">
                 <tr>
@@ -41,6 +43,7 @@
                     </td>
                 </tr>
             </table>
+            <!--We're in the signing experience, so display the message and iframe-->
         <% 
             if (!session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString().equals("")) {%>
             <div class="signermessage"><%= session.getAttribute(Utils.MESSAGE_SIGNING).toString() %></div>

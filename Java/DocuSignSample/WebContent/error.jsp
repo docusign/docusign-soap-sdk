@@ -19,6 +19,7 @@
     </head>
     <body>
         <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+            <!--Navigation-->
             <article class="tabs">
                 <section>
                     <h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
@@ -33,6 +34,7 @@
                     <h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
                 </section>
             </article>
+            <!--Showcases best practices to show a generic error. Option to show details of the error message are for demo purposes only-->
             <p>This demo has encountered an error. <a class="errorShow" onclick="invert('errorMessage')">Click here to get the error details.</a><p> <p class="errorMessage" id="errorMessage">        
             <% 
                if (session.getAttribute(Utils.SESSION_ERROR_MSG) != null) {
@@ -43,6 +45,7 @@
                }        
             %></p>
             <p>Please correct the issue and try again.</p>
+            <!--The community forums are where you can find real help from DocuSign-->
             <p>To get help, please visit the <a href="http://community.docusign.com">DocuSign Community Forums</a>.</p>
         </div>
     </body>

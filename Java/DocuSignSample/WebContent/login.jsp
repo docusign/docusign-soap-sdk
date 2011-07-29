@@ -15,17 +15,20 @@
 <div id="container" class="centeralign" style="width: 300px; padding-bottom:40px">
 <table style="width: 300px;" align="center">
 	<tr>
+	    <!--This is the email you use to log into your demo account-->
 		<td>DevCenter E-mail</td>
 		<td><input id="DevCenterEmail" type="text" name="DevCenterEmail"
 			value="<%= session.getAttribute(Utils.SESSION_EMAIL).toString() %>" /></td>
 	</tr>
 	<tr>
+	    <!--This is the password you use to log into your demo account-->
 		<td>Password</td>
 		<td><input id="DevCenterPassword" type="password"
 			name="DevCenterPassword" value="<%= session.getAttribute(Utils.SESSION_PASSWORD).toString() %>"
 		/></td>
 	</tr>
 	<tr>
+	    <!--This is the key you requested on the API page of your preferences-->
 		<td>Your Integrator Key</td>
 		<td><input id="DevCenterIKey" type="password" name="DevCenterIKey"
 			value="<%= session.getAttribute(Utils.SESSION_INTEGRATORS_KEY).toString() %>" /></td>
@@ -34,11 +37,9 @@
 <div>
 <table class="triangle-isosceles left" align="center">
 	<tr>
-		<td><img alt="" src="images/follow-us_reasonably_small.png"
-			style="height: 25px; width: 25px" /></td>
 		<td><b>Need a DevCenter Account?</b><br />
 		Get it <a
-			href="http://www.docusign.com/developers-center/get-free-developer-account">
+			href="http://www.docusign.com/developers-center">
 		here </a>.</td>
 	</tr>
 </table>

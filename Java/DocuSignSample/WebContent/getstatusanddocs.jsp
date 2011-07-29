@@ -20,6 +20,7 @@
     <body>
         <%@include file="header.jsp" %>
     <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+        <!--Navigation-->
         <article class="tabs">
             <section>
                 <h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
@@ -35,10 +36,12 @@
             </section>
         </article>
         <form action="<%= Utils.CONTROLLER_GETSTATUS %>" method="post" id="GetStatusForm">
+        <!--Show either the statuses or the iframe-->
         <% 
             if (session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString().equals("")) {%>
         <div id="statusDiv">
                 <ul style="list-style:none">
+                <!--If we have envelope IDs stored in the session, show the statuses-->
                 <%
                   Boolean hasEnv = false;
                   if (session.getAttribute(Utils.SESSION_STATUSES) != null) {
@@ -51,10 +54,13 @@
                               out.println("<span onclick=\"invert('" + env.getEnvelopeID() + "');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>");
                               out.println(" " + env.getSubject() + " (" + env.getStatus() + ") - " + env.getEnvelopeID());
                               out.println("<ul style=\"list-style-type: none; display:none;\" id=\"" + env.getEnvelopeID() + "\">");
+                              
+                              // You can drill down into the statuses of each recipient to see details
                               for (RecipientStatus rec : env.getRecipientStatuses().getRecipientStatus()) {
                                   out.println("<li>");
                                   out.println("<span onclick=\"invert('" + env.getEnvelopeID() + "Recipient" + rec.getUserName() + "');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>");
                                   if (rec.getClientUserId() != null && rec.getStatus().toString() != "COMPLETED") {
+                                    // This enables the recipient to start the signing process from this page
                                       out.println("Recipient (" + rec.getType() + ") - " + rec.getUserName() + " <input name=\"SignDocEnvelope+" + env.getEnvelopeID() + "&Email+" + rec.getEmail() + "&UserName+" + rec.getUserName() + "&CID+" + rec.getClientUserId() + "\" type=\"submit\" value=\"Start Signing\">");
                                   }
                                   else{
@@ -69,6 +75,8 @@
                                   }
                                   out.println("</li>");
                               }
+                              
+                              // If the envelope is completed, allow the download of the PDF. You only want to retrieve the PDF if the envelope is complete!
                               if (env.getStatus().toString() == "COMPLETED"){
                                   out.println("<li><span onclick=\"invert('"+env.getEnvelopeID() + "Documents');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>                    Documents <input name=\"DownloadDocEnvelope+" + env.getEnvelopeID() + "\" type=\"submit\" value=\"Download\">");
                               }
@@ -76,6 +84,7 @@
                                   out.println("<li><span onclick=\"invert('"+env.getEnvelopeID() + "Documents');\"><img alt=\"Plus\" src=\"images/plus.png\"></span>                    Documents");
                               }
                               
+                              // You can see the individual documents that are included in the envelope
                               out.println("<ul style=\"list-style-type: none; display: none; \" id=\"" + env.getEnvelopeID() + "Documents\">");
                               for (DocumentStatus doc : env.getDocumentStatuses().getDocumentStatus()) {
                                   out.println("<li>" + doc.getName() + "</li>");
@@ -94,6 +103,7 @@
         <%
             }
         %>
+        <!--If we have a token, show the iframe instead of the statuses-->
         <% 
             if (!session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString().equals("")) {%>
                 <iframe src="<%= session.getAttribute(Utils.SESSION_EMBEDTOKEN).toString() %>" width="100%" height="720px"></iframe>

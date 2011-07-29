@@ -54,6 +54,7 @@
     <%@include file="header.jsp" %>
 
     <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+        <!--Navigation-->
     	<article class="tabs">
     		<section>
     			<h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
@@ -70,7 +71,8 @@
     	</article>
 
     <form id="SendTemplateForm" action="<%= Utils.CONTROLLER_SENDTEMPLATE %>" method="post">
-        	<% 
+        <!--Display the selected template if we have one-->
+        <% 
         	boolean chosen = (Boolean) session.getAttribute(Utils.NAME_TEMPLATECHOSEN);
             if (chosen) {%>
             <p>Template Chosen: <strong><%= session.getAttribute(Utils.NAME_SELECTEDTEMPLATE).toString() %></strong></p>
@@ -83,6 +85,7 @@
         <textarea id="emailblurb" cols="20" name="<%= Utils.NAME_EMAILBLURB %>" placeholder="<enter the e-mail blurb>"
             rows="4" class="email"></textarea>
     </div>
+    <!--Display all the templates on the logged in account-->
     <div>
         Select a Template<br />
         <select id="TemplateTable" name="<%= Utils.NAME_TEMPLATETABLE %>" >
@@ -120,6 +123,8 @@
                     <b>Send E-mail Invite</b>
                 </th>
             </tr>
+            
+            <!--Load roles and information from the selected template-->
             <% 
             if (session.getAttribute(Utils.NAME_TEMPLATEROLES) != null) {
                 List<Recipient> roles = (List<Recipient>) session.getAttribute(Utils.NAME_TEMPLATEROLES);
@@ -183,6 +188,7 @@
                 <td class="fourcolumn">
                 </td>
             </tr>
+            <!--Give the option to send right away or enter into the embedded sending experience-->
             <tr>
                 <td class="fourcolumn">
                 </td>
