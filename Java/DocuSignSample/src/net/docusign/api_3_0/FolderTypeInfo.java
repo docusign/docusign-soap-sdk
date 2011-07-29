@@ -17,8 +17,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="FolderType" type="{http://www.docusign.net/API/3.0}FolderType"/>
+ *         &lt;element name="FolderType" type="{http://www.docusign.net/API/3.0}FolderType" minOccurs="0"/>
  *         &lt;element name="FolderName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="FolderPath" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="FolderId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,14 +32,20 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "FolderTypeInfo", propOrder = {
     "folderType",
-    "folderName"
+    "folderName",
+    "folderPath",
+    "folderId"
 })
 public class FolderTypeInfo {
 
-    @XmlElement(name = "FolderType", required = true)
+    @XmlElement(name = "FolderType")
     protected FolderType folderType;
     @XmlElement(name = "FolderName")
     protected String folderName;
+    @XmlElement(name = "FolderPath")
+    protected String folderPath;
+    @XmlElement(name = "FolderId")
+    protected String folderId;
 
     /**
      * Gets the value of the folderType property.
@@ -85,6 +93,54 @@ public class FolderTypeInfo {
      */
     public void setFolderName(String value) {
         this.folderName = value;
+    }
+
+    /**
+     * Gets the value of the folderPath property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFolderPath() {
+        return folderPath;
+    }
+
+    /**
+     * Sets the value of the folderPath property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFolderPath(String value) {
+        this.folderPath = value;
+    }
+
+    /**
+     * Gets the value of the folderId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFolderId() {
+        return folderId;
+    }
+
+    /**
+     * Sets the value of the folderId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFolderId(String value) {
+        this.folderId = value;
     }
 
 }

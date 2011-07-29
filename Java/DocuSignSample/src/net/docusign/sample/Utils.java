@@ -11,7 +11,9 @@ import net.docusign.api_3_0.APIServiceSoap;
 import net.docusign.api_3_0.ArrayOfString;
 
 public class Utils {
-	
+
+    public static final String SESSION_DEBUG = "debug";
+
 	// System strings 
 	public static final String CONFIG_PROPERTIES_CLASSPATH_LOCATION = "/config.properties";
 	public static final String DOCUSIGN_WEBSERVICE_ENDPOINT = "docusign.webservice.endpoint";
@@ -40,7 +42,6 @@ public class Utils {
 	public static final String PAGE_GETSTATUS = "getstatusanddocs.jsp";
 	public static final String PAGE_POP = "pop.jsp";
 	public static final String PAGE_SENDTEMPLATE = "sendatemplate.jsp";
-	public static final String PAGE_SUCCESS = "sendsuccess.jsp";
 	
 	// Controller classes
 	public static final String CONTROLLER_LOGIN = "Login";
@@ -64,6 +65,7 @@ public class Utils {
 	public static final String NAME_RECIPIENTNAME = "RecipientName";
 	public static final String NAME_RECIPIENTEMAIL = "RecipientEmail";
 	public static final String NAME_RECIPIENTSECURITY = "RecipientSecurity";
+	public static final String NAME_EMAILTOGGLE = "RecipientInviteToggle";
 	public static final String NAME_ACCESSCODE = "AccessCode";
 	public static final String NAME_RECIPIENTSECURITYSETTING = "RecipientSecuritySetting";
 	public static final String NAME_STOCKDOC = "stockdoc";
@@ -90,14 +92,25 @@ public class Utils {
 	public static final String NAME_ROLESECURITY = "RoleSecurity";
 	public static final String NAME_NONE = "None";
 	public static final String NAME_ROLESECURITYSETTING = "RoleSecuritySetting";
+	public static final String NAME_SELECTTEMPLATE = "SelectTemplate";
+	public static final String NAME_SELECTEDTEMPLATE = "SelectedTemplate";
+	public static final String NAME_TEMPLATEROLES = "TemplateRoles";
+	public static final String NAME_TEMPLATECHOSEN = "TemplateChosen";
 	
 	// PAGE EMBEDDOCUSIGN
 	public static final String NAME_ONESIGNER = "OneSigner";
 	public static final String NAME_TWOSIGNERS = "TwoSigners";
+	public static final String MESSAGE_FIRSTSIGNER = "Have the first signer fill out the Envelope";
+	public static final String MESSAGE_SECONDSIGNER = "The first signer has completed the Envelope. Now the second signer will be asked to fill out details in the Envelope."; 
+	public static final String MESSAGE_SIGNING = "signingmessage";
+	
+	// PAGE GETDSTATUSANDDOCS
+	public static final String NAME_STARTSIGNING = "SignDocEnvelope+";
+	public static final String NAME_DOWNLOAD = "DownloadDocEnvelope+";
 	
 	// URL Parameters
 	public static final String PARAM_ENVELOPEID = "envelopeID";
-        public static final String PARAM_LOGOUT = "logout";
+    public static final String PARAM_LOGOUT = "logout";
 	
 	// Error messages
 	public static final String ERROR_CONFIG = "Could not load client.properties from the root of the test classpath.";

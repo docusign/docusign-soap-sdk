@@ -46,131 +46,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SendEnvelopeResponse }
-     * 
-     */
-    public SendEnvelopeResponse createSendEnvelopeResponse() {
-        return new SendEnvelopeResponse();
-    }
-
-    /**
-     * Create an instance of {@link EnvelopeStatus }
-     * 
-     */
-    public EnvelopeStatus createEnvelopeStatus() {
-        return new EnvelopeStatus();
-    }
-
-    /**
-     * Create an instance of {@link RequestTemplateResponse }
-     * 
-     */
-    public RequestTemplateResponse createRequestTemplateResponse() {
-        return new RequestTemplateResponse();
-    }
-
-    /**
-     * Create an instance of {@link EnvelopeTemplate }
-     * 
-     */
-    public EnvelopeTemplate createEnvelopeTemplate() {
-        return new EnvelopeTemplate();
-    }
-
-    /**
-     * Create an instance of {@link GetRecipientEsignListResponse }
-     * 
-     */
-    public GetRecipientEsignListResponse createGetRecipientEsignListResponse() {
-        return new GetRecipientEsignListResponse();
-    }
-
-    /**
-     * Create an instance of {@link RecipientEsignList }
-     * 
-     */
-    public RecipientEsignList createRecipientEsignList() {
-        return new RecipientEsignList();
-    }
-
-    /**
-     * Create an instance of {@link RequestSenderTokenResponse }
-     * 
-     */
-    public RequestSenderTokenResponse createRequestSenderTokenResponse() {
-        return new RequestSenderTokenResponse();
-    }
-
-    /**
-     * Create an instance of {@link RequestDocumentPDFsRecipientsView }
-     * 
-     */
-    public RequestDocumentPDFsRecipientsView createRequestDocumentPDFsRecipientsView() {
-        return new RequestDocumentPDFsRecipientsView();
-    }
-
-    /**
-     * Create an instance of {@link GetFolderItems }
-     * 
-     */
-    public GetFolderItems createGetFolderItems() {
-        return new GetFolderItems();
-    }
-
-    /**
-     * Create an instance of {@link FolderFilter }
-     * 
-     */
-    public FolderFilter createFolderFilter() {
-        return new FolderFilter();
-    }
-
-    /**
-     * Create an instance of {@link RequestTemplate }
-     * 
-     */
-    public RequestTemplate createRequestTemplate() {
-        return new RequestTemplate();
-    }
-
-    /**
-     * Create an instance of {@link RequestPDFResponse }
-     * 
-     */
-    public RequestPDFResponse createRequestPDFResponse() {
-        return new RequestPDFResponse();
-    }
-
-    /**
-     * Create an instance of {@link EnvelopePDF }
-     * 
-     */
-    public EnvelopePDF createEnvelopePDF() {
-        return new EnvelopePDF();
-    }
-
-    /**
      * Create an instance of {@link SendEnvelope }
      * 
      */
     public SendEnvelope createSendEnvelope() {
         return new SendEnvelope();
-    }
-
-    /**
-     * Create an instance of {@link GetFolderList }
-     * 
-     */
-    public GetFolderList createGetFolderList() {
-        return new GetFolderList();
-    }
-
-    /**
-     * Create an instance of {@link FoldersFilter }
-     * 
-     */
-    public FoldersFilter createFoldersFilter() {
-        return new FoldersFilter();
     }
 
     /**
@@ -222,22 +102,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetAccountMembershipFeaturesList }
-     * 
-     */
-    public GetAccountMembershipFeaturesList createGetAccountMembershipFeaturesList() {
-        return new GetAccountMembershipFeaturesList();
-    }
-
-    /**
-     * Create an instance of {@link RequestEnvelope }
-     * 
-     */
-    public RequestEnvelope createRequestEnvelope() {
-        return new RequestEnvelope();
-    }
-
-    /**
      * Create an instance of {@link RequestStatusCodes }
      * 
      */
@@ -254,91 +118,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetAuthenticationToken }
+     * Create an instance of {@link RequestEnvelope }
      * 
      */
-    public GetAuthenticationToken createGetAuthenticationToken() {
-        return new GetAuthenticationToken();
+    public RequestEnvelope createRequestEnvelope() {
+        return new RequestEnvelope();
     }
 
     /**
-     * Create an instance of {@link RequestStatusesResponse }
+     * Create an instance of {@link DeleteEnvelopes }
      * 
      */
-    public RequestStatusesResponse createRequestStatusesResponse() {
-        return new RequestStatusesResponse();
+    public DeleteEnvelopes createDeleteEnvelopes() {
+        return new DeleteEnvelopes();
     }
 
     /**
-     * Create an instance of {@link FilteredEnvelopeStatuses }
+     * Create an instance of {@link DeleteEnvelopesArg }
      * 
      */
-    public FilteredEnvelopeStatuses createFilteredEnvelopeStatuses() {
-        return new FilteredEnvelopeStatuses();
-    }
-
-    /**
-     * Create an instance of {@link GetRecipientListResponse }
-     * 
-     */
-    public GetRecipientListResponse createGetRecipientListResponse() {
-        return new GetRecipientListResponse();
-    }
-
-    /**
-     * Create an instance of {@link RecipientList }
-     * 
-     */
-    public RecipientList createRecipientList() {
-        return new RecipientList();
-    }
-
-    /**
-     * Create an instance of {@link PurgeDocumentsResponse }
-     * 
-     */
-    public PurgeDocumentsResponse createPurgeDocumentsResponse() {
-        return new PurgeDocumentsResponse();
-    }
-
-    /**
-     * Create an instance of {@link PurgeDocumentStatus }
-     * 
-     */
-    public PurgeDocumentStatus createPurgeDocumentStatus() {
-        return new PurgeDocumentStatus();
-    }
-
-    /**
-     * Create an instance of {@link GetStatusInDocuSignConnectFormatResponse }
-     * 
-     */
-    public GetStatusInDocuSignConnectFormatResponse createGetStatusInDocuSignConnectFormatResponse() {
-        return new GetStatusInDocuSignConnectFormatResponse();
-    }
-
-    /**
-     * Create an instance of {@link DocuSignEnvelopeInformation }
-     * 
-     */
-    public DocuSignEnvelopeInformation createDocuSignEnvelopeInformation() {
-        return new DocuSignEnvelopeInformation();
-    }
-
-    /**
-     * Create an instance of {@link CreateEnvelopeResponse }
-     * 
-     */
-    public CreateEnvelopeResponse createCreateEnvelopeResponse() {
-        return new CreateEnvelopeResponse();
-    }
-
-    /**
-     * Create an instance of {@link RequestRecipientTokenResponse }
-     * 
-     */
-    public RequestRecipientTokenResponse createRequestRecipientTokenResponse() {
-        return new RequestRecipientTokenResponse();
+    public DeleteEnvelopesArg createDeleteEnvelopesArg() {
+        return new DeleteEnvelopesArg();
     }
 
     /**
@@ -358,11 +158,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UploadTemplate }
+     * Create an instance of {@link MoveEnvelopes }
      * 
      */
-    public UploadTemplate createUploadTemplate() {
-        return new UploadTemplate();
+    public MoveEnvelopes createMoveEnvelopes() {
+        return new MoveEnvelopes();
+    }
+
+    /**
+     * Create an instance of {@link MoveEnvelopesArg }
+     * 
+     */
+    public MoveEnvelopesArg createMoveEnvelopesArg() {
+        return new MoveEnvelopesArg();
     }
 
     /**
@@ -371,38 +179,6 @@ public class ObjectFactory {
      */
     public EnvelopeAuditEventsResponse.EnvelopeAuditEventsResult createEnvelopeAuditEventsResponseEnvelopeAuditEventsResult() {
         return new EnvelopeAuditEventsResponse.EnvelopeAuditEventsResult();
-    }
-
-    /**
-     * Create an instance of {@link ExportAuthoritativeCopyResponse }
-     * 
-     */
-    public ExportAuthoritativeCopyResponse createExportAuthoritativeCopyResponse() {
-        return new ExportAuthoritativeCopyResponse();
-    }
-
-    /**
-     * Create an instance of {@link AuthoritativeCopyExportDocuments }
-     * 
-     */
-    public AuthoritativeCopyExportDocuments createAuthoritativeCopyExportDocuments() {
-        return new AuthoritativeCopyExportDocuments();
-    }
-
-    /**
-     * Create an instance of {@link RemoveAddressBookItemsResponse }
-     * 
-     */
-    public RemoveAddressBookItemsResponse createRemoveAddressBookItemsResponse() {
-        return new RemoveAddressBookItemsResponse();
-    }
-
-    /**
-     * Create an instance of {@link UpdateAddressBookResult }
-     * 
-     */
-    public UpdateAddressBookResult createUpdateAddressBookResult() {
-        return new UpdateAddressBookResult();
     }
 
     /**
@@ -422,38 +198,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SaveTemplate }
-     * 
-     */
-    public SaveTemplate createSaveTemplate() {
-        return new SaveTemplate();
-    }
-
-    /**
-     * Create an instance of {@link EnvelopeAuditEvents }
-     * 
-     */
-    public EnvelopeAuditEvents createEnvelopeAuditEvents() {
-        return new EnvelopeAuditEvents();
-    }
-
-    /**
-     * Create an instance of {@link RequestEnvelopeResponse }
-     * 
-     */
-    public RequestEnvelopeResponse createRequestEnvelopeResponse() {
-        return new RequestEnvelopeResponse();
-    }
-
-    /**
-     * Create an instance of {@link Envelope }
-     * 
-     */
-    public Envelope createEnvelope() {
-        return new Envelope();
-    }
-
-    /**
      * Create an instance of {@link RequestDocumentPDFsEx }
      * 
      */
@@ -462,19 +206,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreateAndSendEnvelope }
-     * 
-     */
-    public CreateAndSendEnvelope createCreateAndSendEnvelope() {
-        return new CreateAndSendEnvelope();
-    }
-
-    /**
      * Create an instance of {@link CreateAndSendEnvelopeResponse }
      * 
      */
     public CreateAndSendEnvelopeResponse createCreateAndSendEnvelopeResponse() {
         return new CreateAndSendEnvelopeResponse();
+    }
+
+    /**
+     * Create an instance of {@link EnvelopeStatus }
+     * 
+     */
+    public EnvelopeStatus createEnvelopeStatus() {
+        return new EnvelopeStatus();
     }
 
     /**
@@ -510,22 +254,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UpdateAddressBookItems }
-     * 
-     */
-    public UpdateAddressBookItems createUpdateAddressBookItems() {
-        return new UpdateAddressBookItems();
-    }
-
-    /**
-     * Create an instance of {@link ArrayOfAddressBookItem }
-     * 
-     */
-    public ArrayOfAddressBookItem createArrayOfAddressBookItem() {
-        return new ArrayOfAddressBookItem();
-    }
-
-    /**
      * Create an instance of {@link SaveTemplateResponse }
      * 
      */
@@ -542,11 +270,627 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RequestPDFNoWaterMark }
+     * Create an instance of {@link AcknowledgeAuthoritativeCopyExport }
      * 
      */
-    public RequestPDFNoWaterMark createRequestPDFNoWaterMark() {
-        return new RequestPDFNoWaterMark();
+    public AcknowledgeAuthoritativeCopyExport createAcknowledgeAuthoritativeCopyExport() {
+        return new AcknowledgeAuthoritativeCopyExport();
+    }
+
+    /**
+     * Create an instance of {@link SynchEnvelope }
+     * 
+     */
+    public SynchEnvelope createSynchEnvelope() {
+        return new SynchEnvelope();
+    }
+
+    /**
+     * Create an instance of {@link RequestStatusesExResponse }
+     * 
+     */
+    public RequestStatusesExResponse createRequestStatusesExResponse() {
+        return new RequestStatusesExResponse();
+    }
+
+    /**
+     * Create an instance of {@link FilteredEnvelopeStatuses }
+     * 
+     */
+    public FilteredEnvelopeStatuses createFilteredEnvelopeStatuses() {
+        return new FilteredEnvelopeStatuses();
+    }
+
+    /**
+     * Create an instance of {@link RequestStatusExResponse }
+     * 
+     */
+    public RequestStatusExResponse createRequestStatusExResponse() {
+        return new RequestStatusExResponse();
+    }
+
+    /**
+     * Create an instance of {@link RequestTemplates }
+     * 
+     */
+    public RequestTemplates createRequestTemplates() {
+        return new RequestTemplates();
+    }
+
+    /**
+     * Create an instance of {@link GetAccountMembershipFeaturesListResponse }
+     * 
+     */
+    public GetAccountMembershipFeaturesListResponse createGetAccountMembershipFeaturesListResponse() {
+        return new GetAccountMembershipFeaturesListResponse();
+    }
+
+    /**
+     * Create an instance of {@link AccountMembershipFeaturesList }
+     * 
+     */
+    public AccountMembershipFeaturesList createAccountMembershipFeaturesList() {
+        return new AccountMembershipFeaturesList();
+    }
+
+    /**
+     * Create an instance of {@link RequestStatusChanges }
+     * 
+     */
+    public RequestStatusChanges createRequestStatusChanges() {
+        return new RequestStatusChanges();
+    }
+
+    /**
+     * Create an instance of {@link EnvelopeStatusChangeFilter }
+     * 
+     */
+    public EnvelopeStatusChangeFilter createEnvelopeStatusChangeFilter() {
+        return new EnvelopeStatusChangeFilter();
+    }
+
+    /**
+     * Create an instance of {@link RequestStatusResponse }
+     * 
+     */
+    public RequestStatusResponse createRequestStatusResponse() {
+        return new RequestStatusResponse();
+    }
+
+    /**
+     * Create an instance of {@link Ping }
+     * 
+     */
+    public Ping createPing() {
+        return new Ping();
+    }
+
+    /**
+     * Create an instance of {@link GetConnectFailures }
+     * 
+     */
+    public GetConnectFailures createGetConnectFailures() {
+        return new GetConnectFailures();
+    }
+
+    /**
+     * Create an instance of {@link ConnectFailuresFilter }
+     * 
+     */
+    public ConnectFailuresFilter createConnectFailuresFilter() {
+        return new ConnectFailuresFilter();
+    }
+
+    /**
+     * Create an instance of {@link GetAccountSettingsListResponse }
+     * 
+     */
+    public GetAccountSettingsListResponse createGetAccountSettingsListResponse() {
+        return new GetAccountSettingsListResponse();
+    }
+
+    /**
+     * Create an instance of {@link AccountSettingsList }
+     * 
+     */
+    public AccountSettingsList createAccountSettingsList() {
+        return new AccountSettingsList();
+    }
+
+    /**
+     * Create an instance of {@link RemoveAddressBookItems }
+     * 
+     */
+    public RemoveAddressBookItems createRemoveAddressBookItems() {
+        return new RemoveAddressBookItems();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfAddressBookRemoveItem }
+     * 
+     */
+    public ArrayOfAddressBookRemoveItem createArrayOfAddressBookRemoveItem() {
+        return new ArrayOfAddressBookRemoveItem();
+    }
+
+    /**
+     * Create an instance of {@link RequestPDFWithCertResponse }
+     * 
+     */
+    public RequestPDFWithCertResponse createRequestPDFWithCertResponse() {
+        return new RequestPDFWithCertResponse();
+    }
+
+    /**
+     * Create an instance of {@link EnvelopePDF }
+     * 
+     */
+    public EnvelopePDF createEnvelopePDF() {
+        return new EnvelopePDF();
+    }
+
+    /**
+     * Create an instance of {@link PublishConnectFailures }
+     * 
+     */
+    public PublishConnectFailures createPublishConnectFailures() {
+        return new PublishConnectFailures();
+    }
+
+    /**
+     * Create an instance of {@link PublishConnectFailuresFilter }
+     * 
+     */
+    public PublishConnectFailuresFilter createPublishConnectFailuresFilter() {
+        return new PublishConnectFailuresFilter();
+    }
+
+    /**
+     * Create an instance of {@link GetStatusInDocuSignConnectFormat }
+     * 
+     */
+    public GetStatusInDocuSignConnectFormat createGetStatusInDocuSignConnectFormat() {
+        return new GetStatusInDocuSignConnectFormat();
+    }
+
+    /**
+     * Create an instance of {@link PurgeDocuments }
+     * 
+     */
+    public PurgeDocuments createPurgeDocuments() {
+        return new PurgeDocuments();
+    }
+
+    /**
+     * Create an instance of {@link GetConnectFailuresResponse }
+     * 
+     */
+    public GetConnectFailuresResponse createGetConnectFailuresResponse() {
+        return new GetConnectFailuresResponse();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfConnectFailure }
+     * 
+     */
+    public ArrayOfConnectFailure createArrayOfConnectFailure() {
+        return new ArrayOfConnectFailure();
+    }
+
+    /**
+     * Create an instance of {@link RequestDocumentPDFsExResponse }
+     * 
+     */
+    public RequestDocumentPDFsExResponse createRequestDocumentPDFsExResponse() {
+        return new RequestDocumentPDFsExResponse();
+    }
+
+    /**
+     * Create an instance of {@link DocumentPDFs }
+     * 
+     */
+    public DocumentPDFs createDocumentPDFs() {
+        return new DocumentPDFs();
+    }
+
+    /**
+     * Create an instance of {@link RequestDocumentPDFsResponse }
+     * 
+     */
+    public RequestDocumentPDFsResponse createRequestDocumentPDFsResponse() {
+        return new RequestDocumentPDFsResponse();
+    }
+
+    /**
+     * Create an instance of {@link ExportAuthoritativeCopy }
+     * 
+     */
+    public ExportAuthoritativeCopy createExportAuthoritativeCopy() {
+        return new ExportAuthoritativeCopy();
+    }
+
+    /**
+     * Create an instance of {@link GetRecipientEsignList }
+     * 
+     */
+    public GetRecipientEsignList createGetRecipientEsignList() {
+        return new GetRecipientEsignList();
+    }
+
+    /**
+     * Create an instance of {@link RequestStatusesEx }
+     * 
+     */
+    public RequestStatusesEx createRequestStatusesEx() {
+        return new RequestStatusesEx();
+    }
+
+    /**
+     * Create an instance of {@link GetFolderListResponse }
+     * 
+     */
+    public GetFolderListResponse createGetFolderListResponse() {
+        return new GetFolderListResponse();
+    }
+
+    /**
+     * Create an instance of {@link AvailableFolders }
+     * 
+     */
+    public AvailableFolders createAvailableFolders() {
+        return new AvailableFolders();
+    }
+
+    /**
+     * Create an instance of {@link RequestPDF }
+     * 
+     */
+    public RequestPDF createRequestPDF() {
+        return new RequestPDF();
+    }
+
+    /**
+     * Create an instance of {@link RequestCertificate }
+     * 
+     */
+    public RequestCertificate createRequestCertificate() {
+        return new RequestCertificate();
+    }
+
+    /**
+     * Create an instance of {@link SendEnvelopeResponse }
+     * 
+     */
+    public SendEnvelopeResponse createSendEnvelopeResponse() {
+        return new SendEnvelopeResponse();
+    }
+
+    /**
+     * Create an instance of {@link RequestTemplateResponse }
+     * 
+     */
+    public RequestTemplateResponse createRequestTemplateResponse() {
+        return new RequestTemplateResponse();
+    }
+
+    /**
+     * Create an instance of {@link EnvelopeTemplate }
+     * 
+     */
+    public EnvelopeTemplate createEnvelopeTemplate() {
+        return new EnvelopeTemplate();
+    }
+
+    /**
+     * Create an instance of {@link RequestTemplateListResponse }
+     * 
+     */
+    public RequestTemplateListResponse createRequestTemplateListResponse() {
+        return new RequestTemplateListResponse();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfEnvelopeTemplate }
+     * 
+     */
+    public ArrayOfEnvelopeTemplate createArrayOfEnvelopeTemplate() {
+        return new ArrayOfEnvelopeTemplate();
+    }
+
+    /**
+     * Create an instance of {@link GetRecipientEsignListResponse }
+     * 
+     */
+    public GetRecipientEsignListResponse createGetRecipientEsignListResponse() {
+        return new GetRecipientEsignListResponse();
+    }
+
+    /**
+     * Create an instance of {@link RecipientEsignList }
+     * 
+     */
+    public RecipientEsignList createRecipientEsignList() {
+        return new RecipientEsignList();
+    }
+
+    /**
+     * Create an instance of {@link RequestSenderTokenResponse }
+     * 
+     */
+    public RequestSenderTokenResponse createRequestSenderTokenResponse() {
+        return new RequestSenderTokenResponse();
+    }
+
+    /**
+     * Create an instance of {@link RequestDocumentPDFsRecipientsView }
+     * 
+     */
+    public RequestDocumentPDFsRecipientsView createRequestDocumentPDFsRecipientsView() {
+        return new RequestDocumentPDFsRecipientsView();
+    }
+
+    /**
+     * Create an instance of {@link RequestPDFResponse }
+     * 
+     */
+    public RequestPDFResponse createRequestPDFResponse() {
+        return new RequestPDFResponse();
+    }
+
+    /**
+     * Create an instance of {@link RequestTemplate }
+     * 
+     */
+    public RequestTemplate createRequestTemplate() {
+        return new RequestTemplate();
+    }
+
+    /**
+     * Create an instance of {@link GetFolderItems }
+     * 
+     */
+    public GetFolderItems createGetFolderItems() {
+        return new GetFolderItems();
+    }
+
+    /**
+     * Create an instance of {@link FolderFilter }
+     * 
+     */
+    public FolderFilter createFolderFilter() {
+        return new FolderFilter();
+    }
+
+    /**
+     * Create an instance of {@link DeleteEnvelopesResponse }
+     * 
+     */
+    public DeleteEnvelopesResponse createDeleteEnvelopesResponse() {
+        return new DeleteEnvelopesResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetFolderList }
+     * 
+     */
+    public GetFolderList createGetFolderList() {
+        return new GetFolderList();
+    }
+
+    /**
+     * Create an instance of {@link FoldersFilter }
+     * 
+     */
+    public FoldersFilter createFoldersFilter() {
+        return new FoldersFilter();
+    }
+
+    /**
+     * Create an instance of {@link GetAccountMembershipFeaturesList }
+     * 
+     */
+    public GetAccountMembershipFeaturesList createGetAccountMembershipFeaturesList() {
+        return new GetAccountMembershipFeaturesList();
+    }
+
+    /**
+     * Create an instance of {@link GetAuthenticationToken }
+     * 
+     */
+    public GetAuthenticationToken createGetAuthenticationToken() {
+        return new GetAuthenticationToken();
+    }
+
+    /**
+     * Create an instance of {@link PublishConnectFailuresResponse }
+     * 
+     */
+    public PublishConnectFailuresResponse createPublishConnectFailuresResponse() {
+        return new PublishConnectFailuresResponse();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfPublishConnectFailuresResult }
+     * 
+     */
+    public ArrayOfPublishConnectFailuresResult createArrayOfPublishConnectFailuresResult() {
+        return new ArrayOfPublishConnectFailuresResult();
+    }
+
+    /**
+     * Create an instance of {@link RequestStatusesResponse }
+     * 
+     */
+    public RequestStatusesResponse createRequestStatusesResponse() {
+        return new RequestStatusesResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetRecipientListResponse }
+     * 
+     */
+    public GetRecipientListResponse createGetRecipientListResponse() {
+        return new GetRecipientListResponse();
+    }
+
+    /**
+     * Create an instance of {@link RecipientList }
+     * 
+     */
+    public RecipientList createRecipientList() {
+        return new RecipientList();
+    }
+
+    /**
+     * Create an instance of {@link RequestCertificateResponse }
+     * 
+     */
+    public RequestCertificateResponse createRequestCertificateResponse() {
+        return new RequestCertificateResponse();
+    }
+
+    /**
+     * Create an instance of {@link PurgeDocumentsResponse }
+     * 
+     */
+    public PurgeDocumentsResponse createPurgeDocumentsResponse() {
+        return new PurgeDocumentsResponse();
+    }
+
+    /**
+     * Create an instance of {@link PurgeDocumentStatus }
+     * 
+     */
+    public PurgeDocumentStatus createPurgeDocumentStatus() {
+        return new PurgeDocumentStatus();
+    }
+
+    /**
+     * Create an instance of {@link CreateEnvelopeResponse }
+     * 
+     */
+    public CreateEnvelopeResponse createCreateEnvelopeResponse() {
+        return new CreateEnvelopeResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetStatusInDocuSignConnectFormatResponse }
+     * 
+     */
+    public GetStatusInDocuSignConnectFormatResponse createGetStatusInDocuSignConnectFormatResponse() {
+        return new GetStatusInDocuSignConnectFormatResponse();
+    }
+
+    /**
+     * Create an instance of {@link DocuSignEnvelopeInformation }
+     * 
+     */
+    public DocuSignEnvelopeInformation createDocuSignEnvelopeInformation() {
+        return new DocuSignEnvelopeInformation();
+    }
+
+    /**
+     * Create an instance of {@link RequestRecipientTokenResponse }
+     * 
+     */
+    public RequestRecipientTokenResponse createRequestRecipientTokenResponse() {
+        return new RequestRecipientTokenResponse();
+    }
+
+    /**
+     * Create an instance of {@link UploadTemplate }
+     * 
+     */
+    public UploadTemplate createUploadTemplate() {
+        return new UploadTemplate();
+    }
+
+    /**
+     * Create an instance of {@link ExportAuthoritativeCopyResponse }
+     * 
+     */
+    public ExportAuthoritativeCopyResponse createExportAuthoritativeCopyResponse() {
+        return new ExportAuthoritativeCopyResponse();
+    }
+
+    /**
+     * Create an instance of {@link AuthoritativeCopyExportDocuments }
+     * 
+     */
+    public AuthoritativeCopyExportDocuments createAuthoritativeCopyExportDocuments() {
+        return new AuthoritativeCopyExportDocuments();
+    }
+
+    /**
+     * Create an instance of {@link RemoveAddressBookItemsResponse }
+     * 
+     */
+    public RemoveAddressBookItemsResponse createRemoveAddressBookItemsResponse() {
+        return new RemoveAddressBookItemsResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateAddressBookResult }
+     * 
+     */
+    public UpdateAddressBookResult createUpdateAddressBookResult() {
+        return new UpdateAddressBookResult();
+    }
+
+    /**
+     * Create an instance of {@link EnvelopeAuditEvents }
+     * 
+     */
+    public EnvelopeAuditEvents createEnvelopeAuditEvents() {
+        return new EnvelopeAuditEvents();
+    }
+
+    /**
+     * Create an instance of {@link SaveTemplate }
+     * 
+     */
+    public SaveTemplate createSaveTemplate() {
+        return new SaveTemplate();
+    }
+
+    /**
+     * Create an instance of {@link RequestEnvelopeResponse }
+     * 
+     */
+    public RequestEnvelopeResponse createRequestEnvelopeResponse() {
+        return new RequestEnvelopeResponse();
+    }
+
+    /**
+     * Create an instance of {@link Envelope }
+     * 
+     */
+    public Envelope createEnvelope() {
+        return new Envelope();
+    }
+
+    /**
+     * Create an instance of {@link CreateAndSendEnvelope }
+     * 
+     */
+    public CreateAndSendEnvelope createCreateAndSendEnvelope() {
+        return new CreateAndSendEnvelope();
+    }
+
+    /**
+     * Create an instance of {@link UpdateAddressBookItems }
+     * 
+     */
+    public UpdateAddressBookItems createUpdateAddressBookItems() {
+        return new UpdateAddressBookItems();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfAddressBookItem }
+     * 
+     */
+    public ArrayOfAddressBookItem createArrayOfAddressBookItem() {
+        return new ArrayOfAddressBookItem();
     }
 
     /**
@@ -574,19 +918,19 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RequestPDFNoWaterMark }
+     * 
+     */
+    public RequestPDFNoWaterMark createRequestPDFNoWaterMark() {
+        return new RequestPDFNoWaterMark();
+    }
+
+    /**
      * Create an instance of {@link RequestStatusCodesResponse }
      * 
      */
     public RequestStatusCodesResponse createRequestStatusCodesResponse() {
         return new RequestStatusCodesResponse();
-    }
-
-    /**
-     * Create an instance of {@link AcknowledgeAuthoritativeCopyExport }
-     * 
-     */
-    public AcknowledgeAuthoritativeCopyExport createAcknowledgeAuthoritativeCopyExport() {
-        return new AcknowledgeAuthoritativeCopyExport();
     }
 
     /**
@@ -630,38 +974,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SynchEnvelope }
-     * 
-     */
-    public SynchEnvelope createSynchEnvelope() {
-        return new SynchEnvelope();
-    }
-
-    /**
-     * Create an instance of {@link RequestStatusesExResponse }
-     * 
-     */
-    public RequestStatusesExResponse createRequestStatusesExResponse() {
-        return new RequestStatusesExResponse();
-    }
-
-    /**
-     * Create an instance of {@link RequestStatusExResponse }
-     * 
-     */
-    public RequestStatusExResponse createRequestStatusExResponse() {
-        return new RequestStatusExResponse();
-    }
-
-    /**
-     * Create an instance of {@link RequestTemplates }
-     * 
-     */
-    public RequestTemplates createRequestTemplates() {
-        return new RequestTemplates();
-    }
-
-    /**
      * Create an instance of {@link RequestPDFNoWaterMarkResponse }
      * 
      */
@@ -678,38 +990,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetAccountMembershipFeaturesListResponse }
-     * 
-     */
-    public GetAccountMembershipFeaturesListResponse createGetAccountMembershipFeaturesListResponse() {
-        return new GetAccountMembershipFeaturesListResponse();
-    }
-
-    /**
-     * Create an instance of {@link AccountMembershipFeaturesList }
-     * 
-     */
-    public AccountMembershipFeaturesList createAccountMembershipFeaturesList() {
-        return new AccountMembershipFeaturesList();
-    }
-
-    /**
-     * Create an instance of {@link RequestStatusChanges }
-     * 
-     */
-    public RequestStatusChanges createRequestStatusChanges() {
-        return new RequestStatusChanges();
-    }
-
-    /**
-     * Create an instance of {@link EnvelopeStatusChangeFilter }
-     * 
-     */
-    public EnvelopeStatusChangeFilter createEnvelopeStatusChangeFilter() {
-        return new EnvelopeStatusChangeFilter();
-    }
-
-    /**
      * Create an instance of {@link RequestDocumentPDFsRecipientsViewResponse }
      * 
      */
@@ -718,27 +998,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DocumentPDFs }
+     * Create an instance of {@link MoveEnvelopesResponse }
      * 
      */
-    public DocumentPDFs createDocumentPDFs() {
-        return new DocumentPDFs();
-    }
-
-    /**
-     * Create an instance of {@link RequestStatusResponse }
-     * 
-     */
-    public RequestStatusResponse createRequestStatusResponse() {
-        return new RequestStatusResponse();
-    }
-
-    /**
-     * Create an instance of {@link CreateEnvelopeFromTemplatesAndFormsResponse }
-     * 
-     */
-    public CreateEnvelopeFromTemplatesAndFormsResponse createCreateEnvelopeFromTemplatesAndFormsResponse() {
-        return new CreateEnvelopeFromTemplatesAndFormsResponse();
+    public MoveEnvelopesResponse createMoveEnvelopesResponse() {
+        return new MoveEnvelopesResponse();
     }
 
     /**
@@ -750,11 +1014,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Ping }
+     * Create an instance of {@link CreateEnvelopeFromTemplatesAndFormsResponse }
      * 
      */
-    public Ping createPing() {
-        return new Ping();
+    public CreateEnvelopeFromTemplatesAndFormsResponse createCreateEnvelopeFromTemplatesAndFormsResponse() {
+        return new CreateEnvelopeFromTemplatesAndFormsResponse();
     }
 
     /**
@@ -774,67 +1038,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetAccountSettingsListResponse }
-     * 
-     */
-    public GetAccountSettingsListResponse createGetAccountSettingsListResponse() {
-        return new GetAccountSettingsListResponse();
-    }
-
-    /**
-     * Create an instance of {@link AccountSettingsList }
-     * 
-     */
-    public AccountSettingsList createAccountSettingsList() {
-        return new AccountSettingsList();
-    }
-
-    /**
-     * Create an instance of {@link RemoveAddressBookItems }
-     * 
-     */
-    public RemoveAddressBookItems createRemoveAddressBookItems() {
-        return new RemoveAddressBookItems();
-    }
-
-    /**
-     * Create an instance of {@link ArrayOfAddressBookRemoveItem }
-     * 
-     */
-    public ArrayOfAddressBookRemoveItem createArrayOfAddressBookRemoveItem() {
-        return new ArrayOfAddressBookRemoveItem();
-    }
-
-    /**
      * Create an instance of {@link GetAddressBookItemsResponse }
      * 
      */
     public GetAddressBookItemsResponse createGetAddressBookItemsResponse() {
         return new GetAddressBookItemsResponse();
-    }
-
-    /**
-     * Create an instance of {@link RequestPDFWithCertResponse }
-     * 
-     */
-    public RequestPDFWithCertResponse createRequestPDFWithCertResponse() {
-        return new RequestPDFWithCertResponse();
-    }
-
-    /**
-     * Create an instance of {@link PurgeDocuments }
-     * 
-     */
-    public PurgeDocuments createPurgeDocuments() {
-        return new PurgeDocuments();
-    }
-
-    /**
-     * Create an instance of {@link GetStatusInDocuSignConnectFormat }
-     * 
-     */
-    public GetStatusInDocuSignConnectFormat createGetStatusInDocuSignConnectFormat() {
-        return new GetStatusInDocuSignConnectFormat();
     }
 
     /**
@@ -902,14 +1110,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RequestDocumentPDFsExResponse }
-     * 
-     */
-    public RequestDocumentPDFsExResponse createRequestDocumentPDFsExResponse() {
-        return new RequestDocumentPDFsExResponse();
-    }
-
-    /**
      * Create an instance of {@link GetFolderItemsResponse }
      * 
      */
@@ -934,11 +1134,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RequestDocumentPDFsResponse }
+     * Create an instance of {@link TransferEnvelope }
      * 
      */
-    public RequestDocumentPDFsResponse createRequestDocumentPDFsResponse() {
-        return new RequestDocumentPDFsResponse();
+    public TransferEnvelope createTransferEnvelope() {
+        return new TransferEnvelope();
     }
 
     /**
@@ -958,19 +1158,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link TransferEnvelope }
+     * Create an instance of {@link RequestTemplateList }
      * 
      */
-    public TransferEnvelope createTransferEnvelope() {
-        return new TransferEnvelope();
+    public RequestTemplateList createRequestTemplateList() {
+        return new RequestTemplateList();
     }
 
     /**
-     * Create an instance of {@link ExportAuthoritativeCopy }
+     * Create an instance of {@link ArrayOfString5 }
      * 
      */
-    public ExportAuthoritativeCopy createExportAuthoritativeCopy() {
-        return new ExportAuthoritativeCopy();
+    public ArrayOfString5 createArrayOfString5() {
+        return new ArrayOfString5();
     }
 
     /**
@@ -982,27 +1182,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetRecipientEsignList }
-     * 
-     */
-    public GetRecipientEsignList createGetRecipientEsignList() {
-        return new GetRecipientEsignList();
-    }
-
-    /**
      * Create an instance of {@link VoidEnvelope }
      * 
      */
     public VoidEnvelope createVoidEnvelope() {
         return new VoidEnvelope();
-    }
-
-    /**
-     * Create an instance of {@link RequestStatusesEx }
-     * 
-     */
-    public RequestStatusesEx createRequestStatusesEx() {
-        return new RequestStatusesEx();
     }
 
     /**
@@ -1019,30 +1203,6 @@ public class ObjectFactory {
      */
     public VoidEnvelopeStatus createVoidEnvelopeStatus() {
         return new VoidEnvelopeStatus();
-    }
-
-    /**
-     * Create an instance of {@link GetFolderListResponse }
-     * 
-     */
-    public GetFolderListResponse createGetFolderListResponse() {
-        return new GetFolderListResponse();
-    }
-
-    /**
-     * Create an instance of {@link AvailableFolders }
-     * 
-     */
-    public AvailableFolders createAvailableFolders() {
-        return new AvailableFolders();
-    }
-
-    /**
-     * Create an instance of {@link RequestPDF }
-     * 
-     */
-    public RequestPDF createRequestPDF() {
-        return new RequestPDF();
     }
 
     /**
@@ -1454,6 +1614,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ConnectFailure }
+     * 
+     */
+    public ConnectFailure createConnectFailure() {
+        return new ConnectFailure();
+    }
+
+    /**
      * Create an instance of {@link ArrayOfEnvelopeStatus }
      * 
      */
@@ -1467,6 +1635,14 @@ public class ObjectFactory {
      */
     public FormDataXfdfField createFormDataXfdfField() {
         return new FormDataXfdfField();
+    }
+
+    /**
+     * Create an instance of {@link RecipientEmailNotification }
+     * 
+     */
+    public RecipientEmailNotification createRecipientEmailNotification() {
+        return new RecipientEmailNotification();
     }
 
     /**
@@ -1523,6 +1699,14 @@ public class ObjectFactory {
      */
     public Recipient createRecipient() {
         return new Recipient();
+    }
+
+    /**
+     * Create an instance of {@link PublishConnectFailuresResult }
+     * 
+     */
+    public PublishConnectFailuresResult createPublishConnectFailuresResult() {
+        return new PublishConnectFailuresResult();
     }
 
     /**

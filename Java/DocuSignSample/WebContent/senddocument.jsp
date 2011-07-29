@@ -56,6 +56,7 @@
     <body>
         <%@include file="header.jsp" %>
     <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
+        <!--Display all the templates on the logged in account-->
     	<article class="tabs">
     		<section class="current">
     			<h3><a href="<%= Utils.CONTROLLER_SENDDOCUMENT %>">Send Document</a></h3>
@@ -161,6 +162,7 @@
                 </tr>
             </table>
             <p />
+            <!--Give the option to send right away or enter into the embedded sending experience-->
             <table class="submit">
                 <tr>
                     <td>

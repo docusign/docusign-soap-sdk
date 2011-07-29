@@ -16,6 +16,10 @@ namespace DocuSignSample
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!LoggedIn())
+            {
+                Response.Redirect("LogIn.aspx");
+            }
             if (Request.Form["__EVENTTARGET"] != logoutCtrlName)
             {
                 if (!Page.IsPostBack)

@@ -25,6 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="Custom"/>
  *     &lt;enumeration value="SignerAttachment"/>
  *     &lt;enumeration value="SignHereOptional"/>
+ *     &lt;enumeration value="Approve"/>
+ *     &lt;enumeration value="Decline"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -55,7 +57,11 @@ public enum TabTypeCode {
     @XmlEnumValue("SignerAttachment")
     SIGNER_ATTACHMENT("SignerAttachment"),
     @XmlEnumValue("SignHereOptional")
-    SIGN_HERE_OPTIONAL("SignHereOptional");
+    SIGN_HERE_OPTIONAL("SignHereOptional"),
+    @XmlEnumValue("Approve")
+    APPROVE("Approve"),
+    @XmlEnumValue("Decline")
+    DECLINE("Decline");
     private final String value;
 
     TabTypeCode(String v) {

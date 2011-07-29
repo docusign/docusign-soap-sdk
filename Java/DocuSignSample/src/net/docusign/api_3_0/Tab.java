@@ -50,6 +50,14 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="SharedTab" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="RequireInitialOnSharedTabChange" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="ConcealValueOnDocument" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="Font" type="{http://www.docusign.net/API/3.0}Font" minOccurs="0"/>
+ *         &lt;element name="Bold" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="Italic" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="Underline" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="FontColor" type="{http://www.docusign.net/API/3.0}FontColor" minOccurs="0"/>
+ *         &lt;element name="FontSize" type="{http://www.docusign.net/API/3.0}FontSize" minOccurs="0"/>
+ *         &lt;element name="MergeFieldXml" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="IncludeNoteInEmail" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -89,7 +97,15 @@ import javax.xml.bind.annotation.XmlType;
     "conditionalParentValue",
     "sharedTab",
     "requireInitialOnSharedTabChange",
-    "concealValueOnDocument"
+    "concealValueOnDocument",
+    "font",
+    "bold",
+    "italic",
+    "underline",
+    "fontColor",
+    "fontSize",
+    "mergeFieldXml",
+    "includeNoteInEmail"
 })
 public class Tab {
 
@@ -158,6 +174,22 @@ public class Tab {
     protected Boolean requireInitialOnSharedTabChange;
     @XmlElement(name = "ConcealValueOnDocument")
     protected Boolean concealValueOnDocument;
+    @XmlElement(name = "Font")
+    protected Font font;
+    @XmlElement(name = "Bold")
+    protected Boolean bold;
+    @XmlElement(name = "Italic")
+    protected Boolean italic;
+    @XmlElement(name = "Underline")
+    protected Boolean underline;
+    @XmlElement(name = "FontColor")
+    protected FontColor fontColor;
+    @XmlElement(name = "FontSize")
+    protected FontSize fontSize;
+    @XmlElement(name = "MergeFieldXml")
+    protected String mergeFieldXml;
+    @XmlElement(name = "IncludeNoteInEmail")
+    protected Boolean includeNoteInEmail;
 
     /**
      * Gets the value of the documentID property.
@@ -877,6 +909,198 @@ public class Tab {
      */
     public void setConcealValueOnDocument(Boolean value) {
         this.concealValueOnDocument = value;
+    }
+
+    /**
+     * Gets the value of the font property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Font }
+     *     
+     */
+    public Font getFont() {
+        return font;
+    }
+
+    /**
+     * Sets the value of the font property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Font }
+     *     
+     */
+    public void setFont(Font value) {
+        this.font = value;
+    }
+
+    /**
+     * Gets the value of the bold property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isBold() {
+        return bold;
+    }
+
+    /**
+     * Sets the value of the bold property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setBold(Boolean value) {
+        this.bold = value;
+    }
+
+    /**
+     * Gets the value of the italic property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isItalic() {
+        return italic;
+    }
+
+    /**
+     * Sets the value of the italic property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setItalic(Boolean value) {
+        this.italic = value;
+    }
+
+    /**
+     * Gets the value of the underline property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isUnderline() {
+        return underline;
+    }
+
+    /**
+     * Sets the value of the underline property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setUnderline(Boolean value) {
+        this.underline = value;
+    }
+
+    /**
+     * Gets the value of the fontColor property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FontColor }
+     *     
+     */
+    public FontColor getFontColor() {
+        return fontColor;
+    }
+
+    /**
+     * Sets the value of the fontColor property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FontColor }
+     *     
+     */
+    public void setFontColor(FontColor value) {
+        this.fontColor = value;
+    }
+
+    /**
+     * Gets the value of the fontSize property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FontSize }
+     *     
+     */
+    public FontSize getFontSize() {
+        return fontSize;
+    }
+
+    /**
+     * Sets the value of the fontSize property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FontSize }
+     *     
+     */
+    public void setFontSize(FontSize value) {
+        this.fontSize = value;
+    }
+
+    /**
+     * Gets the value of the mergeFieldXml property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMergeFieldXml() {
+        return mergeFieldXml;
+    }
+
+    /**
+     * Sets the value of the mergeFieldXml property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMergeFieldXml(String value) {
+        this.mergeFieldXml = value;
+    }
+
+    /**
+     * Gets the value of the includeNoteInEmail property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isIncludeNoteInEmail() {
+        return includeNoteInEmail;
+    }
+
+    /**
+     * Sets the value of the includeNoteInEmail property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIncludeNoteInEmail(Boolean value) {
+        this.includeNoteInEmail = value;
     }
 
 }

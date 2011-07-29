@@ -20,14 +20,23 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="ID" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" minOccurs="0"/>
- *         &lt;element name="UserName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="UserName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="SignerName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="Email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="Email" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Type" type="{http://www.docusign.net/API/3.0}RecipientTypeCode"/>
  *         &lt;element name="AccessCode" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="AddAccessCodeToEmail" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="RequireIDLookup" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="IDCheckConfigurationName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="LiveIDRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="FacebookRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="LinkedinRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="GoogleRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="SalesforceRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="TwitterRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="YahooRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="OpenIDRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="AnySocialIDRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="PhoneAuthentication" type="{http://www.docusign.net/API/3.0}RecipientPhoneAuthentication" minOccurs="0"/>
  *         &lt;element name="SignatureInfo" type="{http://www.docusign.net/API/3.0}RecipientSignatureInfo" minOccurs="0"/>
  *         &lt;element name="CaptiveInfo" type="{http://www.docusign.net/API/3.0}RecipientCaptiveInfo" minOccurs="0"/>
@@ -42,6 +51,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="TemplateRequired" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="TemplateAccessCodeRequired" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="DefaultRecipient" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="EmailNotification" type="{http://www.docusign.net/API/3.0}RecipientEmailNotification" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -61,6 +71,15 @@ import javax.xml.bind.annotation.XmlType;
     "addAccessCodeToEmail",
     "requireIDLookup",
     "idCheckConfigurationName",
+    "liveIDRecipientAuthentication",
+    "facebookRecipientAuthentication",
+    "linkedinRecipientAuthentication",
+    "googleRecipientAuthentication",
+    "salesforceRecipientAuthentication",
+    "twitterRecipientAuthentication",
+    "yahooRecipientAuthentication",
+    "openIDRecipientAuthentication",
+    "anySocialIDRecipientAuthentication",
     "phoneAuthentication",
     "signatureInfo",
     "captiveInfo",
@@ -74,18 +93,19 @@ import javax.xml.bind.annotation.XmlType;
     "templateLocked",
     "templateRequired",
     "templateAccessCodeRequired",
-    "defaultRecipient"
+    "defaultRecipient",
+    "emailNotification"
 })
 public class Recipient {
 
     @XmlElement(name = "ID")
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger id;
-    @XmlElement(name = "UserName")
+    @XmlElement(name = "UserName", required = true, nillable = true)
     protected String userName;
     @XmlElement(name = "SignerName")
     protected String signerName;
-    @XmlElement(name = "Email")
+    @XmlElement(name = "Email", required = true, nillable = true)
     protected String email;
     @XmlElement(name = "Type", required = true)
     protected RecipientTypeCode type;
@@ -97,6 +117,24 @@ public class Recipient {
     protected Boolean requireIDLookup;
     @XmlElement(name = "IDCheckConfigurationName")
     protected String idCheckConfigurationName;
+    @XmlElement(name = "LiveIDRecipientAuthentication")
+    protected Boolean liveIDRecipientAuthentication;
+    @XmlElement(name = "FacebookRecipientAuthentication")
+    protected Boolean facebookRecipientAuthentication;
+    @XmlElement(name = "LinkedinRecipientAuthentication")
+    protected Boolean linkedinRecipientAuthentication;
+    @XmlElement(name = "GoogleRecipientAuthentication")
+    protected Boolean googleRecipientAuthentication;
+    @XmlElement(name = "SalesforceRecipientAuthentication")
+    protected Boolean salesforceRecipientAuthentication;
+    @XmlElement(name = "TwitterRecipientAuthentication")
+    protected Boolean twitterRecipientAuthentication;
+    @XmlElement(name = "YahooRecipientAuthentication")
+    protected Boolean yahooRecipientAuthentication;
+    @XmlElement(name = "OpenIDRecipientAuthentication")
+    protected Boolean openIDRecipientAuthentication;
+    @XmlElement(name = "AnySocialIDRecipientAuthentication")
+    protected Boolean anySocialIDRecipientAuthentication;
     @XmlElement(name = "PhoneAuthentication")
     protected RecipientPhoneAuthentication phoneAuthentication;
     @XmlElement(name = "SignatureInfo")
@@ -126,6 +164,8 @@ public class Recipient {
     protected Boolean templateAccessCodeRequired;
     @XmlElement(name = "DefaultRecipient")
     protected Boolean defaultRecipient;
+    @XmlElement(name = "EmailNotification")
+    protected RecipientEmailNotification emailNotification;
 
     /**
      * Gets the value of the id property.
@@ -341,6 +381,222 @@ public class Recipient {
      */
     public void setIDCheckConfigurationName(String value) {
         this.idCheckConfigurationName = value;
+    }
+
+    /**
+     * Gets the value of the liveIDRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isLiveIDRecipientAuthentication() {
+        return liveIDRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the liveIDRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setLiveIDRecipientAuthentication(Boolean value) {
+        this.liveIDRecipientAuthentication = value;
+    }
+
+    /**
+     * Gets the value of the facebookRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isFacebookRecipientAuthentication() {
+        return facebookRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the facebookRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setFacebookRecipientAuthentication(Boolean value) {
+        this.facebookRecipientAuthentication = value;
+    }
+
+    /**
+     * Gets the value of the linkedinRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isLinkedinRecipientAuthentication() {
+        return linkedinRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the linkedinRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setLinkedinRecipientAuthentication(Boolean value) {
+        this.linkedinRecipientAuthentication = value;
+    }
+
+    /**
+     * Gets the value of the googleRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isGoogleRecipientAuthentication() {
+        return googleRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the googleRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setGoogleRecipientAuthentication(Boolean value) {
+        this.googleRecipientAuthentication = value;
+    }
+
+    /**
+     * Gets the value of the salesforceRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isSalesforceRecipientAuthentication() {
+        return salesforceRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the salesforceRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setSalesforceRecipientAuthentication(Boolean value) {
+        this.salesforceRecipientAuthentication = value;
+    }
+
+    /**
+     * Gets the value of the twitterRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isTwitterRecipientAuthentication() {
+        return twitterRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the twitterRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setTwitterRecipientAuthentication(Boolean value) {
+        this.twitterRecipientAuthentication = value;
+    }
+
+    /**
+     * Gets the value of the yahooRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isYahooRecipientAuthentication() {
+        return yahooRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the yahooRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setYahooRecipientAuthentication(Boolean value) {
+        this.yahooRecipientAuthentication = value;
+    }
+
+    /**
+     * Gets the value of the openIDRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isOpenIDRecipientAuthentication() {
+        return openIDRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the openIDRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setOpenIDRecipientAuthentication(Boolean value) {
+        this.openIDRecipientAuthentication = value;
+    }
+
+    /**
+     * Gets the value of the anySocialIDRecipientAuthentication property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isAnySocialIDRecipientAuthentication() {
+        return anySocialIDRecipientAuthentication;
+    }
+
+    /**
+     * Sets the value of the anySocialIDRecipientAuthentication property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setAnySocialIDRecipientAuthentication(Boolean value) {
+        this.anySocialIDRecipientAuthentication = value;
     }
 
     /**
@@ -677,6 +933,30 @@ public class Recipient {
      */
     public void setDefaultRecipient(Boolean value) {
         this.defaultRecipient = value;
+    }
+
+    /**
+     * Gets the value of the emailNotification property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link RecipientEmailNotification }
+     *     
+     */
+    public RecipientEmailNotification getEmailNotification() {
+        return emailNotification;
+    }
+
+    /**
+     * Sets the value of the emailNotification property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link RecipientEmailNotification }
+     *     
+     */
+    public void setEmailNotification(RecipientEmailNotification value) {
+        this.emailNotification = value;
     }
 
 }
