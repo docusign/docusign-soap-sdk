@@ -171,17 +171,20 @@ namespace DocuSignSample
                 for (int i = 0; i < uploadedFiles.Count; i++)
                 {
                     HttpPostedFile file = uploadedFiles[i];
-                    DocuSignAPI.Document uploadedDocument = new DocuSignAPI.Document();
-                    System.IO.Stream inStream = file.InputStream;
-                    byte[] fileData = new byte[file.ContentLength];
-                    inStream.Read(fileData, 0, file.ContentLength);
-                    uploadedDocument.PDFBytes = fileData;
-                    uploadedDocument.Name = file.FileName;
-                    uploadedDocument.ID = (i + 1).ToString();
-                    uploadedDocument.FileExtension = Path.GetExtension(file.FileName).ToLower();
+                    if (file.ContentLength > 0)
+                    {
+                        DocuSignAPI.Document uploadedDocument = new DocuSignAPI.Document();
+                        System.IO.Stream inStream = file.InputStream;
+                        byte[] fileData = new byte[file.ContentLength];
+                        inStream.Read(fileData, 0, file.ContentLength);
+                        uploadedDocument.PDFBytes = fileData;
+                        uploadedDocument.Name = file.FileName;
+                        uploadedDocument.ID = (i + 1).ToString();
+                        uploadedDocument.FileExtension = Path.GetExtension(file.FileName).ToLower();
 
-                    Debug.Assert(uploadedDocument.PDFBytes != null);
-                    runningList.Add(uploadedDocument);
+                        Debug.Assert(uploadedDocument.PDFBytes != null);
+                        runningList.Add(uploadedDocument);
+                    }
                 }
             }
 
