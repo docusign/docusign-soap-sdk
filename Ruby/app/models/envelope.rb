@@ -219,9 +219,17 @@ class Envelope
       e.tabs = Array.new
       #Basic Company tab
       tab = Docusign::Tab.new.tap do |t|
-        t.documentID = 1
+        if !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+        elsif !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+        else
+            t.documentID = 1               
+            t.pageNumber = 2
+        end
         t.recipientID = 1
-        t.pageNumber = 2
         t.xPosition = 342
         t.yPosition = 303
         t.type = Docusign::TabTypeCode::Company
@@ -231,9 +239,17 @@ class Envelope
       if !@options || @sigs
         #Basic InitialHere tab
         tab = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
-          t.recipientID = 1
-          t.pageNumber = 3
+          if !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          elsif !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 3
+          end     
+          t.recipientID = 1         
           t.xPosition = 454
           t.yPosition = 281
           t.type = Docusign::TabTypeCode::InitialHere
@@ -242,9 +258,17 @@ class Envelope
 
         #Basic SignHere tab
         tab = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
+          if !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          elsif !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 2
+          end
           t.recipientID = 1
-          t.pageNumber = 2
           t.xPosition = 338
           t.yPosition = 330
           t.type = Docusign::TabTypeCode::SignHere
@@ -253,9 +277,17 @@ class Envelope
 
         #Basic FullName Anchor tab
         tab = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
+          if !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          elsif !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 2
+          end
           t.recipientID = 1
-          t.pageNumber = 2
           t.type = Docusign::TabTypeCode::FullName
           t.anchorTabItem = Docusign::AnchorTab.new.tap do |a|
             a.anchorTabString = "printed"
@@ -270,9 +302,17 @@ class Envelope
 
         #Basic DateSigned tab
         tab = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
+          if !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          elsif !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 2
+          end
           t.recipientID = 1
-          t.pageNumber = 2
           t.xPosition = 343
           t.yPosition = 492
           t.type = Docusign::TabTypeCode::DateSigned
@@ -281,9 +321,17 @@ class Envelope
 
         #Scaled InitialHere tab
         tab = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
+          if !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          elsif !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 3
+          end
           t.recipientID = 1
-          t.pageNumber = 3
           t.xPosition = 179
           t.yPosition = 583
           t.type = Docusign::TabTypeCode::InitialHere
@@ -294,9 +342,17 @@ class Envelope
         if recipient_count > 1
           #Basic SignHere tab
           tab = Docusign::Tab.new.tap do |t|
-            t.documentID = 1
+            if !@document2.nil?
+              t.documentID = 2
+              t.pageNumber = 1
+            elsif !@document1.nil?
+              t.documentID = 1
+              t.pageNumber = 1
+            else
+              t.documentID = 1
+              t.pageNumber = 3
+            end
             t.recipientID = 2
-            t.pageNumber = 3
             t.xPosition = 339
             t.yPosition = 97
             t.type = Docusign::TabTypeCode::SignHere
@@ -305,9 +361,17 @@ class Envelope
 
           #Basic DateSigned tab
           tab = Docusign::Tab.new.tap do |t|
-            t.documentID = 1
+            if !@document2.nil?
+              t.documentID = 2
+              t.pageNumber = 1
+            elsif !@document1.nil?
+              t.documentID = 1
+              t.pageNumber = 1
+            else
+              t.documentID = 1
+              t.pageNumber = 3
+            end
             t.recipientID = 2
-            t.pageNumber = 3
             t.xPosition = 343
             t.yPosition = 197
             t.type = Docusign::TabTypeCode::DateSigned
@@ -319,9 +383,17 @@ class Envelope
       if !@options || @fields
         #Custom text tab
         tabtext = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
+          if !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          elsif !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 3
+          end
           t.recipientID = 1
-          t.pageNumber = 3
           t.xPosition = 301
           t.yPosition = 414
           t.type = Docusign::TabTypeCode::Custom
@@ -343,9 +415,17 @@ class Envelope
       if !@options || @conds
         #Custom radio button tab
         tab = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
+          if !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          elsif !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 3
+          end
           t.recipientID = 1
-          t.pageNumber = 3
           t.xPosition = 269
           t.yPosition = 508
           t.type = Docusign::TabTypeCode::Custom
@@ -358,9 +438,17 @@ class Envelope
 
         #Custom radio button tab
         tab = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
+          if !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          elsif !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 3
+          end
           t.recipientID = 1
-          t.pageNumber = 3
           t.xPosition = 202
           t.yPosition = 509
           t.type = Docusign::TabTypeCode::Custom
@@ -374,9 +462,17 @@ class Envelope
 
         #Custom text tab
         tabtext2 = Docusign::Tab.new.tap do |t|
-          t.documentID = 1
+          if !@document2.nil?
+            t.documentID = 2
+            t.pageNumber = 1
+          elsif !@document1.nil?
+            t.documentID = 1
+            t.pageNumber = 1
+          else
+            t.documentID = 1
+            t.pageNumber = 3
+          end
           t.recipientID = 1
-          t.pageNumber = 3
           t.xPosition = 262
           t.yPosition = 547
           t.type = Docusign::TabTypeCode::Custom
@@ -417,5 +513,4 @@ class Envelope
       end
     end
   end
-
 end
