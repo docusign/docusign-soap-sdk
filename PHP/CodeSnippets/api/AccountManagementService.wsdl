@@ -1,0 +1,1485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.docusign.net/API/AccountManagement" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.docusign.net/API/AccountManagement" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.docusign.net/API/AccountManagement">
+      <s:element name="UpgradeRecipientAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorCode" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorPassword" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Pgp" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="CreditCardInformation" type="tns:CreditCardInformation"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ReferralInformation" type="tns:ReferralInformation"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountSettings" type="tns:AccountSettings"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AddressInformation" type="tns:AddressInformation"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreditCardInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ccNumber" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ccExpirationMonth" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ccExpirationYear" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ccUserName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ccType" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReferralInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSupport" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="IncludedSeats" type="s:positiveInteger"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SaleDiscountPercent" type="s:decimal"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PlanStartMonth" type="s:positiveInteger"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferrerName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ReferralCode" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AdvertisementID" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PublisherID" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ShopperID" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PromoCode" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="GroupMemberID" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="IdType" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Industry" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AccountSettings">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UsesAPI" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableDSPro" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableVaulting" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableEnvelopeStampingByAccountAdmin" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnvelopeStampingDefaultValue" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SignerMustHaveAccount" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SignerMustLoginToSign" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SignerCanCreateAccount" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AllowInPerson" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnablePowerForm" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AllowSignerReassign" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableReservedDomain" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSequentialSigningAPI" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSequentialSigningUI" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableAutoNav" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AutoNavRule">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:enumeration value="Off"/>
+                <s:enumeration value="RequiredFields"/>
+                <s:enumeration value="RequiredAndBlankFields"/>
+                <s:enumeration value="AllFields"/>
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableTransactionPoint" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnvelopeIntegrationAllowed">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:enumeration value="NotAllowed"/>
+                <s:enumeration value="Full"/>
+                <s:enumeration value="IntegrationSendOnly"/>
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="EnvelopeIntegrationEnabled" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CanSelfBrandSend" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CanSelfBrandSign" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="IDCheckRequired">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:enumeration value="Always"/>
+                <s:enumeration value="Never"/>
+                <s:enumeration value="Optional"/>
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="IDCheckExpire">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:enumeration value="Always"/>
+                <s:enumeration value="Never"/>
+                <s:enumeration value="Variable"/>
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="IDCheckExpireDays" type="s:integer"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SignDateFormat" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PKISignDownloadedPDFDocs">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:enumeration value="NoSign"/>
+                <s:enumeration value="NoSignAllowUserOverride"/>
+                <s:enumeration value="YesSign"/>
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="InPersonIDCheckQuestion" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SessionTimeout" type="s:integer"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AttachCompletedEnvelope" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SignerCanSignOnMobile" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SignerShowSecureFieldInitialValues" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SignerAttachCertificateToEnvelopePDF" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSignOnPaper" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSignOnPaperOverride" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSignerAttachments" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="UseAccountLevelEmail" type="s:boolean"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddressInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpgradeRecipientAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpgradeRecipientAccountResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestError">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="tns:ErrorCode"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ErrorCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unspecified_Error"/>
+          <s:enumeration value="Invalid_Account_ID"/>
+          <s:enumeration value="Account_Requires_User_Name_And_Password_For_Activation"/>
+          <s:enumeration value="Account_Is_Already_Activated_For_Salesforce"/>
+          <s:enumeration value="Invalid_Distributor_For_Account"/>
+          <s:enumeration value="Invalid_User_ID"/>
+          <s:enumeration value="Invalid_Account"/>
+          <s:enumeration value="User_Is_Not_An_Account_Manager"/>
+          <s:enumeration value="Invalid_Login"/>
+          <s:enumeration value="Invalid_Member_User_Name"/>
+          <s:enumeration value="Invalid_Member_Email"/>
+          <s:enumeration value="Member_Email_Not_Allowed"/>
+          <s:enumeration value="Member_Email_And_User_Name_Awaiting_Activation"/>
+          <s:enumeration value="Member_Email_And_User_Name_Already_Exists_For_This_Account"/>
+          <s:enumeration value="Member_Password_Blank"/>
+          <s:enumeration value="Member_Forgotten_Password_Question_Blank"/>
+          <s:enumeration value="Member_Forgotten_Password_Answer_Blank"/>
+          <s:enumeration value="Invalid_Password_Format"/>
+          <s:enumeration value="Invalid_Member_Data"/>
+          <s:enumeration value="Member_Email_And_User_Name_Already_Exists"/>
+          <s:enumeration value="Not_Authorized"/>
+          <s:enumeration value="Invalid_Distributor_Selected"/>
+          <s:enumeration value="Invalid_PGP_For_Distributor"/>
+          <s:enumeration value="Invalid_Credit_Card_Type"/>
+          <s:enumeration value="CreditCard_Auth_Failed"/>
+          <s:enumeration value="Invalid_PGP"/>
+          <s:enumeration value="Invalid_Plan_Retired"/>
+          <s:enumeration value="Invalid_Successor_Plan"/>
+          <s:enumeration value="Invalid_Credit_Card"/>
+          <s:enumeration value="Credit_Card_Expiration"/>
+          <s:enumeration value="Invalid_AppToken"/>
+          <s:enumeration value="Distributor_Not_Enabled_For_AppToken"/>
+          <s:enumeration value="Plan_Group_Not_Enabled_For_Distributor"/>
+          <s:enumeration value="Invalid_Configuration_Number"/>
+          <s:enumeration value="Invalid_Salesforce_Credentials"/>
+          <s:enumeration value="Invalid_Salesforce_External_Instance_ID"/>
+          <s:enumeration value="Invalid_DocuSign_Connect_Configuration_For_Account"/>
+          <s:enumeration value="Invalid_User"/>
+          <s:enumeration value="Invalid_Membership"/>
+          <s:enumeration value="Invalid_Account_Member"/>
+          <s:enumeration value="Invalid_Edit_User"/>
+          <s:enumeration value="Invalid_Edit_Membership"/>
+          <s:enumeration value="Invalid_CanEditSharedAddressBook_Value"/>
+          <s:enumeration value="Invalid_CanManageTemplates_Value"/>
+          <s:enumeration value="Invalid_Membership_ID"/>
+          <s:enumeration value="Invalid_Request"/>
+          <s:enumeration value="Partner_Authentication_Failed"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="NewAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountName" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorCode" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorPassword" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Pgp" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="CreditCardInformation" type="tns:CreditCardInformation"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ReferralInformation" type="tns:ReferralInformation"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountSettings" type="tns:AccountSettings"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Member" type="tns:Member"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AddressInformation" type="tns:AddressInformation"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Member">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberEmailAddress" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberUserName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberPassword" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberForgottenPasswordQuestion" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberForgottenPasswordAnswer" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberTitle" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberFirstName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberMiddleName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberLastName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberSuffix" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableConnectForUser" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberSettings" type="tns:MemberSettings"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnEncryptedPassword" type="s:boolean"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberSettings">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CanManageAccount" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CanSendEnvelope" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CanSendAPIRequests" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="APIAccountWideAccess" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableVaulting" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="VaultingMode">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:enumeration value="None"/>
+                <s:enumeration value="eStored"/>
+                <s:enumeration value="electronicOriginal"/>
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableTransactionPoint" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSequentialSigningAPI" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSequentialSigningUI" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableDSPro" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PowerFormAdmin" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PowerFormUser" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CanEditSharedAddressBook">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:enumeration value="None"/>
+                <s:enumeration value="UseOnlyShared"/>
+                <s:enumeration value="UsePrivateAndShared"/>
+                <s:enumeration value="Share"/>
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="CanManageTemplates">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:enumeration value="None"/>
+                <s:enumeration value="Use"/>
+                <s:enumeration value="Create"/>
+                <s:enumeration value="Share"/>
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSignOnPaperOverride" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSignerAttachments" type="s:boolean"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="NewAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NewAccountResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="SiteId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="MembershipId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="EncryptedPassword" type="s:string"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMembersToAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Members" type="tns:ArrayOfMember"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMember">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Member" nillable="true" type="tns:Member"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddMembersToAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddMembersToAccountResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="Members" type="tns:ArrayOfMemberResult"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMemberResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Member" type="tns:MemberResult"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EncryptedPassword" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="MembershipId" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPlanPricingInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorCode" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorPassword" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Pgp" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlanPricingInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPlanPricingInformationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="Plan" type="tns:Plan"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Plan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PlanName" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentCycle" type="tns:PaymentCycle"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentMethod" type="tns:PaymentMethod"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PerSeatPrice" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="OtherDiscountPercent" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="SupportIncidentFee" type="s:decimal"/>
+          <s:element minOccurs="1" maxOccurs="1" name="SupportPlanFee" type="s:decimal"/>
+          <s:element minOccurs="0" maxOccurs="1" name="IncludedSeats" type="s:integer"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EnableSupport" type="s:boolean"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PgpId" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SeatDiscounts" type="tns:ArrayOfSeatDiscount"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PaymentCycle">
+        <s:restriction base="s:string">
+          <s:enumeration value="Monthly"/>
+          <s:enumeration value="Annually"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="PaymentMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="CreditCard"/>
+          <s:enumeration value="PurchaseOrder"/>
+          <s:enumeration value="Premium"/>
+          <s:enumeration value="PrePaid"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfSeatDiscount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SeatDiscount" type="tns:SeatDiscount"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SeatDiscount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BeginSeatCount" type="s:integer"/>
+          <s:element minOccurs="0" maxOccurs="1" name="EndSeatCount" type="s:integer"/>
+          <s:element minOccurs="1" maxOccurs="1" name="SeatDiscountPercent" type="s:decimal"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSuccessorPlanInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorCode" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorPassword" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSuccessorPlanInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSuccessorPlanInformationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentPlan" type="tns:Plan"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="SuccessorPlans" type="tns:ArrayOfPlan"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPlan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SuccessorPlan" type="tns:Plan"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPlanGroupInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorCode" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorPassword" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlanGroupInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPlanGroupInformationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="PlanGroups" type="tns:ArrayOfPlanGroup"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPlanGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlanGroup" type="tns:PlanGroup"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlanGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PlanGroupName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PlanGroupPlans" type="tns:ArrayOfPlanGroupPlan"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPlanGroupPlan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlanGroupPlan" type="tns:PlanGroupPlan"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PlanGroupPlan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PlanName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Pgp" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentMethod" type="tns:PaymentMethod"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMembershipSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMembershipSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMembershipSummaryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="MembershipSummaries" type="tns:ArrayOfMembershipSummary"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMembershipSummary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MembershipSummary" type="tns:MembershipSummary"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MembershipSummary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="UserType" type="tns:UserType"/>
+          <s:element minOccurs="1" maxOccurs="1" name="UserStatus" type="tns:UserStatus"/>
+          <s:element minOccurs="0" maxOccurs="1" name="PlanName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="Pgp" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="UserType">
+        <s:restriction base="s:string">
+          <s:enumeration value="CompanyUser"/>
+          <s:enumeration value="Recipient"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="UserStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Created"/>
+          <s:enumeration value="Active"/>
+          <s:enumeration value="Closed"/>
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ChangeAccountPricePlan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorCode" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="DistributorPassword" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Pgp" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="EnableSupport" type="s:boolean"/>
+            <s:element minOccurs="1" maxOccurs="1" name="IncludedSeats" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="CreditCardInformation" type="tns:CreditCardInformation"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AddressInformation" type="tns:AddressInformation"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeAccountPricePlanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeAccountPricePlanResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProvisioningInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppToken" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProvisioningInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProvisioningInformationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="DistributorCode" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="DistributorPassword" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Pgp" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="PlanPromoText" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="DefaultConnectConfigurationId" type="s:integer"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="PasswordRuleText" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="PurchaseOrderOrPromoAllowed" type="s:boolean"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetConnectCredentials">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ConnectUsername" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ConnectPassword" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="ConnectConfigurationId" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="SalesforceEnvironment" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetConnectCredentialsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetConnectCredentialsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="ConnectTestResult" type="s:string"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountInformationResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentPlanId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentPlanName" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentPlanStartDate" type="s:dateTime"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentPlanEndDate" type="s:dateTime"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentBillingPeriodStartDate" type="s:dateTime"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentBillingPeriodEndDate" type="s:dateTime"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentBillingPeriodEnvelopesSent" type="s:integer"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="CurrentBillingPeriodEnvelopesAllowed" type="s:integer"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="AccountSuspensionStatus" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="AccountSuspensionDate" type="s:dateTime"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="AccountName" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="ExternalAccountId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="ConnectPermission" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="DocusignLandingUrl" type="s:string"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConnectCredentials">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConnectCredentialsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetConnectCredentialsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="ConnectUserName" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="ConnectConfig" type="s:string"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEncryptedPassword">
+        <s:complexType/>
+      </s:element>
+      <s:element name="GetEncryptedPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEncryptedPasswordResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="EncryptedPassword" type="s:string"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAccountSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAccountSettingsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="AccountSettings" type="tns:AccountSettings"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAccountSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountSettings" type="tns:AccountSettings"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateAccountSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAccountSettingsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateMember">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateMemberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticateMemberResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="UsesAPI" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="MemberSettings" type="tns:MemberSettings"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMemberSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMemberSettingsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="MemberSettings" type="tns:MemberSettings"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMemberSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="MemberSettings" type="tns:MemberSettings"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateMemberSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateMemberSettingsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAccountMember">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAccountMemberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckAccountMemberResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateSalesforceInstance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalInstanceId" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ConnectUsername" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ConnectPassword" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="SalesforceEnvironment" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Member" type="tns:Member"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateSalesforceInstanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivateSalesforceInstanceResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="AccountId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="SiteId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="MembershipId" type="s:string"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="EncryptedPassword" type="s:string"/>
+                  <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="Error" type="tns:RequestError"/>
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Ping">
+        <s:complexType/>
+      </s:element>
+      <s:element name="PingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PingResult" type="s:boolean"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UpgradeRecipientAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:UpgradeRecipientAccount"/>
+  </wsdl:message>
+  <wsdl:message name="UpgradeRecipientAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:UpgradeRecipientAccountResponse"/>
+  </wsdl:message>
+  <wsdl:message name="NewAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:NewAccount"/>
+  </wsdl:message>
+  <wsdl:message name="NewAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:NewAccountResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddMembersToAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:AddMembersToAccount"/>
+  </wsdl:message>
+  <wsdl:message name="AddMembersToAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:AddMembersToAccountResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetPlanPricingInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlanPricingInformation"/>
+  </wsdl:message>
+  <wsdl:message name="GetPlanPricingInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlanPricingInformationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetSuccessorPlanInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSuccessorPlanInformation"/>
+  </wsdl:message>
+  <wsdl:message name="GetSuccessorPlanInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSuccessorPlanInformationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetPlanGroupInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlanGroupInformation"/>
+  </wsdl:message>
+  <wsdl:message name="GetPlanGroupInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlanGroupInformationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetMembershipSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:GetMembershipSummary"/>
+  </wsdl:message>
+  <wsdl:message name="GetMembershipSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:GetMembershipSummaryResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ChangeAccountPricePlanSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeAccountPricePlan"/>
+  </wsdl:message>
+  <wsdl:message name="ChangeAccountPricePlanSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeAccountPricePlanResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetProvisioningInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProvisioningInformation"/>
+  </wsdl:message>
+  <wsdl:message name="GetProvisioningInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProvisioningInformationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="SetConnectCredentialsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetConnectCredentials"/>
+  </wsdl:message>
+  <wsdl:message name="SetConnectCredentialsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetConnectCredentialsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetAccountInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountInformation"/>
+  </wsdl:message>
+  <wsdl:message name="GetAccountInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountInformationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetConnectCredentialsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConnectCredentials"/>
+  </wsdl:message>
+  <wsdl:message name="GetConnectCredentialsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConnectCredentialsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetEncryptedPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEncryptedPassword"/>
+  </wsdl:message>
+  <wsdl:message name="GetEncryptedPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEncryptedPasswordResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetAccountSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAccountSettings"/>
+  </wsdl:message>
+  <wsdl:message name="GetAccountSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAccountSettingsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateAccountSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAccountSettings"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateAccountSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAccountSettingsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AuthenticateMemberSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateMember"/>
+  </wsdl:message>
+  <wsdl:message name="AuthenticateMemberSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateMemberResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetMemberSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMemberSettings"/>
+  </wsdl:message>
+  <wsdl:message name="GetMemberSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMemberSettingsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateMemberSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateMemberSettings"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateMemberSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateMemberSettingsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CheckAccountMemberSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAccountMember"/>
+  </wsdl:message>
+  <wsdl:message name="CheckAccountMemberSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAccountMemberResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ActivateSalesforceInstanceSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateSalesforceInstance"/>
+  </wsdl:message>
+  <wsdl:message name="ActivateSalesforceInstanceSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateSalesforceInstanceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="PingSoapIn">
+    <wsdl:part name="parameters" element="tns:Ping"/>
+  </wsdl:message>
+  <wsdl:message name="PingSoapOut">
+    <wsdl:part name="parameters" element="tns:PingResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="AccountManagementServiceSoap">
+    <wsdl:operation name="UpgradeRecipientAccount">
+      <wsdl:input message="tns:UpgradeRecipientAccountSoapIn"/>
+      <wsdl:output message="tns:UpgradeRecipientAccountSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="NewAccount">
+      <wsdl:input message="tns:NewAccountSoapIn"/>
+      <wsdl:output message="tns:NewAccountSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddMembersToAccount">
+      <wsdl:input message="tns:AddMembersToAccountSoapIn"/>
+      <wsdl:output message="tns:AddMembersToAccountSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlanPricingInformation">
+      <wsdl:input message="tns:GetPlanPricingInformationSoapIn"/>
+      <wsdl:output message="tns:GetPlanPricingInformationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuccessorPlanInformation">
+      <wsdl:input message="tns:GetSuccessorPlanInformationSoapIn"/>
+      <wsdl:output message="tns:GetSuccessorPlanInformationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlanGroupInformation">
+      <wsdl:input message="tns:GetPlanGroupInformationSoapIn"/>
+      <wsdl:output message="tns:GetPlanGroupInformationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipSummary">
+      <wsdl:input message="tns:GetMembershipSummarySoapIn"/>
+      <wsdl:output message="tns:GetMembershipSummarySoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeAccountPricePlan">
+      <wsdl:input message="tns:ChangeAccountPricePlanSoapIn"/>
+      <wsdl:output message="tns:ChangeAccountPricePlanSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetProvisioningInformation">
+      <wsdl:input message="tns:GetProvisioningInformationSoapIn"/>
+      <wsdl:output message="tns:GetProvisioningInformationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="SetConnectCredentials">
+      <wsdl:input message="tns:SetConnectCredentialsSoapIn"/>
+      <wsdl:output message="tns:SetConnectCredentialsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountInformation">
+      <wsdl:input message="tns:GetAccountInformationSoapIn"/>
+      <wsdl:output message="tns:GetAccountInformationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectCredentials">
+      <wsdl:input message="tns:GetConnectCredentialsSoapIn"/>
+      <wsdl:output message="tns:GetConnectCredentialsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetEncryptedPassword">
+      <wsdl:input message="tns:GetEncryptedPasswordSoapIn"/>
+      <wsdl:output message="tns:GetEncryptedPasswordSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountSettings">
+      <wsdl:input message="tns:GetAccountSettingsSoapIn"/>
+      <wsdl:output message="tns:GetAccountSettingsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccountSettings">
+      <wsdl:input message="tns:UpdateAccountSettingsSoapIn"/>
+      <wsdl:output message="tns:UpdateAccountSettingsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateMember">
+      <wsdl:input message="tns:AuthenticateMemberSoapIn"/>
+      <wsdl:output message="tns:AuthenticateMemberSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberSettings">
+      <wsdl:input message="tns:GetMemberSettingsSoapIn"/>
+      <wsdl:output message="tns:GetMemberSettingsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMemberSettings">
+      <wsdl:input message="tns:UpdateMemberSettingsSoapIn"/>
+      <wsdl:output message="tns:UpdateMemberSettingsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAccountMember">
+      <wsdl:input message="tns:CheckAccountMemberSoapIn"/>
+      <wsdl:output message="tns:CheckAccountMemberSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateSalesforceInstance">
+      <wsdl:input message="tns:ActivateSalesforceInstanceSoapIn"/>
+      <wsdl:output message="tns:ActivateSalesforceInstanceSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <wsdl:input message="tns:PingSoapIn"/>
+      <wsdl:output message="tns:PingSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccountManagementServiceSoap" type="tns:AccountManagementServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UpgradeRecipientAccount">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/UpgradeRecipientAccount" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewAccount">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/NewAccount" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMembersToAccount">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/AddMembersToAccount" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlanPricingInformation">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetPlanPricingInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuccessorPlanInformation">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetSuccessorPlanInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlanGroupInformation">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetPlanGroupInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipSummary">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetMembershipSummary" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeAccountPricePlan">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/ChangeAccountPricePlan" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProvisioningInformation">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetProvisioningInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetConnectCredentials">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/SetConnectCredentials" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountInformation">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetAccountInformation" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectCredentials">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetConnectCredentials" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEncryptedPassword">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetEncryptedPassword" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountSettings">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetAccountSettings" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccountSettings">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/UpdateAccountSettings" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateMember">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/AuthenticateMember" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberSettings">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/GetMemberSettings" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMemberSettings">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/UpdateMemberSettings" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAccountMember">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/CheckAccountMember" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateSalesforceInstance">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/ActivateSalesforceInstance" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.docusign.net/API/AccountManagement/Ping" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AccountManagementServiceSoap12" type="tns:AccountManagementServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UpgradeRecipientAccount">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/UpgradeRecipientAccount" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewAccount">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/NewAccount" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMembersToAccount">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/AddMembersToAccount" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlanPricingInformation">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetPlanPricingInformation" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuccessorPlanInformation">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetSuccessorPlanInformation" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlanGroupInformation">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetPlanGroupInformation" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembershipSummary">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetMembershipSummary" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeAccountPricePlan">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/ChangeAccountPricePlan" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProvisioningInformation">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetProvisioningInformation" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetConnectCredentials">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/SetConnectCredentials" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountInformation">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetAccountInformation" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConnectCredentials">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetConnectCredentials" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEncryptedPassword">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetEncryptedPassword" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountSettings">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetAccountSettings" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccountSettings">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/UpdateAccountSettings" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateMember">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/AuthenticateMember" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberSettings">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/GetMemberSettings" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMemberSettings">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/UpdateMemberSettings" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAccountMember">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/CheckAccountMember" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateSalesforceInstance">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/ActivateSalesforceInstance" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://www.docusign.net/API/AccountManagement/Ping" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AccountManagementService">
+    <wsdl:port name="AccountManagementServiceSoap" binding="tns:AccountManagementServiceSoap">
+      <soap:address location="https://demo.docusign.net/api/3.0/accountmanagement.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="AccountManagementServiceSoap12" binding="tns:AccountManagementServiceSoap12">
+      <soap12:address location="https://demo.docusign.net/api/3.0/accountmanagement.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
