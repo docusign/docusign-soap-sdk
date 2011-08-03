@@ -1,4 +1,4 @@
-DocuSign Web Services API 3.5 PHP Sample
+DocuSign Web Services API 2011 PHP Sample
 ===========================================================================
 
 System requirements for PHP samples:
