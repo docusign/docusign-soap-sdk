@@ -1,0 +1,11 @@
+<apex:page renderAs="pdf" standardController="Contract">
+    <apex:detail relatedList="true" title="true"/>
+    <div style='clear:right;margin-top:50px'>
+    <div style='float:right'>____________________________________</div>
+    <div style='float:right'>By:</div>
+	</div>    
+    <div style='clear:right;margin-top:50px'>
+    <div style='float:right'>____________________________________</div>
+    <div style='float:right'>Date Signed:</div>
+	</div>  
+</apex:page>

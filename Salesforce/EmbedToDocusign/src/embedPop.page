@@ -1,0 +1,12 @@
+<apex:page standardStylesheets="false" showHeader="false"
+    sidebar="false" standardController="Contract" extensions="EmbedToDocuSignController">
+    <script type="text/javascript">
+        function framepop(){
+            if (top.frames.length!=0)
+                // strip out site path
+                top.location= window.location.protocol + "//" + window.location.host + "/" + "{!contract.id}" + window.location.search;
+        }
+    </script>
+    <body onload="framepop();"></body>
+</apex:page>
+

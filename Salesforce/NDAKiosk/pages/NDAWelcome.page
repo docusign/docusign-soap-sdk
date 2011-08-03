@@ -1,0 +1,69 @@
+<apex:page standardStylesheets="false" showHeader="false" action="{!ndaWelcomePageOpen}"
+    sidebar="false" standardController="NDA_Signer__c" extensions="NDAKioskController">
+     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1.5;" />
+     <meta name="apple-mobile-web-app-capable" content="yes" />
+     <meta names="apple-mobile-web-app-status-bar-style" content="black" />
+     <link rel="apple-touch-icon" sizes="72x72" href="{!URLFOR($Resource.ndaStyles, 'icon_ipad.png')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ndaStyles, 'ndastyles.css')}" />
+
+
+    <h1>Welcome to DocuSign!</h1>
+    <p>
+        Please check-in by filling out the form below. Once completed we ask that you 
+        complete a standard non-disclosure agreement using DocuSign.
+    </p>
+
+    <apex:form >
+        <table>
+            <tr>
+                <td><h2>Your Name:</h2></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><apex:inputField styleClass="textBox" value="{!signer.Name}"/></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><h2>Your Email:</h2></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><apex:inputField styleClass="textBox" value="{!signer.Email__c}" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><h2>Your Company:</h2></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><apex:inputField styleClass="textBox" value="{!signer.Company__c}" /></td>
+                <td></td>
+            </tr>
+        </table>
+        <p>How would you like to verify your identity?</p>
+        <apex:selectRadio styleClass="radioButton" value="{!validateType}" layout="pageDirection">
+            <apex:selectOptions value="{!validateItems}"/>
+        </apex:selectRadio>
+        <table>
+            <tr><td><h2>Here to see:</h2></td></tr>
+            <tr><td><apex:inputField styleClass="textBox" value="{!signer.here_to_see__c}" /></td></tr>
+        </table>
+        
+        <p>Purpose of visit</p>
+        <apex:selectRadio styleClass="radioButton" value="{!reasonVisit}" layout="pageDirection">
+            <apex:selectOptions value="{!reasonItems}"/>
+        </apex:selectRadio>
+
+        <table class="top">
+            <tr>
+                <td class="left"><apex:commandButton styleClass="greenButton" action="{!eSign}" value="Enter"/></td>
+                <td class="middle"><apex:commandButton styleClass="greenButton" action="{!clearWelcomeFields}" value="Clear All"/></td>
+                <td class="right"><apex:commandButton styleClass="redButton" action="{!signOutFromWelcome}" value="Sign Out"/></td>
+            </tr>
+        </table>
+        {!errmsg}
+
+  </apex:form>
+
+</apex:page>
+

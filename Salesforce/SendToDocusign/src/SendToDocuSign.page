@@ -1,0 +1,9 @@
+<apex:page standardcontroller="Contract" extensions="SendToDocuSignController">
+<h1>Your eSignature request is being sent to DocuSign API!</h1>
+<hr/>
+<apex:form >
+<apex:commandButton value="Send Again!" action="{!SendNow}"/>
+</apex:form>
+<hr/>
+<strong>The DocuSign EnvelopeId:</strong>{!envelopeId}<br/>
+</apex:page>

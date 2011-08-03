@@ -1,0 +1,8 @@
+<apex:page standardcontroller="Contract" 
+    action="{!embedDocuSignOpen}"
+    extensions="EmbedToDocuSignController">
+  
+    <apex:iframe id="test" src="{!tokenURL}" />
+
+</apex:page>
+

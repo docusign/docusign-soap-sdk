@@ -1,0 +1,19 @@
+<apex:page standardStylesheets="false" showHeader="false" action="{!ndaDonePageOpen}"
+    sidebar="false" standardController="NDA_Signer__c" extensions="NDAKioskController">
+    <apex:stylesheet value="{!URLFOR($Resource.ndaStyles, 'ndastyles.css')}" />
+     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1.5;" />
+     <meta name="apple-mobile-web-app-capable" content="yes" />
+     <meta names="apple-mobile-web-app-status-bar-style" content="black" />
+     <link rel="apple-touch-icon" sizes="72x72" href="{!URLFOR($Resource.ndaStyles, 'icon_ipad.png')}" />
+
+  <h1>Checked Out</h1>
+  <p class="done">
+    Thanks for checking out. Have a great day!
+  </p>
+  <script type="text/javascript">
+    var url = "{!$Site.CurrentSiteUrl}" + 'ndawelcome';
+    setTimeout("location.href = '"+url+"';",7000);
+  </script>
+
+</apex:page>
+

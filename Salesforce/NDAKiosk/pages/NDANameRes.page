@@ -1,0 +1,25 @@
+<apex:page standardStylesheets="false" showHeader="false" action="{!ndaNameResPageOpen}"
+    sidebar="false" standardController="NDA_Signer__c" extensions="NDAKioskController">
+    <apex:stylesheet value="{!URLFOR($Resource.ndaStyles, 'ndastyles.css')}" />
+     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1.5;" />
+     <meta name="apple-mobile-web-app-capable" content="yes" />
+     <meta names="apple-mobile-web-app-status-bar-style" content="black" />
+     <link rel="apple-touch-icon" sizes="72x72" href="{!URLFOR($Resource.ndaStyles, 'icon_ipad.png')}" />
+
+  <h1>Name resolution screen</h1>
+  <apex:form >
+      <p>It seems like your e-mail is already associated with the following eSignatures, please pick one:</p>
+      <apex:selectList styleClass="nameRes" value="{!selected_name}" multiselect="false">
+          <apex:selectOptions value="{!LegalNames}"/>
+      </apex:selectList>
+      <table class="top">
+          <tr>
+              <td class="left"><apex:commandButton styleClass="greenButton" action="{!ndaContinue}" value="Continue"/></td>
+              <td class="right"><apex:commandButton styleClass="linkButton" action="{!ndaRestart}" value="Restart"/></td>
+          </tr>
+      </table>
+      {!errMsg}
+  </apex:form>
+
+</apex:page>
+
