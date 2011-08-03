@@ -2202,10 +2202,15 @@ class APIService extends SoapClient {
 		$dom = $objWSA->getDoc();
 
 		$objWSSE = new WSSESoap($dom);
+		
 		if (isset($this->_username) && isset($this->_password)) {
-		    $objWSSE->addUserToken($this->_username, $this->_password);
-
+			if(!function_exists('mcrypt_module_get_algo_key_size')){
+				$objWSSE->addUserTokenNoMCrypt($this->_username,$this->_password);
+			} else {
+				$objWSSE->addUserToken($this->_username, $this->_password);
+			}
 		}
+		
 		/* Sign all headers to include signing the WS-Addressing headers */
 		$objWSSE->signAllHeaders = TRUE;
 
