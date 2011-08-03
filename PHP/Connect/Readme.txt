@@ -1,7 +1,7 @@
-PHP Connect Readme
+DocuSign PHP Connect 2011 Readme
 ===========================================================================
 
-The Connect sample show a simple implementation to send and receive events. 
+The Connect sample show a simple implementation to receive DocuSign events. 
 
 Installation
 ---------------------------------------------------------------------------
@@ -13,7 +13,7 @@ not function without a valid DevCenter account.
 
 System requirements for PHP samples:
 -	PHP Version 5.3+
-- 	mcrypt/2.5.7 libcurl/7.19.4 OpenSSL/0.9.8k zlib/1.2.3 
+- 	libcurl/7.19.4 OpenSSL/0.9.8k zlib/1.2.3 
 
 Sample PHP Connect solution instructions 
 ---------------------------------------------------------------------------
