@@ -71,7 +71,12 @@ function nowXsdDate() {
  */
 function guid(){
     if (function_exists('com_create_guid')){
-        return com_create_guid();
+        // somehow the function com_create_guid includes {}, while our webservice
+        // doesn't.  Here we are changint the format by taking those curly braces out.
+        $uuid = com_create_guid();
+        $uuid = str_ireplace("{", "", $uuid );
+        $uuid = str_ireplace("}", "", $uuid );
+        return $uuid;
     }else{
         mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
         $charid = strtoupper(md5(uniqid(rand(), true)));
@@ -86,6 +91,7 @@ function guid(){
         return $uuid;
     }
 }
+
 
 function curPageURL() {
     $pageURL = 'http';
