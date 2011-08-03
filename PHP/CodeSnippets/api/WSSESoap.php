@@ -101,6 +101,18 @@ class WSSESoap {
         $this->SOAPXPath->registerNamespace('wswsse', WSSESoap::WSSENS); 
         $this->locateSecurityHeader($bMustUnderstand, $setActor); 
     } 
+    
+    public function addUserTokenNoMCrypt($u, $p){
+        $security = $this->locateSecurityHeader(); 
+				
+        $usernameToken = $this->soapDoc->createElementNS('http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd', 'wsse:UsernameToken');
+        $username = $this->soapDoc->createElementNS('http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd', 'wsse:Username', $u);
+        $password = $this->soapDoc->createElementNS('http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd', 'wsse:Password', $p);
+        $usernameToken->appendChild($username);
+        $usernameToken->appendChild($password);
+        $security->appendChild($usernameToken);
+        
+    }
 
     public function addTimestamp($secondsToExpire=3600) { 
         /* Add the WSU timestamps */ 
