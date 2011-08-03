@@ -1,4 +1,4 @@
-DocuSign Web Services API 3.5 SDK
+DocuSign Web Services API 2011 SDK
 ===========================================================================
 
 The DocuSign Web Services API provides methods that allow developers to
@@ -62,7 +62,7 @@ the following:
 	systems.
 
 Full Documentation can be downloaded or viewed online by going here:
-http://www.docusign.com/developers-center/documentation
+http://www.docusign.com/developer-center/documentation
 
 
 In order to help developers get started with the Web Services API, we have
@@ -83,7 +83,7 @@ System requirements for Java samples:
 
 System requirements for PHP samples:
 -	PHP Version 5.3+
-- 	mcrypt/2.5.7 libcurl/7.19.4 OpenSSL/0.9.8k zlib/1.2.3 
+- 	libcurl/7.19.4 OpenSSL/0.9.8k zlib/1.2.3 
 
 System requirements for Ruby samples:
 -	Ruby 1.8.6+
