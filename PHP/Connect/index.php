@@ -1,5 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-
 <?php
 /**
  * @author Mike Borozdin
@@ -18,17 +16,15 @@
  * PARTICULAR PURPOSE.
  */
  
- //
  // guid creation function from php.net
 function guid(){
-    $uuid;
+    $uuid = '';
     if (function_exists('com_create_guid')){
         $uuid = com_create_guid();
         // somehow the function com_create_guid includes {}, while our webservice
         // doesn't.  Here we are changint the format by taking those curly braces out.
         $uuid = str_ireplace("{", "", $uuid );
         $uuid = str_ireplace("}", "", $uuid );
-
     }else{
         mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
         $charid = strtoupper(md5(uniqid(rand(), true)));
@@ -41,8 +37,7 @@ function guid(){
     }
     return $uuid;
 }
- 
-//
+
 // figure out the URL of this server
 // NOTE: DocuSign only pushes status to HTTPS!
 $postBackPath = empty($_SERVER['HTTPS']) ? 'http://' : 'https://';
@@ -50,7 +45,6 @@ $postBackPath .= ($_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SE
 
 $postedXml = @file_get_contents('php://input');
 if ( !empty($_POST['post'])) {
-    //
     // if this is a sample load
     $xml = simplexml_load_file("post.sample") or die("Unable to load sample XML file!");
     $xml->EnvelopeStatus->EnvelopeID = guid(); // here we replace the GUID so we have unique files
@@ -66,7 +60,6 @@ if ( !empty($_POST['post'])) {
     curl_close ($curl); 
     
 } else if( ! empty( $postedXml ) ) {
-    //
     // see if this is a post to this page
     // if it is then we have to save it.
     $xml = simplexml_load_string($postedXml);
@@ -75,7 +68,6 @@ if ( !empty($_POST['post'])) {
     
 }  
 
-//
 // now load the posts we already have into an array
 $posts = array();
 if ($dh = opendir('.')) {
@@ -92,6 +84,7 @@ if ($dh = opendir('.')) {
 }
 ?>
 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
     <title>DocuSign PHP Push Sample</title>
