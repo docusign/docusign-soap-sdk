@@ -1,0 +1,10 @@
+<apex:page standardStylesheets="false" showHeader="false" action="{!ndaEsignPageOpen}"
+    sidebar="false" standardController="NDA_Signer__c" extensions="NDAKioskController">
+     <meta name="apple-mobile-web-app-capable" content="yes" />
+     <meta names="apple-mobile-web-app-status-bar-style" content="black" />
+     <link rel="apple-touch-icon" sizes="72x72" href="{!URLFOR($Resource.ndaStyles, 'icon_ipad.png')}" />
+
+  <apex:iframe src="{!tokenURL}" height="1024px" width="100%" scrolling="true"/>
+
+</apex:page>
+

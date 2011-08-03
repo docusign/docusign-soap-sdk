@@ -1,0 +1,12 @@
+<apex:page standardStylesheets="false" showHeader="false"
+    sidebar="false" standardController="NDA_Signer__c" extensions="NDAKioskController">
+    <script type="text/javascript">
+        function framepop(){
+            if (top.frames.length!=0)
+                // strip out site path
+                top.location= "{!$Site.CurrentSiteUrl}" + 'NDADone' + window.location.search;
+        }
+    </script>
+    <body onload="framepop();"></body>
+</apex:page>
+

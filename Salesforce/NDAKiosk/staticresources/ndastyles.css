@@ -1,0 +1,134 @@
+html {
+    background-color:      #297DB9;
+    margin:                64px 0px 0px 0px;
+    padding:               0;
+}
+body {
+    background-color:      #ffffff;
+    box-shadow:            10px 10px 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow:    0px 0px 10px rgba(0, 0, 0, 0.6);
+    margin:                0px auto;
+    padding:               0px 10px 10px 15px;
+    width:                 630px;
+    font-family: Arial, Helvetica, Verdana, sans-serif; 
+/*    margin:0 0 0 0;
+    padding:0 0 0 34px;
+    font-size:1.5em; */
+}
+h1 {
+    background:              url("http://www.docusign.com/templates/gk_corporate/images/style1/logo.png") -5px 10px no-repeat;
+    border-bottom:           1px solid #ccc;
+    font-size:               0.9em;
+    padding-top:             23px;
+    padding-left:            200px;
+    padding-bottom:          1.7em;
+    padding-right:           35px;
+    text-align:              right;
+    margin-top:              0;
+    font-weight:             normal;
+}
+/*h1 {
+    margin:20px 0 0 0;
+    display:block; 
+    font-size:2.5em; 
+    text-align:left; 
+    font-weight:bold;
+}*/
+h2 {
+    margin:20px 0 3px 0;
+    display:block; 
+    font-size:1.5em; 
+    font-weight:bold;
+}
+p {
+    font-size:1em;
+    margin:10px 0 0 0;
+}
+.greenButton, .linkButton {
+    border-radius:           10px;
+    font-size:               1.3em;
+    padding:                 0.3em;
+}
+.redButton {
+    border-radius:           10px;
+    font-size:               1.3em;
+    padding:                 0.3em;
+    background-color:        red;
+}
+/*.linkButton {
+    background:inherit;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:1.5em;
+    color:#686868;
+    border-bottom:solid;
+    border-width:0 0 thin 0;
+}
+.greenButton {
+    color:#FFFFFF;
+    border-size:0;
+    border-style:none;
+    background-color:#0D6D40;
+    font-weight:bold;
+    font-size:1.5em;
+    border-color:#686868;
+    text-decoration:none;
+    float:left;
+    cursor:pointer;
+}*/
+.textBox {
+    background-color:      #eee;
+    border:                1px solid #cccccc;
+    border-radius:         5px;
+    -webkit-border-radius: 5px;
+    padding:               0.3em;
+    width:                 32em;
+/*    padding-top:0;
+    padding-bottom:0;
+    font-size:1.5em;
+    width:600px; */
+}
+.textBox:focus {
+    background-color:      #fff;
+    border:                1px solid #297DB9;
+}
+
+.nameRes {
+    font-size:1.5em;
+}
+.checkBox {
+    width:24px;
+    height:24px;
+}
+.radioButton {
+/*    width:24px;
+    height:24px; */
+}
+.error {
+    color:red;
+    margin-left:16px;
+}
+td.left {
+    padding-right:1em;
+    border-right:solid;
+    border-width:thin;
+}
+td.middle {
+    padding-left:1em;
+    padding-right:1em;
+    border-right:solid;
+    border-width:thin;
+}
+td.right {
+    padding-left:1em;
+}
+table.top {
+    padding-top:20px;
+}
+p.done {
+    font-size:1.25em;
+}
+p.errmsg {
+    font-size:1.25em;
+    color:red;
+}
