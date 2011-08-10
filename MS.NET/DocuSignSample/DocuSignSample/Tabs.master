@@ -11,7 +11,15 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+<%
+    if (Session["APIEmail"] != null)
+    { %>
 <p style="text-align:right">Logged in as <%= Session["APIEmail"].ToString() %> | <a href="#" id="logoutBtn" name="logoutBtn" runat="server" onclick="Logout">Logout</a></p>
+<%  }
+    else
+    { %>
+<p style="text-align:right"><a href="LogIn.aspx">Log in</a></p>
+<%  } %>
     <nav class="tabs">
 <ul id="navBar" runat="server">
 <li id="SendDocTab" runat="server">
