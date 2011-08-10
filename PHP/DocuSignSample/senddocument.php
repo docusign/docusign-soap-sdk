@@ -61,10 +61,17 @@ function buildEnvelope() {
  * @return multitype:Recipient 
  */
 function constructRecipients() {
-    $recipients[] = new Recipient();
+    $recipients = array();
     
     $count = count($_POST["RecipientName"]);
     for ($i = 1; $i <= $count; $i++) {
+    	
+    		// Must contain all POST parameters
+    		if(empty($_POST["RecipientName"][$i]) ||
+    			 empty($_POST["RecipientEmail"][$i])){
+    			 	continue;
+    		}
+    	
         $r = new Recipient();
         
         $r->UserName = $_POST["RecipientName"][$i];
@@ -99,8 +106,11 @@ function constructRecipients() {
         array_push($recipients, $r);
     }
     
-    // Remove 0th element because it is empty
-    array_shift($recipients);
+    if(empty($recipients)){
+	    $_SESSION["errorMessage"] = "You must include at least 1 Recipient";
+	    header("Location: error.php");
+	    exit;
+    }
     
     return $recipients;
 }
@@ -385,15 +395,8 @@ function sendNow($envelope) {
 	        	"&accountID=" . $envelope->AccountId . "&source=Document");
         }
     } catch (SoapFault $e) {
-    	echo "<pre>";
-    	print_r($e);
-    	echo "</pre>";
-    	echo "<pre>";
-    	print_r($api->getLastRequest());
-    	echo "</pre>";
-    	exit;
-        $_SESSION["errorMessage"] = $e;
-        header("Location: error.php");
+      $_SESSION["errorMessage"] = $e;
+      header("Location: error.php");
     }
 }
 
