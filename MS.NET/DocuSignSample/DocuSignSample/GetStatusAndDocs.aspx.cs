@@ -166,11 +166,15 @@ namespace DocuSignSample
             System.Web.UI.HtmlControls.HtmlTable envelopeTable = new System.Web.UI.HtmlControls.HtmlTable();
             System.Web.UI.HtmlControls.HtmlGenericControl envelopeDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
 
+            int recipIndex = 0;
+
             foreach (DocuSignAPI.RecipientStatus recipient in status.RecipientStatuses)
             {
                 System.Web.UI.HtmlControls.HtmlGenericControl info = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
 
-                info.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail_Recipient_" + recipient.UserName + "');\"><img src=\"images/plus.png\"></a> Recipient - " +
+                String recipId = "Recipient_Detail_" + status.EnvelopeID + "_" + recipient.RoutingOrder + "_" + recipient.UserName + "_" + recipient.Email + "_" + recipIndex++;
+
+                info.InnerHtml = "<a href=\"javascript:toggle('" + recipId + "');\"><img src=\"images/plus.png\"></a> Recipient - " +
                     recipient.UserName + ": " + recipient.Status.ToString();
                 if (recipient.Status != DocuSignAPI.RecipientStatusCode.Completed && recipient.ClientUserId != null)
                 {
@@ -187,7 +191,7 @@ namespace DocuSignSample
                         t.InnerHtml = tab.TabName + ": " + tab.TabValue;
                         tabs.Controls.Add(t);
                     }
-                    tabs.Attributes["id"] = status.EnvelopeID + "_Detail_Recipient_" + recipient.UserName;
+                    tabs.Attributes["id"] = recipId;
                     tabs.Attributes["class"] = "detail";
                     info.Controls.Add(tabs);
                 }
