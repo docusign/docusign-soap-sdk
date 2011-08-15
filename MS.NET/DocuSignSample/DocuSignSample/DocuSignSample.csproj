@@ -65,6 +65,7 @@
     <Content Include="Default.aspx" />
     <Content Include="css\default.css" />
     <Content Include="DefaultPage.Master" />
+    <Content Include="SelectUser.aspx" />
     <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
     <None Include="resources\BlankPDF.pdf" />
     <None Include="resources\DocuSign Demo %2711.doc" />
@@ -301,6 +302,13 @@
     </Compile>
     <Compile Include="Tabs.Master.designer.cs">
       <DependentUpon>Tabs.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SelectUser.aspx.cs">
+      <DependentUpon>SelectUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SelectUser.aspx.designer.cs">
+      <DependentUpon>SelectUser.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ public class BasePage : System.Web.UI.Page
         {
             credentials.AccountId = (string)Session["APIAccountID"];
             credentials.UserName = "[" + (string)Session["APIIKey"] + "]";
-            credentials.UserName += (string)Session["APIEmail"];
+            credentials.UserName += (string)Session["APIUserID"];
             credentials.Password = (string)Session["APIPassword"];
             credentials.ApiUrl = ConfigurationManager.AppSettings["APIUrl"];
 

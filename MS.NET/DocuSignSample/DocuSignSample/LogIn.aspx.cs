@@ -47,16 +47,23 @@ namespace DocuSignSample
             // If we could log the user in, go to the main page
             if (result.Success)
             {
-                // Get the account ID first
-                // TODO: deal with multiple accounts
-                Session["APIAccountId"] = result.Accounts[0].AccountID;
-
                 // Grab the info from the form, even if it is already stored in the Session
                 Session["APIEmail"] = Request.Form["DevCenterEmail"];
                 Session["APIPassword"] = Request.Form["DevCenterPassword"];
                 Session["APIIKey"] = Request.Form["DevCenterIKey"];
 
-                Response.Redirect("SendDocument.aspx", true);
+                // Get the account ID first
+                if (result.Accounts.Length == 1)
+                {
+                    Session["APIAccountId"] = result.Accounts[0].AccountID;
+                    Session["APIUserID"] = result.Accounts[0].UserID;
+                    Response.Redirect("SendDocument.aspx", true);
+                }
+                else
+                {
+                    Session["APIAccounts"] = result.Accounts.ToDictionary<CredentialAPI.Account, String>(x => x.AccountID);
+                    Response.Redirect("SelectUser.aspx", true);
+                }                
             }
             // Otherwise send the user to the error page
             else
