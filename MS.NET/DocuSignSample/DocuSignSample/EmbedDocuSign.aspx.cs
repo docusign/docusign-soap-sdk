@@ -142,7 +142,14 @@ namespace DocuSignSample
             }
 
             // Set the signer message
-            signerMessage = "Have the first signer fill out the Envelope";
+            if (_oneSigner)
+            {
+                signerMessage = "Have the signer fill out the Envelope";
+            }
+            else
+            {
+                signerMessage = "Have the first signer fill out the Envelope";
+            }
             messagediv.Visible = true;
 
             // Set the source of the iframe to the token
