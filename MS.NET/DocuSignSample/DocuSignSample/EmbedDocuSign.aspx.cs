@@ -203,7 +203,7 @@ namespace DocuSignSample
             // Construct the recipients
             List<DocuSignAPI.Recipient> runningList = new List<DocuSignAPI.Recipient>();
             DocuSignAPI.Recipient r1 = new DocuSignAPI.Recipient();
-            r1.UserName = Session["APIEmail"].ToString();
+            r1.UserName = Session["APIUserName"].ToString();
             r1.Email = Session["APIEmail"].ToString();
             r1.ID = "1";
             r1.Type = DocuSignAPI.RecipientTypeCode.Signer;

@@ -49,6 +49,7 @@ namespace DocuSignSample
             if(accounts.ContainsKey(selectedName)) {
                 Session["APIAccountId"] = accounts[selectedName].AccountID;
                 Session["APIUserID"] = accounts[selectedName].UserID;
+                Session["APIUserName"] = accounts[selectedName].UserName;
                 Response.Redirect("SendDocument.aspx", true);
             } else {
                 GoToErrorPage("Could not log you in. Please check your credentials.");

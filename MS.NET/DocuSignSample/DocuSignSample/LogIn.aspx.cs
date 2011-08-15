@@ -57,6 +57,7 @@ namespace DocuSignSample
                 {
                     Session["APIAccountId"] = result.Accounts[0].AccountID;
                     Session["APIUserID"] = result.Accounts[0].UserID;
+                    Session["APIUserName"] = result.Accounts[0].UserName;
                     Response.Redirect("SendDocument.aspx", true);
                 }
                 else
