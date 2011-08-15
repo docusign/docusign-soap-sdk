@@ -152,6 +152,8 @@ namespace DocuSignSample
 
         protected void SignSecond(DocuSignAPI.EnvelopeStatus status)
         {
+            buttonTable.Visible = false;
+
             // Create the assertion using the current time, password and demo information
             DocuSignAPI.RequestRecipientTokenAuthenticationAssertion assertion = new DocuSignAPI.RequestRecipientTokenAuthenticationAssertion();
             assertion.AssertionID = new Guid().ToString();
