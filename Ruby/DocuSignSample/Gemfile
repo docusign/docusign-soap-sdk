@@ -6,7 +6,7 @@ gem 'rails', '3.0.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'soap4r'
-gem 'docusign'
+gem 'docusignsdk'
 gem 'intercession'
 gem 'httpclient', '=2.1.6.1'
 gem 'sqlite3'
