@@ -66,7 +66,7 @@ function createAndSend() {
         $csParams->Envelope = $env;
         $status = $api->CreateAndSendEnvelope($csParams)->CreateAndSendEnvelopeResult;
         addEnvelopeID($status->EnvelopeID);
-        getToken($status, 0);
+        getToken($status, 1);
     } catch (SoapFault $e) {
         $_SESSION["errorMessage"] = $e;
         header("Location: error.php");
@@ -253,7 +253,7 @@ function addTabs($count) {
     return $tabs;
 }
 
-function getToken($status, $index) {
+function getToken($status, $clientID) {
     global $_oneSigner;
     $token = null;
     $_SESSION["embedToken"];
@@ -265,7 +265,18 @@ function getToken($status, $index) {
     $assertion->AuthenticationMethod = RequestRecipientTokenAuthenticationAssertionAuthenticationMethod::Password;
     $assertion->SecurityDomain = "DocuSign2011Q1Sample";
     
-    $recipient = $status->RecipientStatuses->RecipientStatus[$index];
+    // Get Recipient fro ClientID
+    $recipient = false;
+		foreach($status->RecipientStatuses->RecipientStatus as $rs){
+			if($rs->ClientUserId == $clientID){
+    		$recipient = $rs;
+    	}
+    }
+    
+    if($recipient == false){
+	    $_SESSION["errorMessage"] = "Unable to find Recipient";
+	    header("Location: error.php");
+    }
     
     $urls = new RequestRecipientTokenClientURLs();
     $urlbase = getCallbackURL("pop.html") . "?source=Embedded";
@@ -337,8 +348,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET["envelopeID"])) {
     		// Display a message that we are moving on to Signer Number 2
-    		$_showTransitionMessage = true;
-        getToken(getStatus($_GET["envelopeID"]), 1);
+    		// - unless the message is suppressed (by signing from the GetStatusAndDocs page)
+    		if(isset($_GET['from_gsad'])){
+    			getToken(getStatus($_GET['envelopeID']),$_GET['clientID']);
+    		} else {
+    			$_showTransitionMessage = true;
+        	getToken(getStatus($_GET['envelopeID']), 2);
+        }
     } else {
         $_SESSION["embedToken"] = "";
     }
