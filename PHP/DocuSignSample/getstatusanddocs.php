@@ -47,6 +47,7 @@ function createStatusTable() {
         }
         
         if (isset($statuses)) {
+        	//pr($statuses);
         	?> <ul class=""> <?
 	            foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
 		           ?>
@@ -64,7 +65,11 @@ function createStatusTable() {
 				           				
 				           				<? foreach($status->RecipientStatuses->RecipientStatus as $rcpStatus){ ?>
 				           							<li>
-				           								<?= $rcpStatus->UserName; ?>
+				           								<!-- Recipient Name and Start Signing -->
+				           								<?
+				           									echo $rcpStatus->UserName;
+				           								?> 
+				           								<a href="embeddocusign.php?from_gsad=1&envelopeID=<?= $status->EnvelopeID; ?>&clientID=<?= $rcpStatus->ClientUserId ?>">Start Signing</a>
 				           							</li>
 				           				<? } ?>
 				           				
@@ -98,6 +103,7 @@ function createStatusTable() {
         
     }
 }
+
 //========================================================================
 // Main
 //========================================================================
