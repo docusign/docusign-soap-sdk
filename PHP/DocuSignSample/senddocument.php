@@ -103,6 +103,11 @@ function constructRecipients() {
         $r->Type = RecipientTypeCode::Signer;
         $r->RoutingOrder = $i;
         
+        if(!isset($_POST['RecipientInviteToggle'][$i])){
+        	$r->CaptiveInfo = new RecipientCaptiveInfo();
+        	$r->CaptiveInfo->ClientUserId = $i;
+        }
+        
         array_push($recipients, $r);
     }
     
@@ -483,9 +488,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     minDate: today + 3
                 });
                 $(".switcher li").bind("click", function () {
-                    var act = $(this);
-                    $(act).parent().children('li').removeClass("active").end();
-                    $(act).addClass("active");
+                    //var $act = $(this);
+                    $(this).parent().children('li').removeClass("active").end();
+                    $(this).addClass("active");
+                    if($(this).find('a').attr('title') == 'On'){
+                    	$(this).parent().find('input').attr('checked','checked');
+                    } else {
+                    	$(this).parent().find('input').removeAttr('checked');
+                    }
                 });
             });
         </script>
@@ -550,7 +560,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	          			<li>
 	          				<a href="#" title="OFF">OFF</a>
 	          			</li>
-	          			<input title="RecipientInviteToggle1" id="RecipientInviteToggle1" name="RecipientInviteToggle[1]" type="checkbox" style="display: none; ">
+	          			<input title="RecipientInviteToggle1" id="RecipientInviteToggle1" name="RecipientInviteToggle[1]" class="RecipientInviteToggle" type="checkbox" checked style="display: none; ">
 	          		</ul>
 	          	</td>
           	</tr>
