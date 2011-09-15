@@ -128,7 +128,7 @@ function constructRecipients() {
  * @return multitype:Document 
  */
 function getDocuments() {
-    $documents[] = null;
+    $documents = array();
     $id = 1;
     
     if (isset($_POST["stockdoc"])) {
@@ -138,15 +138,16 @@ function getDocuments() {
         $d->ID = $id++;;
         $d->FileExtension = "pdf";
         array_push($documents, $d);
-    }
-    else {
-        foreach ($_FILES_ as $f) {
-            if (isset($f["name"])) {
+    } else {
+        foreach ($_FILES as $f) {
+            if (isset($f["name"]) && !empty($f['tmp_name'])) {
                 $d = new Document();
                 $d->PDFBytes = file_get_contents($f["tmp_name"]);
                 $d->Name = $f["name"];
                 $d->ID = $id++;
-                $d->FileExtension = substr($f["type"], strpos($f["type"], '/') + 1);
+                $temp = explode('.',$f['name']);
+                $ext = array_pop($temp);
+                $d->FileExtension = $ext;
                 array_push($documents, $d);
             };
         }
@@ -161,9 +162,6 @@ function getDocuments() {
         $d->AttachmentDescription = "Please attach your document here";
         array_push($documents, $d);
     }
-    
-    // eliminate empty 0th element
-    array_shift($documents);
     
     return $documents;
 }
