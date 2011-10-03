@@ -1,41 +1,23 @@
 DocuSign Web Services API 2011 SDK
 ===========================================================================
 
-The DocuSign Web Services API provides methods that allow developers to
-integrate the DocuSign service into their applications. By building
-DocuSign into existing applications, those applications gain the ability to
-gather electronic signatures and data.  
+The DocuSign Web Services API provides methods for integrating the DocuSign 
+API into an application to gather electronic signatures and data. 
 
-Transactions are completely defined on the host application side by
-generating XML  envelopes  that contain a PDF and the XML signing
-instructions. Because the transactions could be defined on the fly by the
-host application, the workflow and processing can be completely defined by
-the developer.
- 
-The service allows developers to build solutions that are able to perform
-the following:
--	Send documents for signature through the web service from host
-	applications either one at a time, or as a group in an electronic
-	envelope
--	Define the authentication required to sign or access the envelope
-	including 3 different types, or pass through authentication from
-	the host application
--	Define the signature locations using either static or relative
-	signature location descriptions on any page in the document
--	Define data field locations, masks, and if they are optional or
-	required, and if they contain pre-populated data if those fields
-	are locked or editable.
--	Assign specific signing tasks or data fields to specific
-	individuals
--	Support embedded signing where the signing process is invoked with
-	a token that allows the signing to be embedded in an iframe of a
-	host application
--	Support remote signing where the signing process generates an email
-	to return to sign
--	Select the workflow the  routing of signing  either in parallel or
-	in serial or a combination
--	Submit completely specified envelopes that are immediately
-	processed for delivery. 
+The DocuSign API helps developers build solutions that can: 
+-	Send documents for signature one at a time or in bulk
+-	Require authentication before signing
+-	Define signature locations using static or relative
+	signature location descriptions on any document page
+-	Define optional/required data field locations, masks, and 
+	pre-population
+-	Assign individuals specific form fields
+-	Include embedded signing where the developer hosts an iframe
+	that renders the DocuSign experience
+-	Support remote signing where the Recipient receives an email with 
+	a link and completes signing from a branded page
+-	Route signing to multiple recipients in parallel, serial, or
+	a combination of the two
 -	Submit partially specified envelopes for later completion by the
 	customer.
 -	Void an envelope that has been submitted but not yet completed.
