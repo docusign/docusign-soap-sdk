@@ -38,3 +38,16 @@ Installation and Use
 4. Build the solution by clicking Build->Build Solution
 
 5. Run the solution by clicking Debug->Start Without Debugging
+
+
+
+----- Rate Limits -----
+
+Please note: Applications are not allowed to poll for envelope status more
+than once every 15 minutes and we discourage integrators from continuously
+retrieving status on envelopes that are in a terminal state (Completed, 
+Declined, and Voided).  Excessive polling will result in your API access 
+being revoked.  
+If you need immediate notification of envelope events we encourage you to 
+review envelope events or use our Connect Publisher technology, DocuSign 
+Connect as an alternative.
