@@ -107,10 +107,22 @@ credential web service that has a subset of functions and doesn't require
 WS-Security SOAP headers
 
 
+----- Rate Limits -----
+
+Please note: Applications are not allowed to poll for envelope status more
+than once every 15 minutes and we discourage integrators from continuously
+retrieving status on envelopes that are in a terminal state (Completed, 
+Declined, and Voided).  Excessive polling will result in your API access 
+being revoked.  
+If you need immediate notification of envelope events we encourage you to 
+review envelope events or use our Connect Publisher technology, DocuSign 
+Connect as an alternative.
+
+
 ----- More Information -----
 
 Professional Services is also available to help define and implement your
-project fast.
+project fast. 
 
 
 ----- API Possibilities -----
