@@ -7,7 +7,7 @@ gem 'rails', '3.0.4'
 
 gem 'soap4r'
 gem 'docusignsdk'
-gem 'intercession'
+gem 'intercession', '=2.0.0'
 gem 'httpclient', '=2.1.6.1'
 gem 'sqlite3'
 
