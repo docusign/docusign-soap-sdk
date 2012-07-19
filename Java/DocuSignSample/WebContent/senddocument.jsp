@@ -71,7 +71,7 @@
     			<h3><a href="<%= Utils.CONTROLLER_GETSTATUS %>">Get Status and Docs</a></h3>
     		</section>
     	</article>
-        <form id="SendDocumentForm" action="SendDocument" method="post" enctype="multipart/form_data" >
+        <form id="SendDocumentForm" action="SendDocument" method="post" enctype="multipart/form-data" >
             <input id="subject" name="subject" type="text" placeholder="<enter the subject>" autocomplete="off"/>
             <p>
             </p>
