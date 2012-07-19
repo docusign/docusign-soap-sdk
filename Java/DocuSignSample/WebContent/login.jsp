@@ -44,7 +44,7 @@
 	</tr>
 </table>
 </div>
-<div id="action" class="centeralign" style="width: 154px;"><input
+<div id="action" class="centeralign" style="width: 174px;"><input
 	id="Submit1" name="submit" type="submit" value="Login"
 	style="width: 70px; margin-right: 5px;" /> <input id="Reset1"
 	name="reset" type="submit" value="Reset"
