@@ -20,7 +20,7 @@ function addRecipientRowToTable() {
 
     var cellMiddle1 = row.insertCell(1);
     var email = document.createElement('input');
-    email.type = 'email';
+    email.type = 'text';
     email.name = 'RecipientEmail' + iteration;
     email.id = 'txtRow' + iteration;
     cellMiddle1.appendChild(email);
