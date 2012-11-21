@@ -31,7 +31,7 @@ To build:
    On Linux, Unix or Mac OS X it would look like this:
             cxf.dir=/opt/apache-cxf/lib
    On Windows it could be:
-            cxf.dir=c:\dev\apache-cxf\lib
+            cxf.dir=c:/dev/apache-cxf/lib
 
 2. Optionally set elements in src/config.properties file by modifying the
    following lines eliminating the square brackets:
