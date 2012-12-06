@@ -64,7 +64,7 @@
     <EnvelopeID>a7a0eaac-xxxx-xxxx-xxxx-1afbb77d42b8</EnvelopeID>
     <Subject>Please review and sign your documents</Subject>
     <UserName>Thomas H Gonser Jr</UserName>
-    <Email>tom@docusign.com</Email>
+    <Email>test-email@test-company.com</Email>
     <Status>Delivered</Status>
     <Created>2008-10-22T16:23:32.4300000-07:00</Created>
     <Sent>2008-10-22T16:23:34.3670000-07:00</Sent>
@@ -72,7 +72,7 @@
     <ACStatus>Original</ACStatus>
     <ACStatusDate>2008-10-22T16:23:32.4300000-07:00</ACStatusDate>
     <ACHolder>Thomas H Gonser Jr</ACHolder>
-    <ACHolderEmail>tom@docusign.com</ACHolderEmail>
+    <ACHolderEmail>test-email@test-company.com</ACHolderEmail>
     <ACHolderLocation>DocuSign</ACHolderLocation>
     <SigningLocation>Online</SigningLocation>
     <SenderIPAddress>192.168.71.8   </SenderIPAddress>
