@@ -4,7 +4,7 @@
     <RecipientStatuses>
       <RecipientStatus>
         <Type>Signer</Type>
-        <Email>tom@docusign.com</Email>
+        <Email>test-email@test-company.com</Email>
         <UserName>Thomas H Gonser Jr</UserName>
         <RoutingOrder>1</RoutingOrder>
         <Sent>2008-10-22T16:23:34.3200000-07:00</Sent>
