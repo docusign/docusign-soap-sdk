@@ -1,9 +1,6 @@
-﻿using System;
+﻿using DocuSignSample.resources;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DocuSignSample
 {
@@ -24,16 +21,16 @@ namespace DocuSignSample
             }
             else
             {
-                if (Session["APIAccounts"] != null &&
-                    Session["APIEmail"] != null &&
-                    Session["APIPassword"] != null &&
-                    Session["APIIKey"] != null)
+                if (null != Session[Keys.ApiAccounts] &&
+                    null != Session[Keys.ApiEmail] &&
+                    null != Session[Keys.ApiPassword] &&
+                    null != Session[Keys.ApiIkey])
                 {
-                    names = ((IDictionary<String, CredentialAPI.Account>)Session["APIAccounts"]).Keys;
-                    accounts = ((IDictionary<String, CredentialAPI.Account>)Session["APIAccounts"]);
-                    email = Session["APIEmail"].ToString();
-                    password = Session["APIPassword"].ToString();
-                    key = Session["APIIKey"].ToString();
+                    names = ((IDictionary<String, CredentialAPI.Account>)Session[Keys.ApiAccounts]).Keys;
+                    accounts = ((IDictionary<String, CredentialAPI.Account>)Session[Keys.ApiAccounts]);
+                    email = Session[Keys.ApiEmail].ToString();
+                    password = Session[Keys.ApiPassword].ToString();
+                    key = Session[Keys.ApiIkey].ToString();
                 }
                 else
                 {
@@ -44,12 +41,12 @@ namespace DocuSignSample
 
         private void OnSelect()
         {
-            String selectedName = Request.Form["DevCenterName"];
-            IDictionary<String, CredentialAPI.Account> accounts = (IDictionary<String, CredentialAPI.Account>)Session["APIAccounts"];
+            String selectedName = Request.Form[Keys.DevCenterName];
+            accounts = (IDictionary<String, CredentialAPI.Account>)Session[Keys.ApiAccounts];
             if(accounts.ContainsKey(selectedName)) {
-                Session["APIAccountId"] = accounts[selectedName].AccountID;
-                Session["APIUserID"] = accounts[selectedName].UserID;
-                Session["APIUserName"] = accounts[selectedName].UserName;
+                Session[Keys.ApiAccountId] = accounts[selectedName].AccountID;
+                Session[Keys.ApiUserId] = accounts[selectedName].UserID;
+                Session[Keys.ApiUsername] = accounts[selectedName].UserName;
                 Response.Redirect("SendDocument.aspx", true);
             } else {
                 GoToErrorPage("Could not log you in. Please check your credentials.");

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using System.Linq;
+using DocuSignSample.resources;
+using System;
 
 namespace DocuSignSample
 {
@@ -54,27 +50,31 @@ namespace DocuSignSample
         protected void StartSigning(string userName, string clientID, string email, string envelopeID)
         {
             // Create the assertion using the current time, password and demo information
-            DocuSignAPI.RequestRecipientTokenAuthenticationAssertion assertion = new DocuSignAPI.RequestRecipientTokenAuthenticationAssertion();
-            assertion.AssertionID = new Guid().ToString();
-            assertion.AuthenticationInstant = DateTime.Now;
-            assertion.AuthenticationMethod = DocuSignAPI.RequestRecipientTokenAuthenticationAssertionAuthenticationMethod.Password;
-            assertion.SecurityDomain = "DocuSignSample";
+            var assertion = new DocuSignAPI.RequestRecipientTokenAuthenticationAssertion
+                {
+                    AssertionID = new Guid().ToString(),
+                    AuthenticationInstant = DateTime.Now,
+                    AuthenticationMethod =
+                        DocuSignAPI.RequestRecipientTokenAuthenticationAssertionAuthenticationMethod.Password,
+                    SecurityDomain = "DocuSignSample"
+                };
 
             // Construct the URLs to which the iframe will redirect upon every event
-            DocuSignAPI.RequestRecipientTokenClientURLs urls = new DocuSignAPI.RequestRecipientTokenClientURLs();
-
             String urlBase = Request.Url.AbsoluteUri.Replace("GetStatusAndDocs.aspx", "pop.html");
-            urls.OnSigningComplete = urlBase + "?event=SignComplete";
-            urls.OnViewingComplete = urlBase + "?event=ViewComplete";
-            urls.OnCancel = urlBase + "?event=Cancel";
-            urls.OnDecline = urlBase + "?event=Decline";
-            urls.OnSessionTimeout = urlBase + "?event=Timeout";
-            urls.OnTTLExpired = urlBase + "?event=TTLExpired";
-            urls.OnIdCheckFailed = urlBase + "?event=IDCheck";
-            urls.OnAccessCodeFailed = urlBase + "?event=AccessCode";
-            urls.OnException = urlBase + "?event=Exception";
+            var urls = new DocuSignAPI.RequestRecipientTokenClientURLs
+                {
+                    OnSigningComplete = urlBase + "?event=SignComplete",
+                    OnViewingComplete = urlBase + "?event=ViewComplete",
+                    OnCancel = urlBase + "?event=Cancel",
+                    OnDecline = urlBase + "?event=Decline",
+                    OnSessionTimeout = urlBase + "?event=Timeout",
+                    OnTTLExpired = urlBase + "?event=TTLExpired",
+                    OnIdCheckFailed = urlBase + "?event=IDCheck",
+                    OnAccessCodeFailed = urlBase + "?event=AccessCode",
+                    OnException = urlBase + "?event=Exception"
+                };
 
-            DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
+            var client = CreateAPIProxy();
             String token = null;
 
             try
@@ -85,55 +85,55 @@ namespace DocuSignSample
             }
             catch (Exception ex)
             {
-                base.GoToErrorPage(ex.Message);
+                GoToErrorPage(ex.Message);
             }
 
             // Set the source of the iframe to the token
             hostiframe.Visible = true;
-            hostiframe.Attributes["src"] = token;
+            hostiframe.Attributes[Keys.Source] = token;
         }
 
         protected void DownloadItem(string id)
         {
             DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
-            DocuSignAPI.EnvelopePDF pdf = null;
 
             try
             {
                 // Download all documents as one pdf
-                pdf = client.RequestPDF(id);
+                DocuSignAPI.EnvelopePDF pdf = client.RequestPDF(id);
+                // Write the output to the browser
+                Response.ContentType = "Application/pdf";
+                Response.BinaryWrite(pdf.PDFBytes);
             }
             catch (Exception ex)
             {
-                base.GoToErrorPage(ex.Message);
+                GoToErrorPage(ex.Message);
             }
 
-            // Write the output to the browser
-            Response.ContentType = "Application/pdf";
-            Response.BinaryWrite(pdf.PDFBytes);
         }
 
         protected void GetStatuses()
         {
-            DocuSignAPI.APIServiceSoapClient client = CreateAPIProxy();
-            DocuSignAPI.FilteredEnvelopeStatuses statuses = null;
+            var client = CreateAPIProxy();
             try
             {
                 // Get all the envelope IDs which we have created in this session
-                DocuSignAPI.EnvelopeStatusFilter filter = new DocuSignAPI.EnvelopeStatusFilter();
-                filter.AccountId = Session["APIAccountID"].ToString();
-                filter.EnvelopeIds = base.GetEnvelopeIDs();
+                var filter = new DocuSignAPI.EnvelopeStatusFilter
+                    {
+                        AccountId = Session[Keys.ApiAccountId].ToString(),
+                        EnvelopeIds = GetEnvelopeIDs()
+                    };
 
                 if (filter.EnvelopeIds.Length > 0)
                 {
                     // Request all the envelope statuses based on that filter
-                    statuses = client.RequestStatusesEx(filter);
+                    DocuSignAPI.FilteredEnvelopeStatuses statuses = client.RequestStatusesEx(filter);
                     CreateStatusTable(statuses);
                 }
             }
             catch (Exception ex)
             {
-                base.GoToErrorPage(ex.Message);
+                GoToErrorPage(ex.Message);
             }
 
         }
@@ -143,17 +143,22 @@ namespace DocuSignSample
         {
             foreach (DocuSignAPI.EnvelopeStatus status in statuses.EnvelopeStatuses)
             {
-                System.Web.UI.HtmlControls.HtmlGenericControl containerDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                System.Web.UI.HtmlControls.HtmlGenericControl info = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
-                info.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail" + "');\"><img src=\"images/plus.png\"></a> " + status.Subject + " (" + status.Status.ToString() + ") - " + status.EnvelopeID;
+                var containerDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                var info = new System.Web.UI.HtmlControls.HtmlGenericControl("p")
+                    {
+                        InnerHtml =
+                            "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail" +
+                            "');\"><img src=\"images/plus.png\"></a> " + status.Subject + " (" + status.Status.ToString() +
+                            ") - " + status.EnvelopeID
+                    };
                 containerDiv.Controls.Add(info);
                 System.Web.UI.HtmlControls.HtmlGenericControl envelopeDetail = CreateEnvelopeTable(status);
-                envelopeDetail.Attributes["class"] = "detail";
-                envelopeDetail.Attributes["id"] = status.EnvelopeID + "_Detail";
+                envelopeDetail.Attributes[Keys.Class] = "detail";
+                envelopeDetail.Attributes[Keys.Id] = status.EnvelopeID + "_Detail";
 
                 containerDiv.Controls.Add(envelopeDetail);
-                System.Web.UI.HtmlControls.HtmlTableRow tr = new System.Web.UI.HtmlControls.HtmlTableRow();
-                System.Web.UI.HtmlControls.HtmlTableCell tc = new System.Web.UI.HtmlControls.HtmlTableCell();
+                var tr = new System.Web.UI.HtmlControls.HtmlTableRow();
+                var tc = new System.Web.UI.HtmlControls.HtmlTableCell();
                 tc.Controls.Add(containerDiv);
                 tr.Cells.Add(tc);
                 statusTable.Rows.Add(tr);
@@ -163,59 +168,61 @@ namespace DocuSignSample
 
         protected System.Web.UI.HtmlControls.HtmlGenericControl CreateEnvelopeTable(DocuSignAPI.EnvelopeStatus status)
         {
-            System.Web.UI.HtmlControls.HtmlTable envelopeTable = new System.Web.UI.HtmlControls.HtmlTable();
-            System.Web.UI.HtmlControls.HtmlGenericControl envelopeDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+            var envelopeDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
 
             int recipIndex = 0;
 
             foreach (DocuSignAPI.RecipientStatus recipient in status.RecipientStatuses)
             {
-                System.Web.UI.HtmlControls.HtmlGenericControl info = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
+                var info = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
 
                 String recipId = "Recipient_Detail_" + status.EnvelopeID + "_" + recipient.RoutingOrder + "_" + recipient.UserName + "_" + recipient.Email + "_" + recipIndex++;
 
                 info.InnerHtml = "<a href=\"javascript:toggle('" + recipId + "');\"><img src=\"images/plus.png\"></a> Recipient - " +
                     recipient.UserName + ": " + recipient.Status.ToString();
-                if (recipient.Status != DocuSignAPI.RecipientStatusCode.Completed && recipient.ClientUserId != null)
+                if (recipient.Status != DocuSignAPI.RecipientStatusCode.Completed && null != recipient.ClientUserId)
                 {
                     info.InnerHtml += " <input type=\"submit\" id=\"" + status.EnvelopeID + "\" value=\"Start Signing\" name=\"DocEnvelope+" + status.EnvelopeID + "&Email+" + recipient.Email + "&UserName+" +
                         recipient.UserName + "&CID+" + recipient.ClientUserId + "\">";
                 }
 
-                if (recipient.TabStatuses != null)
+                if (null != recipient.TabStatuses)
                 {
-                    System.Web.UI.HtmlControls.HtmlGenericControl tabs = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                    foreach (DocuSignAPI.TabStatus tab in recipient.TabStatuses)
+                    var tabs = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                    foreach (var t in recipient.TabStatuses.Select(tab => new System.Web.UI.HtmlControls.HtmlGenericControl("p")
+                        {
+                            InnerHtml = tab.TabName + ": " + tab.TabValue
+                        }))
                     {
-                        System.Web.UI.HtmlControls.HtmlGenericControl t = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
-                        t.InnerHtml = tab.TabName + ": " + tab.TabValue;
                         tabs.Controls.Add(t);
                     }
-                    tabs.Attributes["id"] = recipId;
-                    tabs.Attributes["class"] = "detail";
+                    tabs.Attributes[Keys.Id] = recipId;
+                    tabs.Attributes[Keys.Class] = "detail";
                     info.Controls.Add(tabs);
                 }
                 envelopeDiv.Controls.Add(info);
             }
 
-            System.Web.UI.HtmlControls.HtmlGenericControl documents = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
-            documents.InnerHtml = "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail_Documents" + "');\"><img src=\"images/plus.png\"></a> Documents";
+            var documents = new System.Web.UI.HtmlControls.HtmlGenericControl("p")
+                {
+                    InnerHtml =
+                        "<a href=\"javascript:toggle('" + status.EnvelopeID + "_Detail_Documents" +
+                        "');\"><img src=\"images/plus.png\"></a> Documents"
+                };
             if (status.Status == DocuSignAPI.EnvelopeStatusCode.Completed)
             {
                 documents.InnerHtml += " <input type=\"submit\" id=\"" + status.EnvelopeID + "\" value=\"Download\" name=\"" + status.EnvelopeID + "\";>";
             }
             envelopeDiv.Controls.Add(documents);
-            if (status.DocumentStatuses != null)
+            if (null != status.DocumentStatuses)
             {
-                System.Web.UI.HtmlControls.HtmlGenericControl documentDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                foreach (DocuSignAPI.DocumentStatus document in status.DocumentStatuses)
+                var documentDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                foreach (var info in status.DocumentStatuses.Select(document => new System.Web.UI.HtmlControls.HtmlGenericControl("p") {InnerHtml = document.Name}))
                 {
-                    System.Web.UI.HtmlControls.HtmlGenericControl info = new System.Web.UI.HtmlControls.HtmlGenericControl("p");
-                    info.InnerHtml = document.Name;
                     documentDiv.Controls.Add(info);
                 }
-                documentDiv.Attributes["id"] = status.EnvelopeID + "_Detail_Documents";
-                documentDiv.Attributes["class"] = "detail";
+                documentDiv.Attributes[Keys.Id] = status.EnvelopeID + "_Detail_Documents";
+                documentDiv.Attributes[Keys.Class] = "detail";
                 envelopeDiv.Controls.Add(documentDiv);
             }
             return envelopeDiv;

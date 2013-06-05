@@ -1,0 +1,8 @@
+C:\DocuSign-eSignature-SDK\MS.NET\DocuSignSample\DocuSignSample\bin\DocuSignSample.dll
+C:\DocuSign-eSignature-SDK\MS.NET\DocuSignSample\DocuSignSample\bin\DocuSignSample.pdb
+C:\DocuSign-eSignature-SDK\MS.NET\DocuSignSample\DocuSignSample\obj\Debug\DocuSignSample.csprojResolveAssemblyReference.cache
+C:\DocuSign-eSignature-SDK\MS.NET\DocuSignSample\DocuSignSample\obj\Debug\DocuSignSample.Resources.resources
+C:\DocuSign-eSignature-SDK\MS.NET\DocuSignSample\DocuSignSample\obj\Debug\DocuSignSample.csproj.GenerateResource.Cache
+C:\DocuSign-eSignature-SDK\MS.NET\DocuSignSample\DocuSignSample\obj\Debug\DocuSignSample.dll
+C:\DocuSign-eSignature-SDK\MS.NET\DocuSignSample\DocuSignSample\obj\Debug\DocuSignSample.pdb
+C:\DocuSign-eSignature-SDK\MS.NET\DocuSignSample\DocuSignSample\obj\Debug\DocuSignSample.resources.Keys.resources
