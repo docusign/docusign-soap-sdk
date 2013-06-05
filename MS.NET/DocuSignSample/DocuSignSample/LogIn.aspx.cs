@@ -42,7 +42,7 @@ namespace DocuSignSample
             // Log in with Credential API
             String login = String.Format("[{0}]{1}", Request.Form["DevCenterIKey"], Request.Form["DevCenterEmail"]);
             CredentialAPI.CredentialSoapClient credential = new CredentialAPI.CredentialSoapClient();
-            CredentialAPI.LoginResult result = credential.Login(login, Request.Form["DevCenterPassword"].ToString());
+            CredentialAPI.LoginResult result = credential.Login(login, Request.Form["DevCenterPassword"].ToString(), false);
 
             // If we could log the user in, go to the main page
             if (result.Success)

@@ -21,8 +21,8 @@
     <MetadataSource Address="https://demo.docusign.net/api/3.0/api.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="api.disco" MetadataType="Disco" ID="6ce68bca-c24f-4094-aadb-1613d2bea73b" SourceId="1" SourceUrl="https://demo.docusign.net/api/3.0/api.asmx?disco" />
     <MetadataFile FileName="api.wsdl" MetadataType="Wsdl" ID="39ac2180-8676-453a-a5ca-ac00d14ae2f3" SourceId="1" SourceUrl="https://demo.docusign.net/api/3.0/api.asmx?wsdl" />
+    <MetadataFile FileName="api.disco" MetadataType="Disco" ID="6ce68bca-c24f-4094-aadb-1613d2bea73b" SourceId="1" SourceUrl="https://demo.docusign.net/api/3.0/api.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
