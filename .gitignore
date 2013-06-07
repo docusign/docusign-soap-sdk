@@ -1,2 +1,5 @@
 /Java/DocuSign2011Q1Sample/nbproject/private/
 /Java/DocuSignSample/nbproject/private/
+*.user
+/MS.NET/DocuSignSample/DocuSignSample/bin
+/MS.NET/DocuSignSample/DocuSignSample/obj
