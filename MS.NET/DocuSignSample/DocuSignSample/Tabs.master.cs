@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DocuSignSample.resources;
+using System;
 
 namespace DocuSignSample
 {
@@ -45,12 +41,11 @@ namespace DocuSignSample
 
         public void Logout(object sender, EventArgs e)
         {
-
-            Session["APIAccountID"] = null;
-            Session["APIEmail"] = null;
-            Session["APIKey"] = null;
-            Session["APIPassword"] = null;
-            Session["EnvelopeIDs"] = null;
+            Session[Keys.ApiAccountId] = null;
+            Session[Keys.ApiEmail] = null;
+            Session[Keys.ApiIkey] = null;
+            Session[Keys.ApiPassword] = null;
+            Session[Keys.EnvelopeIds] = null;
             Response.Redirect("Login.aspx", true);
 
         }

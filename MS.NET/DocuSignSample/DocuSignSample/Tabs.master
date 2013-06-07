@@ -12,9 +12,9 @@
 </head>
 <body>
 <%
-    if (Session["APIEmail"] != null)
+    if (null != Session[DocuSignSample.resources.Keys.ApiEmail])
     { %>
-<p style="text-align:right">Logged in as <%= Session["APIEmail"].ToString() %> | <a href="#" id="logoutBtn" name="logoutBtn" runat="server" onclick="Logout">Logout</a></p>
+<p style="text-align:right">Logged in as <%= Session[DocuSignSample.resources.Keys.ApiEmail].ToString() %> | <a href="#" id="logoutBtn" name="logoutBtn" runat="server" onclick="Logout">Logout</a></p>
 <%  }
     else
     { %>

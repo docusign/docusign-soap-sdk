@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DocuSignSample.resources;
+using System;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace DocuSignSample
 {
@@ -19,25 +15,25 @@ namespace DocuSignSample
         protected bool Settings_In_Config()
         {
 
-            if (SettingIsSet("APIUserEmail"))
+            if (SettingIsSet(Keys.ApiUserEmail))
             {
-                Session["APIEmail"] = ConfigurationManager.AppSettings["APIUserEmail"];
+                Session[Keys.ApiEmail] = ConfigurationManager.AppSettings[Keys.ApiUserEmail];
             }
-            if (SettingIsSet("Password"))
+            if (SettingIsSet(Keys.Password))
             {
-                Session["APIPassword"] = ConfigurationManager.AppSettings["Password"];
+                Session[Keys.ApiPassword] = ConfigurationManager.AppSettings[Keys.Password];
             }
-            if (SettingIsSet("IntegratorsKey"))
+            if (SettingIsSet(Keys.IntegratorsKey))
             {
-                Session["APIIKey"] = ConfigurationManager.AppSettings["IntegratorsKey"];
+                Session[Keys.ApiIkey] = ConfigurationManager.AppSettings[Keys.IntegratorsKey];
             }
-            if (SettingIsSet("APIAccountId"))
+            if (SettingIsSet(Keys.ApiAccountId))
             {
-                Session["APIAccountId"] = ConfigurationManager.AppSettings["APIAccountId"];
+                Session[Keys.ApiAccountId] = ConfigurationManager.AppSettings[Keys.ApiAccountId];
             }
 
-            return (SettingIsSet("APIUserEmail") && SettingIsSet("Password") &&
-                SettingIsSet("IntegratorsKey") && SettingIsSet("APIAccountId"));
+            return (SettingIsSet(Keys.ApiUserEmail) && SettingIsSet(Keys.Password) &&
+                SettingIsSet(Keys.IntegratorsKey) && SettingIsSet(Keys.ApiAccountId));
         }
     }
 }

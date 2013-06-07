@@ -16,7 +16,7 @@ namespace DocuSignSample
 
     public struct AccountCredentials
     {
-        public string ApiUrl; // url endpoint of hte api
+        public string ApiUrl; // url endpoint of the api
         public string AccountId; // billing account for sending envelopes
         public string UserName; // email address used for DocuSign login, prefixed with integrator key in square brackets
         public string Password; // password for DocuSign login

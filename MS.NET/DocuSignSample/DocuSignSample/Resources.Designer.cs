@@ -101,7 +101,7 @@ namespace DocuSignSample {
         ///    &lt;TemplateDescription /&gt;
         ///    &lt;LastModified&gt;2011-01-26T07:14:37.463&lt;/LastModified&gt;
         ///    &lt;PageCount&gt;4&lt;/PageCount&gt;
-        ///  &lt;/EnvelopeT [rest of string was truncated]&quot;;.
+        ///  &lt; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocuSign_Demo__112_Template {
             get {

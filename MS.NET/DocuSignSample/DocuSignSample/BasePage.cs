@@ -1,122 +1,110 @@
 ﻿using DocuSignSample.DocuSignAPI;
+using DocuSignSample.resources;
 using System;
-using System.Data;
 using System.Collections;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 
-public class BasePage : System.Web.UI.Page
+namespace DocuSignSample
 {
-
-    protected string logoutCtrlName = "ctl00$logoutBtn";
-
-    public BasePage()
+    public class BasePage : System.Web.UI.Page
     {
-
-    }
-
-    protected override void OnLoad(EventArgs e)
-    {
-        base.OnLoad(e);
-    }
-
-    public APIServiceSoapClient CreateAPIProxy()
-    {
-        DocuSignSample.AccountCredentials creds = GetAPICredentials();
-        APIServiceSoapClient apiClient = new APIServiceSoapClient("APIServiceSoap", creds.ApiUrl);
-        apiClient.ClientCredentials.UserName.UserName = creds.UserName;
-        apiClient.ClientCredentials.UserName.Password = creds.Password;
-
-        return apiClient;
-    }
-
-    public DocuSignSample.AccountCredentials GetAPICredentials()
-    {
-        DocuSignSample.AccountCredentials credentials = new DocuSignSample.AccountCredentials();
-        if (SettingIsSet("APIUrl") && Session["APIAccountID"] != null && Session["APIEmail"] != null && Session["APIPassword"] != null)
+        protected string logoutCtrlName = "ctl00$logoutBtn";
+        
+        public APIServiceSoapClient CreateAPIProxy()
         {
-            credentials.AccountId = (string)Session["APIAccountID"];
-            credentials.UserName = "[" + (string)Session["APIIKey"] + "]";
-            credentials.UserName += (string)Session["APIUserID"];
-            credentials.Password = (string)Session["APIPassword"];
-            credentials.ApiUrl = ConfigurationManager.AppSettings["APIUrl"];
-
-        }
-        else
-        {
-            this.GoToErrorPage("Please make sure your credentials are entered in web.config");
-        }
-        return credentials;
-    }
-
-    public void GoToErrorPage(string errorMessage)
-    {
-        Session["errorMessage"] = errorMessage;
-        Response.Redirect("error.aspx", true);
-    }
-
-    public bool SettingIsSet(string settingName)
-    {
-        // check if a value is specified in the config file
-        return (ConfigurationManager.AppSettings[settingName] != null && ConfigurationManager.AppSettings[settingName].Length > 0);
-    }
-
-    public void RequireOrDie(string[] args)
-    {
-        // check form post for required values 
-        // if not found redirect to errorpage
-        ArrayList missingFields = new ArrayList();
-        foreach (string s in args)
-        {
-            if (Request.Form[s] == null)
+            var creds = GetAPICredentials();
+            var apiClient = new APIServiceSoapClient(Keys.ApiServiceSoap, creds.ApiUrl);
+            if (null != apiClient.ClientCredentials)
             {
-                missingFields.Add(s);
+                apiClient.ClientCredentials.UserName.UserName = creds.UserName;
+                apiClient.ClientCredentials.UserName.Password = creds.Password;
             }
-            break;
-        }
-        if (missingFields.Count > 0)
-        {
-            GoToErrorPage("Required fields missing: " + String.Join(", ", (string[])missingFields.ToArray(typeof(string))));
-        }
-    }
 
-    public void AddEnvelopeID(string id)
-    {
-        if (Session["EnvelopeIDs"] == null)
-        {
-            Session["EnvelopeIDs"] = id;
+            return apiClient;
         }
-        else
-        {
-            Session["EnvelopeIDs"] += "," + id;
-        }
-    }
 
-    public string[] GetEnvelopeIDs()
-    {
-        if (Session["EnvelopeIDs"] == null)
+        public AccountCredentials GetAPICredentials()
         {
-            return new string[0];
+            var credentials = new AccountCredentials();
+            if (SettingIsSet(Keys.ApiUrl) && 
+                null != Session[Keys.ApiAccountId] && 
+                null != Session[Keys.ApiEmail] &&
+                null != Session[Keys.ApiPassword])
+            {
+                credentials.AccountId = (string) Session[Keys.ApiAccountId];
+                credentials.UserName = "[" + (string) Session[Keys.ApiIkey] + "]";
+                credentials.UserName += (string) Session[Keys.ApiUserId];
+                credentials.Password = (string) Session[Keys.ApiPassword];
+                credentials.ApiUrl = ConfigurationManager.AppSettings[Keys.ApiUrl];
+            }
+            else
+            {
+                GoToErrorPage("Please make sure your credentials are entered in web.config");
+            }
+            return credentials;
         }
-        string ids = Session["EnvelopeIDs"].ToString();
-        return ids.Split(',');
-    }
 
-    public bool LoggedIn()
-    {
-        if (Session["APIAccountID"] != null && Session["APIEmail"] != null && Session["APIPassword"] != null && Session["APIIKey"] != null)
+        public void GoToErrorPage(string errorMessage)
         {
-            return true;
+            Session[Keys.ErrorMessage] = errorMessage;
+            Response.Redirect("error.aspx", true);
         }
-        else
+
+        public bool SettingIsSet(string settingName)
         {
-            return false;
+            // check if a value is specified in the config file
+            return (ConfigurationManager.AppSettings[settingName] != null &&
+                    ConfigurationManager.AppSettings[settingName].Length > 0);
+        }
+
+        public void RequireOrDie(string[] args)
+        {
+            // check form post for required values 
+            // if not found redirect to errorpage
+            var missingFields = new ArrayList();
+            foreach (string s in args)
+            {
+                if (null == Request.Form[s])
+                {
+                    missingFields.Add(s);
+                }
+                break;
+            }
+            if (missingFields.Count > 0)
+            {
+                GoToErrorPage("Required fields missing: " +
+                              String.Join(", ", (string[]) missingFields.ToArray(typeof (string))));
+            }
+        }
+
+        public void AddEnvelopeID(string id)
+        {
+            if (null == Session[Keys.EnvelopeIds])
+            {
+                Session[Keys.EnvelopeIds] = id;
+            }
+            else
+            {
+                Session[Keys.EnvelopeIds] += "," + id;
+            }
+        }
+
+        public string[] GetEnvelopeIDs()
+        {
+            if (null == Session[Keys.EnvelopeIds])
+            {
+                return new string[0];
+            }
+            var ids = Session[Keys.EnvelopeIds].ToString();
+            return ids.Split(',');
+        }
+
+        public bool LoggedIn()
+        {
+            return (null != Session[Keys.ApiAccountId] &&
+                null != Session[Keys.ApiEmail] &&
+                null != Session[Keys.ApiPassword] &&
+                null != Session[Keys.ApiIkey]);
         }
     }
 }
