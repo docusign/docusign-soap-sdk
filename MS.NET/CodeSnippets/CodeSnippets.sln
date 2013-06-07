@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSnippets", "CodeSnippets\CodeSnippets.csproj", "{2B510F1F-4BC2-4256-AF4E-C8D34395A7B4}"
 EndProject
 Global

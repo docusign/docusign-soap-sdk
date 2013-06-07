@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using DocuSignSample.resources;
+using System;
 
 namespace DocuSignSample
 {
@@ -21,8 +17,8 @@ namespace DocuSignSample
                 string token = null;
 
                 // Get the information we need from the query string
-                string envelopeID = Request["envelopeID"];
-                string accountID = Request["accountID"];
+                string envelopeID = Request[Keys.EnvelopeId];
+                string accountID = Request[Keys.AccountId];
 
                 // Request the token to edit the envelope
                 try
@@ -32,11 +28,11 @@ namespace DocuSignSample
                 }
                 catch (Exception ex)
                 {
-                    base.GoToErrorPage(ex.Message);
+                    GoToErrorPage(ex.Message);
                 }
 
                 // Set the source of the iframe to point to DocuSign
-                sendingFrame.Attributes["src"] = token;
+                sendingFrame.Attributes[Keys.Source] = token;
             }
         }
     }
