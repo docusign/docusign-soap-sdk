@@ -34,6 +34,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="CorrectedAutoNavigation" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="CorrectedIDCheckInformationInput" type="{http://www.docusign.net/API/3.0}IDCheckInformationInput" minOccurs="0"/>
  *         &lt;element name="Resend" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="CorrectedDeliveryMethod" type="{http://www.docusign.net/API/3.0}DeliveryMethod" minOccurs="0"/>
+ *         &lt;element name="CorrectedFaxNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -59,7 +61,9 @@ import javax.xml.bind.annotation.XmlType;
     "correctedRoutingOrder",
     "correctedAutoNavigation",
     "correctedIDCheckInformationInput",
-    "resend"
+    "resend",
+    "correctedDeliveryMethod",
+    "correctedFaxNumber"
 })
 public class RecipientCorrection {
 
@@ -97,6 +101,10 @@ public class RecipientCorrection {
     protected IDCheckInformationInput correctedIDCheckInformationInput;
     @XmlElement(name = "Resend")
     protected Boolean resend;
+    @XmlElement(name = "CorrectedDeliveryMethod")
+    protected DeliveryMethod correctedDeliveryMethod;
+    @XmlElement(name = "CorrectedFaxNumber")
+    protected String correctedFaxNumber;
 
     /**
      * Gets the value of the previousUserName property.
@@ -472,6 +480,54 @@ public class RecipientCorrection {
      */
     public void setResend(Boolean value) {
         this.resend = value;
+    }
+
+    /**
+     * Gets the value of the correctedDeliveryMethod property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DeliveryMethod }
+     *     
+     */
+    public DeliveryMethod getCorrectedDeliveryMethod() {
+        return correctedDeliveryMethod;
+    }
+
+    /**
+     * Sets the value of the correctedDeliveryMethod property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DeliveryMethod }
+     *     
+     */
+    public void setCorrectedDeliveryMethod(DeliveryMethod value) {
+        this.correctedDeliveryMethod = value;
+    }
+
+    /**
+     * Gets the value of the correctedFaxNumber property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCorrectedFaxNumber() {
+        return correctedFaxNumber;
+    }
+
+    /**
+     * Sets the value of the correctedFaxNumber property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCorrectedFaxNumber(String value) {
+        this.correctedFaxNumber = value;
     }
 
 }

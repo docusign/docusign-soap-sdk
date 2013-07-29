@@ -23,7 +23,13 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="UseSoapInterface" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="SoapNameSpace" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="IncludeCertificateWithSoap" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="SignMessageWithX509Cert" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="IncludeDocuments" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="IncludeTimeZone" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="IncludeEnvelopeVoidReason" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="IncludeSenderAccountAsCustomField" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="EnvelopeEvents" type="{http://www.docusign.net/API/3.0}ArrayOfEnvelopeEvent" minOccurs="0"/>
+ *         &lt;element name="RecipientEvents" type="{http://www.docusign.net/API/3.0}ArrayOfRecipientEvent" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,7 +46,13 @@ import javax.xml.bind.annotation.XmlType;
     "useSoapInterface",
     "soapNameSpace",
     "includeCertificateWithSoap",
-    "envelopeEvents"
+    "signMessageWithX509Cert",
+    "includeDocuments",
+    "includeTimeZone",
+    "includeEnvelopeVoidReason",
+    "includeSenderAccountAsCustomField",
+    "envelopeEvents",
+    "recipientEvents"
 })
 public class EventNotification {
 
@@ -56,8 +68,20 @@ public class EventNotification {
     protected String soapNameSpace;
     @XmlElement(name = "IncludeCertificateWithSoap")
     protected Boolean includeCertificateWithSoap;
+    @XmlElement(name = "SignMessageWithX509Cert")
+    protected Boolean signMessageWithX509Cert;
+    @XmlElement(name = "IncludeDocuments")
+    protected Boolean includeDocuments;
+    @XmlElement(name = "IncludeTimeZone")
+    protected Boolean includeTimeZone;
+    @XmlElement(name = "IncludeEnvelopeVoidReason")
+    protected Boolean includeEnvelopeVoidReason;
+    @XmlElement(name = "IncludeSenderAccountAsCustomField")
+    protected Boolean includeSenderAccountAsCustomField;
     @XmlElement(name = "EnvelopeEvents")
     protected ArrayOfEnvelopeEvent envelopeEvents;
+    @XmlElement(name = "RecipientEvents")
+    protected ArrayOfRecipientEvent recipientEvents;
 
     /**
      * Gets the value of the url property.
@@ -204,6 +228,126 @@ public class EventNotification {
     }
 
     /**
+     * Gets the value of the signMessageWithX509Cert property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isSignMessageWithX509Cert() {
+        return signMessageWithX509Cert;
+    }
+
+    /**
+     * Sets the value of the signMessageWithX509Cert property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setSignMessageWithX509Cert(Boolean value) {
+        this.signMessageWithX509Cert = value;
+    }
+
+    /**
+     * Gets the value of the includeDocuments property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isIncludeDocuments() {
+        return includeDocuments;
+    }
+
+    /**
+     * Sets the value of the includeDocuments property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIncludeDocuments(Boolean value) {
+        this.includeDocuments = value;
+    }
+
+    /**
+     * Gets the value of the includeTimeZone property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isIncludeTimeZone() {
+        return includeTimeZone;
+    }
+
+    /**
+     * Sets the value of the includeTimeZone property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIncludeTimeZone(Boolean value) {
+        this.includeTimeZone = value;
+    }
+
+    /**
+     * Gets the value of the includeEnvelopeVoidReason property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isIncludeEnvelopeVoidReason() {
+        return includeEnvelopeVoidReason;
+    }
+
+    /**
+     * Sets the value of the includeEnvelopeVoidReason property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIncludeEnvelopeVoidReason(Boolean value) {
+        this.includeEnvelopeVoidReason = value;
+    }
+
+    /**
+     * Gets the value of the includeSenderAccountAsCustomField property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isIncludeSenderAccountAsCustomField() {
+        return includeSenderAccountAsCustomField;
+    }
+
+    /**
+     * Sets the value of the includeSenderAccountAsCustomField property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIncludeSenderAccountAsCustomField(Boolean value) {
+        this.includeSenderAccountAsCustomField = value;
+    }
+
+    /**
      * Gets the value of the envelopeEvents property.
      * 
      * @return
@@ -225,6 +369,30 @@ public class EventNotification {
      */
     public void setEnvelopeEvents(ArrayOfEnvelopeEvent value) {
         this.envelopeEvents = value;
+    }
+
+    /**
+     * Gets the value of the recipientEvents property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ArrayOfRecipientEvent }
+     *     
+     */
+    public ArrayOfRecipientEvent getRecipientEvents() {
+        return recipientEvents;
+    }
+
+    /**
+     * Sets the value of the recipientEvents property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ArrayOfRecipientEvent }
+     *     
+     */
+    public void setRecipientEvents(ArrayOfRecipientEvent value) {
+        this.recipientEvents = value;
     }
 
 }

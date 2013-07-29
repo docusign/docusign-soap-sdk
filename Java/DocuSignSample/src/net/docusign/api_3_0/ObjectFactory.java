@@ -38,6 +38,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetAccountBrandsResponse }
+     * 
+     */
+    public GetAccountBrandsResponse createGetAccountBrandsResponse() {
+        return new GetAccountBrandsResponse();
+    }
+
+    /**
+     * Create an instance of {@link BrandResults }
+     * 
+     */
+    public BrandResults createBrandResults() {
+        return new BrandResults();
+    }
+
+    /**
      * Create an instance of {@link RequestCorrectToken }
      * 
      */
@@ -46,11 +62,67 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetAccountBrands }
+     * 
+     */
+    public GetAccountBrands createGetAccountBrands() {
+        return new GetAccountBrands();
+    }
+
+    /**
+     * Create an instance of {@link RequestPDFsWithOptions }
+     * 
+     */
+    public RequestPDFsWithOptions createRequestPDFsWithOptions() {
+        return new RequestPDFsWithOptions();
+    }
+
+    /**
+     * Create an instance of {@link PDFsOptions }
+     * 
+     */
+    public PDFsOptions createPDFsOptions() {
+        return new PDFsOptions();
+    }
+
+    /**
+     * Create an instance of {@link RequestRecipientFaxTokenResponse }
+     * 
+     */
+    public RequestRecipientFaxTokenResponse createRequestRecipientFaxTokenResponse() {
+        return new RequestRecipientFaxTokenResponse();
+    }
+
+    /**
      * Create an instance of {@link SendEnvelope }
      * 
      */
     public SendEnvelope createSendEnvelope() {
         return new SendEnvelope();
+    }
+
+    /**
+     * Create an instance of {@link RequestRecipientFaxToken }
+     * 
+     */
+    public RequestRecipientFaxToken createRequestRecipientFaxToken() {
+        return new RequestRecipientFaxToken();
+    }
+
+    /**
+     * Create an instance of {@link RequestRecipientTokenAuthenticationAssertion }
+     * 
+     */
+    public RequestRecipientTokenAuthenticationAssertion createRequestRecipientTokenAuthenticationAssertion() {
+        return new RequestRecipientTokenAuthenticationAssertion();
+    }
+
+    /**
+     * Create an instance of {@link RequestRecipientTokenClientURLs }
+     * 
+     */
+    public RequestRecipientTokenClientURLs createRequestRecipientTokenClientURLs() {
+        return new RequestRecipientTokenClientURLs();
     }
 
     /**
@@ -102,6 +174,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RequestEnvelope }
+     * 
+     */
+    public RequestEnvelope createRequestEnvelope() {
+        return new RequestEnvelope();
+    }
+
+    /**
      * Create an instance of {@link RequestStatusCodes }
      * 
      */
@@ -115,14 +195,6 @@ public class ObjectFactory {
      */
     public EnvelopeStatusFilter createEnvelopeStatusFilter() {
         return new EnvelopeStatusFilter();
-    }
-
-    /**
-     * Create an instance of {@link RequestEnvelope }
-     * 
-     */
-    public RequestEnvelope createRequestEnvelope() {
-        return new RequestEnvelope();
     }
 
     /**
@@ -179,6 +251,22 @@ public class ObjectFactory {
      */
     public EnvelopeAuditEventsResponse.EnvelopeAuditEventsResult createEnvelopeAuditEventsResponseEnvelopeAuditEventsResult() {
         return new EnvelopeAuditEventsResponse.EnvelopeAuditEventsResult();
+    }
+
+    /**
+     * Create an instance of {@link RequestPDFWithOptions }
+     * 
+     */
+    public RequestPDFWithOptions createRequestPDFWithOptions() {
+        return new RequestPDFWithOptions();
+    }
+
+    /**
+     * Create an instance of {@link PDFOptions }
+     * 
+     */
+    public PDFOptions createPDFOptions() {
+        return new PDFOptions();
     }
 
     /**
@@ -366,6 +454,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeleteAccountBrands }
+     * 
+     */
+    public DeleteAccountBrands createDeleteAccountBrands() {
+        return new DeleteAccountBrands();
+    }
+
+    /**
+     * Create an instance of {@link BrandDeleteRequest }
+     * 
+     */
+    public BrandDeleteRequest createBrandDeleteRequest() {
+        return new BrandDeleteRequest();
+    }
+
+    /**
      * Create an instance of {@link GetConnectFailures }
      * 
      */
@@ -550,6 +654,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetRecipientAuthenticationStatusEx }
+     * 
+     */
+    public GetRecipientAuthenticationStatusEx createGetRecipientAuthenticationStatusEx() {
+        return new GetRecipientAuthenticationStatusEx();
+    }
+
+    /**
+     * Create an instance of {@link GetRecipientAuthenticationStatusExArg }
+     * 
+     */
+    public GetRecipientAuthenticationStatusExArg createGetRecipientAuthenticationStatusExArg() {
+        return new GetRecipientAuthenticationStatusExArg();
+    }
+
+    /**
      * Create an instance of {@link RequestCertificate }
      * 
      */
@@ -630,22 +750,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RequestPDFResponse }
-     * 
-     */
-    public RequestPDFResponse createRequestPDFResponse() {
-        return new RequestPDFResponse();
-    }
-
-    /**
-     * Create an instance of {@link RequestTemplate }
-     * 
-     */
-    public RequestTemplate createRequestTemplate() {
-        return new RequestTemplate();
-    }
-
-    /**
      * Create an instance of {@link GetFolderItems }
      * 
      */
@@ -659,6 +763,22 @@ public class ObjectFactory {
      */
     public FolderFilter createFolderFilter() {
         return new FolderFilter();
+    }
+
+    /**
+     * Create an instance of {@link RequestPDFResponse }
+     * 
+     */
+    public RequestPDFResponse createRequestPDFResponse() {
+        return new RequestPDFResponse();
+    }
+
+    /**
+     * Create an instance of {@link RequestTemplate }
+     * 
+     */
+    public RequestTemplate createRequestTemplate() {
+        return new RequestTemplate();
     }
 
     /**
@@ -723,6 +843,14 @@ public class ObjectFactory {
      */
     public RequestStatusesResponse createRequestStatusesResponse() {
         return new RequestStatusesResponse();
+    }
+
+    /**
+     * Create an instance of {@link RequestEnvelopeHistoryTokenResponse }
+     * 
+     */
+    public RequestEnvelopeHistoryTokenResponse createRequestEnvelopeHistoryTokenResponse() {
+        return new RequestEnvelopeHistoryTokenResponse();
     }
 
     /**
@@ -798,6 +926,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RequestRecipientFaxPDF }
+     * 
+     */
+    public RequestRecipientFaxPDF createRequestRecipientFaxPDF() {
+        return new RequestRecipientFaxPDF();
+    }
+
+    /**
      * Create an instance of {@link UploadTemplate }
      * 
      */
@@ -835,6 +971,14 @@ public class ObjectFactory {
      */
     public UpdateAddressBookResult createUpdateAddressBookResult() {
         return new UpdateAddressBookResult();
+    }
+
+    /**
+     * Create an instance of {@link CreateAccountBrandsResponse }
+     * 
+     */
+    public CreateAccountBrandsResponse createCreateAccountBrandsResponse() {
+        return new CreateAccountBrandsResponse();
     }
 
     /**
@@ -894,35 +1038,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link RequestRecipientToken }
-     * 
-     */
-    public RequestRecipientToken createRequestRecipientToken() {
-        return new RequestRecipientToken();
-    }
-
-    /**
-     * Create an instance of {@link RequestRecipientTokenAuthenticationAssertion }
-     * 
-     */
-    public RequestRecipientTokenAuthenticationAssertion createRequestRecipientTokenAuthenticationAssertion() {
-        return new RequestRecipientTokenAuthenticationAssertion();
-    }
-
-    /**
-     * Create an instance of {@link RequestRecipientTokenClientURLs }
-     * 
-     */
-    public RequestRecipientTokenClientURLs createRequestRecipientTokenClientURLs() {
-        return new RequestRecipientTokenClientURLs();
-    }
-
-    /**
      * Create an instance of {@link RequestPDFNoWaterMark }
      * 
      */
     public RequestPDFNoWaterMark createRequestPDFNoWaterMark() {
         return new RequestPDFNoWaterMark();
+    }
+
+    /**
+     * Create an instance of {@link RequestRecipientToken }
+     * 
+     */
+    public RequestRecipientToken createRequestRecipientToken() {
+        return new RequestRecipientToken();
     }
 
     /**
@@ -958,11 +1086,43 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeleteAccountBrandsResponse }
+     * 
+     */
+    public DeleteAccountBrandsResponse createDeleteAccountBrandsResponse() {
+        return new DeleteAccountBrandsResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetRecipientAuthenticationStatusExResponse }
+     * 
+     */
+    public GetRecipientAuthenticationStatusExResponse createGetRecipientAuthenticationStatusExResponse() {
+        return new GetRecipientAuthenticationStatusExResponse();
+    }
+
+    /**
+     * Create an instance of {@link AuthenticationStatus }
+     * 
+     */
+    public AuthenticationStatus createAuthenticationStatus() {
+        return new AuthenticationStatus();
+    }
+
+    /**
      * Create an instance of {@link RequestStatus }
      * 
      */
     public RequestStatus createRequestStatus() {
         return new RequestStatus();
+    }
+
+    /**
+     * Create an instance of {@link RequestPDFsWithOptionsResponse }
+     * 
+     */
+    public RequestPDFsWithOptionsResponse createRequestPDFsWithOptionsResponse() {
+        return new RequestPDFsWithOptionsResponse();
     }
 
     /**
@@ -979,6 +1139,22 @@ public class ObjectFactory {
      */
     public RequestPDFNoWaterMarkResponse createRequestPDFNoWaterMarkResponse() {
         return new RequestPDFNoWaterMarkResponse();
+    }
+
+    /**
+     * Create an instance of {@link CreateAccountBrands }
+     * 
+     */
+    public CreateAccountBrands createCreateAccountBrands() {
+        return new CreateAccountBrands();
+    }
+
+    /**
+     * Create an instance of {@link BrandDefinitions }
+     * 
+     */
+    public BrandDefinitions createBrandDefinitions() {
+        return new BrandDefinitions();
     }
 
     /**
@@ -1003,6 +1179,22 @@ public class ObjectFactory {
      */
     public MoveEnvelopesResponse createMoveEnvelopesResponse() {
         return new MoveEnvelopesResponse();
+    }
+
+    /**
+     * Create an instance of {@link RequestEnvelopeHistoryToken }
+     * 
+     */
+    public RequestEnvelopeHistoryToken createRequestEnvelopeHistoryToken() {
+        return new RequestEnvelopeHistoryToken();
+    }
+
+    /**
+     * Create an instance of {@link RequestEnvelopeHistoryTokenArg }
+     * 
+     */
+    public RequestEnvelopeHistoryTokenArg createRequestEnvelopeHistoryTokenArg() {
+        return new RequestEnvelopeHistoryTokenArg();
     }
 
     /**
@@ -1102,6 +1294,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RequestPDFWithOptionsResponse }
+     * 
+     */
+    public RequestPDFWithOptionsResponse createRequestPDFWithOptionsResponse() {
+        return new RequestPDFWithOptionsResponse();
+    }
+
+    /**
      * Create an instance of {@link GetAccountSettingsList }
      * 
      */
@@ -1131,6 +1331,14 @@ public class ObjectFactory {
      */
     public UpdateAddressBookItemsResponse createUpdateAddressBookItemsResponse() {
         return new UpdateAddressBookItemsResponse();
+    }
+
+    /**
+     * Create an instance of {@link RequestRecipientFaxPDFResponse }
+     * 
+     */
+    public RequestRecipientFaxPDFResponse createRequestRecipientFaxPDFResponse() {
+        return new RequestRecipientFaxPDFResponse();
     }
 
     /**
@@ -1238,6 +1446,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link BrandRequestItem }
+     * 
+     */
+    public BrandRequestItem createBrandRequestItem() {
+        return new BrandRequestItem();
+    }
+
+    /**
      * Create an instance of {@link SSN9InformationInput }
      * 
      */
@@ -1275,6 +1491,14 @@ public class ObjectFactory {
      */
     public AddressBookItem createAddressBookItem() {
         return new AddressBookItem();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfRecipientEvent }
+     * 
+     */
+    public ArrayOfRecipientEvent createArrayOfRecipientEvent() {
+        return new ArrayOfRecipientEvent();
     }
 
     /**
@@ -1406,6 +1630,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayOfBrandResultItem }
+     * 
+     */
+    public ArrayOfBrandResultItem createArrayOfBrandResultItem() {
+        return new ArrayOfBrandResultItem();
+    }
+
+    /**
      * Create an instance of {@link DOBInformation }
      * 
      */
@@ -1478,19 +1710,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ArrayOfEnvelopeStatusChange }
-     * 
-     */
-    public ArrayOfEnvelopeStatusChange createArrayOfEnvelopeStatusChange() {
-        return new ArrayOfEnvelopeStatusChange();
-    }
-
-    /**
      * Create an instance of {@link RecipientEsign }
      * 
      */
     public RecipientEsign createRecipientEsign() {
         return new RecipientEsign();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfEnvelopeStatusChange }
+     * 
+     */
+    public ArrayOfEnvelopeStatusChange createArrayOfEnvelopeStatusChange() {
+        return new ArrayOfEnvelopeStatusChange();
     }
 
     /**
@@ -1662,6 +1894,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ErrorDetails }
+     * 
+     */
+    public ErrorDetails createErrorDetails() {
+        return new ErrorDetails();
+    }
+
+    /**
+     * Create an instance of {@link BrandResultItem }
+     * 
+     */
+    public BrandResultItem createBrandResultItem() {
+        return new BrandResultItem();
+    }
+
+    /**
      * Create an instance of {@link DocumentStatus }
      * 
      */
@@ -1750,6 +1998,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ArrayOfBrandRequestItem }
+     * 
+     */
+    public ArrayOfBrandRequestItem createArrayOfBrandRequestItem() {
+        return new ArrayOfBrandRequestItem();
+    }
+
+    /**
      * Create an instance of {@link ArrayOfTabStatus }
      * 
      */
@@ -1827,14 +2083,6 @@ public class ObjectFactory {
      */
     public TemplateReferenceRoleAssignment createTemplateReferenceRoleAssignment() {
         return new TemplateReferenceRoleAssignment();
-    }
-
-    /**
-     * Create an instance of {@link AuthenticationStatus }
-     * 
-     */
-    public AuthenticationStatus createAuthenticationStatus() {
-        return new AuthenticationStatus();
     }
 
     /**
@@ -1963,6 +2211,22 @@ public class ObjectFactory {
      */
     public ArrayOfRecipientCorrectionStatus createArrayOfRecipientCorrectionStatus() {
         return new ArrayOfRecipientCorrectionStatus();
+    }
+
+    /**
+     * Create an instance of {@link RecipientEvent }
+     * 
+     */
+    public RecipientEvent createRecipientEvent() {
+        return new RecipientEvent();
+    }
+
+    /**
+     * Create an instance of {@link ArrayOfPositiveInteger }
+     * 
+     */
+    public ArrayOfPositiveInteger createArrayOfPositiveInteger() {
+        return new ArrayOfPositiveInteger();
     }
 
 }

@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="Signer"/>
  *     &lt;enumeration value="Agent"/>
  *     &lt;enumeration value="Editor"/>
+ *     &lt;enumeration value="Intermediary"/>
  *     &lt;enumeration value="CarbonCopy"/>
  *     &lt;enumeration value="CertifiedDelivery"/>
  *     &lt;enumeration value="InPersonSigner"/>
@@ -35,6 +36,8 @@ public enum RecipientTypeCode {
     AGENT("Agent"),
     @XmlEnumValue("Editor")
     EDITOR("Editor"),
+    @XmlEnumValue("Intermediary")
+    INTERMEDIARY("Intermediary"),
     @XmlEnumValue("CarbonCopy")
     CARBON_COPY("CarbonCopy"),
     @XmlEnumValue("CertifiedDelivery")

@@ -28,6 +28,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="Signed" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="Declined" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="DeclineReason" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="AutoRespondedReason" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Status" type="{http://www.docusign.net/API/3.0}RecipientStatusCode"/>
  *         &lt;element name="RecipientIPAddress" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="ClientUserId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -41,6 +42,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="EsignAgreementInformation" type="{http://www.docusign.net/API/3.0}RecipientStatusEsignAgreementInformation" minOccurs="0"/>
  *         &lt;element name="FormData" type="{http://www.docusign.net/API/3.0}FormData" minOccurs="0"/>
  *         &lt;element name="RecipientId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="DeliveryMethod" type="{http://www.docusign.net/API/3.0}DeliveryMethod" minOccurs="0"/>
+ *         &lt;element name="FaxNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -60,6 +63,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "signed",
     "declined",
     "declineReason",
+    "autoRespondedReason",
     "status",
     "recipientIPAddress",
     "clientUserId",
@@ -72,7 +76,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "accountStatus",
     "esignAgreementInformation",
     "formData",
-    "recipientId"
+    "recipientId",
+    "deliveryMethod",
+    "faxNumber"
 })
 public class RecipientStatus {
 
@@ -99,6 +105,8 @@ public class RecipientStatus {
     protected XMLGregorianCalendar declined;
     @XmlElement(name = "DeclineReason", required = true, nillable = true)
     protected String declineReason;
+    @XmlElement(name = "AutoRespondedReason")
+    protected String autoRespondedReason;
     @XmlElement(name = "Status", required = true)
     protected RecipientStatusCode status;
     @XmlElement(name = "RecipientIPAddress")
@@ -125,6 +133,10 @@ public class RecipientStatus {
     protected FormData formData;
     @XmlElement(name = "RecipientId")
     protected String recipientId;
+    @XmlElement(name = "DeliveryMethod")
+    protected DeliveryMethod deliveryMethod;
+    @XmlElement(name = "FaxNumber")
+    protected String faxNumber;
 
     /**
      * Gets the value of the type property.
@@ -332,6 +344,30 @@ public class RecipientStatus {
      */
     public void setDeclineReason(String value) {
         this.declineReason = value;
+    }
+
+    /**
+     * Gets the value of the autoRespondedReason property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAutoRespondedReason() {
+        return autoRespondedReason;
+    }
+
+    /**
+     * Sets the value of the autoRespondedReason property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAutoRespondedReason(String value) {
+        this.autoRespondedReason = value;
     }
 
     /**
@@ -644,6 +680,54 @@ public class RecipientStatus {
      */
     public void setRecipientId(String value) {
         this.recipientId = value;
+    }
+
+    /**
+     * Gets the value of the deliveryMethod property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DeliveryMethod }
+     *     
+     */
+    public DeliveryMethod getDeliveryMethod() {
+        return deliveryMethod;
+    }
+
+    /**
+     * Sets the value of the deliveryMethod property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DeliveryMethod }
+     *     
+     */
+    public void setDeliveryMethod(DeliveryMethod value) {
+        this.deliveryMethod = value;
+    }
+
+    /**
+     * Gets the value of the faxNumber property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFaxNumber() {
+        return faxNumber;
+    }
+
+    /**
+     * Sets the value of the faxNumber property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFaxNumber(String value) {
+        this.faxNumber = value;
     }
 
 }

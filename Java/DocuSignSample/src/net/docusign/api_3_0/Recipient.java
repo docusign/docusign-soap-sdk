@@ -28,6 +28,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="AddAccessCodeToEmail" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="RequireIDLookup" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="IDCheckConfigurationName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="DeliveryMethod" type="{http://www.docusign.net/API/3.0}DeliveryMethod" minOccurs="0"/>
+ *         &lt;element name="FaxNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="LiveIDRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="FacebookRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="LinkedinRecipientAuthentication" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
@@ -52,6 +54,12 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="TemplateAccessCodeRequired" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="DefaultRecipient" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="EmailNotification" type="{http://www.docusign.net/API/3.0}RecipientEmailNotification" minOccurs="0"/>
+ *         &lt;element name="AgentCanEditEmail" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="AgentCanEditName" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="SignInEachLocation" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="ExcludedDocuments" type="{http://www.docusign.net/API/3.0}ArrayOfPositiveInteger" minOccurs="0"/>
+ *         &lt;element name="RequireSignerCertificate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="InheritEmailNotificationConfiguration" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -71,6 +79,8 @@ import javax.xml.bind.annotation.XmlType;
     "addAccessCodeToEmail",
     "requireIDLookup",
     "idCheckConfigurationName",
+    "deliveryMethod",
+    "faxNumber",
     "liveIDRecipientAuthentication",
     "facebookRecipientAuthentication",
     "linkedinRecipientAuthentication",
@@ -94,7 +104,13 @@ import javax.xml.bind.annotation.XmlType;
     "templateRequired",
     "templateAccessCodeRequired",
     "defaultRecipient",
-    "emailNotification"
+    "emailNotification",
+    "agentCanEditEmail",
+    "agentCanEditName",
+    "signInEachLocation",
+    "excludedDocuments",
+    "requireSignerCertificate",
+    "inheritEmailNotificationConfiguration"
 })
 public class Recipient {
 
@@ -117,6 +133,10 @@ public class Recipient {
     protected Boolean requireIDLookup;
     @XmlElement(name = "IDCheckConfigurationName")
     protected String idCheckConfigurationName;
+    @XmlElement(name = "DeliveryMethod")
+    protected DeliveryMethod deliveryMethod;
+    @XmlElement(name = "FaxNumber")
+    protected String faxNumber;
     @XmlElement(name = "LiveIDRecipientAuthentication")
     protected Boolean liveIDRecipientAuthentication;
     @XmlElement(name = "FacebookRecipientAuthentication")
@@ -166,6 +186,18 @@ public class Recipient {
     protected Boolean defaultRecipient;
     @XmlElement(name = "EmailNotification")
     protected RecipientEmailNotification emailNotification;
+    @XmlElement(name = "AgentCanEditEmail")
+    protected Boolean agentCanEditEmail;
+    @XmlElement(name = "AgentCanEditName")
+    protected Boolean agentCanEditName;
+    @XmlElement(name = "SignInEachLocation")
+    protected Boolean signInEachLocation;
+    @XmlElement(name = "ExcludedDocuments")
+    protected ArrayOfPositiveInteger excludedDocuments;
+    @XmlElement(name = "RequireSignerCertificate")
+    protected String requireSignerCertificate;
+    @XmlElement(name = "InheritEmailNotificationConfiguration")
+    protected Boolean inheritEmailNotificationConfiguration;
 
     /**
      * Gets the value of the id property.
@@ -381,6 +413,54 @@ public class Recipient {
      */
     public void setIDCheckConfigurationName(String value) {
         this.idCheckConfigurationName = value;
+    }
+
+    /**
+     * Gets the value of the deliveryMethod property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DeliveryMethod }
+     *     
+     */
+    public DeliveryMethod getDeliveryMethod() {
+        return deliveryMethod;
+    }
+
+    /**
+     * Sets the value of the deliveryMethod property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DeliveryMethod }
+     *     
+     */
+    public void setDeliveryMethod(DeliveryMethod value) {
+        this.deliveryMethod = value;
+    }
+
+    /**
+     * Gets the value of the faxNumber property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFaxNumber() {
+        return faxNumber;
+    }
+
+    /**
+     * Sets the value of the faxNumber property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFaxNumber(String value) {
+        this.faxNumber = value;
     }
 
     /**
@@ -957,6 +1037,150 @@ public class Recipient {
      */
     public void setEmailNotification(RecipientEmailNotification value) {
         this.emailNotification = value;
+    }
+
+    /**
+     * Gets the value of the agentCanEditEmail property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isAgentCanEditEmail() {
+        return agentCanEditEmail;
+    }
+
+    /**
+     * Sets the value of the agentCanEditEmail property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setAgentCanEditEmail(Boolean value) {
+        this.agentCanEditEmail = value;
+    }
+
+    /**
+     * Gets the value of the agentCanEditName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isAgentCanEditName() {
+        return agentCanEditName;
+    }
+
+    /**
+     * Sets the value of the agentCanEditName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setAgentCanEditName(Boolean value) {
+        this.agentCanEditName = value;
+    }
+
+    /**
+     * Gets the value of the signInEachLocation property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isSignInEachLocation() {
+        return signInEachLocation;
+    }
+
+    /**
+     * Sets the value of the signInEachLocation property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setSignInEachLocation(Boolean value) {
+        this.signInEachLocation = value;
+    }
+
+    /**
+     * Gets the value of the excludedDocuments property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ArrayOfPositiveInteger }
+     *     
+     */
+    public ArrayOfPositiveInteger getExcludedDocuments() {
+        return excludedDocuments;
+    }
+
+    /**
+     * Sets the value of the excludedDocuments property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ArrayOfPositiveInteger }
+     *     
+     */
+    public void setExcludedDocuments(ArrayOfPositiveInteger value) {
+        this.excludedDocuments = value;
+    }
+
+    /**
+     * Gets the value of the requireSignerCertificate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRequireSignerCertificate() {
+        return requireSignerCertificate;
+    }
+
+    /**
+     * Sets the value of the requireSignerCertificate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRequireSignerCertificate(String value) {
+        this.requireSignerCertificate = value;
+    }
+
+    /**
+     * Gets the value of the inheritEmailNotificationConfiguration property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isInheritEmailNotificationConfiguration() {
+        return inheritEmailNotificationConfiguration;
+    }
+
+    /**
+     * Sets the value of the inheritEmailNotificationConfiguration property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setInheritEmailNotificationConfiguration(Boolean value) {
+        this.inheritEmailNotificationConfiguration = value;
     }
 
 }

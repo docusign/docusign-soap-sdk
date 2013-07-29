@@ -21,6 +21,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="Status" type="{http://www.docusign.net/API/3.0}EventStatusCode"/>
  *         &lt;element name="EventTimestamp" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
+ *         &lt;element name="FailureDescription" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="VendorFailureStatusCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,7 +34,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "EventResult", propOrder = {
     "status",
-    "eventTimestamp"
+    "eventTimestamp",
+    "failureDescription",
+    "vendorFailureStatusCode"
 })
 public class EventResult {
 
@@ -41,6 +45,10 @@ public class EventResult {
     @XmlElement(name = "EventTimestamp", required = true)
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar eventTimestamp;
+    @XmlElement(name = "FailureDescription")
+    protected String failureDescription;
+    @XmlElement(name = "VendorFailureStatusCode")
+    protected String vendorFailureStatusCode;
 
     /**
      * Gets the value of the status property.
@@ -88,6 +96,54 @@ public class EventResult {
      */
     public void setEventTimestamp(XMLGregorianCalendar value) {
         this.eventTimestamp = value;
+    }
+
+    /**
+     * Gets the value of the failureDescription property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFailureDescription() {
+        return failureDescription;
+    }
+
+    /**
+     * Sets the value of the failureDescription property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFailureDescription(String value) {
+        this.failureDescription = value;
+    }
+
+    /**
+     * Gets the value of the vendorFailureStatusCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getVendorFailureStatusCode() {
+        return vendorFailureStatusCode;
+    }
+
+    /**
+     * Sets the value of the vendorFailureStatusCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setVendorFailureStatusCode(String value) {
+        this.vendorFailureStatusCode = value;
     }
 
 }

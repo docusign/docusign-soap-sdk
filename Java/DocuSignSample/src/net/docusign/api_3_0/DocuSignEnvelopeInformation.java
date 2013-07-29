@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="EnvelopeStatus" type="{http://www.docusign.net/API/3.0}EnvelopeStatus" minOccurs="0"/>
  *         &lt;element name="DocumentPDFs" type="{http://www.docusign.net/API/3.0}ArrayOfDocumentPDF" minOccurs="0"/>
+ *         &lt;element name="TimeZone" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="TimeZoneOffset" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,7 +32,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DocuSignEnvelopeInformation", propOrder = {
     "envelopeStatus",
-    "documentPDFs"
+    "documentPDFs",
+    "timeZone",
+    "timeZoneOffset"
 })
 public class DocuSignEnvelopeInformation {
 
@@ -38,6 +42,10 @@ public class DocuSignEnvelopeInformation {
     protected EnvelopeStatus envelopeStatus;
     @XmlElement(name = "DocumentPDFs")
     protected ArrayOfDocumentPDF documentPDFs;
+    @XmlElement(name = "TimeZone")
+    protected String timeZone;
+    @XmlElement(name = "TimeZoneOffset")
+    protected Integer timeZoneOffset;
 
     /**
      * Gets the value of the envelopeStatus property.
@@ -85,6 +93,54 @@ public class DocuSignEnvelopeInformation {
      */
     public void setDocumentPDFs(ArrayOfDocumentPDF value) {
         this.documentPDFs = value;
+    }
+
+    /**
+     * Gets the value of the timeZone property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    /**
+     * Sets the value of the timeZone property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTimeZone(String value) {
+        this.timeZone = value;
+    }
+
+    /**
+     * Gets the value of the timeZoneOffset property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getTimeZoneOffset() {
+        return timeZoneOffset;
+    }
+
+    /**
+     * Sets the value of the timeZoneOffset property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setTimeZoneOffset(Integer value) {
+        this.timeZoneOffset = value;
     }
 
 }

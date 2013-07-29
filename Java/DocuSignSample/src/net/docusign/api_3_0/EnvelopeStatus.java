@@ -50,6 +50,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="EnvelopeAttachment" type="{http://www.docusign.net/API/3.0}ArrayOfAttachment" minOccurs="0"/>
  *         &lt;element name="DocumentStatuses" type="{http://www.docusign.net/API/3.0}ArrayOfDocumentStatus" minOccurs="0"/>
  *         &lt;element name="FormData" type="{http://www.docusign.net/API/3.0}FormData" minOccurs="0"/>
+ *         &lt;element name="VoidReason" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -90,7 +91,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "authoritativeCopy",
     "envelopeAttachment",
     "documentStatuses",
-    "formData"
+    "formData",
+    "voidReason"
 })
 public class EnvelopeStatus {
 
@@ -166,6 +168,8 @@ public class EnvelopeStatus {
     protected ArrayOfDocumentStatus documentStatuses;
     @XmlElement(name = "FormData")
     protected FormData formData;
+    @XmlElement(name = "VoidReason")
+    protected String voidReason;
 
     /**
      * Gets the value of the recipientStatuses property.
@@ -893,6 +897,30 @@ public class EnvelopeStatus {
      */
     public void setFormData(FormData value) {
         this.formData = value;
+    }
+
+    /**
+     * Gets the value of the voidReason property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getVoidReason() {
+        return voidReason;
+    }
+
+    /**
+     * Sets the value of the voidReason property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setVoidReason(String value) {
+        this.voidReason = value;
     }
 
 }

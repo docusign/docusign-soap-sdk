@@ -33,8 +33,11 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="EnableWetSign" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="AllowRecipientRecursion" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="AllowMarkup" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="BrandId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="EventNotification" type="{http://www.docusign.net/API/3.0}EventNotification" minOccurs="0"/>
  *         &lt;element name="AllowReassign" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="Accessibility" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="MessageLock" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -61,8 +64,11 @@ import javax.xml.bind.annotation.XmlType;
     "enableWetSign",
     "allowRecipientRecursion",
     "allowMarkup",
+    "brandId",
     "eventNotification",
-    "allowReassign"
+    "allowReassign",
+    "accessibility",
+    "messageLock"
 })
 public class EnvelopeInformation {
 
@@ -98,10 +104,16 @@ public class EnvelopeInformation {
     protected Boolean allowRecipientRecursion;
     @XmlElement(name = "AllowMarkup")
     protected Boolean allowMarkup;
+    @XmlElement(name = "BrandId")
+    protected String brandId;
     @XmlElement(name = "EventNotification")
     protected EventNotification eventNotification;
     @XmlElement(name = "AllowReassign")
     protected Boolean allowReassign;
+    @XmlElement(name = "Accessibility")
+    protected String accessibility;
+    @XmlElement(name = "MessageLock")
+    protected Boolean messageLock;
 
     /**
      * Gets the value of the transactionID property.
@@ -488,6 +500,30 @@ public class EnvelopeInformation {
     }
 
     /**
+     * Gets the value of the brandId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBrandId() {
+        return brandId;
+    }
+
+    /**
+     * Sets the value of the brandId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBrandId(String value) {
+        this.brandId = value;
+    }
+
+    /**
      * Gets the value of the eventNotification property.
      * 
      * @return
@@ -533,6 +569,54 @@ public class EnvelopeInformation {
      */
     public void setAllowReassign(Boolean value) {
         this.allowReassign = value;
+    }
+
+    /**
+     * Gets the value of the accessibility property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAccessibility() {
+        return accessibility;
+    }
+
+    /**
+     * Sets the value of the accessibility property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAccessibility(String value) {
+        this.accessibility = value;
+    }
+
+    /**
+     * Gets the value of the messageLock property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isMessageLock() {
+        return messageLock;
+    }
+
+    /**
+     * Sets the value of the messageLock property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setMessageLock(Boolean value) {
+        this.messageLock = value;
     }
 
 }

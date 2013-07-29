@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="Declined"/>
  *     &lt;enumeration value="Completed"/>
  *     &lt;enumeration value="FaxPending"/>
+ *     &lt;enumeration value="AutoResponded"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -43,7 +44,9 @@ public enum RecipientStatusCode {
     @XmlEnumValue("Completed")
     COMPLETED("Completed"),
     @XmlEnumValue("FaxPending")
-    FAX_PENDING("FaxPending");
+    FAX_PENDING("FaxPending"),
+    @XmlEnumValue("AutoResponded")
+    AUTO_RESPONDED("AutoResponded");
     private final String value;
 
     RecipientStatusCode(String v) {

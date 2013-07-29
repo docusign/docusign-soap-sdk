@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="ZIP5DASH4"/>
  *     &lt;enumeration value="Email"/>
  *     &lt;enumeration value="Note"/>
+ *     &lt;enumeration value="Formula"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -54,7 +55,9 @@ public enum CustomTabType {
     @XmlEnumValue("Email")
     EMAIL("Email"),
     @XmlEnumValue("Note")
-    NOTE("Note");
+    NOTE("Note"),
+    @XmlEnumValue("Formula")
+    FORMULA("Formula");
     private final String value;
 
     CustomTabType(String v) {

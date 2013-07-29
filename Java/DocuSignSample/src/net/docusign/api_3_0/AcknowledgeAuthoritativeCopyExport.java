@@ -111,7 +111,7 @@ public class AcknowledgeAuthoritativeCopyExport {
      *     byte[]
      */
     public void setCheckSumHash(byte[] value) {
-        this.checkSumHash = ((byte[]) value);
+        this.checkSumHash = value;
     }
 
 }
