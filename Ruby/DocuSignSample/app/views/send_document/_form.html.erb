@@ -43,7 +43,7 @@
           <%= text_field_tag('RecipientName1', nil, :required => true) %>
         </td>
         <td>
-          <%= text_field_tag('RecipientEmail1', nil, :required => true) %>
+          <%= text_field_tag('RecipientEmail1', nil, :required => true, :type => 'email') %>
         </td>
         <td>
           <%= select_tag('RecipientSecurity1', options_for_select([['None', 'None'],['Access Code:', 'AccessCode'], ['Phone Authentication', 'PhoneAuthentication']]), :onchange => 'javascript:EnableDisableInput(1)')%>
