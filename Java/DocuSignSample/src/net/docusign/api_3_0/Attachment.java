@@ -62,7 +62,7 @@ public class Attachment {
      *     byte[]
      */
     public void setData(byte[] value) {
-        this.data = ((byte[]) value);
+        this.data = value;
     }
 
     /**

@@ -20,6 +20,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="EnvelopeID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="EnvelopeSettingsCorrection" type="{http://www.docusign.net/API/3.0}EnvelopeSettings" minOccurs="0"/>
  *         &lt;element name="RecipientCorrections" type="{http://www.docusign.net/API/3.0}ArrayOfRecipientCorrection" minOccurs="0"/>
+ *         &lt;element name="Reminders" type="{http://www.docusign.net/API/3.0}Reminders" minOccurs="0"/>
+ *         &lt;element name="Expirations" type="{http://www.docusign.net/API/3.0}Expirations" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,7 +34,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Correction", propOrder = {
     "envelopeID",
     "envelopeSettingsCorrection",
-    "recipientCorrections"
+    "recipientCorrections",
+    "reminders",
+    "expirations"
 })
 public class Correction {
 
@@ -42,6 +46,10 @@ public class Correction {
     protected EnvelopeSettings envelopeSettingsCorrection;
     @XmlElement(name = "RecipientCorrections")
     protected ArrayOfRecipientCorrection recipientCorrections;
+    @XmlElement(name = "Reminders")
+    protected Reminders reminders;
+    @XmlElement(name = "Expirations")
+    protected Expirations expirations;
 
     /**
      * Gets the value of the envelopeID property.
@@ -113,6 +121,54 @@ public class Correction {
      */
     public void setRecipientCorrections(ArrayOfRecipientCorrection value) {
         this.recipientCorrections = value;
+    }
+
+    /**
+     * Gets the value of the reminders property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Reminders }
+     *     
+     */
+    public Reminders getReminders() {
+        return reminders;
+    }
+
+    /**
+     * Sets the value of the reminders property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Reminders }
+     *     
+     */
+    public void setReminders(Reminders value) {
+        this.reminders = value;
+    }
+
+    /**
+     * Gets the value of the expirations property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Expirations }
+     *     
+     */
+    public Expirations getExpirations() {
+        return expirations;
+    }
+
+    /**
+     * Sets the value of the expirations property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Expirations }
+     *     
+     */
+    public void setExpirations(Expirations value) {
+        this.expirations = value;
     }
 
 }

@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="Mobile"/>
  *     &lt;enumeration value="Work"/>
  *     &lt;enumeration value="Other"/>
+ *     &lt;enumeration value="Fax"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -34,7 +35,9 @@ public enum PhoneNumberDesignation {
     @XmlEnumValue("Work")
     WORK("Work"),
     @XmlEnumValue("Other")
-    OTHER("Other");
+    OTHER("Other"),
+    @XmlEnumValue("Fax")
+    FAX("Fax");
     private final String value;
 
     PhoneNumberDesignation(String v) {

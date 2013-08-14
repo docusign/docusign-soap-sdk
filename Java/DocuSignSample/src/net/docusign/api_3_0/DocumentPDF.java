@@ -93,7 +93,7 @@ public class DocumentPDF {
      *     byte[]
      */
     public void setPDFBytes(byte[] value) {
-        this.pdfBytes = ((byte[]) value);
+        this.pdfBytes = value;
     }
 
     /**

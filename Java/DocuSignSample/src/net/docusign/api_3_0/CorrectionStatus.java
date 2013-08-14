@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="EnvelopeSettingsCorrectionStatus" type="{http://www.docusign.net/API/3.0}EnvelopeSettings" minOccurs="0"/>
  *         &lt;element name="RecipientCorrectionStatuses" type="{http://www.docusign.net/API/3.0}ArrayOfRecipientCorrectionStatus" minOccurs="0"/>
+ *         &lt;element name="Reminders" type="{http://www.docusign.net/API/3.0}Reminders" minOccurs="0"/>
+ *         &lt;element name="Expirations" type="{http://www.docusign.net/API/3.0}Expirations" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,7 +32,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CorrectionStatus", propOrder = {
     "envelopeSettingsCorrectionStatus",
-    "recipientCorrectionStatuses"
+    "recipientCorrectionStatuses",
+    "reminders",
+    "expirations"
 })
 public class CorrectionStatus {
 
@@ -38,6 +42,10 @@ public class CorrectionStatus {
     protected EnvelopeSettings envelopeSettingsCorrectionStatus;
     @XmlElement(name = "RecipientCorrectionStatuses")
     protected ArrayOfRecipientCorrectionStatus recipientCorrectionStatuses;
+    @XmlElement(name = "Reminders")
+    protected Reminders reminders;
+    @XmlElement(name = "Expirations")
+    protected Expirations expirations;
 
     /**
      * Gets the value of the envelopeSettingsCorrectionStatus property.
@@ -85,6 +93,54 @@ public class CorrectionStatus {
      */
     public void setRecipientCorrectionStatuses(ArrayOfRecipientCorrectionStatus value) {
         this.recipientCorrectionStatuses = value;
+    }
+
+    /**
+     * Gets the value of the reminders property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Reminders }
+     *     
+     */
+    public Reminders getReminders() {
+        return reminders;
+    }
+
+    /**
+     * Sets the value of the reminders property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Reminders }
+     *     
+     */
+    public void setReminders(Reminders value) {
+        this.reminders = value;
+    }
+
+    /**
+     * Gets the value of the expirations property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Expirations }
+     *     
+     */
+    public Expirations getExpirations() {
+        return expirations;
+    }
+
+    /**
+     * Sets the value of the expirations property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Expirations }
+     *     
+     */
+    public void setExpirations(Expirations value) {
+        this.expirations = value;
     }
 
 }

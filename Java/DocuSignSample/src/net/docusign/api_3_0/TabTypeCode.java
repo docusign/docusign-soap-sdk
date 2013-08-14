@@ -17,6 +17,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="InitialHere"/>
  *     &lt;enumeration value="SignHere"/>
  *     &lt;enumeration value="FullName"/>
+ *     &lt;enumeration value="FirstName"/>
+ *     &lt;enumeration value="LastName"/>
+ *     &lt;enumeration value="EmailAddress"/>
  *     &lt;enumeration value="Company"/>
  *     &lt;enumeration value="Title"/>
  *     &lt;enumeration value="DateSigned"/>
@@ -42,6 +45,12 @@ public enum TabTypeCode {
     SIGN_HERE("SignHere"),
     @XmlEnumValue("FullName")
     FULL_NAME("FullName"),
+    @XmlEnumValue("FirstName")
+    FIRST_NAME("FirstName"),
+    @XmlEnumValue("LastName")
+    LAST_NAME("LastName"),
+    @XmlEnumValue("EmailAddress")
+    EMAIL_ADDRESS("EmailAddress"),
     @XmlEnumValue("Company")
     COMPANY("Company"),
     @XmlEnumValue("Title")

@@ -58,6 +58,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="FontSize" type="{http://www.docusign.net/API/3.0}FontSize" minOccurs="0"/>
  *         &lt;element name="MergeFieldXml" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="IncludeNoteInEmail" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="IsPaymentAmount" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="Formula" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="RoundDecimalPlaces" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="MaxLength" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -105,7 +109,11 @@ import javax.xml.bind.annotation.XmlType;
     "fontColor",
     "fontSize",
     "mergeFieldXml",
-    "includeNoteInEmail"
+    "includeNoteInEmail",
+    "isPaymentAmount",
+    "formula",
+    "roundDecimalPlaces",
+    "maxLength"
 })
 public class Tab {
 
@@ -190,6 +198,14 @@ public class Tab {
     protected String mergeFieldXml;
     @XmlElement(name = "IncludeNoteInEmail")
     protected Boolean includeNoteInEmail;
+    @XmlElement(name = "IsPaymentAmount")
+    protected Boolean isPaymentAmount;
+    @XmlElement(name = "Formula")
+    protected String formula;
+    @XmlElement(name = "RoundDecimalPlaces")
+    protected Integer roundDecimalPlaces;
+    @XmlElement(name = "MaxLength")
+    protected Integer maxLength;
 
     /**
      * Gets the value of the documentID property.
@@ -1101,6 +1117,102 @@ public class Tab {
      */
     public void setIncludeNoteInEmail(Boolean value) {
         this.includeNoteInEmail = value;
+    }
+
+    /**
+     * Gets the value of the isPaymentAmount property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isIsPaymentAmount() {
+        return isPaymentAmount;
+    }
+
+    /**
+     * Sets the value of the isPaymentAmount property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIsPaymentAmount(Boolean value) {
+        this.isPaymentAmount = value;
+    }
+
+    /**
+     * Gets the value of the formula property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getFormula() {
+        return formula;
+    }
+
+    /**
+     * Sets the value of the formula property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setFormula(String value) {
+        this.formula = value;
+    }
+
+    /**
+     * Gets the value of the roundDecimalPlaces property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getRoundDecimalPlaces() {
+        return roundDecimalPlaces;
+    }
+
+    /**
+     * Sets the value of the roundDecimalPlaces property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setRoundDecimalPlaces(Integer value) {
+        this.roundDecimalPlaces = value;
+    }
+
+    /**
+     * Gets the value of the maxLength property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getMaxLength() {
+        return maxLength;
+    }
+
+    /**
+     * Sets the value of the maxLength property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setMaxLength(Integer value) {
+        this.maxLength = value;
     }
 
 }

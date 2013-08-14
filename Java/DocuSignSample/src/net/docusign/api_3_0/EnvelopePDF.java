@@ -82,7 +82,7 @@ public class EnvelopePDF {
      *     byte[]
      */
     public void setPDFBytes(byte[] value) {
-        this.pdfBytes = ((byte[]) value);
+        this.pdfBytes = value;
     }
 
 }
