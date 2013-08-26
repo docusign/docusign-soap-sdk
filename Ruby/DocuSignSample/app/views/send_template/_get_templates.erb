@@ -1,6 +1,9 @@
 <%= form_tag("send_template/get_template", :method => :post) do%>
     <div>
       <table id="TemplateTable">
+        <%if @templates.empty? %>
+          <tr><td>No templates are available currently</td></tr>
+        <% else %>
         <tr>
           <td>
             Select a Template
@@ -12,6 +15,7 @@
                                                                        t.name, t.templateID]}, {:include_blank => true, :selected => @template_id})  %><%= submit_tag('Select Template', :name => 'LoadTemplate', :class => "docusignbutton orange")%>
           </td>
         </tr>
+        <% end %>
       </table>
     </div>
 <% end %>

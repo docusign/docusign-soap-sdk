@@ -1,4 +1,5 @@
 class EmbedDocusignController < ApplicationController
+  require 'time'
   attr_accessor :token1, :token2
   def new
     #If we have finished signing for the first recipient, go to the next one if necessary
@@ -70,10 +71,10 @@ class EmbedDocusignController < ApplicationController
 
     #Create the assertion using the current time, HTTP authentication and the demo information
     assertion = Docusign::RequestRecipientTokenAuthenticationAssertion.new.tap do |a|
-      a.assertion_id           = Time.now.to_i.to_s
-      a.authentication_instant = Time.now
-      a.authentication_method  = Docusign::RequestRecipientTokenAuthenticationAssertionAuthenticationMethod::HTTPBasicAuth
-      a.security_domain        = "#{request.domain}:80"
+      a.assertionID           = Time.now.to_i.to_s
+      a.authenticationInstant = Time.now.iso8601
+      a.authenticationMethod  = Docusign::RequestRecipientTokenAuthenticationAssertionAuthenticationMethod::HTTPBasicAuth
+      a.securityDomain        = "#{request.domain}:80"
     end
 
     #Create the clientURLs to which the iframe will redirect upon every event

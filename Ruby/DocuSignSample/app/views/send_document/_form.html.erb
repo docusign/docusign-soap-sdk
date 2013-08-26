@@ -18,8 +18,8 @@
     });
 </script>
 <%= form_tag("send_document/send_envelope", :method => :post, :multipart => true) do%>
-    <%= text_field_tag('subject', nil, :placeholder => '<enter the subject>', :class => 'email')%><!--<img alt="" src="" class="helplink" />--><br />
-    <%= text_area_tag('emailBlurb', nil, :placeholder => '<enter the e-mail blurb>', :rows => '4', :cols => '20', :class => 'email')%>
+    <%= text_field_tag('subject', nil, :required => true, :placeholder => '<enter the subject>', :class => 'email')%><!--<img alt="" src="" class="helplink" />--><br />
+    <%= text_area_tag('emailBlurb', nil, :required => true, :placeholder => '<enter the e-mail blurb>', :rows => '4', :cols => '20', :class => 'email')%>
     <p>
     </p>
     <table id="recipientList" class="recipientList">
@@ -40,10 +40,10 @@
       </tr>
       <tr id="Recipient1" name="Recipient1">
         <td>
-          <%= text_field_tag('RecipientName1') %>
+          <%= text_field_tag('RecipientName1', nil, :required => true) %>
         </td>
         <td>
-          <%= text_field_tag('RecipientEmail1') %>
+          <%= text_field_tag('RecipientEmail1', nil, :required => true, :type => 'email') %>
         </td>
         <td>
           <%= select_tag('RecipientSecurity1', options_for_select([['None', 'None'],['Access Code:', 'AccessCode'], ['Phone Authentication', 'PhoneAuthentication']]), :onchange => 'javascript:EnableDisableInput(1)')%>

@@ -8,7 +8,7 @@ class GetStatusAndDocsController < ApplicationController
         if logged_in?
           #Request the PDF
           begin
-            @file = ds_connection.requestPdf(:envelopeID => eid).requestPdfResult
+            @file = ds_connection.requestPDF(:envelopeID => eid).requestPDFResult
             @path = Rails.root.to_s + "/tmp/" + eid +".pdf"
             File.open(@path, 'w+') do |f|
               #There is a bug in Soap4R that double 64 encodes the bytes

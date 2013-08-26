@@ -137,7 +137,7 @@ class Envelope
           security = params['RecipientSecurity'+id]
           recipient = Docusign::Recipient.new.tap do |dr|
             dr.iD = id
-            dr.user_name = uname
+            dr.userName = uname
             dr.email = email
 
             #Make all recipients after the first two Carbon Copy Recipients
@@ -163,8 +163,8 @@ class Envelope
 
             #Add captive information if the user has turned off email invitations
             if !invite_email && id.to_i < 3
-              dr.captive_info = Docusign::RecipientCaptiveInfo.new.tap do |ci|
-                ci.client_user_id = dr.iD
+              dr.captiveInfo = Docusign::RecipientCaptiveInfo.new.tap do |ci|
+                ci.clientUserId = dr.iD
               end
             end
           end

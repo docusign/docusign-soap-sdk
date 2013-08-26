@@ -53,7 +53,7 @@ class LoginsController < ApplicationController
       redirect_to send_document_path
 
     else
-      redirect_to :controller => 'error', :action => 'show', :message => result.authentication_message
+      redirect_to :controller => 'error', :action => 'show', :message => result.authenticationMessage
     end
   end
 end
