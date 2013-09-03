@@ -11,6 +11,7 @@ class PingResponse {
 class Login {
   public $Email; // string
   public $Password; // string
+  public $ReturnBaseUrl; // string
 }
 
 class LoginResponse {
@@ -39,6 +40,7 @@ class Account {
   public $UserID; // string
   public $UserName; // string
   public $Email; // string
+  public $BaseUrl // string
 }
 
 /*  commented out to avoid collision with Ping function in the other API (APIService.wsdl)
