@@ -40,7 +40,7 @@ class Account {
   public $UserID; // string
   public $UserName; // string
   public $Email; // string
-  public $BaseUrl // string
+  public $BaseUrl; // string
 }
 
 /*  commented out to avoid collision with Ping function in the other API (APIService.wsdl)
