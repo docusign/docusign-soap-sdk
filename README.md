@@ -1,4 +1,4 @@
-DocuSign SOAP SDK ReadMe 
+DocuSign SOAP SDK
 ===========================================================================
 
 The DocuSign Web Services API provides methods for integrating the DocuSign 
