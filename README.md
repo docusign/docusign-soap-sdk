@@ -138,3 +138,8 @@ The DocuSign API helps developers build solutions that can:
      - Extract and remove original copies of documents from the DocuSign systems.
 
 
+License
+----------
+
+The DocuSign SOAP SDK is licensed under the following [License](LICENSE).
+
