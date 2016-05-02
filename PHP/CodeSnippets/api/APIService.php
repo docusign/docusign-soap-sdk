@@ -45,11 +45,11 @@ class Envelope {
   public $AllowMarkup; // boolean
   public $EventNotification; // EventNotification
   
-  public $AllowReassign;	//boolean
-  public $BrandId;	//string
-  public $BrandLock;	//boolean
-  public $Accessibility;	//string
-  public $MessageLock;	//boolean	  
+  public $AllowReassign;  //boolean
+  public $BrandId;  //string
+  public $BrandLock;  //boolean
+  public $Accessibility;  //string
+  public $MessageLock;  //boolean   
 }
 
 class Document {
@@ -232,49 +232,49 @@ class RecipientEmailNotification {
 }
 
 class SupportedLanguage {
-	const ar = 'ar';
-	const bg = 'bg';
-	const cs = 'cs';
-	const da = 'da';
-	const de = 'de';
-	const el = 'el';
-	const en = 'en';
-	const en_GB = 'en_GB';
-	const es = 'es';
-	const es_MX = 'es_MX';
-	const et = 'et';
-	const fa = 'fa';
-	const fi = 'fi';
-	const fr = 'fr';
-	const fr_CA = 'fr_CA';
-	const he = 'he';
-	const hi = 'hi';
-	const hr = 'hr';
-	const hu = 'hu';
-	const id = 'id';
-	const it = 'it';
-	const ja = 'ja';
-	const ko = 'ko';
-	const lt = 'lt';
-	const lv = 'lv';
-	const ms = 'ms';
-	const nl = 'nl';
-	const no = 'no';
-	const pl = 'pl';
-	const pt = 'pt';
-	const pt_BR = 'pt_BR';
-	const ro = 'ro';
-	const ru = 'ru';
-	const sk = 'sk';
-	const sl = 'sl';
-	const sr = 'sr';
-	const sv = 'sv';
-	const th = 'th';
-	const tr = 'tr';
-	const uk = 'uk';
-	const vi = 'vi';
-	const zh_CN = 'zh_CN';
-	const zh_TW = 'zh_TW';
+  const ar = 'ar';
+  const bg = 'bg';
+  const cs = 'cs';
+  const da = 'da';
+  const de = 'de';
+  const el = 'el';
+  const en = 'en';
+  const en_GB = 'en_GB';
+  const es = 'es';
+  const es_MX = 'es_MX';
+  const et = 'et';
+  const fa = 'fa';
+  const fi = 'fi';
+  const fr = 'fr';
+  const fr_CA = 'fr_CA';
+  const he = 'he';
+  const hi = 'hi';
+  const hr = 'hr';
+  const hu = 'hu';
+  const id = 'id';
+  const it = 'it';
+  const ja = 'ja';
+  const ko = 'ko';
+  const lt = 'lt';
+  const lv = 'lv';
+  const ms = 'ms';
+  const nl = 'nl';
+  const no = 'no';
+  const pl = 'pl';
+  const pt = 'pt';
+  const pt_BR = 'pt_BR';
+  const ro = 'ro';
+  const ru = 'ru';
+  const sk = 'sk';
+  const sl = 'sl';
+  const sr = 'sr';
+  const sv = 'sv';
+  const th = 'th';
+  const tr = 'tr';
+  const uk = 'uk';
+  const vi = 'vi';
+  const zh_CN = 'zh_CN';
+  const zh_TW = 'zh_TW';
 }
 
 class ArrayOfPositiveInteger {
@@ -377,51 +377,51 @@ class CustomTabType {
 }
 
 class Font {
-	const Arial = 'Arial';
-	const ArialNarrow = 'ArialNarrow';
-	const Calibri = 'Calibri';
-	const CourierNew = 'CourierNew';
-	const Garamond = 'Garamond';
-	const Georgia = 'Georgia';
-	const Helvetica = 'Helvetica';
-	const LucidaConsole = 'LucidaConsole';
-	const Tahoma = 'Tahoma';
-	const TimesNewRoman = 'TimesNewRoman';
-	const Trebuchet = 'Trebuchet';
-	const Verdana = 'Verdana';
+  const Arial = 'Arial';
+  const ArialNarrow = 'ArialNarrow';
+  const Calibri = 'Calibri';
+  const CourierNew = 'CourierNew';
+  const Garamond = 'Garamond';
+  const Georgia = 'Georgia';
+  const Helvetica = 'Helvetica';
+  const LucidaConsole = 'LucidaConsole';
+  const Tahoma = 'Tahoma';
+  const TimesNewRoman = 'TimesNewRoman';
+  const Trebuchet = 'Trebuchet';
+  const Verdana = 'Verdana';
 }
 
 class FontColor {
-	const Black = 'Black';
-	const BrightBlue = 'BrightBlue';
-	const BrightRed = 'BrightRed';
-	const DarkRed = 'DarkRed';
-	const DarkGreen = 'DarkGreen';
-	const Gold = 'Gold';
-	const Green = 'Green';
-	const NavyBlue = 'NavyBlue';
-	const Purple = 'Purple';
-	const White = 'White';
+  const Black = 'Black';
+  const BrightBlue = 'BrightBlue';
+  const BrightRed = 'BrightRed';
+  const DarkRed = 'DarkRed';
+  const DarkGreen = 'DarkGreen';
+  const Gold = 'Gold';
+  const Green = 'Green';
+  const NavyBlue = 'NavyBlue';
+  const Purple = 'Purple';
+  const White = 'White';
 }
 
 class FontSize {
-	const Size7 = 'Size7';
-	const Size8 = 'Size8';
-	const Size9 = 'Size9';
-	const Size10 = 'Size10';
-	const Size11 = 'Size11';
-	const Size12 = 'Size12';
-	const Size14 = 'Size14';
-	const Size16 = 'Size16';
-	const Size18 = 'Size18';
-	const Size20 = 'Size20';
-	const Size22 = 'Size22';
-	const Size24 = 'Size24';
-	const Size26 = 'Size26';
-	const Size28 = 'Size28';
-	const Size36 = 'Size36';
-	const Size48 = 'Size48';
-	const Size72 = 'Size72';
+  const Size7 = 'Size7';
+  const Size8 = 'Size8';
+  const Size9 = 'Size9';
+  const Size10 = 'Size10';
+  const Size11 = 'Size11';
+  const Size12 = 'Size12';
+  const Size14 = 'Size14';
+  const Size16 = 'Size16';
+  const Size18 = 'Size18';
+  const Size20 = 'Size20';
+  const Size22 = 'Size22';
+  const Size24 = 'Size24';
+  const Size26 = 'Size26';
+  const Size28 = 'Size28';
+  const Size36 = 'Size36';
+  const Size48 = 'Size48';
+  const Size72 = 'Size72';
 }
 
 class SigningLocationCode {
@@ -508,7 +508,7 @@ class RecipientEvent {
   public $IncludeDocuments; // boolean
 }
 
-class EnvelopeEventStatusCode {
+class RecipientEventStatusCode {
   const Sent = 'Sent';
   const Delivered = 'Delivered';
   const Completed = 'Completed';
@@ -950,8 +950,8 @@ class RequestStatusCodesResponse {
 }
 
 class FilteredEnvelopeStatusChanges {
-  public $ResultSetSize;
-  public $EnvelopeStatusChanges;
+  public $ResultSetSize; // int
+  public $EnvelopeStatusChanges; // ArrayOfEnvelopeStatusChange
 }
 
 class ArrayOfEnvelopeStatusChange {
@@ -959,38 +959,38 @@ class ArrayOfEnvelopeStatusChange {
 }
 
 class EnvelopeStatusChange {
-  public $EnvelopeID;
-  public $Status;
-  public $StatusChanged;
+  public $EnvelopeID; // string
+  public $Status; // EnvelopeStatusCode
+  public $StatusChanged; // dateTime
 }
 
 class RequestStatusChanges {
-  public $EnvelopeStatusChangeFilter;
+  public $EnvelopeStatusChangeFilter; // EnvelopeStatusChangeFilter
 }
 
 class EnvelopeStatusChangeFilter {
-  public $AccountId;
-  public $UserInfo;
-  public $StatusChangedSince;
-  public $Statuses;
+  public $AccountId; // string
+  public $UserInfo; // UserInfo
+  public $StatusChangedSince; // dateTime
+  public $Statuses; // ArrayOfEnvelopeStatusCode
 }
 
 class RequestStatusChangesResponse {
-  public $RequestStatusChangesResult;
+  public $RequestStatusChangesResult; // FilteredEnvelopeStatusChanges
 }
 
 class RequestStatusesEx {
-  public $EnvelopeStatusFilter;
+  public $EnvelopeStatusFilter; // EnvelopeStatusFilter
 }
 
 class RequestStatusesExResponse {
-  public $RequestStatusesExResult;
+  public $RequestStatusesExResult; // FilteredEnvelopeStatuses
 }
 
 class FilteredEnvelopeStatuses {
-  public $ResultSetSize;
-  public $EnvelopeStatusFilter;
-  public $EnvelopeStatuses;
+  public $ResultSetSize; // int
+  public $EnvelopeStatusFilter; // EnvelopeStatusFilter
+  public $EnvelopeStatuses; // ArrayOfEnvelopeStatus
 }
 
 class ArrayOfEnvelopeStatus {
@@ -998,27 +998,27 @@ class ArrayOfEnvelopeStatus {
 }
 
 class RequestStatuses {
-  public $EnvelopeStatusFilter;
+  public $EnvelopeStatusFilter; // EnvelopeStatusFilter
 }
 
 class RequestStatusesResponse {
-  public $RequestStatusesResult;
+  public $RequestStatusesResult; // FilteredEnvelopeStatuses
 }
 
 class GetRecipientEsignList {
-  public $UserName;
-  public $SenderEmail;
-  public $SenderAccountId;
-  public $RecipientEmail;
+  public $UserName; // string
+  public $SenderEmail; // string
+  public $SenderAccountId; // string
+  public $RecipientEmail; // string
 }
 
 class GetRecipientEsignListResponse {
-  public $GetRecipientEsignListResult;
+  public $GetRecipientEsignListResult; // RecipientEsignList
 }
 
 class RecipientEsignList {
-  public $AccountId;
-  public $RecipientEsign;
+  public $AccountId; // string
+  public $RecipientEsign; // ArrayOfRecipientEsign
 }
 
 class ArrayOfRecipientEsign {
@@ -1026,26 +1026,26 @@ class ArrayOfRecipientEsign {
 }
 
 class RecipientEsign {
-  public $UserName;
-  public $Email;
-  public $Esign;
-  public $ReservedRecipientEmail;
-  public $ReservedRecipientNames;
+  public $UserName; // string
+  public $Email; // string
+  public $Esign; // boolean
+  public $ReservedRecipientEmail; // boolean
+  public $ReservedRecipientNames; // string
 }
 
 class GetRecipientList {
-  public $SenderAccountId;
-  public $RecipientEmail;
+  public $SenderAccountId; // string
+  public $RecipientEmail; // string
 }
 
 class GetRecipientListResponse {
-  public $GetRecipientListResult;
+  public $GetRecipientListResult; // RecipientList
 }
 
 class RecipientList {
-  public $ReservedRecipientEmail;
-  public $MultipleUsers;
-  public $RecipientName;
+  public $ReservedRecipientEmail; // boolean
+  public $MultipleUsers; // boolean
+  public $RecipientName; // ArrayOfString3
 }
 
 class ArrayOfString3 {
@@ -1131,23 +1131,6 @@ class GetRecipientAuthenticationStatusExResponse {
   public $GetRecipientAuthenticationStatusExResult;
 }
 
-class DocumentPDFs {
-  public $EnvelopeId; // string
-  public $DocumentPDF; // DocumentPDF
-}
-
-class DocumentPDF {
-  public $Name; // string
-  public $PDFBytes; // base64Binary
-  public $DocumentID; // positiveInteger
-  public $DocumentType; // DocumentType
-}
-
-class DocumentType {
-  const SUMMARY = 'SUMMARY';
-  const CONTENT = 'CONTENT';
-}
-
 class RequestDocumentPDFsEx {
   public $EnvelopeID; // string
 }
@@ -1205,110 +1188,6 @@ class UserInfo {
 class EnvelopeStatusFilterBeginDateTime {
   public $_; // dateTime
   public $statusQualifier; // string
-}
-
-class EnvelopeACStatusCode {
-  const Unknown = 'Unknown';
-  const Original = 'Original';
-  const Transferred = 'Transferred';
-  const AuthoritativeCopy = 'AuthoritativeCopy';
-  const AuthoritativeCopyExportPending = 'AuthoritativeCopyExportPending';
-  const AuthoritativeCopyExported = 'AuthoritativeCopyExported';
-  const DepositPending = 'DepositPending';
-  const Deposited = 'Deposited';
-  const DepositedEO = 'DepositedEO';
-  const DepositFailed = 'DepositFailed';
-}
-
-class RequestStatusCodesResponse {
-  public $RequestStatusCodesResult; // FilteredEnvelopeStatusChanges
-}
-
-class FilteredEnvelopeStatusChanges {
-  public $ResultSetSize; // int
-  public $EnvelopeStatusChanges; // ArrayOfEnvelopeStatusChange
-}
-
-class EnvelopeStatusChange {
-  public $EnvelopeID; // string
-  public $Status; // EnvelopeStatusCode
-  public $StatusChanged; // dateTime
-}
-
-class RequestStatusChanges {
-  public $EnvelopeStatusChangeFilter; // EnvelopeStatusChangeFilter
-}
-
-class EnvelopeStatusChangeFilter {
-  public $AccountId; // string
-  public $UserInfo; // UserInfo
-  public $StatusChangedSince; // dateTime
-  public $Statuses; // ArrayOfEnvelopeStatusCode
-}
-
-class RequestStatusChangesResponse {
-  public $RequestStatusChangesResult; // FilteredEnvelopeStatusChanges
-}
-
-class RequestStatusesEx {
-  public $EnvelopeStatusFilter; // EnvelopeStatusFilter
-}
-
-class RequestStatusesExResponse {
-  public $RequestStatusesExResult; // FilteredEnvelopeStatuses
-}
-
-class FilteredEnvelopeStatuses {
-  public $ResultSetSize; // int
-  public $EnvelopeStatusFilter; // EnvelopeStatusFilter
-  public $EnvelopeStatuses; // ArrayOfEnvelopeStatus
-}
-
-class RequestStatuses {
-  public $EnvelopeStatusFilter; // EnvelopeStatusFilter
-}
-
-class RequestStatusesResponse {
-  public $RequestStatusesResult; // FilteredEnvelopeStatuses
-}
-
-class GetRecipientEsignList {
-  public $UserName; // string
-  public $SenderEmail; // string
-  public $SenderAccountId; // string
-  public $RecipientEmail; // string
-}
-
-class GetRecipientEsignListResponse {
-  public $GetRecipientEsignListResult; // RecipientEsignList
-}
-
-class RecipientEsignList {
-  public $AccountId; // string
-  public $RecipientEsign; // ArrayOfRecipientEsign
-}
-
-class RecipientEsign {
-  public $UserName; // string
-  public $Email; // string
-  public $Esign; // boolean
-  public $ReservedRecipientEmail; // boolean
-  public $ReservedRecipientNames; // string
-}
-
-class GetRecipientList {
-  public $SenderAccountId; // string
-  public $RecipientEmail; // string
-}
-
-class GetRecipientListResponse {
-  public $GetRecipientListResult; // RecipientList
-}
-
-class RecipientList {
-  public $ReservedRecipientEmail; // boolean
-  public $MultipleUsers; // boolean
-  public $RecipientName; // ArrayOfString3
 }
 
 class VoidEnvelope {
@@ -2709,63 +2588,63 @@ class APIService extends SoapClient {
  * WSASoap, WSSESoap, xmlseclibs: http://www.cdatazone.org/index.php?/archives/54-Xmlseclibs-1.2.2-Released.html
 */
 
-	private $_username;
-	private $_password;
+  private $_username;
+  private $_password;
 
 
-	public function setCredentials($username, $password)
-	{
-	    $this->_username = $username;
-	    $this->_password = $password;
-	}
-	public $_lastRequest;
-	function __doRequest($request, $location, $saction, $version, $one_way = null)
-	{
-		include_once 'WSSESoap.php';
-		include_once 'WSASoap.php';
-				
-		$dom = new DOMDocument('1.0');
-		$dom->loadXML($request);
-		$objWSA = new WSASoap($dom);
-		$objWSA->addAction($saction);
-		$objWSA->addTo($location);
-		$objWSA->addMessageID();
-		$objWSA->addReplyTo();
-		
-		$dom = $objWSA->getDoc();
-		
-		$objWSSE = new WSSESoap($dom);
-		
-		if (isset($this->_username) && isset($this->_password)) {
-			if(!function_exists('mcrypt_module_get_algo_key_size')){
-				$objWSSE->addUserTokenNoMCrypt($this->_username,$this->_password);
-			} else {
-				$objWSSE->addUserToken($this->_username, $this->_password);
-			}
-		}
-		
-		/* Sign all headers to include signing the WS-Addressing headers */
-		$objWSSE->signAllHeaders = TRUE; // Normally uncommented
+  public function setCredentials($username, $password)
+  {
+      $this->_username = $username;
+      $this->_password = $password;
+  }
+  public $_lastRequest;
+  function __doRequest($request, $location, $saction, $version, $one_way = null)
+  {
+    include_once 'WSSESoap.php';
+    include_once 'WSASoap.php';
+        
+    $dom = new DOMDocument('1.0');
+    $dom->loadXML($request);
+    $objWSA = new WSASoap($dom);
+    $objWSA->addAction($saction);
+    $objWSA->addTo($location);
+    $objWSA->addMessageID();
+    $objWSA->addReplyTo();
+    
+    $dom = $objWSA->getDoc();
+    
+    $objWSSE = new WSSESoap($dom);
+    
+    if (isset($this->_username) && isset($this->_password)) {
+      if(!function_exists('mcrypt_module_get_algo_key_size')){
+        $objWSSE->addUserTokenNoMCrypt($this->_username,$this->_password);
+      } else {
+        $objWSSE->addUserToken($this->_username, $this->_password);
+      }
+    }
+    
+    /* Sign all headers to include signing the WS-Addressing headers */
+    $objWSSE->signAllHeaders = TRUE; // Normally uncommented
 
-		$objWSSE->addTimestamp(300);
-		// if you need to do binary certificate signing you can uncomment this (and provide the path to the cert)
-		/* create new XMLSec Key using RSA SHA-1 and type is private key */
-		// $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+    $objWSSE->addTimestamp(300);
+    // if you need to do binary certificate signing you can uncomment this (and provide the path to the cert)
+    /* create new XMLSec Key using RSA SHA-1 and type is private key */
+    // $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
 
-		/* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
+    /* load the private key from file - last arg is bool if key in file (TRUE) or is string (FALSE) */
 
-		/* Sign the message - also signs appropraite WS-Security items */
-		// $objWSSE->signSoapDoc($objKey);
+    /* Sign the message - also signs appropraite WS-Security items */
+    // $objWSSE->signSoapDoc($objKey);
 
-		/* Add certificate (BinarySecurityToken) to the message and attach pointer to Signature */
-		// $token = $objWSSE->addBinaryToken(file_get_contents(CERT_FILE));
-		// $objWSSE->attachTokentoSig($token);
-		
-		$request = $objWSSE->saveXML();
-		$this->_lastRequest = $request;
-		
-		return parent::__doRequest($request, $location, $saction, $version);
-	}
+    /* Add certificate (BinarySecurityToken) to the message and attach pointer to Signature */
+    // $token = $objWSSE->addBinaryToken(file_get_contents(CERT_FILE));
+    // $objWSSE->attachTokentoSig($token);
+    
+    $request = $objWSSE->saveXML();
+    $this->_lastRequest = $request;
+    
+    return parent::__doRequest($request, $location, $saction, $version);
+  }
 
 }
 
