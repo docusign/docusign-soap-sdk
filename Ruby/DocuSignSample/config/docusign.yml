@@ -1,0 +1,14 @@
+# Replace the development values with your demo credentials (or leave blank for login page)
+#  user_name: 'Enter your DocuSign demo email here'
+#  password: 'Enter your DocuSign demo password here'
+#  integrators_key: 'Enter your DocuSign integrator key here'
+#  account_id: 'Enter your DocuSign demo account ID here'
+#  default_endpoint_url: 'https://demo.docusign.net/api/3.0/api.asmx'
+#  credential_endpoint_url: 'https://demo.docusign.net/api/3.0/Credential.asmx'
+development:
+  user_name: ''
+  password: ''
+  integrators_key: ''
+  account_id: ''
+  default_endpoint_url: 'https://demo.docusign.net/api/3.0/api.asmx'
+  credential_endpoint_url: 'https://demo.docusign.net/api/3.0/Credential.asmx'
