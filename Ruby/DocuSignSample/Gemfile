@@ -1,12 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.3'
+ruby "1.9.3"
+
+gem 'rails', '3.2.17'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
-gem 'soap4r', :git => 'git://github.com/felipec/soap4r.git'
+gem 'soap4r', :git => 'git://github.com/docusign/soap4r.git'
 gem 'docusignsdk', :git => 'git://github.com/market-art/docusignsdk.git'
 gem 'intercession', '=2.0.0'
 gem 'httpclient', '=2.1.6.1'
