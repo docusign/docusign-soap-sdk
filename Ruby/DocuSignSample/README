@@ -2,8 +2,8 @@ DocuSign Web Services API 3.5 Ruby Sample
 ========================================================================
 
 System Requirements:
-   - Ruby 1.8.7 
-   - Rails 3.0.4  
+   - Ruby 1.9.3 
+   - Rails 3.2.17  
    - rubygems 
    - docusign 
    - intercession 
