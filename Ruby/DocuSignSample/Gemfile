@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby "1.9.3"
 
-gem 'rails', '3.2.17'
+gem 'rails', '4.2.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,6 +13,8 @@ gem 'docusignsdk', :git => 'git://github.com/market-art/docusignsdk.git'
 gem 'intercession', '=2.0.0'
 gem 'httpclient', '=2.1.6.1'
 gem 'sqlite3'
+
+gem 'activerecord-session_store'
 
 # Use unicorn as the web server
 # gem 'unicorn'
