@@ -2,10 +2,10 @@
 <html>
 <head>
   <title>DocuSign Sample</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :all %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
-  <%= csrf_meta_tag %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
 <div style="width:1024px;height:800px;margin-left:auto;margin-right:auto">
@@ -62,17 +62,17 @@
       <td align="center">
         <span>Keep up with new developments:</span><br />
         <a class="addthis_email" href="http://www.docusign.com/blog/category/devcenter/">
-          <img src="<%=root_url%>images/blog.png" width="16" height="16" border="0" alt="Blog" /></a>
+          <img src="<%=root_url%>assets/blog.png" width="16" height="16" border="0" alt="Blog" /></a>
         <a class="addthis_email" href="http://www.youtube.com/user/ESIGNwithDocuSign">
-          <img src="<%=root_url%>images/icon-youtube.png" width="16" height="16" border="0" alt="Youtube" /></a>
+          <img src="<%=root_url%>assets/icon-youtube.png" width="16" height="16" border="0" alt="Youtube" /></a>
         <a class="addthis_email" href="http://www.docusign.com/blog/feed/">
-          <img src="<%=root_url%>images/icon-rss.png" width="16" height="16" border="0" alt="RSS" /></a>
+          <img src="<%=root_url%>assets/icon-rss.png" width="16" height="16" border="0" alt="RSS" /></a>
         <a class="addthis_email" href="http://www.facebook.com/pages/DocuSign/71115427991">
-          <img src="<%=root_url%>images/icon-facebook.png" width="16" height="16" border="0" alt="Facebook" /></a>
+          <img src="<%=root_url%>assets/icon-facebook.png" width="16" height="16" border="0" alt="Facebook" /></a>
         <a class="addthis_email" href="http://www.twitter.com/DocuSignAPI">
-          <img src="<%=root_url%>images/icon-twitter.png" width="16" height="16" border="0" alt="Twitter" /></a>
+          <img src="<%=root_url%>assets/icon-twitter.png" width="16" height="16" border="0" alt="Twitter" /></a>
         <a class="addthis_email" href="http://www.linkedin.com/company/19022?trk=saber_s000001e_1000">
-          <img src="<%=root_url%>images/icon-linkedin.png" width="16" height="16" border="0" alt="LinkedIn" /></a>
+          <img src="<%=root_url%>assets/icon-linkedin.png" width="16" height="16" border="0" alt="LinkedIn" /></a>
       </td>
     </tr>
   </table>
