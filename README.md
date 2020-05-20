@@ -57,7 +57,7 @@ System requirements for PHP samples:
 -  libcurl/7.19.4 OpenSSL/0.9.8k zlib/1.2.3 
 
 System requirements for Ruby samples:
-- Ruby 1.9.3
+- Ruby 2.3.7
 
 
 Documentation
