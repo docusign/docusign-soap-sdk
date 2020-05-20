@@ -15,7 +15,7 @@
     <link rel="Stylesheet" type="text/css" href="css/SendTemplate.css" />
     <link rel="stylesheet" type="text/css" href="css/default.css" />
     <link rel="stylesheet" type="text/css" href="css/Tabs.css" />
-    <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>

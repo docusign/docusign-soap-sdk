@@ -207,7 +207,7 @@
     <Content Include="images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
     <Content Include="images\ui-icons_222222_256x240.png" />
     <Content Include="images\ui-icons_454545_256x240.png" />
-    <Content Include="js\jquery-1.4.4.js" />
+    <Content Include="js\jquery.js" />
     <Content Include="js\jquery.bgiframe-2.1.2.js" />
     <Content Include="js\jquery.ui.core.js" />
     <Content Include="js\jquery.ui.datepicker.js" />
