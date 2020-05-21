@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="css/jquery.ui.all.css" />
     <link rel="Stylesheet" href="css/SendTemplate.css" />
-    <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>

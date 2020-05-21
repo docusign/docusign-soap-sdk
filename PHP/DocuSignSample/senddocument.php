@@ -454,7 +454,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="css/default.css" />
         <link rel="stylesheet" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/SendDocument.css" />
-        <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+        <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery.ui.core.js"></script>
         <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
         <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
